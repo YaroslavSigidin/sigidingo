@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="bg-dark-patterns" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a0f14"/>
+      <stop offset="60%" stop-color="#111827"/>
+      <stop offset="100%" stop-color="#1f2937"/>
+    </linearGradient>
+    <radialGradient id="glow-dark-patterns" cx="0.75" cy="0.2" r="0.9">
+      <stop offset="0%" stop-color="#f97316" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#f97316" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg-dark-patterns)"/>
+  <rect width="1600" height="900" fill="url(#glow-dark-patterns)"/>
+  <g stroke="rgba(255,255,255,0.05)" stroke-width="1">
+    <line x1="0" y1="0" x2="0" y2="900"/>
+    <line x1="160" y1="0" x2="160" y2="900"/>
+    <line x1="320" y1="0" x2="320" y2="900"/>
+    <line x1="480" y1="0" x2="480" y2="900"/>
+    <line x1="640" y1="0" x2="640" y2="900"/>
+    <line x1="800" y1="0" x2="800" y2="900"/>
+    <line x1="960" y1="0" x2="960" y2="900"/>
+    <line x1="1120" y1="0" x2="1120" y2="900"/>
+    <line x1="1280" y1="0" x2="1280" y2="900"/>
+    <line x1="1440" y1="0" x2="1440" y2="900"/>
+    <line x1="1600" y1="0" x2="1600" y2="900"/>
+    <line x1="0" y1="0" x2="1600" y2="0"/>
+    <line x1="0" y1="120" x2="1600" y2="120"/>
+    <line x1="0" y1="240" x2="1600" y2="240"/>
+    <line x1="0" y1="360" x2="1600" y2="360"/>
+    <line x1="0" y1="480" x2="1600" y2="480"/>
+    <line x1="0" y1="600" x2="1600" y2="600"/>
+    <line x1="0" y1="720" x2="1600" y2="720"/>
+    <line x1="0" y1="840" x2="1600" y2="840"/>
+  </g>
+  <g fill="none" stroke="#f97316" stroke-width="2" opacity="0.55">
+    <path d="M 694.0 657.5 A 266.1 266.1 0 0 1 425.3 915.6"/>
+    <path d="M 416.5 443.9 A 278.0 278.0 0 0 1 252.7 326.9"/>
+    <path d="M 757.4 345.3 A 296.8 296.8 0 0 1 369.1 500.7"/>
+  </g>
+  <g stroke="rgba(255,255,255,0.12)" stroke-width="2">
+    <line x1="227.5" y1="80.0" x2="1307.9" y2="-305.6"/>
+    <line x1="125.1" y1="403.9" x2="1194.1" y2="-240.1"/>
+    <line x1="292.1" y1="460.4" x2="1658.4" y2="93.5"/>
+    <line x1="11.7" y1="149.0" x2="1503.9" y2="-199.5"/>
+    <line x1="-72.5" y1="450.7" x2="1398.8" y2="215.2"/>
+  </g>
+  <g fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="2">
+    <rect x="533.6" y="233.2" width="393.9" height="248.9" rx="18"/>
+    <rect x="757.1" y="323.1" width="244.1" height="87.3" rx="18"/>
+    <rect x="578.5" y="205.4" width="406.3" height="208.1" rx="18"/>
+    <rect x="151.6" y="210.2" width="215.4" height="170.7" rx="18"/>
+  </g>
+  <g fill="#f97316" opacity="0.22">
+    <rect x="861.1" y="158.4" width="132.6" height="51.9" rx="25.9"/>
+    <rect x="1163.4" y="634.3" width="192.7" height="27.7" rx="13.9"/>
+    <rect x="748.4" y="165.1" width="227.7" height="32.0" rx="16.0"/>
+    <rect x="838.2" y="372.0" width="259.0" height="52.0" rx="26.0"/>
+  </g>
+  <text x="100" y="140" font-family="Sora, sans-serif" font-size="44" fill="rgba(255,255,255,0.9)" letter-spacing="2">Темные паттерны</text>
+  <text x="100" y="190" font-family="IBM Plex Mono, monospace" font-size="14" fill="rgba(255,255,255,0.6)" letter-spacing="4">SIGIDINGO / BLOG</text>
+</svg>

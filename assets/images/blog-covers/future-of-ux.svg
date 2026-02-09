@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="bg-future-of-ux" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b0f1a"/>
+      <stop offset="60%" stop-color="#111827"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <radialGradient id="glow-future-of-ux" cx="0.75" cy="0.2" r="0.9">
+      <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg-future-of-ux)"/>
+  <rect width="1600" height="900" fill="url(#glow-future-of-ux)"/>
+  <g stroke="rgba(255,255,255,0.05)" stroke-width="1">
+    <line x1="0" y1="0" x2="0" y2="900"/>
+    <line x1="160" y1="0" x2="160" y2="900"/>
+    <line x1="320" y1="0" x2="320" y2="900"/>
+    <line x1="480" y1="0" x2="480" y2="900"/>
+    <line x1="640" y1="0" x2="640" y2="900"/>
+    <line x1="800" y1="0" x2="800" y2="900"/>
+    <line x1="960" y1="0" x2="960" y2="900"/>
+    <line x1="1120" y1="0" x2="1120" y2="900"/>
+    <line x1="1280" y1="0" x2="1280" y2="900"/>
+    <line x1="1440" y1="0" x2="1440" y2="900"/>
+    <line x1="1600" y1="0" x2="1600" y2="900"/>
+    <line x1="0" y1="0" x2="1600" y2="0"/>
+    <line x1="0" y1="120" x2="1600" y2="120"/>
+    <line x1="0" y1="240" x2="1600" y2="240"/>
+    <line x1="0" y1="360" x2="1600" y2="360"/>
+    <line x1="0" y1="480" x2="1600" y2="480"/>
+    <line x1="0" y1="600" x2="1600" y2="600"/>
+    <line x1="0" y1="720" x2="1600" y2="720"/>
+    <line x1="0" y1="840" x2="1600" y2="840"/>
+  </g>
+  <g fill="none" stroke="#22d3ee" stroke-width="2" opacity="0.5">
+    <path d="M 610.9 558.9 A 197.2 197.2 0 0 1 389.6 382.7"/>
+    <path d="M 1460.8 372.6 A 266.2 266.2 0 0 1 1211.2 513.7"/>
+    <path d="M 784.9 293.4 A 278.8 278.8 0 0 1 422.5 414.3"/>
+  </g>
+  <g stroke="rgba(255,255,255,0.12)" stroke-width="2">
+    <line x1="110.0" y1="710.5" x2="1128.5" y2="31.4"/>
+    <line x1="-5.4" y1="278.9" x2="1035.8" y2="-316.8"/>
+    <line x1="251.8" y1="743.4" x2="1726.7" y2="269.6"/>
+    <line x1="106.3" y1="385.9" x2="1384.8" y2="-73.9"/>
+    <line x1="334.5" y1="74.5" x2="1273.1" y2="-174.9"/>
+  </g>
+  <g fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="2">
+    <rect x="699.4" y="99.6" width="289.6" height="221.7" rx="18"/>
+    <rect x="690.3" y="143.2" width="362.7" height="160.1" rx="18"/>
+    <rect x="127.9" y="366.7" width="194.5" height="183.1" rx="18"/>
+    <rect x="564.4" y="213.8" width="273.7" height="224.9" rx="18"/>
+  </g>
+  <g fill="#22d3ee" opacity="0.22">
+    <rect x="928.4" y="135.9" width="232.2" height="43.1" rx="21.5"/>
+    <rect x="699.0" y="566.7" width="244.3" height="30.0" rx="15.0"/>
+    <rect x="618.9" y="121.3" width="284.6" height="29.0" rx="14.5"/>
+    <rect x="1337.1" y="282.2" width="243.0" height="27.0" rx="13.5"/>
+  </g>
+  <text x="100" y="140" font-family="Sora, sans-serif" font-size="44" fill="rgba(255,255,255,0.9)" letter-spacing="2">Будущее UX</text>
+  <text x="100" y="190" font-family="IBM Plex Mono, monospace" font-size="14" fill="rgba(255,255,255,0.6)" letter-spacing="4">SIGIDINGO / BLOG</text>
+</svg>

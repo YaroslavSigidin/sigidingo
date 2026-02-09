@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="bg-portfolio-story" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b0f12"/>
+      <stop offset="60%" stop-color="#111827"/>
+      <stop offset="100%" stop-color="#1f2937"/>
+    </linearGradient>
+    <radialGradient id="glow-portfolio-story" cx="0.75" cy="0.2" r="0.9">
+      <stop offset="0%" stop-color="#f472b6" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#f472b6" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg-portfolio-story)"/>
+  <rect width="1600" height="900" fill="url(#glow-portfolio-story)"/>
+  <g stroke="rgba(255,255,255,0.05)" stroke-width="1">
+    <line x1="0" y1="0" x2="0" y2="900"/>
+    <line x1="160" y1="0" x2="160" y2="900"/>
+    <line x1="320" y1="0" x2="320" y2="900"/>
+    <line x1="480" y1="0" x2="480" y2="900"/>
+    <line x1="640" y1="0" x2="640" y2="900"/>
+    <line x1="800" y1="0" x2="800" y2="900"/>
+    <line x1="960" y1="0" x2="960" y2="900"/>
+    <line x1="1120" y1="0" x2="1120" y2="900"/>
+    <line x1="1280" y1="0" x2="1280" y2="900"/>
+    <line x1="1440" y1="0" x2="1440" y2="900"/>
+    <line x1="1600" y1="0" x2="1600" y2="900"/>
+    <line x1="0" y1="0" x2="1600" y2="0"/>
+    <line x1="0" y1="120" x2="1600" y2="120"/>
+    <line x1="0" y1="240" x2="1600" y2="240"/>
+    <line x1="0" y1="360" x2="1600" y2="360"/>
+    <line x1="0" y1="480" x2="1600" y2="480"/>
+    <line x1="0" y1="600" x2="1600" y2="600"/>
+    <line x1="0" y1="720" x2="1600" y2="720"/>
+    <line x1="0" y1="840" x2="1600" y2="840"/>
+  </g>
+  <g fill="none" stroke="#f472b6" stroke-width="2" opacity="0.5">
+    <path d="M 638.9 712.1 A 159.9 159.9 0 0 1 545.0 632.6"/>
+    <path d="M 319.5 279.1 A 193.0 193.0 0 0 1 305.1 71.3"/>
+    <path d="M 513.9 584.9 A 148.5 148.5 0 0 1 625.4 440.6"/>
+  </g>
+  <g stroke="rgba(255,255,255,0.12)" stroke-width="2">
+    <line x1="350.1" y1="887.5" x2="1772.9" y2="470.0"/>
+    <line x1="-6.6" y1="314.3" x2="1265.8" y2="152.2"/>
+    <line x1="280.7" y1="876.0" x2="1419.6" y2="236.9"/>
+    <line x1="303.6" y1="748.0" x2="1706.3" y2="439.1"/>
+    <line x1="151.8" y1="484.6" x2="1353.1" y2="-123.6"/>
+  </g>
+  <g fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="2">
+    <rect x="939.1" y="282.3" width="156.5" height="152.9" rx="18"/>
+    <rect x="452.8" y="101.4" width="225.7" height="180.7" rx="18"/>
+    <rect x="679.2" y="232.9" width="353.5" height="201.7" rx="18"/>
+    <rect x="400.0" y="189.7" width="377.9" height="102.2" rx="18"/>
+  </g>
+  <g fill="#f472b6" opacity="0.22">
+    <rect x="94.5" y="555.3" width="175.3" height="52.9" rx="26.4"/>
+    <rect x="869.3" y="403.3" width="238.4" height="41.4" rx="20.7"/>
+    <rect x="1281.9" y="695.0" width="288.1" height="38.0" rx="19.0"/>
+    <rect x="1102.7" y="131.8" width="168.2" height="48.3" rx="24.1"/>
+  </g>
+  <text x="100" y="140" font-family="Sora, sans-serif" font-size="44" fill="rgba(255,255,255,0.9)" letter-spacing="2">Про кейсы</text>
+  <text x="100" y="190" font-family="IBM Plex Mono, monospace" font-size="14" fill="rgba(255,255,255,0.6)" letter-spacing="4">SIGIDINGO / BLOG</text>
+</svg>

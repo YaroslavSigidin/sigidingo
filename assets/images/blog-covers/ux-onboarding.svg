@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="bg-ux-onboarding" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a0f14"/>
+      <stop offset="60%" stop-color="#111827"/>
+      <stop offset="100%" stop-color="#1f2937"/>
+    </linearGradient>
+    <radialGradient id="glow-ux-onboarding" cx="0.75" cy="0.2" r="0.9">
+      <stop offset="0%" stop-color="#f97316" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#f97316" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg-ux-onboarding)"/>
+  <rect width="1600" height="900" fill="url(#glow-ux-onboarding)"/>
+  <g stroke="rgba(255,255,255,0.05)" stroke-width="1">
+    <line x1="0" y1="0" x2="0" y2="900"/>
+    <line x1="160" y1="0" x2="160" y2="900"/>
+    <line x1="320" y1="0" x2="320" y2="900"/>
+    <line x1="480" y1="0" x2="480" y2="900"/>
+    <line x1="640" y1="0" x2="640" y2="900"/>
+    <line x1="800" y1="0" x2="800" y2="900"/>
+    <line x1="960" y1="0" x2="960" y2="900"/>
+    <line x1="1120" y1="0" x2="1120" y2="900"/>
+    <line x1="1280" y1="0" x2="1280" y2="900"/>
+    <line x1="1440" y1="0" x2="1440" y2="900"/>
+    <line x1="1600" y1="0" x2="1600" y2="900"/>
+    <line x1="0" y1="0" x2="1600" y2="0"/>
+    <line x1="0" y1="120" x2="1600" y2="120"/>
+    <line x1="0" y1="240" x2="1600" y2="240"/>
+    <line x1="0" y1="360" x2="1600" y2="360"/>
+    <line x1="0" y1="480" x2="1600" y2="480"/>
+    <line x1="0" y1="600" x2="1600" y2="600"/>
+    <line x1="0" y1="720" x2="1600" y2="720"/>
+    <line x1="0" y1="840" x2="1600" y2="840"/>
+  </g>
+  <g fill="none" stroke="#f97316" stroke-width="2" opacity="0.55">
+    <path d="M 849.9 416.5 A 281.1 281.1 0 0 1 719.1 64.3"/>
+    <path d="M 1015.4 641.6 A 217.7 217.7 0 0 1 809.3 605.2"/>
+    <path d="M 473.1 707.2 A 190.6 190.6 0 0 1 534.7 460.9"/>
+  </g>
+  <g stroke="rgba(255,255,255,0.12)" stroke-width="2">
+    <line x1="312.8" y1="874.2" x2="1537.6" y2="467.9"/>
+    <line x1="388.6" y1="331.8" x2="1565.9" y2="156.9"/>
+    <line x1="255.8" y1="268.1" x2="1494.9" y2="113.1"/>
+    <line x1="211.6" y1="362.0" x2="1520.2" y2="-37.0"/>
+    <line x1="296.5" y1="382.7" x2="1261.4" y2="-305.0"/>
+  </g>
+  <g fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="2">
+    <rect x="1267.4" y="192.9" width="200.8" height="248.7" rx="18"/>
+    <rect x="332.2" y="412.8" width="168.0" height="95.1" rx="18"/>
+    <rect x="1084.2" y="533.3" width="205.4" height="244.7" rx="18"/>
+    <rect x="527.9" y="498.4" width="272.5" height="124.9" rx="18"/>
+  </g>
+  <g fill="#f97316" opacity="0.22">
+    <rect x="356.1" y="185.8" width="138.1" height="42.7" rx="21.4"/>
+    <rect x="444.2" y="380.9" width="208.5" height="50.2" rx="25.1"/>
+    <rect x="303.4" y="672.6" width="178.0" height="52.2" rx="26.1"/>
+    <rect x="475.9" y="273.9" width="187.9" height="31.0" rx="15.5"/>
+  </g>
+  <text x="100" y="140" font-family="Sora, sans-serif" font-size="44" fill="rgba(255,255,255,0.9)" letter-spacing="2">Онбординг UX</text>
+  <text x="100" y="190" font-family="IBM Plex Mono, monospace" font-size="14" fill="rgba(255,255,255,0.6)" letter-spacing="4">SIGIDINGO / BLOG</text>
+</svg>
