@@ -22,13 +22,14 @@ const initNav = () => {
     links.classList.add("open");
     document.body.classList.add("nav-open");
     toggle.setAttribute("aria-expanded", "true");
-    if (!qs(".nav-tools", links)) {
-      const tools = qs(".nav-tools");
-      if (tools) {
-        const clone = tools.cloneNode(true);
-        clone.classList.add("nav-tools-mobile");
-        links.appendChild(clone);
-      }
+    if (!qs(".nav-close", links)) {
+      const closeBtn = document.createElement("button");
+      closeBtn.className = "nav-close";
+      closeBtn.type = "button";
+      closeBtn.setAttribute("aria-label", "Close menu");
+      closeBtn.textContent = "×";
+      closeBtn.addEventListener("click", closeMenu);
+      links.prepend(closeBtn);
     }
   };
 

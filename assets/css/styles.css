@@ -3387,13 +3387,15 @@ body.page-loaded .case-hero .container {
     gap: 16px;
     transform: translateY(-100%);
     opacity: 0;
-    transition: transform 0.35s ease, opacity 0.35s ease;
+    pointer-events: none;
+    transition: transform 0.3s ease, opacity 0.3s ease;
     border: none;
   }
 
   .nav-links.open {
     transform: translateY(0);
     opacity: 1;
+    pointer-events: auto;
   }
 
   .nav-cta {
@@ -3442,6 +3444,20 @@ body.nav-open {
 }
 
 @media (max-width: 860px) {
+  .nav-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 42px;
+    height: 42px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    font-size: 24px;
+    line-height: 1;
+  }
+
   .nav-links a {
     font-size: 18px;
     padding: 10px 0;
@@ -3451,15 +3467,8 @@ body.nav-open {
     display: none;
   }
 
-  .nav-tools-mobile {
-    margin-top: auto;
-    display: flex;
-    flex-direction: column;
+  .nav-links {
     gap: 12px;
-  }
-
-  .nav-tools-mobile .nav-telegram {
-    justify-content: center;
   }
 }
 
