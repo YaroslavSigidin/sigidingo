@@ -5,9 +5,56 @@ const initNav = () => {
   const toggle = qs("#mobileToggle");
   const links = qs("#navLinks");
   if (!toggle || !links) return;
+  let overlay = qs(".nav-overlay");
+  if (!overlay) {
+    overlay = document.createElement("div");
+    overlay.className = "nav-overlay";
+    document.body.appendChild(overlay);
+  }
+
+  const closeMenu = () => {
+    links.classList.remove("open");
+    document.body.classList.remove("nav-open");
+    toggle.setAttribute("aria-expanded", "false");
+  };
+
+  const openMenu = () => {
+    links.classList.add("open");
+    document.body.classList.add("nav-open");
+    toggle.setAttribute("aria-expanded", "true");
+    if (!qs(".nav-tools", links)) {
+      const tools = qs(".nav-tools");
+      if (tools) {
+        const clone = tools.cloneNode(true);
+        clone.classList.add("nav-tools-mobile");
+        links.appendChild(clone);
+      }
+    }
+  };
+
   toggle.addEventListener("click", () => {
-    links.classList.toggle("open");
+    if (links.classList.contains("open")) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
   });
+
+  overlay.addEventListener("click", closeMenu);
+  qsa("a", links).forEach(link => link.addEventListener("click", closeMenu));
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape") closeMenu();
+  });
+};
+
+const initMobilePortfolioDefault = () => {
+  const isMobile = window.matchMedia("(max-width: 860px)").matches;
+  if (!isMobile) return;
+  const path = window.location.pathname;
+  if (!path.endsWith("/") && !path.endsWith("/index.html") && !path.endsWith("index.html")) return;
+  if (sessionStorage.getItem("mobilePortfolioRedirect")) return;
+  sessionStorage.setItem("mobilePortfolioRedirect", "true");
+  window.location.replace("portfolio.html");
 };
 
 const applyTheme = theme => {
@@ -1103,6 +1150,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   initNav();
   initThemeToggle();
+  initMobilePortfolioDefault();
   qsa(".section-title, .section-subtitle, .hero-title, .case-hero h1").forEach(el => {
     el.classList.add("reveal");
     el.dataset.scramble = "true";

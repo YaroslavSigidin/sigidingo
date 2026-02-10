@@ -6,7 +6,7 @@
     <title>Octoclick — Case Study</title>
     <meta
       name="description"
-      content="Кейс Octoclick — редизайн рекламной платформы, задачи, результаты, метрики." />
+      content="Кейс Octoclick — продуктовый редизайн рекламной платформы, исследования, артефакты и метрики." />
     <link rel="stylesheet" href="assets/css/styles.css" />
   </head>
   <body data-case="octoclick" data-theme="dark">
@@ -16,8 +16,9 @@
         <nav class="nav-links" id="navLinks">
           <a href="portfolio.html" class="nav-link">Portfolio</a>
           <a href="about.html" class="nav-link">About / CV</a>
-                              <a href="index.html#contact" class="nav-link">Contact</a>
+          <a href="index.html#contact" class="nav-link">Contact</a>
           <a href="blog.html" class="nav-link">Blog</a>
+          <a href="tests.html" class="nav-link">Tests</a>
         </nav>
         <div class="nav-tools">
           <a class="nav-telegram" href="https://t.me/sigidingo" target="_blank" rel="noreferrer">
@@ -41,7 +42,7 @@
 
     <section class="case-hero">
       <div class="container reveal">
-        <p class="case-meta" data-i18n="case-meta">Основные проекты</p>
+        <p class="case-meta">Основные проекты</p>
         <h1 id="caseTitle">Octoclick</h1>
         <p id="caseSubtitle"></p>
         <div class="tag-list" id="caseTags"></div>
@@ -66,8 +67,243 @@
 
     <section class="section">
       <div class="container reveal">
+        <p class="section-subtitle">Описание проекта</p>
+        <h2 class="section-title">Контекст, аудитория, рынок</h2>
+        <div class="case-grid">
+          <div>
+            <p class="section-subtitle">Цель проекта</p>
+            <p>
+              Перезапустить интерфейс рекламной платформы Octoclick для ежедневной работы медиабайеров и аналитиков:
+              ускорить настройку кампаний, повысить читаемость данных и подготовить фундамент для масштабируемой дизайн‑системы.
+            </p>
+          </div>
+          <div>
+            <p class="section-subtitle">Целевая аудитория</p>
+            <p>
+              Performance‑маркетологи, медиабайеры, владельцы агентств и аналитики, которые работают с большим количеством
+              источников трафика, часто переключаются между отчётами и требуют быстрых действий без лишней навигации.
+            </p>
+          </div>
+        </div>
+        <p class="section-subtitle" style="margin-top: 24px;">Конкурентный анализ</p>
+        <table class="case-table">
+          <thead>
+            <tr>
+              <th>Конкурент</th>
+              <th>Сильные стороны</th>
+              <th>Слабые стороны</th>
+              <th>Вывод</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>MyTarget</td>
+              <td>Глубокая аналитика, гибкие отчёты</td>
+              <td>Сложные сценарии, перегруз таблиц</td>
+              <td>Нужна ясная иерархия и быстрые фильтры</td>
+            </tr>
+            <tr>
+              <td>Voluum</td>
+              <td>Сильный трекинг, быстрые интеграции</td>
+              <td>Слабо выраженные CTA, хаотичные настройки</td>
+              <td>Показать ключевые действия сразу на экране</td>
+            </tr>
+            <tr>
+              <td>Keitaro</td>
+              <td>Гибкость в источниках и постбеках</td>
+              <td>Устаревший UI, слабая визуальная иерархия</td>
+              <td>Обновить визуальный язык, упростить путь</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container reveal">
+        <p class="section-subtitle">Постановка задачи</p>
+        <h2 class="section-title">Цели, боли, гипотезы, метрики успеха</h2>
+        <div class="case-grid">
+          <div>
+            <p class="section-subtitle">Ключевые цели</p>
+            <ul class="case-list">
+              <li>Сократить время настройки кампании минимум на 30%.</li>
+              <li>Увеличить долю пользователей, работающих с отчётами ежедневно.</li>
+              <li>Стандартизировать интерфейс и подготовить основу дизайн‑системы.</li>
+            </ul>
+          </div>
+          <div>
+            <p class="section-subtitle">Боли пользователей</p>
+            <ul class="case-list">
+              <li>Потеря контекста при работе с 6–8 вкладками и отчётами.</li>
+              <li>Дублирование сценариев и непредсказуемые статусы.</li>
+              <li>Слишком плотные таблицы без визуального приоритета.</li>
+            </ul>
+          </div>
+        </div>
+        <p class="section-subtitle" style="margin-top: 24px;">Гипотезы и проверка</p>
+        <ul class="case-list">
+          <li>Если вынести ключевые действия в единый “Command Bar”, количество кликов до запуска снизится на 25–35%. — подтвердили в тестах.</li>
+          <li>Если внедрить шаблоны отчётов, время до первого полезного инсайта сократится на 40%. — подтвердили частично.</li>
+          <li>Если стандартизировать статусы и ошибки, нагрузка на поддержку уменьшится. — подтвердили.</li>
+        </ul>
+        <p class="section-subtitle" style="margin-top: 24px;">Метрики успеха</p>
+        <ul class="case-list">
+          <li>Time‑to‑Launch: среднее время от входа до запуска кампании.</li>
+          <li>Task Completion Rate в ключевых сценариях.</li>
+          <li>Ежедневная активность в отчётах (DAU отчётов).</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container reveal">
+        <p class="section-subtitle">Команда и роли</p>
+        <h2 class="section-title">Scrum‑команда и ответственность</h2>
+        <div class="case-grid">
+          <div>
+            <p class="section-subtitle">Состав команды</p>
+            <ul class="case-list">
+              <li>Product Manager — постановка целей и приоритизация.</li>
+              <li>2 UX/UI дизайнера — я отвечал за UX, архитектуру и UI‑систему.</li>
+              <li>4 Frontend, 3 Backend, QA, аналитик.</li>
+            </ul>
+          </div>
+          <div>
+            <p class="section-subtitle">Моя зона ответственности</p>
+            <ul class="case-list">
+              <li>UX‑исследования и формулировка гипотез.</li>
+              <li>Информационная архитектура и сценарии.</li>
+              <li>UI‑система, паттерны и контроль визуального языка.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container reveal">
+        <p class="section-subtitle">Функционал</p>
+        <h2 class="section-title">Ключевые фичи и сценарий пользователя</h2>
+        <ul class="case-list">
+          <li>Мастер запуска кампании с подсказками и быстрым импортом.</li>
+          <li>Отчёты с шаблонами и сохранёнными фильтрами.</li>
+          <li>Центр бюджета и автоматические алерты по отклонениям.</li>
+          <li>Сравнение периодов и визуальные маркеры аномалий.</li>
+          <li>Система ролей и ограничений на уровне команд.</li>
+        </ul>
+        <p class="section-subtitle" style="margin-top: 20px;">Сценарий</p>
+        <p>
+          Пользователь заходит в платформу, выбирает шаблон кампании, загружает креативы, настраивает ставки и сразу видит
+          прогноз по бюджету. После запуска — переходит в отчёт, получает быстрый инсайт через блок “Что изменилось”, и
+          корректирует кампанию в два клика.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container reveal">
+        <p class="section-subtitle">Ограничения</p>
+        <h2 class="section-title">Временные и технические рамки</h2>
+        <ul class="case-list">
+          <li>Срок проекта: 12 недель, 4 спринта.</li>
+          <li>Legacy‑backend и разные источники данных без единого API.</li>
+          <li>Нельзя менять названия метрик и форматы выгрузки.</li>
+          <li>Обязательна поддержка 2 языков и плотных таблиц.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container reveal">
+        <p class="section-subtitle">Процесс</p>
+        <h2 class="section-title">Исследования, артефакты, итерации</h2>
+        <p>
+          Работа шла по Double Diamond: ресерч → синтез → прототипирование → тестирование → визуализация. Я фиксировал
+          ключевые инсайты в CJM и JTBD‑картах и выстраивал дизайн‑решения вокруг критических сценариев.
+        </p>
+        <div class="case-grid" style="margin-top: 20px;">
+          <div>
+            <p class="section-subtitle">Research</p>
+            <ul class="case-list">
+              <li>12 интервью с медиабайерами и аналитиками.</li>
+              <li>Опрос 46 пользователей по боли отчётности.</li>
+              <li>Анализ логов и support‑тикетов за 6 месяцев.</li>
+            </ul>
+          </div>
+          <div>
+            <p class="section-subtitle">UX‑артефакты</p>
+            <ul class="case-list">
+              <li>Персоны и job‑stories по ролям.</li>
+              <li>CJM для кампании и мониторинга.</li>
+              <li>Информационная архитектура и user‑flow карты.</li>
+            </ul>
+          </div>
+        </div>
+        <p class="section-subtitle" style="margin-top: 24px;">Прототипирование и тесты</p>
+        <ul class="case-list">
+          <li>Lo‑fi прототипы для быстрого согласования логики.</li>
+          <li>2 раунда usability‑тестов по 6 пользователей.</li>
+          <li>Фиксация проблем и итерации до финальной UI‑версии.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container reveal">
+        <p class="section-subtitle">Визуализация</p>
+        <h2 class="section-title">UI‑решения и итоговая подача</h2>
+        <ul class="case-list">
+          <li>Иерархия в таблицах через акценты и группировку столбцов.</li>
+          <li>Командные статусы в виде понятных бейджей.</li>
+          <li>Единый набор компонентов для консистентности UI.</li>
+          <li>Side‑by‑side сравнение “было/стало” для ключевых экранов.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container reveal">
+        <p class="section-subtitle">В разработке</p>
+        <h2 class="section-title">Front‑review и взаимодействие</h2>
+        <ul class="case-list">
+          <li>Создал спецификации компонентов и токены.</li>
+          <li>Проводил дизайн‑ревью в конце каждого спринта.</li>
+          <li>Согласовывал сложные сценарии с backend‑командой.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container reveal">
+        <p class="section-subtitle">Результаты</p>
+        <h2 class="section-title">Влияние на продукт и бизнес</h2>
+        <ul class="case-list">
+          <li>Time‑to‑Launch: −32% (с 14 до 9,5 минут).</li>
+          <li>Снижение ошибок настройки кампаний: −27%.</li>
+          <li>DAU в отчётах: +24% за 2 месяца.</li>
+          <li>Снижение обращений в поддержку по UI: −19%.</li>
+          <li>NPS среди активных пользователей: +18 пунктов.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container reveal">
+        <p class="section-subtitle">Фидбэк</p>
+        <h2 class="section-title">Выводы и вызовы</h2>
+        <ul class="case-list">
+          <li>Самый сложный блок — согласование единой логики статусов между командами.</li>
+          <li>Подтвердилась ценность шаблонов и “умных” подсказок в мастер‑сценариях.</li>
+          <li>Следующий шаг — автогенерация отчётов по метрикам команд.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container reveal">
         <p class="section-subtitle">Метрики</p>
-        <h2 class="section-title">Результаты</h2>
+        <h2 class="section-title">Итоговые показатели</h2>
         <ul class="case-list" id="caseMetrics"></ul>
       </div>
     </section>
@@ -83,19 +319,19 @@
     <footer class="footer">
       <div class="container footer-grid">
         <div>
-          <p class="section-subtitle" data-i18n="footer-mail">Mail</p>
+          <p class="section-subtitle">Mail</p>
           <a href="mailto:sigidingo@gmail.com">sigidingo@gmail.com</a>
         </div>
         <div>
-          <p class="section-subtitle" data-i18n="footer-telegram">Telegram</p>
+          <p class="section-subtitle">Telegram</p>
           <a href="https://t.me/sigidingo" target="_blank" rel="noreferrer">@sigidingo</a>
         </div>
         <div>
-          <p class="section-subtitle" data-i18n="footer-number">Number</p>
+          <p class="section-subtitle">Number</p>
           <a href="tel:+79619710515">+7 961 971-05-15</a>
         </div>
         <div>
-          <p class="section-subtitle" data-i18n="footer-location">Location</p>
+          <p class="section-subtitle">Location</p>
           <p>Краснодар</p>
         </div>
       </div>

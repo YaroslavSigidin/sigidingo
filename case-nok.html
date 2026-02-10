@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NOK — Case Study</title>
+    <meta
+      name="description"
+      content="Кейс NOK (ИСС) — образовательная платформа, сайт на 4 страницы, CRM и метрики." />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body data-case="nok" data-theme="dark">
+    <header>
+      <div class="container nav">
+        <a class="logo" href="index.html">SIGIDINGO</a>
+        <nav class="nav-links" id="navLinks">
+          <a href="portfolio.html" class="nav-link">Portfolio</a>
+          <a href="about.html" class="nav-link">About / CV</a>
+          <a href="index.html#contact" class="nav-link">Contact</a>
+          <a href="blog.html" class="nav-link">Blog</a>
+          <a href="tests.html" class="nav-link">Tests</a>
+        </nav>
+        <div class="nav-tools">
+          <a class="nav-telegram" href="https://t.me/sigidingo" target="_blank" rel="noreferrer">
+            <span class="icon-circle">
+              <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="currentColor" d="M21.8 4.6 2.9 11.9c-1.3.5-1.3 1.3-.2 1.7l4.7 1.5 1.8 5.4c.2.6.1.9.9.9.6 0 .9-.3 1.3-.7l2.3-2.2 4.8 3.5c.9.5 1.5.2 1.7-.8l3.1-14.7c.3-1.2-.5-1.7-1.5-1.3zM9.3 14.9l9-5.7c.4-.3.8-.1.5.2l-7.3 6.6-.3 3.2-1.9-4.3z"/>
+              </svg>
+            </span>
+            Telegram
+          </a>
+          <button class="theme-switch" data-theme-toggle type="button" aria-label="Toggle theme">
+            <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor" d="M12.3 2.2c-3.6.3-6.5 3.4-6.5 7.1 0 3.9 3.2 7.1 7.1 7.1 2.4 0 4.5-1.1 5.8-2.9-4.3.7-7.9-2.8-6.4-6.9z"/>
+            </svg>
+            <span class="track"><span class="thumb"></span></span>
+          </button>
+        </div>
+        <button class="mobile-toggle" id="mobileToggle">☰</button>
+      </div>
+    </header>
+
+    <section class="case-hero">
+      <div class="container reveal">
+        <p class="case-meta">Проект 2024</p>
+        <h1 id="caseTitle">NOK / ИСС</h1>
+        <p id="caseSubtitle"></p>
+        <div class="tag-list" id="caseTags"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container case-grid">
+        <div class="reveal">
+          <p class="section-subtitle">Задача</p>
+          <h2 class="section-title">Что нужно было сделать</h2>
+          <p id="caseTask"></p>
+        </div>
+        <div class="reveal">
+          <p class="section-subtitle">Что сделано</p>
+          <h2 class="section-title">Решения и процесс</h2>
+          <ul class="case-list" id="caseWhatDone"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container reveal">
+        <p class="section-subtitle">Описание проекта</p>
+        <h2 class="section-title">Контекст, аудитория, рынок</h2>
+        <div class="case-grid">
+          <div>
+            <p class="section-subtitle">Цель проекта</p>
+            <p>
+              ИСС (Институт современных специальностей) — образовательная организация с направлениями
+              повышения квалификации, охраны труда, НОК и профпереподготовки. Цель — создать удобный сайт
+              на 4 ключевые страницы и связать его с CRM‑процессом заявок.
+            </p>
+          </div>
+          <div>
+            <p class="section-subtitle">Целевая аудитория</p>
+            <p>
+              Руководители детских образовательных учреждений и HR‑специалисты, которым нужно быстро
+              подобрать программы, оставить заявку и получить консультацию.
+            </p>
+          </div>
+        </div>
+        <p class="section-subtitle" style="margin-top: 24px;">Конкурентный анализ</p>
+        <table class="case-table">
+          <thead>
+            <tr>
+              <th>Конкурент</th>
+              <th>Сильные стороны</th>
+              <th>Слабые стороны</th>
+              <th>Вывод</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Региональные учебные центры</td>
+              <td>Простые лендинги и быстрые заявки</td>
+              <td>Нет структуры программ и логики выбора</td>
+              <td>Нужна понятная навигация по курсам</td>
+            </tr>
+            <tr>
+              <td>Крупные онлайн‑школы</td>
+              <td>Хороший маркетинг</td>
+              <td>Слабая персонализация для руководителей</td>
+              <td>Сделать акцент на корпоративные запросы</td>
+            </tr>
+            <tr>
+              <td>Гос‑порталы</td>
+              <td>Официальность и доверие</td>
+              <td>Сложный UX и перегруженные формы</td>
+              <td>Сделать короткий путь к заявке</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container reveal">
+        <p class="section-subtitle">Постановка задачи</p>
+        <h2 class="section-title">Цели, боли, гипотезы, метрики</h2>
+        <div class="case-grid">
+          <div>
+            <p class="section-subtitle">Цели</p>
+            <ul class="case-list">
+              <li>Создать информативный сайт на 4 страницы с чёткой структурой.</li>
+              <li>Упростить подачу заявки и быстрый контакт.</li>
+              <li>Интегрировать заявки в CRM‑сценарии кураторов.</li>
+            </ul>
+          </div>
+          <div>
+            <p class="section-subtitle">Боли пользователей</p>
+            <ul class="case-list">
+              <li>Непонятно, какие программы подходят.</li>
+              <li>Слишком длинные формы заявки.</li>
+              <li>Нет ясной информации о результатах обучения.</li>
+            </ul>
+          </div>
+        </div>
+        <p class="section-subtitle" style="margin-top: 24px;">Гипотезы</p>
+        <ul class="case-list">
+          <li>Сокращение формы до 4–5 полей повысит конверсию заявок.</li>
+          <li>Витрина программ с краткими карточками ускорит выбор.</li>
+          <li>Шаблоны обращений улучшат качество обработки заявок.</li>
+        </ul>
+        <p class="section-subtitle" style="margin-top: 24px;">Метрики успеха</p>
+        <ul class="case-list">
+          <li>Конверсия заявок.</li>
+          <li>Время до отправки заявки.</li>
+          <li>Качество заполнения заявок.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container reveal">
+        <p class="section-subtitle">Команда и роли</p>
+        <h2 class="section-title">Scrum‑команда</h2>
+        <div class="case-grid">
+          <div>
+            <p class="section-subtitle">Состав</p>
+            <ul class="case-list">
+              <li>Product Owner, методист.</li>
+              <li>UX/UI дизайнер (я).</li>
+              <li>Frontend, Backend, QA.</li>
+            </ul>
+          </div>
+          <div>
+            <p class="section-subtitle">Моя роль</p>
+            <ul class="case-list">
+              <li>UX‑исследования и структура сайта.</li>
+              <li>Проектирование форм и CRM‑логики.</li>
+              <li>UI‑концепция и контроль реализации.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container reveal">
+        <p class="section-subtitle">Функционал</p>
+        <h2 class="section-title">Ключевые фичи</h2>
+        <ul class="case-list">
+          <li>Витрина программ с карточками и фильтрами.</li>
+          <li>Быстрая заявка в 4–5 полей.</li>
+          <li>CRM‑шаблоны для кураторов.</li>
+          <li>Блок доверия: лицензии, отзывы, документы.</li>
+        </ul>
+        <p class="section-subtitle" style="margin-top: 20px;">Сценарий</p>
+        <p>
+          Руководитель заходит на сайт, выбирает программу, читает краткое описание
+          и оставляет заявку через короткую форму. Заявка уходит в CRM
+          и автоматически присваивается куратору.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container reveal">
+        <p class="section-subtitle">Ограничения</p>
+        <h2 class="section-title">Временные и технические рамки</h2>
+        <ul class="case-list">
+          <li>Срок: июнь–август 2024.</li>
+          <li>Фиксированные 4 страницы сайта.</li>
+          <li>Интеграция с CRM без изменения ядра.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container reveal">
+        <p class="section-subtitle">Процесс</p>
+        <h2 class="section-title">Исследования, артефакты, тесты</h2>
+        <div class="case-grid" style="margin-top: 20px;">
+          <div>
+            <p class="section-subtitle">Research</p>
+            <ul class="case-list">
+              <li>6 интервью с руководителями учреждений.</li>
+              <li>Анализ заявок за прошлый период.</li>
+              <li>Аудит конкурентов и референсы.</li>
+            </ul>
+          </div>
+          <div>
+            <p class="section-subtitle">UX‑артефакты</p>
+            <ul class="case-list">
+              <li>IA и карта страниц.</li>
+              <li>User flow “выбор → заявка”.</li>
+              <li>Wireframes и прототип формы.</li>
+            </ul>
+          </div>
+        </div>
+        <p class="section-subtitle" style="margin-top: 24px;">Тестирование</p>
+        <ul class="case-list">
+          <li>Тесты формы заявки на 8 пользователях.</li>
+          <li>Сокращение времени заполнения на 35% после итераций.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container reveal">
+        <p class="section-subtitle">Визуализация</p>
+        <h2 class="section-title">UI‑решения</h2>
+        <ul class="case-list">
+          <li>Светлая и доверительная стилистика.</li>
+          <li>Карточки программ с акцентом на результат.</li>
+          <li>Минимум отвлекающих элементов, фокус на заявке.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container reveal">
+        <p class="section-subtitle">В разработке</p>
+        <h2 class="section-title">Front‑review</h2>
+        <ul class="case-list">
+          <li>Контроль адаптива на всех страницах.</li>
+          <li>Проверка интеграции CRM‑шаблонов.</li>
+          <li>UI‑ревью финальной сборки.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container reveal">
+        <p class="section-subtitle">Результаты</p>
+        <h2 class="section-title">Пользовательский и бизнес‑эффект</h2>
+        <ul class="case-list">
+          <li>Конверсия заявок: +28%.</li>
+          <li>Время заполнения заявки: −35%.</li>
+          <li>Рост входящих обращений: +22%.</li>
+          <li>Ускорение обработки заявок кураторами: −30%.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container reveal">
+        <p class="section-subtitle">Фидбэк</p>
+        <h2 class="section-title">Выводы</h2>
+        <ul class="case-list">
+          <li>Ставка на “короткую форму” дала прирост заявок.</li>
+          <li>Витрина программ стала ключевым блоком доверия.</li>
+          <li>Следующий шаг — личный кабинет для заявителей.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container reveal">
+        <p class="section-subtitle">Метрики</p>
+        <h2 class="section-title">Итоговые показатели</h2>
+        <ul class="case-list" id="caseMetrics"></ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container reveal">
+        <p class="section-subtitle">Галерея</p>
+        <h2 class="section-title">Screens</h2>
+        <div class="gallery" id="caseGallery"></div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div>
+          <p class="section-subtitle">Mail</p>
+          <a href="mailto:sigidingo@gmail.com">sigidingo@gmail.com</a>
+        </div>
+        <div>
+          <p class="section-subtitle">Telegram</p>
+          <a href="https://t.me/sigidingo" target="_blank" rel="noreferrer">@sigidingo</a>
+        </div>
+        <div>
+          <p class="section-subtitle">Number</p>
+          <a href="tel:+79619710515">+7 961 971-05-15</a>
+        </div>
+        <div>
+          <p class="section-subtitle">Location</p>
+          <p>Краснодар</p>
+        </div>
+      </div>
+    </footer>
+
+    <div class="lightbox" id="lightbox">
+      <button class="prev" data-lightbox-prev>‹</button>
+      <img src="" alt="" />
+      <button class="next" data-lightbox-next>›</button>
+    </div>
+
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
