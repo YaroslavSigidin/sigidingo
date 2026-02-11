@@ -208,7 +208,7 @@ ul {
 .service-mini-card p {
   color: color-mix(in srgb, var(--muted) 72%, var(--bg));
   margin: 0;
-  text-align: center;
+  text-align: left;
   font-family: Consolas, "IBM Plex Mono", monospace;
   font-size: clamp(14px, 1.1vw, 16px);
   line-height: 1.45;
