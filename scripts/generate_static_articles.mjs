@@ -539,7 +539,6 @@ const staticPages = [
   ["/case-nok.html", "monthly", "0.7"],
   ["/case-octoclick.html", "monthly", "0.7"],
   ["/case-pazl-kod-platform.html", "monthly", "0.7"],
-  ["/case-tochka-rosta.html", "monthly", "0.7"],
   ["/case-visiflow.html", "monthly", "0.7"],
   ["/case-weintek-panel.html", "monthly", "0.7"],
   ["/case-winglish.html", "monthly", "0.7"]

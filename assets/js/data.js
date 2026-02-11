@@ -37,10 +37,6 @@ const projectImageSets = {
     "assets/images/сайты/CASTLE MUSIC/Frame 2147223640.png",
     "assets/images/сайты/CASTLE MUSIC/Frame 2147223642.png"
   ),
-  ruspab: locals(
-    "assets/images/сайты/RUSPAB/р.png",
-    "assets/images/сайты/RUSPAB/1000017605.png"
-  ),
   solomadom: locals(
     "assets/images/HERO/SOLOMADOM.jpg",
     "assets/images/HERO/SOLOMADOM.jpg",
@@ -156,15 +152,6 @@ const projectImageSets = {
     "assets/images/платформы/MIROX APP/Frame 2147223980.jpg",
     "assets/images/платформы/MIROX APP/Frame 2147224058.jpg",
     "assets/images/платформы/MIROX APP/Frame 2147224059.jpg"
-  ),
-  "tochka-rosta": locals(
-    "assets/images/платформы/TOCHKA ROSTA/HERO.jpg",
-    "assets/images/платформы/TOCHKA ROSTA/HERO.jpg",
-    "assets/images/платформы/TOCHKA ROSTA/Frame 2147223724.png"
-  ),
-  "media-kit": locals(
-    "assets/images/платформы/Media Kit/Frame 2147223656.jpg",
-    "assets/images/платформы/Media Kit/Frame 2147223657.png"
   ),
   "space-camp": locals(
     "assets/images/сайты/SPACE CAMP/HERO.jpg",
@@ -655,28 +642,6 @@ const projects = [
     gallery: projectImageSets["vihlop-expert"].slice(1)
   },
   {
-    id: "ruspab",
-    title: "RUS PUB",
-    subtitle: "",
-    description:
-      "Лендинг для гастропроекта с фокусом на атмосферу, меню и быстрый контакт. Чёткая структура помогает сразу увидеть формат, кухню и способы связи.",
-    timeline: [
-      { title: "Сценарии и контент", period: "2 дня" },
-      { title: "Прототип и структура", period: "3 дня" },
-      { title: "UI и оформление", period: "4 дня" }
-    ],
-    technologies: ["Hero‑photo", "Menu blocks", "Contact CTA", "Content grid"],
-    tools: ["Figma", "Notion"],
-    metrics: [
-      "Рост заявок на бронь",
-      "Увеличение времени на странице",
-      "Снижение отказов"
-    ],
-    category: "web",
-    image: projectImageSets.ruspab[0],
-    gallery: projectImageSets.ruspab.slice(1)
-  },
-  {
     id: "plitka",
     title: "PLITKA SERVICE",
     subtitle: "",
@@ -720,49 +685,6 @@ const projects = [
     image: projectImageSets["plitka-service"][0],
     gallery: projectImageSets["plitka-service"].slice(1)
   },
-  {
-    id: "tochka-rosta",
-    title: "ТОЧКА РОСТА",
-    subtitle: "",
-    description:
-      "Платформа с фокусом на контент, навигацию и понятные сценарии для пользователей. Чистая структура и удобная подача информации.",
-    timeline: [
-      { title: "Структура и сценарии", period: "4 дня" },
-      { title: "UX‑каркас", period: "5 дней" },
-      { title: "UI и прототип", period: "1 неделя" }
-    ],
-    technologies: ["Content blocks", "Navigation", "Adaptive layout", "CTA‑flow"],
-    tools: ["Figma", "FigJam"],
-    metrics: [
-      "Рост вовлечения",
-      "Улучшение навигации",
-      "Снижение отказов"
-    ],
-    category: "uxui",
-    image: projectImageSets["tochka-rosta"][0],
-    gallery: projectImageSets["tochka-rosta"].slice(1)
-  },
-  {
-    id: "media-kit",
-    title: "Media Kit",
-    subtitle: "",
-    description:
-      "Медиакит для презентации бренда и продуктов: аккуратная типографика, чёткая структура и быстрый доступ к ключевым материалам.",
-    timeline: [
-      { title: "Структура контента", period: "2 дня" },
-      { title: "UI‑направление", period: "3 дня" },
-      { title: "Финальная сборка", period: "3 дня" }
-    ],
-    technologies: ["Presentation layout", "Brand typography", "Content hierarchy", "Visual grid"],
-    tools: ["Figma", "Notion"],
-    metrics: [
-      "Повышение читаемости материалов",
-      "Снижение времени на подготовку",
-      "Удобство для партнёров"
-    ],
-    category: "uxui",
-    image: projectImageSets["media-kit"][0],
-    gallery: projectImageSets["media-kit"].slice(1)
   }
 ];
 
