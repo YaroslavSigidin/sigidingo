@@ -3926,7 +3926,7 @@ input[type=\"checkbox\"] {
   opacity: 0;
   transform: scale(1.03);
   transition: opacity 0.55s ease, transform 0.55s ease, filter 0.55s ease;
-  filter: brightness(0.5) contrast(1.05);
+  filter: none;
 }
 
 .modal.active .modal-cover img,
@@ -3973,7 +3973,7 @@ body[data-theme="dark"] .modal-close {
   display: block;
   transform: translateZ(0);
   object-fit: contain;
-  filter: brightness(0.5) contrast(1.05);
+  filter: none;
 }
 
 .modal-gallery-story {
