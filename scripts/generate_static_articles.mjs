@@ -18,6 +18,13 @@ if (!Array.isArray(articles) || !articles.length) {
   throw new Error("articles not found in assets/js/data.js");
 }
 
+const QUESTION_START_RE =
+  /^(как|что|почему|зачем|когда|где|кто|в чем|чем|сколько|какие|какой|какая|какое|нужно ли|стоит ли|можно ли|чем отличается)/i;
+const HOWTO_HINT_RE =
+  /(как|чек-?лист|пошаг|guide|tutorial|ошибк|best practice|практик|с нуля|на практике|правила|шаблон|workflow|dev mode)/i;
+const FAQ_HINT_RE =
+  /(как|что|почему|зачем|когда|в чем|чек-?лист|вопрос|faq|ошибк|метрик|правил|гайд|guide|tutorial|vs)/i;
+
 const escapeHtml = value =>
   String(value ?? "")
     .replace(/&/g, "&amp;")
@@ -31,6 +38,165 @@ const toIsoDate = ruDate => {
   if (!m) return "2026-02-11";
   return `${m[3]}-${m[2]}-${m[1]}`;
 };
+
+const normalizeText = value => String(value || "").replace(/\s+/g, " ").trim();
+
+const normalizeTag = tag =>
+  normalizeText(tag)
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}]+/gu, "-")
+    .replace(/^-+|-+$/g, "");
+
+const makeSnippet = (value, max = 220) => {
+  const text = normalizeText(value);
+  if (!text) return "";
+  if (text.length <= max) return text;
+  return `${text.slice(0, max - 1).trim()}…`;
+};
+
+const parseReadTimeMinutes = readTime => {
+  const m = normalizeText(readTime).match(/(\d+)/);
+  if (!m) return null;
+  const min = Number(m[1]);
+  if (!Number.isFinite(min) || min <= 0) return null;
+  return min;
+};
+
+const getBlockText = block => {
+  if (!block || typeof block !== "object") return "";
+  if (typeof block.text === "string" && block.text.trim()) return normalizeText(block.text);
+  if (Array.isArray(block.items) && block.items.length) return normalizeText(block.items.join(". "));
+  return "";
+};
+
+const getHeadingBlocks = body =>
+  (Array.isArray(body) ? body : [])
+    .map((block, index) => ({ block, index }))
+    .filter(({ block }) => block && (block.type === "h2" || block.type === "h3"))
+    .map(({ block, index }) => ({
+      index,
+      level: block.type,
+      text: normalizeText(block.text)
+    }))
+    .filter(item => item.text);
+
+const getSectionPreview = (body, startIndex, fallback) => {
+  const blocks = Array.isArray(body) ? body : [];
+  const parts = [];
+  for (let i = startIndex + 1; i < blocks.length; i += 1) {
+    const block = blocks[i];
+    if (!block || typeof block !== "object") continue;
+    if (block.type === "h2" || block.type === "h3") break;
+    const text = getBlockText(block);
+    if (text) parts.push(text);
+    if (normalizeText(parts.join(" ")).length > 260) break;
+  }
+  const preview = makeSnippet(parts.join(" "), 240);
+  if (preview) return preview;
+  return makeSnippet(fallback, 180);
+};
+
+const toQuestionText = heading => {
+  const text = normalizeText(String(heading || "").replace(/[.!:;]+$/g, ""));
+  if (!text) return "";
+  if (text.endsWith("?")) return text;
+  if (QUESTION_START_RE.test(text)) return `${text}?`;
+  return `Как применить ${text.toLowerCase()}?`;
+};
+
+const toHowToRelevanceText = article => {
+  const title = normalizeText(article.title || "");
+  const excerpt = normalizeText(article.excerpt || "");
+  return normalizeText(`${title} ${excerpt} ${(article.tags || []).join(" ")}`);
+};
+
+const isHowToArticle = article => HOWTO_HINT_RE.test(toHowToRelevanceText(article));
+const isFaqArticle = article => FAQ_HINT_RE.test(toHowToRelevanceText(article));
+
+const buildFaqEntities = (article, canonical) => {
+  if (!isFaqArticle(article)) return [];
+  const body = Array.isArray(article.body) ? article.body : [];
+  const headings = getHeadingBlocks(body);
+  const entities = [];
+  const seen = new Set();
+
+  const pushEntity = (name, text) => {
+    const question = normalizeText(name);
+    const answer = makeSnippet(text, 260);
+    if (!question || !answer) return;
+    if (seen.has(question.toLowerCase())) return;
+    seen.add(question.toLowerCase());
+    entities.push({
+      "@type": "Question",
+      name: question,
+      acceptedAnswer: { "@type": "Answer", text: answer }
+    });
+  };
+
+  pushEntity(
+    `О чем статья «${normalizeText(article.title || "Статья")}»?`,
+    article.excerpt || "Практическое руководство по теме UX/UI и продуктового дизайна."
+  );
+
+  for (const heading of headings) {
+    if (entities.length >= 6) break;
+    if (!heading.text) continue;
+    const question = toQuestionText(heading.text);
+    const answer = getSectionPreview(body, heading.index, article.excerpt);
+    pushEntity(question, answer);
+  }
+
+  if (entities.length < 2) return [];
+  return [
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: entities,
+      mainEntityOfPage: canonical,
+      inLanguage: "ru-RU"
+    }
+  ];
+};
+
+const buildHowToSchema = (article, canonical) => {
+  if (!isHowToArticle(article)) return null;
+  const body = Array.isArray(article.body) ? article.body : [];
+  const headings = getHeadingBlocks(body);
+  const steps = [];
+
+  for (const heading of headings) {
+    if (steps.length >= 10) break;
+    const text = getSectionPreview(body, heading.index, article.excerpt);
+    if (!text) continue;
+    steps.push({
+      "@type": "HowToStep",
+      name: heading.text,
+      text
+    });
+  }
+
+  if (steps.length < 3) return null;
+
+  const totalMinutes = parseReadTimeMinutes(article.readTime);
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: normalizeText(article.title || "How-to"),
+    description: makeSnippet(article.excerpt, 190),
+    inLanguage: "ru-RU",
+    mainEntityOfPage: canonical,
+    step: steps
+  };
+  if (totalMinutes) schema.totalTime = `PT${totalMinutes}M`;
+  return schema;
+};
+
+const renderJsonLdScripts = payload =>
+  payload
+    .filter(Boolean)
+    .map(item => JSON.stringify(item).replace(/</g, "\\u003c"))
+    .map(json => `<script type="application/ld+json">${json}</script>`)
+    .join("\n    ");
 
 const renderBodyBlock = block => {
   if (!block || typeof block !== "object") return "";
@@ -59,26 +225,74 @@ const renderBodyBlock = block => {
 
 const articleUrl = id => `${BASE_URL}/blog/${id}.html`;
 
-fs.rmSync(BLOG_DIR, { recursive: true, force: true });
-fs.mkdirSync(BLOG_DIR, { recursive: true });
+const themeLabelByKey = new Map();
+const themeMap = new Map();
 
 for (const article of articles) {
-  const id = String(article.id || "").trim();
-  if (!id) continue;
+  const tags = Array.isArray(article.tags) ? article.tags : [];
+  for (const rawTag of tags) {
+    const label = normalizeText(rawTag);
+    const key = normalizeTag(label);
+    if (!key) continue;
+    if (!themeLabelByKey.has(key)) themeLabelByKey.set(key, label);
+    if (!themeMap.has(key)) themeMap.set(key, []);
+    themeMap.get(key).push(article);
+  }
+}
 
-  const title = String(article.title || "Статья");
-  const excerpt = String(article.excerpt || "");
-  const coverPath = encodeURI(String(article.cover || "assets/images/blog-covers/portfolio-story.svg"));
-  const canonical = articleUrl(id);
-  const dateIso = toIsoDate(article.date);
+const hubScore = article => {
+  const title = normalizeText(article.title || "").toLowerCase();
+  const excerpt = normalizeText(article.excerpt || "").toLowerCase();
+  const tagsCount = Array.isArray(article.tags) ? article.tags.length : 0;
+  let score = tagsCount;
+  if (/(что такое|простыми словами|с нуля|гайд|guide|чек-?лист|как )/.test(title)) score += 4;
+  if (/(практик|пошаг|workflow|ошиб)/.test(title)) score += 2;
+  if (/(объясн|инструк|шаблон)/.test(excerpt)) score += 1;
+  return score;
+};
 
-  const bodyHtml = (Array.isArray(article.body) ? article.body : []).map(renderBodyBlock).join("\n");
-  const tagsHtml = (Array.isArray(article.tags) ? article.tags : [])
-    .map(tag => `<span class="tag-pill">${escapeHtml(tag)}</span>`)
-    .join("");
+const themeHubByKey = new Map();
+for (const [themeKey, list] of themeMap.entries()) {
+  const sorted = [...list].sort((a, b) => hubScore(b) - hubScore(a));
+  if (sorted.length) themeHubByKey.set(themeKey, sorted[0]);
+}
 
-  const related = articles.filter(item => item.id !== id).slice(0, 6);
-  const relatedHtml = related
+const articleTagsNormalized = article =>
+  (Array.isArray(article.tags) ? article.tags : [])
+    .map(tag => normalizeTag(tag))
+    .filter(Boolean);
+
+const getPrimaryTheme = article => {
+  const tags = articleTagsNormalized(article);
+  if (!tags.length) return "general";
+  return tags[0];
+};
+
+const articleKeywordSet = article =>
+  new Set(
+    normalizeText(`${article.id || ""} ${article.title || ""}`.toLowerCase())
+      .split(/[^a-zа-я0-9]+/i)
+      .map(item => item.trim())
+      .filter(item => item.length >= 3)
+  );
+
+const relationScore = (current, candidate) => {
+  const currentTags = new Set(articleTagsNormalized(current));
+  const candidateTags = new Set(articleTagsNormalized(candidate));
+  let sharedTags = 0;
+  for (const tag of currentTags) if (candidateTags.has(tag)) sharedTags += 1;
+
+  const currentWords = articleKeywordSet(current);
+  const candidateWords = articleKeywordSet(candidate);
+  let sharedWords = 0;
+  for (const word of currentWords) if (candidateWords.has(word)) sharedWords += 1;
+
+  const samePrimaryTheme = getPrimaryTheme(current) === getPrimaryTheme(candidate);
+  return sharedTags * 10 + sharedWords * 2 + (samePrimaryTheme ? 5 : 0);
+};
+
+const renderArticleCards = list =>
+  list
     .map(
       item => `
         <a class="article-link" href="./${escapeHtml(item.id)}.html">
@@ -99,6 +313,70 @@ for (const article of articles) {
       `
     )
     .join("");
+
+const getClusterRelated = (article, limit = 6) => {
+  const scored = articles
+    .filter(item => item.id !== article.id)
+    .map(item => ({ item, score: relationScore(article, item) }))
+    .sort((a, b) => b.score - a.score);
+  const strong = scored.filter(entry => entry.score > 0).slice(0, limit).map(entry => entry.item);
+  if (strong.length >= limit) return strong;
+  const fallback = scored
+    .filter(entry => !strong.some(item => item.id === entry.item.id))
+    .slice(0, limit - strong.length)
+    .map(entry => entry.item);
+  return [...strong, ...fallback];
+};
+
+fs.rmSync(BLOG_DIR, { recursive: true, force: true });
+fs.mkdirSync(BLOG_DIR, { recursive: true });
+
+for (const article of articles) {
+  const id = String(article.id || "").trim();
+  if (!id) continue;
+
+  const title = String(article.title || "Статья");
+  const excerpt = String(article.excerpt || "");
+  const coverPath = encodeURI(String(article.cover || "assets/images/blog-covers/portfolio-story.svg"));
+  const canonical = articleUrl(id);
+  const dateIso = toIsoDate(article.date);
+  const primaryTheme = getPrimaryTheme(article);
+  const primaryThemeLabel = themeLabelByKey.get(primaryTheme) || "UX";
+  const clusterHub = themeHubByKey.get(primaryTheme) || article;
+  const clusterRelated = getClusterRelated(article, 6);
+  const sameThemeCluster = clusterRelated.filter(item => getPrimaryTheme(item) === primaryTheme).slice(0, 4);
+  const secondaryCluster = clusterRelated.filter(item => getPrimaryTheme(item) !== primaryTheme).slice(0, 2);
+  const clusterList = [...sameThemeCluster, ...secondaryCluster];
+
+  const bodyHtml = (Array.isArray(article.body) ? article.body : []).map(renderBodyBlock).join("\n");
+  const tagsHtml = (Array.isArray(article.tags) ? article.tags : [])
+    .map(tag => `<span class="tag-pill">${escapeHtml(tag)}</span>`)
+    .join("");
+
+  const relatedHtml = renderArticleCards(clusterRelated);
+  const clusterHtml = renderArticleCards(clusterList);
+  const hubHint =
+    clusterHub.id === article.id
+      ? `Вы читаете хаб-материал по теме «${escapeHtml(primaryThemeLabel)}».`
+      : `Главный материал кластера: <a class="article-link-inline" href="./${escapeHtml(clusterHub.id)}.html">${escapeHtml(
+          clusterHub.title
+        )}</a>.`;
+
+  const blogPostingSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: title,
+    description: makeSnippet(excerpt, 190),
+    datePublished: dateIso,
+    dateModified: dateIso,
+    author: { "@type": "Person", name: "Yaroslav Sigidin" },
+    mainEntityOfPage: { "@type": "WebPage", "@id": canonical },
+    image: `${BASE_URL}/${coverPath}`,
+    inLanguage: "ru-RU"
+  };
+  const faqSchemas = buildFaqEntities(article, canonical);
+  const howToSchema = buildHowToSchema(article, canonical);
+  const jsonLdScripts = renderJsonLdScripts([blogPostingSchema, ...faqSchemas, howToSchema]);
 
   const html = `<!DOCTYPE html>
 <html lang="ru">
@@ -125,7 +403,7 @@ for (const article of articles) {
     <meta name="twitter:title" content="${escapeHtml(title)} — Блог Yaroslav Sigidin" />
     <meta name="twitter:description" content="${escapeHtml(excerpt).slice(0, 190)}" />
     <meta name="twitter:image" content="${BASE_URL}/${coverPath}" />
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"${escapeHtml(title)}","description":"${escapeHtml(excerpt).slice(0, 190)}","datePublished":"${dateIso}","dateModified":"${dateIso}","author":{"@type":"Person","name":"Yaroslav Sigidin"},"mainEntityOfPage":{"@type":"WebPage","@id":"${canonical}"},"image":"${BASE_URL}/${coverPath}","inLanguage":"ru-RU"}</script>
+    ${jsonLdScripts}
     <link rel="stylesheet" href="../assets/css/styles.css" />
     <link rel="manifest" href="../site.webmanifest" />
     <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg" />
@@ -210,6 +488,15 @@ for (const article of articles) {
 
       <section class="section">
         <div class="container article-content" id="articleContent">${bodyHtml}</div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <p class="section-subtitle">Topic Cluster</p>
+          <h2 class="section-title">Хаб по теме: ${escapeHtml(primaryThemeLabel)}</h2>
+          <p class="lead">${hubHint}</p>
+          <div class="articles-grid blog-feed-grid">${clusterHtml}</div>
+        </div>
       </section>
 
       <section class="section">

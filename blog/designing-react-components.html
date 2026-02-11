@@ -24,6 +24,7 @@
     <meta name="twitter:description" content="Подход к UI-компонентам для React: как заложить props, состояния и вариативность, чтобы компонент был переиспользуемым и устойчивым." />
     <meta name="twitter:image" content="https://sigidingo.online/assets/images/blog-covers/systems-thinking.svg" />
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Как проектировать компоненты под React: props, состояния, вариативность, edge cases","description":"Подход к UI-компонентам для React: как заложить props, состояния и вариативность, чтобы компонент был переиспользуемым и устойчивым.","datePublished":"2026-02-11","dateModified":"2026-02-11","author":{"@type":"Person","name":"Yaroslav Sigidin"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://sigidingo.online/blog/designing-react-components.html"},"image":"https://sigidingo.online/assets/images/blog-covers/systems-thinking.svg","inLanguage":"ru-RU"}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"О чем статья «Как проектировать компоненты под React: props, состояния, вариативность, edge cases»?","acceptedAnswer":{"@type":"Answer","text":"Подход к UI-компонентам для React: как заложить props, состояния и вариативность, чтобы компонент был переиспользуемым и устойчивым."}},{"@type":"Question","name":"Как применить думайте компонентом, а не экраном?","acceptedAnswer":{"@type":"Answer","text":"Для React важно проектировать компонент как API: какие props принимает, какие состояния имеет и как ведет себя в крайних сценариях. Выделите параметры компонента в props: size, variant, disabled, icon, loading.. Отрисуйте все состояния: de…"}}],"mainEntityOfPage":"https://sigidingo.online/blog/designing-react-components.html","inLanguage":"ru-RU"}</script>
     <link rel="stylesheet" href="../assets/css/styles.css" />
     <link rel="manifest" href="../site.webmanifest" />
     <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg" />
@@ -115,101 +116,142 @@
 
       <section class="section">
         <div class="container">
+          <p class="section-subtitle">Topic Cluster</p>
+          <h2 class="section-title">Хаб по теме: React</h2>
+          <p class="lead">Вы читаете хаб-материал по теме «React».</p>
+          <div class="articles-grid blog-feed-grid">
+        <a class="article-link" href="./figma-design-system-from-zero.html">
+          <article class="article-card">
+            <div class="article-cover">
+              <img src="../assets/images/blog-covers/design-system-scale.svg" alt="Как собрать дизайн-систему в Figma с нуля: токены, компоненты, варианты, документация" loading="lazy" />
+            </div>
+            <div class="article-body">
+              <div class="article-meta">
+                <span>11.02.2026</span>
+                <span>17 мин чтения</span>
+              </div>
+              <h4>Как собрать дизайн-систему в Figma с нуля: токены, компоненты, варианты, документация</h4>
+              <p>Пошаговый подход к дизайн-системе: от токенов и atomic-компонентов до вариантов, библиотеки и документации для команды.</p>
+            </div>
+          </article>
+        </a>
+      
+        <a class="article-link" href="./pain-free-forms-design.html">
+          <article class="article-card">
+            <div class="article-cover">
+              <img src="../assets/images/blog-covers/ux-onboarding.svg" alt="Как проектировать формы без боли: маски, валидация, ошибки, подсказки, “сохранить прогресс”" loading="lazy" />
+            </div>
+            <div class="article-body">
+              <div class="article-meta">
+                <span>11.02.2026</span>
+                <span>16 мин чтения</span>
+              </div>
+              <h4>Как проектировать формы без боли: маски, валидация, ошибки, подсказки, “сохранить прогресс”</h4>
+              <p>Практика UX-форм: как снизить количество ошибок и брошенных сценариев через маски, подсказки, понятную валидацию и автосохранение.</p>
+            </div>
+          </article>
+        </a>
+      </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
           <p class="section-subtitle">Related</p>
           <h2 class="section-title">Похожие статьи</h2>
           <div class="articles-grid blog-feed-grid">
-        <a class="article-link" href="./future-of-ux.html">
+        <a class="article-link" href="./figma-design-system-from-zero.html">
           <article class="article-card">
             <div class="article-cover">
-              <img src="../assets/images/blog-covers/future-of-ux.svg" alt="Будущее UX: как ИИ меняет дизайн-процессы" loading="lazy" />
+              <img src="../assets/images/blog-covers/design-system-scale.svg" alt="Как собрать дизайн-систему в Figma с нуля: токены, компоненты, варианты, документация" loading="lazy" />
             </div>
             <div class="article-body">
               <div class="article-meta">
-                <span>20.01.2026</span>
-                <span>6 мин чтения</span>
-              </div>
-              <h4>Будущее UX: как ИИ меняет дизайн-процессы</h4>
-              <p>ИИ стал рабочим инструментом UX: он снимает рутину, ускоряет анализ, прототипирование и тестирование, но не заменяет ответственность дизайнера.</p>
-            </div>
-          </article>
-        </a>
-      
-        <a class="article-link" href="./systems-thinking.html">
-          <article class="article-card">
-            <div class="article-cover">
-              <img src="../assets/images/blog-covers/systems-thinking.svg" alt="Системное мышление в UX/UI" loading="lazy" />
-            </div>
-            <div class="article-body">
-              <div class="article-meta">
-                <span>14.01.2026</span>
-                <span>5 мин</span>
-              </div>
-              <h4>Системное мышление в UX/UI</h4>
-              <p>Почему дизайн‑система — это не библиотека компонентов, а способ держать продукт консистентным и масштабируемым.</p>
-            </div>
-          </article>
-        </a>
-      
-        <a class="article-link" href="./mobile-first.html">
-          <article class="article-card">
-            <div class="article-cover">
-              <img src="../assets/images/blog-covers/mobile-first.svg" alt="Mobile‑first на практике: ошибки и решения" loading="lazy" />
-            </div>
-            <div class="article-body">
-              <div class="article-meta">
-                <span>08.01.2026</span>
-                <span>18 мин чтения</span>
-              </div>
-              <h4>Mobile‑first на практике: ошибки и решения</h4>
-              <p>Mobile-first — это не сжатие экранов, а мышление, структура и приоритеты.</p>
-            </div>
-          </article>
-        </a>
-      
-        <a class="article-link" href="./analytics-for-designers.html">
-          <article class="article-card">
-            <div class="article-cover">
-              <img src="../assets/images/blog-covers/analytics-for-designers.svg" alt="Аналитика для дизайнеров: метрики, которые важно знать" loading="lazy" />
-            </div>
-            <div class="article-body">
-              <div class="article-meta">
-                <span>03.01.2026</span>
-                <span>7 мин</span>
-              </div>
-              <h4>Аналитика для дизайнеров: метрики, которые важно знать</h4>
-              <p>Какие цифры реально помогают принимать дизайн‑решения: от конверсий до time‑to‑task.</p>
-            </div>
-          </article>
-        </a>
-      
-        <a class="article-link" href="./design-handoff.html">
-          <article class="article-card">
-            <div class="article-cover">
-              <img src="../assets/images/blog-covers/design-handoff.svg" alt="Дизайн‑хэнд‑офф без боли: как передавать макеты в разработку" loading="lazy" />
-            </div>
-            <div class="article-body">
-              <div class="article-meta">
-                <span>26.12.2025</span>
+                <span>11.02.2026</span>
                 <span>17 мин чтения</span>
               </div>
-              <h4>Дизайн‑хэнд‑офф без боли: как передавать макеты в разработку</h4>
-              <p>Практическая система передачи дизайна: слои, спецификации, токены, сценарии и контроль качества, чтобы дизайн доезжал в прод.</p>
+              <h4>Как собрать дизайн-систему в Figma с нуля: токены, компоненты, варианты, документация</h4>
+              <p>Пошаговый подход к дизайн-системе: от токенов и atomic-компонентов до вариантов, библиотеки и документации для команды.</p>
             </div>
           </article>
         </a>
       
-        <a class="article-link" href="./ux-copy.html">
+        <a class="article-link" href="./pain-free-forms-design.html">
           <article class="article-card">
             <div class="article-cover">
-              <img src="../assets/images/blog-covers/ux-copy.svg" alt="UX‑тексты, которые помогают пользователю" loading="lazy" />
+              <img src="../assets/images/blog-covers/ux-onboarding.svg" alt="Как проектировать формы без боли: маски, валидация, ошибки, подсказки, “сохранить прогресс”" loading="lazy" />
             </div>
             <div class="article-body">
               <div class="article-meta">
-                <span>12.12.2025</span>
+                <span>11.02.2026</span>
                 <span>16 мин чтения</span>
               </div>
-              <h4>UX‑тексты, которые помогают пользователю</h4>
-              <p>Как писать микрокопирайтинг для интерфейсов: ясность, тональность, ошибки и сценарии.</p>
+              <h4>Как проектировать формы без боли: маски, валидация, ошибки, подсказки, “сохранить прогресс”</h4>
+              <p>Практика UX-форм: как снизить количество ошибок и брошенных сценариев через маски, подсказки, понятную валидацию и автосохранение.</p>
+            </div>
+          </article>
+        </a>
+      
+        <a class="article-link" href="./developer-handoff-spec-redlines-checklist.html">
+          <article class="article-card">
+            <div class="article-cover">
+              <img src="../assets/images/blog-covers/design-handoff.svg" alt="Как передавать макеты разработчику: спецификация, состояния, токены, redlines, checklist" loading="lazy" />
+            </div>
+            <div class="article-body">
+              <div class="article-meta">
+                <span>11.02.2026</span>
+                <span>15 мин чтения</span>
+              </div>
+              <h4>Как передавать макеты разработчику: спецификация, состояния, токены, redlines, checklist</h4>
+              <p>Практичный handoff без потерь: какие состояния и спецификацию передавать, как оформить redlines и финальный checklist перед разработкой.</p>
+            </div>
+          </article>
+        </a>
+      
+        <a class="article-link" href="./ux-audit-checklist-60.html">
+          <article class="article-card">
+            <div class="article-cover">
+              <img src="../assets/images/blog-covers/ux-audit.svg" alt="Как провести UX-аудит сайта самому: чек-лист из 60 пунктов + примеры ошибок" loading="lazy" />
+            </div>
+            <div class="article-body">
+              <div class="article-meta">
+                <span>11.02.2026</span>
+                <span>20 мин чтения</span>
+              </div>
+              <h4>Как провести UX-аудит сайта самому: чек-лист из 60 пунктов + примеры ошибок</h4>
+              <p>Практический самостоятельный UX-аудит: что проверять на сайте, как пройтись по категориям и какие типовые ошибки встречаются чаще всего.</p>
+            </div>
+          </article>
+        </a>
+      
+        <a class="article-link" href="./nielsen-heuristics-landing-audit.html">
+          <article class="article-card">
+            <div class="article-cover">
+              <img src="../assets/images/blog-covers/design-critique.svg" alt="Как оценить удобство интерфейса без тестов: эвристики Нильсена + примеры на лендинге" loading="lazy" />
+            </div>
+            <div class="article-body">
+              <div class="article-meta">
+                <span>11.02.2026</span>
+                <span>14 мин чтения</span>
+              </div>
+              <h4>Как оценить удобство интерфейса без тестов: эвристики Нильсена + примеры на лендинге</h4>
+              <p>Эвристический анализ интерфейса по Нильсену: как быстро найти UX-проблемы на лендинге, даже если нет доступа к юзабилити-тестам.</p>
+            </div>
+          </article>
+        </a>
+      
+        <a class="article-link" href="./ux-microcopy-rules-before-after.html">
+          <article class="article-card">
+            <div class="article-cover">
+              <img src="../assets/images/blog-covers/ux-copy.svg" alt="Как писать UX-тексты в интерфейсе: правила микрокопирайтинга (с примерами “до/после”)" loading="lazy" />
+            </div>
+            <div class="article-body">
+              <div class="article-meta">
+                <span>11.02.2026</span>
+                <span>16 мин чтения</span>
+              </div>
+              <h4>Как писать UX-тексты в интерфейсе: правила микрокопирайтинга (с примерами “до/после”)</h4>
+              <p>Практические правила UX-текстов: как писать короче, яснее и дружелюбнее, чтобы снижать ошибки и повышать конверсию в интерфейсе.</p>
             </div>
           </article>
         </a>

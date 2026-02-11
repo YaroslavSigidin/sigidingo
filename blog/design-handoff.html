@@ -24,6 +24,8 @@
     <meta name="twitter:description" content="Практическая система передачи дизайна: слои, спецификации, токены, сценарии и контроль качества, чтобы дизайн доезжал в прод." />
     <meta name="twitter:image" content="https://sigidingo.online/assets/images/blog-covers/design-handoff.svg" />
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Дизайн‑хэнд‑офф без боли: как передавать макеты в разработку","description":"Практическая система передачи дизайна: слои, спецификации, токены, сценарии и контроль качества, чтобы дизайн доезжал в прод.","datePublished":"2025-12-26","dateModified":"2025-12-26","author":{"@type":"Person","name":"Yaroslav Sigidin"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://sigidingo.online/blog/design-handoff.html"},"image":"https://sigidingo.online/assets/images/blog-covers/design-handoff.svg","inLanguage":"ru-RU"}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"О чем статья «Дизайн‑хэнд‑офф без боли: как передавать макеты в разработку»?","acceptedAnswer":{"@type":"Answer","text":"Практическая система передачи дизайна: слои, спецификации, токены, сценарии и контроль качества, чтобы дизайн доезжал в прод."}},{"@type":"Question","name":"Почему хэнд‑офф ломает дизайн?","acceptedAnswer":{"@type":"Answer","text":"Большинство проблем в интерфейсах возникают не на стадии дизайна, а между дизайном и разработкой. Когда макет «передали», но не договорились о правилах, интерфейс распадается на частные трактовки. В итоге в проде появляются разные размеры…"}},{"@type":"Question","name":"Что должно быть готово до передачи?","acceptedAnswer":{"@type":"Answer","text":"Перед тем как отдавать макеты, важно подготовить систему: состояния, правила и точные спецификации. Минимальный набор: сетка, отступы, типографика, цвета, состояния компонентов, правила поведения. Если этих вещей нет, разработчик будет «до…"}},{"@type":"Question","name":"Как применить 1. единые дизайн‑токены?","acceptedAnswer":{"@type":"Answer","text":"Токены — это не мода, а язык между дизайном и кодом. Они фиксируют цвета, типографику, радиусы, тени и отступы как сущности, а не как случайные значения. Если в продукте есть токены, все решения становятся воспроизводимыми и контролируемым…"}},{"@type":"Question","name":"Как применить 2. компоненты и состояния?","acceptedAnswer":{"@type":"Answer","text":"Каждый компонент должен иметь полный набор состояний: default, hover, active, disabled, error. Если состояние не описано, оно будет реализовано как «кажется, так логично». Собери в отдельные страницы базовые элементы: кнопки, поля, чекбокс…"}},{"@type":"Question","name":"Как применить 3. сценарии и edge‑cases?","acceptedAnswer":{"@type":"Answer","text":"Покажи не только идеальные экраны, но и проблемные сценарии: ошибки, пустые состояния, загрузку. Если экрана «данных нет» нет в макете, его сделают в коде, и результат будет случайным."}}],"mainEntityOfPage":"https://sigidingo.online/blog/design-handoff.html","inLanguage":"ru-RU"}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"Дизайн‑хэнд‑офф без боли: как передавать макеты в разработку","description":"Практическая система передачи дизайна: слои, спецификации, токены, сценарии и контроль качества, чтобы дизайн доезжал в прод.","inLanguage":"ru-RU","mainEntityOfPage":"https://sigidingo.online/blog/design-handoff.html","step":[{"@type":"HowToStep","name":"Почему хэнд‑офф ломает дизайн","text":"Большинство проблем в интерфейсах возникают не на стадии дизайна, а между дизайном и разработкой. Когда макет «передали», но не договорились о правилах, интерфейс распадается на частные трактовки. В итоге в проде появляются разные размеры…"},{"@type":"HowToStep","name":"Что должно быть готово до передачи","text":"Перед тем как отдавать макеты, важно подготовить систему: состояния, правила и точные спецификации. Минимальный набор: сетка, отступы, типографика, цвета, состояния компонентов, правила поведения. Если этих вещей нет, разработчик будет «до…"},{"@type":"HowToStep","name":"1. Единые дизайн‑токены","text":"Токены — это не мода, а язык между дизайном и кодом. Они фиксируют цвета, типографику, радиусы, тени и отступы как сущности, а не как случайные значения. Если в продукте есть токены, все решения становятся воспроизводимыми и контролируемым…"},{"@type":"HowToStep","name":"2. Компоненты и состояния","text":"Каждый компонент должен иметь полный набор состояний: default, hover, active, disabled, error. Если состояние не описано, оно будет реализовано как «кажется, так логично». Собери в отдельные страницы базовые элементы: кнопки, поля, чекбокс…"},{"@type":"HowToStep","name":"3. Сценарии и edge‑cases","text":"Покажи не только идеальные экраны, но и проблемные сценарии: ошибки, пустые состояния, загрузку. Если экрана «данных нет» нет в макете, его сделают в коде, и результат будет случайным."},{"@type":"HowToStep","name":"Как передавать макеты системно","text":"Лучший хэнд‑офф строится на ритуале: дизайн, уточнение, реализация, сверка. Это похоже на pipeline: дизайнер готовит, разработчик уточняет, затем вместе проверяют."},{"@type":"HowToStep","name":"Шаг 1. Подготовка файла","text":"Убери лишние дубли, переименуй ключевые фреймы, структурируй по страницам. Сделай отдельную страницу с компонентами и правилами — она должна жить рядом с макетами."},{"@type":"HowToStep","name":"Шаг 2. Синхронизация","text":"Проведи короткий разбор с разработкой: поясни сложные места, критичные сценарии и допущения. Это экономит дни. Один созвон на 30 минут снимает десятки уточнений."},{"@type":"HowToStep","name":"Шаг 3. Контроль реализации","text":"После реализации проведи дизайн‑ревью: сравни UI с макетом по ключевым сценариям. Фиксируй отклонения не «по вкусу», а по принципам: токены, отступы, состояния. Регулярный дизайн‑ревью снижает визуальные отклонения и ускоряет согласование…"},{"@type":"HowToStep","name":"Типичные ошибки хэнд‑оффа","text":"Передача «картинкой» без системы: нет токенов, правил и состояний.. Разрозненные файлы: нет единого источника правды.. Отсутствие edge‑cases: пустые состояния, ошибки, загрузка не учтены.. Ноль коммуникации: дизайнер и разработчик работают…"}],"totalTime":"PT17M"}</script>
     <link rel="stylesheet" href="../assets/css/styles.css" />
     <link rel="manifest" href="../site.webmanifest" />
     <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg" />
@@ -159,21 +161,94 @@
 
       <section class="section">
         <div class="container">
-          <p class="section-subtitle">Related</p>
-          <h2 class="section-title">Похожие статьи</h2>
+          <p class="section-subtitle">Topic Cluster</p>
+          <h2 class="section-title">Хаб по теме: Process</h2>
+          <p class="lead">Главный материал кластера: <a class="article-link-inline" href="./future-of-ux.html">Будущее UX: как ИИ меняет дизайн-процессы</a>.</p>
           <div class="articles-grid blog-feed-grid">
-        <a class="article-link" href="./future-of-ux.html">
+        <a class="article-link" href="./design-critique.html">
           <article class="article-card">
             <div class="article-cover">
-              <img src="../assets/images/blog-covers/future-of-ux.svg" alt="Будущее UX: как ИИ меняет дизайн-процессы" loading="lazy" />
+              <img src="../assets/images/blog-covers/design-critique.svg" alt="Дизайн‑критика, которая улучшает продукт" loading="lazy" />
             </div>
             <div class="article-body">
               <div class="article-meta">
-                <span>20.01.2026</span>
-                <span>6 мин чтения</span>
+                <span>24.11.2025</span>
+                <span>19 мин чтения</span>
               </div>
-              <h4>Будущее UX: как ИИ меняет дизайн-процессы</h4>
-              <p>ИИ стал рабочим инструментом UX: он снимает рутину, ускоряет анализ, прототипирование и тестирование, но не заменяет ответственность дизайнера.</p>
+              <h4>Дизайн‑критика, которая улучшает продукт</h4>
+              <p>Как проводить критику без токсичности: структура, вопросы и формат, которые делают дизайн сильнее.</p>
+            </div>
+          </article>
+        </a>
+      
+        <a class="article-link" href="./design-system-scale.html">
+          <article class="article-card">
+            <div class="article-cover">
+              <img src="../assets/images/blog-covers/design-system-scale.svg" alt="Дизайн‑система в рост: как поддерживать масштабирование без хаоса" loading="lazy" />
+            </div>
+            <div class="article-body">
+              <div class="article-meta">
+                <span>29.01.2026</span>
+                <span>18 мин чтения</span>
+              </div>
+              <h4>Дизайн‑система в рост: как поддерживать масштабирование без хаоса</h4>
+              <p>Когда система перестает быть библиотекой и становится продуктом: роли, governance, метрики и сценарии роста.</p>
+            </div>
+          </article>
+        </a>
+      
+        <a class="article-link" href="./ui-kit-vs-design-system-small-product.html">
+          <article class="article-card">
+            <div class="article-cover">
+              <img src="../assets/images/blog-covers/design-system-scale.svg" alt="UI-kit vs дизайн-система: в чем разница и что нужно именно для малого продукта" loading="lazy" />
+            </div>
+            <div class="article-body">
+              <div class="article-meta">
+                <span>11.02.2026</span>
+                <span>13 мин чтения</span>
+              </div>
+              <h4>UI-kit vs дизайн-система: в чем разница и что нужно именно для малого продукта</h4>
+              <p>Разбираем разницу между UI-kit и дизайн-системой и выбираем подход для небольшого продукта без избыточных затрат.</p>
+            </div>
+          </article>
+        </a>
+      </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <p class="section-subtitle">Related</p>
+          <h2 class="section-title">Похожие статьи</h2>
+          <div class="articles-grid blog-feed-grid">
+        <a class="article-link" href="./design-system-scale.html">
+          <article class="article-card">
+            <div class="article-cover">
+              <img src="../assets/images/blog-covers/design-system-scale.svg" alt="Дизайн‑система в рост: как поддерживать масштабирование без хаоса" loading="lazy" />
+            </div>
+            <div class="article-body">
+              <div class="article-meta">
+                <span>29.01.2026</span>
+                <span>18 мин чтения</span>
+              </div>
+              <h4>Дизайн‑система в рост: как поддерживать масштабирование без хаоса</h4>
+              <p>Когда система перестает быть библиотекой и становится продуктом: роли, governance, метрики и сценарии роста.</p>
+            </div>
+          </article>
+        </a>
+      
+        <a class="article-link" href="./ui-kit-vs-design-system-small-product.html">
+          <article class="article-card">
+            <div class="article-cover">
+              <img src="../assets/images/blog-covers/design-system-scale.svg" alt="UI-kit vs дизайн-система: в чем разница и что нужно именно для малого продукта" loading="lazy" />
+            </div>
+            <div class="article-body">
+              <div class="article-meta">
+                <span>11.02.2026</span>
+                <span>13 мин чтения</span>
+              </div>
+              <h4>UI-kit vs дизайн-система: в чем разница и что нужно именно для малого продукта</h4>
+              <p>Разбираем разницу между UI-kit и дизайн-системой и выбираем подход для небольшого продукта без избыточных затрат.</p>
             </div>
           </article>
         </a>
@@ -194,66 +269,50 @@
           </article>
         </a>
       
-        <a class="article-link" href="./mobile-first.html">
+        <a class="article-link" href="./design-critique.html">
           <article class="article-card">
             <div class="article-cover">
-              <img src="../assets/images/blog-covers/mobile-first.svg" alt="Mobile‑first на практике: ошибки и решения" loading="lazy" />
+              <img src="../assets/images/blog-covers/design-critique.svg" alt="Дизайн‑критика, которая улучшает продукт" loading="lazy" />
             </div>
             <div class="article-body">
               <div class="article-meta">
-                <span>08.01.2026</span>
-                <span>18 мин чтения</span>
+                <span>24.11.2025</span>
+                <span>19 мин чтения</span>
               </div>
-              <h4>Mobile‑first на практике: ошибки и решения</h4>
-              <p>Mobile-first — это не сжатие экранов, а мышление, структура и приоритеты.</p>
+              <h4>Дизайн‑критика, которая улучшает продукт</h4>
+              <p>Как проводить критику без токсичности: структура, вопросы и формат, которые делают дизайн сильнее.</p>
             </div>
           </article>
         </a>
       
-        <a class="article-link" href="./analytics-for-designers.html">
+        <a class="article-link" href="./figma-design-system-from-zero.html">
           <article class="article-card">
             <div class="article-cover">
-              <img src="../assets/images/blog-covers/analytics-for-designers.svg" alt="Аналитика для дизайнеров: метрики, которые важно знать" loading="lazy" />
+              <img src="../assets/images/blog-covers/design-system-scale.svg" alt="Как собрать дизайн-систему в Figma с нуля: токены, компоненты, варианты, документация" loading="lazy" />
             </div>
             <div class="article-body">
               <div class="article-meta">
-                <span>03.01.2026</span>
-                <span>7 мин</span>
+                <span>11.02.2026</span>
+                <span>17 мин чтения</span>
               </div>
-              <h4>Аналитика для дизайнеров: метрики, которые важно знать</h4>
-              <p>Какие цифры реально помогают принимать дизайн‑решения: от конверсий до time‑to‑task.</p>
+              <h4>Как собрать дизайн-систему в Figma с нуля: токены, компоненты, варианты, документация</h4>
+              <p>Пошаговый подход к дизайн-системе: от токенов и atomic-компонентов до вариантов, библиотеки и документации для команды.</p>
             </div>
           </article>
         </a>
       
-        <a class="article-link" href="./ux-copy.html">
+        <a class="article-link" href="./design-tokens-explained.html">
           <article class="article-card">
             <div class="article-cover">
-              <img src="../assets/images/blog-covers/ux-copy.svg" alt="UX‑тексты, которые помогают пользователю" loading="lazy" />
+              <img src="../assets/images/blog-covers/design-system-scale.svg" alt="Дизайн-токены простыми словами: что это, как внедрять и как это экономит время команде" loading="lazy" />
             </div>
             <div class="article-body">
               <div class="article-meta">
-                <span>12.12.2025</span>
-                <span>16 мин чтения</span>
-              </div>
-              <h4>UX‑тексты, которые помогают пользователю</h4>
-              <p>Как писать микрокопирайтинг для интерфейсов: ясность, тональность, ошибки и сценарии.</p>
-            </div>
-          </article>
-        </a>
-      
-        <a class="article-link" href="./product-metrics.html">
-          <article class="article-card">
-            <div class="article-cover">
-              <img src="../assets/images/blog-covers/product-metrics.svg" alt="Продуктовые метрики без шума: что измерять дизайнеру" loading="lazy" />
-            </div>
-            <div class="article-body">
-              <div class="article-meta">
-                <span>02.12.2025</span>
+                <span>11.02.2026</span>
                 <span>15 мин чтения</span>
               </div>
-              <h4>Продуктовые метрики без шума: что измерять дизайнеру</h4>
-              <p>Понятная система метрик для UX: что считать, как читать и как связывать с решениями.</p>
+              <h4>Дизайн-токены простыми словами: что это, как внедрять и как это экономит время команде</h4>
+              <p>Понятное введение в дизайн-токены: как они связывают дизайн и код, сокращают несогласованность и ускоряют разработку.</p>
             </div>
           </article>
         </a>
