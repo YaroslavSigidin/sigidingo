@@ -3492,6 +3492,10 @@ body.nav-open {
   overflow: hidden;
 }
 
+body.nav-open header {
+  z-index: 230;
+}
+
 @media (max-width: 860px) {
   .nav-close {
     position: absolute;
