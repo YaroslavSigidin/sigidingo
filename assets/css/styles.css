@@ -3310,6 +3310,57 @@ body[data-theme="dark"] .modal-close {
   filter: brightness(0.5) contrast(1.05);
 }
 
+.modal-gallery-story {
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: linear-gradient(145deg, rgba(12, 14, 16, 0.94), rgba(10, 10, 10, 0.9));
+  padding: 16px 18px;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.28);
+}
+
+.modal-gallery-story h4 {
+  margin: 0 0 8px;
+  font-size: 18px;
+  line-height: 1.35;
+}
+
+.modal-gallery-story p {
+  margin: 0;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+.story-kicker {
+  margin: 0 0 8px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.modal-story-intro {
+  display: grid;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.modal-story-inline {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.modal-story-inline h5 {
+  margin: 0 0 6px;
+  font-size: 14px;
+}
+
+.modal-story-inline p {
+  margin: 0;
+}
+
 body[data-theme="dark"] .modal-gallery-card {
   background: #0b0b0b;
 }

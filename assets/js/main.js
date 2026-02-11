@@ -239,6 +239,29 @@ const renderProjects = () => {
   renderGrid();
 };
 
+const buildModalStoryChapters = (project, caseData) => {
+  if (Array.isArray(caseData?.storyChapters) && caseData.storyChapters.length) {
+    return caseData.storyChapters;
+  }
+
+  const task = caseData?.task || project.description || "Контекст проекта будет добавлен позже.";
+  const processPoints = Array.isArray(caseData?.whatDone) ? caseData.whatDone.slice(0, 3) : [];
+  const metricPoints = Array.isArray(caseData?.metrics) ? caseData.metrics.slice(0, 3) : [];
+
+  const processText = processPoints.length
+    ? processPoints.join(" ")
+    : "Сначала фиксирую baseline, затем проверяю гипотезы в прототипах и подтверждаю решения на тестах.";
+  const metricText = metricPoints.length
+    ? metricPoints.join(" ")
+    : "Метрики влияния фиксируются после внедрения через product analytics и качественный фидбэк.";
+
+  return [
+    { label: "Контекст", title: "Какая была задача", text: task },
+    { label: "Процесс", title: "Как строилась работа", text: processText },
+    { label: "Метрики", title: "Как измерялся результат", text: metricText }
+  ];
+};
+
 const openProjectModal = project => {
   if (!project) return;
   const modal = qs("#projectModal");
@@ -326,10 +349,12 @@ const openProjectModal = project => {
       : "";
   }
   const detailsHost = qs("#modalDetails");
+  let modalStoryChapters = [];
   if (detailsHost) {
     detailsHost.innerHTML = "";
     if (project.caseKey && typeof caseStudies !== "undefined" && caseStudies[project.caseKey]) {
       const data = caseStudies[project.caseKey];
+      modalStoryChapters = buildModalStoryChapters(project, data);
       detailsHost.innerHTML = `
         <h4>Задача</h4>
         <p>${data.task}</p>
@@ -337,6 +362,27 @@ const openProjectModal = project => {
         <ul class="case-list">${data.whatDone.map(item => `<li>${item}</li>`).join("")}</ul>
         <h4>Метрики</h4>
         <ul class="case-list">${data.metrics.map(item => `<li>${item}</li>`).join("")}</ul>
+        ${
+          modalStoryChapters.length
+            ? `
+          <h4>История кейса</h4>
+          <div class="modal-story-intro">
+            ${modalStoryChapters
+              .slice(0, 2)
+              .map(
+                chapter => `
+              <article class="modal-story-inline">
+                <p class="story-kicker">${chapter.label || "История"}</p>
+                <h5>${chapter.title || ""}</h5>
+                <p>${chapter.text || ""}</p>
+              </article>
+            `
+              )
+              .join("")}
+          </div>
+        `
+            : ""
+        }
       `;
     }
   }
@@ -359,6 +405,19 @@ const openProjectModal = project => {
       bindImageFallback(image);
       card.appendChild(image);
       gallery.appendChild(card);
+
+      const chapter = modalStoryChapters[index] || null;
+      if (chapter) {
+        const storyCard = document.createElement("article");
+        storyCard.className = "modal-gallery-story modal-void";
+        storyCard.style.transitionDelay = `${index * 0.08 + 0.03}s`;
+        storyCard.innerHTML = `
+          <p class="story-kicker">${chapter.label || "История"}</p>
+          <h4>${chapter.title || ""}</h4>
+          <p>${chapter.text || ""}</p>
+        `;
+        gallery.appendChild(storyCard);
+      }
     });
   }
   const recommendations = qs("#modalRecommendations");
