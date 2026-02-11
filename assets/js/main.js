@@ -239,6 +239,40 @@ const renderProjects = () => {
   renderGrid();
 };
 
+const renderServicesProofCards = () => {
+  const host = qs("#servicesCaseGrid");
+  if (!host || typeof projects === "undefined") return;
+
+  const proofIds = ["visiflow", "octoclick", "it-platform", "ai", "mirox-app", "nok"];
+  const proofProjects = proofIds
+    .map(id => projects.find(item => item.id === id))
+    .filter(Boolean);
+
+  host.innerHTML = "";
+
+  proofProjects.forEach(project => {
+    const card = document.createElement("article");
+    card.className = "project-card reveal";
+    card.innerHTML = `
+      <img src="${project.image}" alt="${project.title}" loading="lazy" />
+      <div class="content">
+        <span class="tag">Case study</span>
+        <h3>${project.title}</h3>
+        <p>${project.description || project.subtitle || ""}</p>
+        <a class="proof-link" href="case-${project.id}.html">Смотреть кейс</a>
+      </div>
+    `;
+    bindImageFallback(qs("img", card));
+    card.addEventListener("click", event => {
+      if (event.target.closest(".proof-link")) return;
+      navigateWithTransition(`case-${project.id}.html`);
+    });
+    host.appendChild(card);
+  });
+
+  initReveal();
+};
+
 const buildModalStoryChapters = (project, caseData) => {
   if (Array.isArray(caseData?.storyChapters) && caseData.storyChapters.length) {
     return caseData.storyChapters;
@@ -1235,6 +1269,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initReveal();
   renderFeatured();
   renderProjects();
+  renderServicesProofCards();
   renderAbout();
   renderArticles();
   renderCaseStudy();
