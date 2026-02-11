@@ -674,50 +674,6 @@ const projects = [
     gallery: projectImageSets["plitka-service"].slice(1)
   },
   {
-    id: "ariva",
-    title: "ARIVA",
-    subtitle: "",
-    description:
-      "Имиджевый лендинг бренда одежды. Визуальный акцент на продукте, тканях и силуэтах, минимум отвлекающих элементов.",
-    timeline: [
-      { title: "Концепция", period: "2 дня" },
-      { title: "UI‑направление", period: "3 дня" },
-      { title: "Финальные экраны", period: "3 дня" }
-    ],
-    technologies: ["Lookbook", "Hero‑visual", "Brand typography", "CTA‑flow"],
-    tools: ["Figma", "Notion"],
-    metrics: [
-      "Рост вовлечения",
-      "Увеличение кликов по каталогу",
-      "Повышение узнаваемости"
-    ],
-    category: "web",
-    image: projectImageSets.ariva[0],
-    gallery: projectImageSets.ariva.slice(1)
-  },
-  {
-    id: "trip-air",
-    title: "TRIP AIR",
-    subtitle: "",
-    description:
-      "Лендинг студии воздушной гимнастики. Упор на эмоцию, визуальную подачу и быстрый путь к записи на занятие.",
-    timeline: [
-      { title: "Сценарии и структура", period: "2 дня" },
-      { title: "UI‑концепция", period: "3 дня" },
-      { title: "Финал", period: "3 дня" }
-    ],
-    technologies: ["Hero‑visual", "Schedule blocks", "CTA‑flow", "Mobile‑first"],
-    tools: ["Figma", "Notion"],
-    metrics: [
-      "Рост заявок",
-      "Увеличение конверсии",
-      "Снижение отказов"
-    ],
-    category: "web",
-    image: projectImageSets.air[0],
-    gallery: projectImageSets.air.slice(1)
-  },
-  {
     id: "tochka-rosta",
     title: "ТОЧКА РОСТА",
     subtitle: "",
@@ -761,27 +717,6 @@ const projects = [
     image: projectImageSets["media-kit"][0],
     gallery: projectImageSets["media-kit"].slice(1)
   },
-  {
-    id: "weintek-panel",
-    title: "WEINTEK PANEL",
-    subtitle: "",
-    description:
-      "Интерфейс операторской панели с упором на плотные данные и быстрое принятие решений. Максимум полезной информации при минимальном шуме.",
-    timeline: [
-      { title: "Сценарии и контекст", period: "4 дня" },
-      { title: "UI‑каркас", period: "1 неделя" },
-      { title: "Детализация", period: "1 неделя" }
-    ],
-    technologies: ["Operator UI", "Data density", "Status control", "Alerts"],
-    tools: ["Figma", "FigJam", "Notion"],
-    metrics: [
-      "Сокращение времени реакции",
-      "Повышение читаемости данных",
-      "Снижение ошибок оператора"
-    ],
-    category: "uxui",
-    image: projectImageSets["weintek-panel"][0],
-    gallery: projectImageSets["weintek-panel"].slice(1)
   }
 ];
 
