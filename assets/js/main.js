@@ -178,6 +178,26 @@ const renderFeatured = () => {
   });
 };
 
+const buildProjectLiveLinks = (project, variant = "card") => {
+  const links = Array.isArray(project?.liveLinks) ? project.liveLinks.filter(item => item?.url) : [];
+  if (!links.length) return "";
+  const listClass = variant === "modal" ? "project-live-links project-live-links-modal" : "project-live-links";
+  const linkClass = variant === "modal" ? "project-live-link project-live-link-modal" : "project-live-link";
+  return `
+    <div class="${listClass}">
+      ${links
+        .map(
+          link => `
+        <a class="${linkClass}" href="${link.url}" target="_blank" rel="noopener noreferrer">
+          ${link.label || "Сайт"}
+        </a>
+      `
+        )
+        .join("")}
+    </div>
+  `;
+};
+
 const renderProjects = () => {
   const grid = qs("#projects-grid");
   if (!grid || typeof projects === "undefined") return;
@@ -198,6 +218,7 @@ const renderProjects = () => {
             <span class="tag">${tagLabel}</span>
             <h3>${project.title}</h3>
             <p>${project.subtitle || ""}</p>
+            ${buildProjectLiveLinks(project)}
             ${
               project.tags
                 ? `<div class="tag-list">${project.tags
@@ -208,7 +229,10 @@ const renderProjects = () => {
           </div>
         `;
         bindImageFallback(qs("img", card));
-        card.addEventListener("click", () => openProjectModal(project));
+        card.addEventListener("click", event => {
+          if (event.target.closest(".project-live-link")) return;
+          openProjectModal(project);
+        });
         grid.appendChild(card);
       });
     initReveal();
@@ -216,6 +240,7 @@ const renderProjects = () => {
 
   if (!grid.dataset.modalDelegationBound) {
     grid.addEventListener("click", event => {
+      if (event.target.closest(".project-live-link")) return;
       const card = event.target.closest(".project-card");
       if (!card) return;
       const { projectId } = card.dataset;
@@ -408,6 +433,11 @@ const openProjectModal = project => {
   const description = qs("#modalDescription");
   if (description) {
     description.textContent = project.description || project.subtitle || "";
+  }
+  const modalLiveLinks = qs("#modalLiveLinks");
+  if (modalLiveLinks) {
+    modalLiveLinks.innerHTML = buildProjectLiveLinks(project, "modal");
+    modalLiveLinks.classList.toggle("is-empty", !Array.isArray(project?.liveLinks) || !project.liveLinks.length);
   }
   const sideTitle = qs("#modalSideTitle");
   if (sideTitle) sideTitle.textContent = project.title || "Проект";

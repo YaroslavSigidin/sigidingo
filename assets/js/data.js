@@ -269,6 +269,7 @@ const projects = [
     category: "uxui",
     image: projectImageSets["octoclick"][0],
     gallery: projectImageSets["octoclick"].slice(1),
+    liveLinks: [{ label: "Сайт", url: "https://octoclick.com/ru" }],
     caseKey: "octoclick"
   },
   {
@@ -362,6 +363,7 @@ const projects = [
     category: "uxui",
     image: projectImageSets["winglish"][0],
     gallery: projectImageSets["winglish"].slice(1),
+    liveLinks: [{ label: "Сайт", url: "https://code-edu.ru/" }],
     caseKey: "winglish"
   },
   {
@@ -453,7 +455,8 @@ const projects = [
     ],
     category: "web",
     image: projectImageSets["space-camp"][0],
-    gallery: projectImageSets["space-camp"].slice(1)
+    gallery: projectImageSets["space-camp"].slice(1),
+    liveLinks: [{ label: "Сайт", url: "https://gospacecamp.com" }]
   },
   {
     id: "iss",
@@ -519,7 +522,8 @@ const projects = [
     ],
     category: "web",
     image: projectImageSets.solomadom[0],
-    gallery: projectImageSets.solomadom.slice(1)
+    gallery: projectImageSets.solomadom.slice(1),
+    liveLinks: [{ label: "Сайт", url: "http://egamov.com/works" }]
   },
   {
     id: "amazon",
@@ -541,7 +545,8 @@ const projects = [
     ],
     category: "web",
     image: projectImageSets.amazon[0],
-    gallery: projectImageSets.amazon.slice(1)
+    gallery: projectImageSets.amazon.slice(1),
+    liveLinks: [{ label: "Сайт", url: "https://rodinaecom.com/" }]
   },
   {
     id: "castle-music",
@@ -585,7 +590,11 @@ const projects = [
     ],
     category: "web",
     image: projectImageSets.kvatro[0],
-    gallery: projectImageSets.kvatro.slice(1)
+    gallery: projectImageSets.kvatro.slice(1),
+    liveLinks: [
+      { label: "Сайт", url: "https://kvatro.online" },
+      { label: "Corporate", url: "https://kvatro.online/corporate" }
+    ]
   },
   {
     id: "leki-travel",
@@ -607,7 +616,8 @@ const projects = [
     ],
     category: "web",
     image: projectImageSets["leki-travel"][0],
-    gallery: projectImageSets["leki-travel"].slice(1)
+    gallery: projectImageSets["leki-travel"].slice(1),
+    liveLinks: [{ label: "Сайт", url: "https://lekitravel.ru/" }]
   },
   {
     id: "vihlop-expert",
