@@ -163,6 +163,12 @@ ul {
   flex-direction: column;
   gap: 12px;
   min-height: 220px;
+  transition:
+    transform 0.22s ease,
+    border-color 0.22s ease,
+    background-color 0.22s ease,
+    box-shadow 0.22s ease;
+  will-change: transform;
 }
 
 .service-mini-head {
@@ -200,8 +206,12 @@ ul {
 }
 
 .service-mini-card p {
-  color: var(--muted);
+  color: color-mix(in srgb, var(--muted) 72%, var(--bg));
   margin: 0;
+  text-align: center;
+  font-family: Consolas, "IBM Plex Mono", monospace;
+  font-size: clamp(14px, 1.1vw, 16px);
+  line-height: 1.45;
 }
 
 .service-mini-meta {
@@ -225,8 +235,22 @@ ul {
   cursor: pointer;
 }
 
+.service-mini-card:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--text) 28%, transparent);
+  background: color-mix(in srgb, var(--surface) 90%, var(--text) 10%);
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.35);
+}
+
+.service-mini-card:active {
+  transform: translateY(-1px) scale(0.985);
+  border-color: color-mix(in srgb, var(--text) 36%, transparent);
+  background: color-mix(in srgb, var(--surface) 86%, var(--text) 14%);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
 .service-mini-card:focus-visible {
-  outline: 2px solid color-mix(in srgb, var(--accent) 60%, white);
+  outline: 2px solid color-mix(in srgb, var(--text) 64%, transparent);
   outline-offset: 2px;
 }
 
@@ -234,22 +258,28 @@ ul {
   margin-left: auto;
   width: 20px;
   height: 20px;
-  border: 1px solid var(--border);
+  border: 1px solid color-mix(in srgb, var(--text) 20%, transparent);
   border-radius: 999px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   font-size: 12px;
-  color: var(--muted);
+  color: color-mix(in srgb, var(--text) 58%, transparent);
   opacity: 0;
   transform: scale(0.9);
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
 }
 
 .service-mini-card:hover .service-hover-icon,
 .service-mini-card:focus-visible .service-hover-icon {
   opacity: 1;
   transform: scale(1);
+  border-color: color-mix(in srgb, var(--text) 34%, transparent);
+  color: color-mix(in srgb, var(--text) 82%, transparent);
 }
 
 .faq-pro {
