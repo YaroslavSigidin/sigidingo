@@ -140,7 +140,7 @@
             <div class="service-mini-meta"><span>2-7 дней</span><span>от 45 000 ₽</span></div>
             <div class="service-mini-actions">
               <a class="button accent" href="https://t.me/sigidingo?text=Хочу%20заказать%20UX-аудит" target="_blank" rel="noreferrer">Заказать</a>
-              <a class="button" href="#contact">Подробнее</a>
+              <button class="button js-service-more" type="button" data-service="ux-audit">Подробнее</button>
             </div>
           </article>
 
@@ -150,7 +150,7 @@
             <div class="service-mini-meta"><span>2-4 недели</span><span>от 120 000 ₽</span></div>
             <div class="service-mini-actions">
               <a class="button accent" href="https://t.me/sigidingo?text=Хочу%20заказать%20лендинг%20или%20сайт" target="_blank" rel="noreferrer">Заказать</a>
-              <a class="button" href="#contact">Подробнее</a>
+              <button class="button js-service-more" type="button" data-service="landing-site">Подробнее</button>
             </div>
           </article>
 
@@ -160,7 +160,7 @@
             <div class="service-mini-meta"><span>4-10 недель</span><span>от 220 000 ₽</span></div>
             <div class="service-mini-actions">
               <a class="button accent" href="https://t.me/sigidingo?text=Хочу%20заказать%20Product%20UX%2FUI" target="_blank" rel="noreferrer">Заказать</a>
-              <a class="button" href="#contact">Подробнее</a>
+              <button class="button js-service-more" type="button" data-service="product-ui">Подробнее</button>
             </div>
           </article>
 
@@ -170,7 +170,7 @@
             <div class="service-mini-meta"><span>3-8 недель</span><span>от 260 000 ₽</span></div>
             <div class="service-mini-actions">
               <a class="button accent" href="https://t.me/sigidingo?text=Хочу%20заказать%20дизайн-систему" target="_blank" rel="noreferrer">Заказать</a>
-              <a class="button" href="#contact">Подробнее</a>
+              <button class="button js-service-more" type="button" data-service="design-system">Подробнее</button>
             </div>
           </article>
 
@@ -180,7 +180,7 @@
             <div class="service-mini-meta"><span>3-7 недель</span><span>от 170 000 ₽</span></div>
             <div class="service-mini-actions">
               <a class="button accent" href="https://t.me/sigidingo?text=Хочу%20заказать%20UI%20мобильного%20приложения" target="_blank" rel="noreferrer">Заказать</a>
-              <a class="button" href="#contact">Подробнее</a>
+              <button class="button js-service-more" type="button" data-service="mobile-ui">Подробнее</button>
             </div>
           </article>
 
@@ -190,7 +190,7 @@
             <div class="service-mini-meta"><span>3-10 дней</span><span>от 35 000 ₽</span></div>
             <div class="service-mini-actions">
               <a class="button accent" href="https://t.me/sigidingo?text=Хочу%20заказать%20UX-copy" target="_blank" rel="noreferrer">Заказать</a>
-              <a class="button" href="#contact">Подробнее</a>
+              <button class="button js-service-more" type="button" data-service="ux-copy">Подробнее</button>
             </div>
           </article>
 
@@ -200,7 +200,7 @@
             <div class="service-mini-meta"><span>2-6 недель</span><span>от 140 000 ₽</span></div>
             <div class="service-mini-actions">
               <a class="button accent" href="https://t.me/sigidingo?text=Хочу%20заказать%20редизайн" target="_blank" rel="noreferrer">Заказать</a>
-              <a class="button" href="#contact">Подробнее</a>
+              <button class="button js-service-more" type="button" data-service="redesign">Подробнее</button>
             </div>
           </article>
 
@@ -210,7 +210,7 @@
             <div class="service-mini-meta"><span>1-4 недели</span><span>от 60 000 ₽</span></div>
             <div class="service-mini-actions">
               <a class="button accent" href="https://t.me/sigidingo?text=Хочу%20заказать%20handoff%20и%20QA" target="_blank" rel="noreferrer">Заказать</a>
-              <a class="button" href="#contact">Подробнее</a>
+              <button class="button js-service-more" type="button" data-service="handoff-qa">Подробнее</button>
             </div>
           </article>
         </div>
@@ -276,23 +276,97 @@
       <section class="section services-faq">
         <div class="container">
           <p class="section-subtitle">FAQ</p>
-          <h2 class="section-title">Частые вопросы</h2>
-          <div class="faq-list">
-            <article class="faq-item">
-              <h3>Можно начать с небольшого этапа?</h3>
-              <p>Да. Часто начинаем с UX-аудита или спринта, а затем масштабируем работу по результатам.</p>
-            </article>
-            <article class="faq-item">
-              <h3>Работаете по NDA?</h3>
-              <p>Да, подписываю NDA до передачи внутренних данных, материалов и доступов.</p>
-            </article>
-            <article class="faq-item">
-              <h3>Что получает разработка?</h3>
-              <p>Полные макеты со сценариями, состояниями, комментариями и сопровождением внедрения.</p>
-            </article>
+          <h2 class="section-title">Удобный FAQ по работе</h2>
+          <div class="faq-pro" id="faqPro">
+            <div class="faq-pro-tools">
+              <input id="faqSearch" class="faq-search" type="search" placeholder="Поиск по вопросам: NDA, сроки, цена, оплата..." aria-label="Поиск по FAQ" />
+              <div class="faq-filter-row">
+                <button class="faq-chip is-active" type="button" data-faq-filter="all">Все</button>
+                <button class="faq-chip" type="button" data-faq-filter="process">Процесс</button>
+                <button class="faq-chip" type="button" data-faq-filter="price">Оплата и сроки</button>
+                <button class="faq-chip" type="button" data-faq-filter="handoff">Передача в разработку</button>
+              </div>
+              <div class="faq-actions">
+                <button class="button" type="button" id="faqExpandAll">Развернуть все</button>
+                <button class="button" type="button" id="faqCollapseAll">Свернуть все</button>
+              </div>
+            </div>
+
+            <div class="faq-accordion" id="faqAccordion">
+              <details class="faq-entry" data-category="process">
+                <summary>С чего начинается работа и сколько нужно времени на старт?</summary>
+                <div class="faq-answer">
+                  <p>Старт обычно занимает 1-2 рабочих дня после короткого созвона и фиксации задачи. На старте я собираю контекст проекта, ограничения, текущие материалы и приоритеты команды.</p>
+                </div>
+              </details>
+              <details class="faq-entry" data-category="price">
+                <summary>Можно ли начать с маленького объема, чтобы проверить формат?</summary>
+                <div class="faq-answer">
+                  <p>Да. Оптимальный формат проверки - UX-аудит или короткий спринт. По итогам вы получаете конкретный результат и решаете, продолжаем ли сотрудничество на больший объем.</p>
+                </div>
+              </details>
+              <details class="faq-entry" data-category="price">
+                <summary>Как происходит оплата и какие есть этапы?</summary>
+                <div class="faq-answer">
+                  <p>Обычно работаем по этапам: фиксируем scope, стоимость и сроки, после чего делим оплату на 2-3 части по ключевым вехам проекта. Для retainer-формата - ежемесячная оплата.</p>
+                </div>
+              </details>
+              <details class="faq-entry" data-category="process">
+                <summary>Работаете ли по NDA и с закрытыми продуктами?</summary>
+                <div class="faq-answer">
+                  <p>Да. NDA подписываю до передачи доступов и внутренних данных. Есть опыт работы с закрытыми B2B-платформами и внутренними кабинетами компаний.</p>
+                </div>
+              </details>
+              <details class="faq-entry" data-category="handoff">
+                <summary>Что именно получает команда разработки на handoff?</summary>
+                <div class="faq-answer">
+                  <p>Команда получает полные макеты, состояния и сценарии, комментарии по логике, а также поддержку в процессе внедрения, чтобы сократить количество вопросов и переделок.</p>
+                </div>
+              </details>
+              <details class="faq-entry" data-category="handoff">
+                <summary>Сопровождаете ли вы проект после передачи?</summary>
+                <div class="faq-answer">
+                  <p>Да. После handoff я остаюсь на связи для QA-проверок, уточнений по логике и корректировок, если во время разработки выявляются новые ограничения.</p>
+                </div>
+              </details>
+            </div>
+            <p class="faq-empty" id="faqEmpty" hidden>По вашему запросу ничего не найдено. Попробуйте другое слово или выберите фильтр «Все».</p>
           </div>
         </div>
       </section>
+
+      <div class="service-modal" id="serviceModal" hidden aria-hidden="true">
+        <div class="service-modal-backdrop" data-close-service-modal></div>
+        <article class="service-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="serviceModalTitle">
+          <header class="service-modal-head">
+            <h3 id="serviceModalTitle">Подробности услуги</h3>
+            <button class="service-modal-close" type="button" aria-label="Закрыть" data-close-service-modal>×</button>
+          </header>
+          <div class="service-modal-body">
+            <p id="serviceModalLead"></p>
+            <section>
+              <h4>Задачи</h4>
+              <ul id="serviceModalTasks"></ul>
+            </section>
+            <section>
+              <h4>Что будет реализовано</h4>
+              <ul id="serviceModalDeliverables"></ul>
+            </section>
+            <section>
+              <h4>Результат для бизнеса</h4>
+              <ul id="serviceModalOutcome"></ul>
+            </section>
+            <div class="service-modal-meta">
+              <span id="serviceModalTimeline"></span>
+              <span id="serviceModalPrice"></span>
+            </div>
+          </div>
+          <footer class="service-modal-foot">
+            <a class="button accent" id="serviceModalOrder" href="https://t.me/sigidingo" target="_blank" rel="noreferrer">Заказать услугу</a>
+            <button class="button" type="button" data-close-service-modal>Закрыть</button>
+          </footer>
+        </article>
+      </div>
 
       <section class="section" id="contact">
         <div class="container about-grid contact-stack">
@@ -325,5 +399,6 @@
     </main>
 
     <script src="assets/js/main.js?v=20260211-5"></script>
+    <script src="assets/js/services-page.js?v=20260211-1"></script>
   </body>
 </html>
