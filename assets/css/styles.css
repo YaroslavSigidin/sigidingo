@@ -352,7 +352,7 @@ ul {
   background: color-mix(in srgb, var(--surface) 96%, transparent);
   text-align: left;
   overflow: hidden;
-  transition: border-color 0.22s ease, background-color 0.22s ease, transform 0.22s ease;
+  transition: border-color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
 }
 
 .faq-entry summary {
@@ -383,13 +383,13 @@ ul {
   font-family: "IBM Plex Mono", monospace;
   font-size: 14px;
   color: var(--muted);
-  transition: transform 0.22s ease, color 0.22s ease, border-color 0.22s ease;
+  transition: transform 0.34s cubic-bezier(0.22, 0.61, 0.36, 1), color 0.24s ease, border-color 0.24s ease;
 }
 
 .faq-entry .faq-answer-wrap {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows 0.28s ease;
+  transition: grid-template-rows 0.42s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 .faq-entry .faq-answer {
@@ -398,8 +398,11 @@ ul {
   padding: 0 16px;
   color: var(--muted);
   opacity: 0;
-  transform: translateY(-6px);
-  transition: opacity 0.22s ease, transform 0.22s ease, padding 0.22s ease;
+  transform: translateY(-8px);
+  transition:
+    opacity 0.34s cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 0.34s cubic-bezier(0.22, 0.61, 0.36, 1),
+    padding 0.34s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 .faq-entry[open] {
@@ -422,6 +425,26 @@ ul {
   padding: 0 16px 16px;
   opacity: 1;
   transform: translateY(0);
+}
+
+.services-page main .section {
+  padding: 78px 0;
+}
+
+.services-page main > .section + .section {
+  padding-top: 34px;
+}
+
+.services-page .services-grid-wrap {
+  padding-top: 10px;
+}
+
+.services-page .services-proof {
+  padding-bottom: 20px;
+}
+
+.services-page .services-proof + .section {
+  padding-top: 20px;
 }
 
 .faq-empty {
