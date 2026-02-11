@@ -1,5 +1,17 @@
 const qs = (sel, scope = document) => scope.querySelector(sel);
 const qsa = (sel, scope = document) => Array.from(scope.querySelectorAll(sel));
+const FALLBACK_COVER = "assets/images/it-platform/cover.png";
+
+const bindImageFallback = image => {
+  if (!image) return;
+  image.addEventListener(
+    "error",
+    () => {
+      image.src = FALLBACK_COVER;
+    },
+    { once: true }
+  );
+};
 
 const initNav = () => {
   const toggle = qs("#mobileToggle");
@@ -157,6 +169,7 @@ const renderFeatured = () => {
         }
       </div>
     `;
+    bindImageFallback(qs("img", card));
     card.addEventListener("click", () => {
       const target = projects.find(item => item.id === project.id);
       if (target) openProjectModal(target);
@@ -194,6 +207,7 @@ const renderProjects = () => {
             }
           </div>
         `;
+        bindImageFallback(qs("img", card));
         card.addEventListener("click", () => openProjectModal(project));
         grid.appendChild(card);
       });
@@ -239,6 +253,7 @@ const openProjectModal = project => {
   if (cover) {
     cover.src = project.image || "";
     cover.alt = project.title || "Project cover";
+    bindImageFallback(cover);
   }
   const title = qs("#modalTitle");
   if (title) title.textContent = project.title || "Проект";
@@ -341,6 +356,7 @@ const openProjectModal = project => {
       image.src = img;
       image.alt = project.title || "Project image";
       image.loading = "lazy";
+      bindImageFallback(image);
       card.appendChild(image);
       gallery.appendChild(card);
     });
@@ -361,6 +377,7 @@ const openProjectModal = project => {
           </div>
         </div>
       `;
+      bindImageFallback(qs("img", card));
       card.addEventListener("click", () => {
         openProjectModal(item);
       });
