@@ -2974,6 +2974,9 @@ body[data-theme="dark"] .about-cv-card--stats .stat-card {
 .project-card p {
   color: var(--muted);
   font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .project-card .tag {
