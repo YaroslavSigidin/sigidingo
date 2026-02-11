@@ -258,6 +258,10 @@ const projects = [
       { title: "Дизайн‑система и UI", period: "3 недели" },
       { title: "Адаптив и хэнд‑офф", period: "2 недели" }
     ],
+    calendarRange: {
+      startMonth: 9,
+      endMonth: 8
+    },
     technologies: ["Design System", "Data Visualization", "Role‑based UI", "Responsive grid"],
     tools: ["Figma", "FigJam", "Notion", "Jira"],
     metrics: [

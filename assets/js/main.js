@@ -239,6 +239,82 @@ const renderProjects = () => {
   renderGrid();
 };
 
+const MONTH_SHORT = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+
+const parsePeriodToDays = period => {
+  if (!period) return 0;
+  const text = String(period).toLowerCase();
+  const num = Number((text.match(/\d+([.,]\d+)?/) || ["0"])[0].replace(",", "."));
+  if (!Number.isFinite(num) || num <= 0) return 0;
+  if (text.includes("дн") || text.includes("day")) return num;
+  if (text.includes("нед") || text.includes("week")) return num * 7;
+  if (text.includes("мес") || text.includes("month")) return num * 30;
+  return num * 7;
+};
+
+const getProjectTimelineRange = project => {
+  const range = project?.calendarRange || {};
+  const hasStart = Number.isFinite(range.startMonth);
+  const hasEnd = Number.isFinite(range.endMonth);
+  const hasMonths = Number.isFinite(range.months);
+
+  let months = 0;
+  if (hasMonths) {
+    months = Math.max(0, Math.min(12, Number(range.months)));
+  } else if (hasStart && hasEnd) {
+    months = ((range.endMonth - range.startMonth + 12) % 12) + 1;
+  } else {
+    const timeline = Array.isArray(project?.timeline) ? project.timeline : [];
+    const totalDays = timeline.reduce((acc, item) => acc + parsePeriodToDays(item?.period || item), 0);
+    months = totalDays > 0 ? Math.max(0.25, Math.min(12, totalDays / 30)) : 0;
+  }
+
+  const startMonth = hasStart ? Math.max(0, Math.min(11, Number(range.startMonth))) : 0;
+  const endMonth = months > 0 ? (Math.floor(startMonth + months - 0.001) % 12 + 12) % 12 : startMonth;
+  return { startMonth, endMonth, months };
+};
+
+const renderTimelineYearOrbit = project => {
+  const { startMonth, endMonth, months } = getProjectTimelineRange(project);
+  const size = 212;
+  const center = size / 2;
+  const radius = 74;
+  const circumference = 2 * Math.PI * radius;
+  const segment = Math.max(0, Math.min(circumference, (months / 12) * circumference));
+  const startDeg = -90 + startMonth * 30;
+  const monthMarks = MONTH_SHORT.map((label, index) => {
+    const angle = ((-90 + index * 30) * Math.PI) / 180;
+    const x = center + Math.cos(angle) * (radius + 24);
+    const y = center + Math.sin(angle) * (radius + 24);
+    return `<span class="year-orbit-month" style="left:${x}px;top:${y}px;">${label}</span>`;
+  }).join("");
+  const monthsLabel = months > 0 ? months.toFixed(months >= 10 ? 0 : 1) : "0";
+
+  return `
+    <div class="year-orbit">
+      <div class="year-orbit-canvas" style="width:${size}px;height:${size}px;">
+        <svg viewBox="0 0 ${size} ${size}" class="year-orbit-svg" aria-hidden="true">
+          <circle class="year-orbit-track" cx="${center}" cy="${center}" r="${radius}"></circle>
+          <circle
+            class="year-orbit-segment"
+            cx="${center}"
+            cy="${center}"
+            r="${radius}"
+            stroke-dasharray="${segment} ${circumference - segment}"
+            transform="rotate(${startDeg} ${center} ${center})">
+          </circle>
+        </svg>
+        <div class="year-orbit-months">${monthMarks}</div>
+        <div class="year-orbit-center">
+          <strong>${monthsLabel}</strong>
+          <span>months</span>
+        </div>
+      </div>
+      <p class="year-orbit-caption">${MONTH_SHORT[startMonth]} -> ${MONTH_SHORT[endMonth]}</p>
+    </div>
+  `;
+};
+
 const renderServicesProofCards = () => {
   const host = qs("#servicesCaseGrid");
   if (!host || typeof projects === "undefined") return;
@@ -329,31 +405,7 @@ const openProjectModal = project => {
   }
   const sideTimeline = qs("#modalSideTimeline");
   if (sideTimeline) {
-    const timeline = Array.isArray(project.timeline)
-      ? project.timeline
-      : project.timeline
-      ? [{ title: project.timeline }]
-      : [];
-    if (!timeline.length) {
-      sideTimeline.innerHTML = '<div class="metro-item"><span>Этапы не указаны</span></div>';
-    } else {
-      sideTimeline.innerHTML = timeline
-        .map((item, index) => {
-          const title = item.title || item;
-          const period = item.period ? `<small>${item.period}</small>` : "";
-          const step = String(index + 1).padStart(2, "0");
-          return `
-            <div class="metro-item">
-              <span class="metro-index">${step}</span>
-              <div class="metro-text">
-                <span class="metro-title">${title}</span>
-                ${period}
-              </div>
-            </div>
-          `;
-        })
-        .join("");
-    }
+    sideTimeline.innerHTML = renderTimelineYearOrbit(project);
   }
   const sideMetrics = qs("#modalSideMetrics");
   if (sideMetrics) {

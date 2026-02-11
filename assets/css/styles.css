@@ -3211,6 +3211,100 @@ body[data-theme="dark"] .theme-switch svg {
   padding-left: 0;
 }
 
+.year-orbit {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+}
+
+.year-orbit-canvas {
+  position: relative;
+}
+
+.year-orbit-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.year-orbit-track {
+  fill: transparent;
+  stroke: rgba(255, 255, 255, 0.24);
+  stroke-width: 2.2;
+}
+
+.year-orbit-segment {
+  fill: transparent;
+  stroke: #2f78ff;
+  stroke-width: 9;
+  stroke-linecap: round;
+}
+
+.year-orbit-months {
+  position: absolute;
+  inset: 0;
+}
+
+.year-orbit-month {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  font-family: Consolas, "IBM Plex Mono", monospace;
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.68);
+  text-transform: uppercase;
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
+}
+
+.year-orbit-center {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  gap: 2px;
+}
+
+.year-orbit-center strong {
+  font-size: 26px;
+  letter-spacing: -0.02em;
+  color: #f4f4f4;
+  line-height: 1;
+}
+
+.year-orbit-center span {
+  font-family: Consolas, "IBM Plex Mono", monospace;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.58);
+}
+
+.year-orbit-caption {
+  margin: 0;
+  font-family: Consolas, "IBM Plex Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.68);
+}
+
+body:not([data-theme="dark"]) .year-orbit-track {
+  stroke: rgba(11, 11, 11, 0.25);
+}
+
+body:not([data-theme="dark"]) .year-orbit-month,
+body:not([data-theme="dark"]) .year-orbit-caption,
+body:not([data-theme="dark"]) .year-orbit-center span {
+  color: rgba(11, 11, 11, 0.62);
+}
+
+body:not([data-theme="dark"]) .year-orbit-center strong {
+  color: rgba(11, 11, 11, 0.9);
+}
+
 .metro-line::before {
   content: none;
 }
