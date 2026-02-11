@@ -249,15 +249,15 @@ const projects = [
     description:
       "Редизайн рекламной платформы с фокусом на аналитике и управлении кампаниями. Собрал понятную структуру разделов, сильную иерархию данных и удобные фильтры для быстрого доступа к метрикам. Интерфейс рассчитан на работу с большими объёмами отчётности и частыми сценариями оптимизации.",
     timeline: [
-      { title: "Аудит текущего UX", period: "1 неделя" },
-      { title: "Новая структура и сценарии", period: "2 недели" },
-      { title: "Дизайн‑система и UI", period: "3 недели" },
-      { title: "Адаптив и хэнд‑офф", period: "2 недели" }
+      { title: "Q1: Аудит и гипотезы", period: "3 месяца" },
+      { title: "Q2: IA и сценарии", period: "3 месяца" },
+      { title: "Q3: UI-система и тесты", period: "3 месяца" },
+      { title: "Q4: Внедрение и оптимизация", period: "3 месяца" }
     ],
     calendarRange: {
-      startMonth: 9,
-      endMonth: 8,
-      label: "16.10.2024 — 10.09.2025"
+      startMonth: 0,
+      endMonth: 11,
+      label: "Январь — Декабрь 2025"
     },
     technologies: ["Design System", "Data Visualization", "Role‑based UI", "Responsive grid"],
     tools: ["Figma", "FigJam", "Notion", "Jira"],

@@ -3398,6 +3398,49 @@ body[data-theme="dark"] .contact-list li {
   margin-bottom: 10px;
 }
 
+body[data-case="octoclick"] .case-hero h1,
+body[data-case="octoclick"] .case-meta,
+body[data-case="octoclick"] .case-hero #caseSubtitle,
+body[data-case="octoclick"] .case-hero #caseTags,
+body[data-case="octoclick"] .section-subtitle,
+body[data-case="octoclick"] .section-title,
+body[data-case="octoclick"] .section p,
+body[data-case="octoclick"] .case-list,
+body[data-case="octoclick"] .case-list li {
+  text-align: left;
+}
+
+body[data-case="octoclick"] #caseMetrics {
+  list-style: none;
+  padding-left: 0;
+  display: grid;
+  gap: 12px;
+}
+
+body[data-case="octoclick"] #caseMetrics li {
+  position: relative;
+  margin: 0;
+  padding: 10px 14px 10px 44px;
+  border-radius: 12px;
+  border: 1px solid rgba(125, 213, 198, 0.18);
+  background: linear-gradient(135deg, rgba(125, 213, 198, 0.08), rgba(11, 91, 211, 0.06));
+}
+
+body[data-case="octoclick"] #caseMetrics li::before {
+  content: "";
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  width: 18px;
+  height: 18px;
+  transform: translateY(-50%);
+  background: color-mix(in srgb, var(--accent) 78%, #fff 22%);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 19h16v2H2V3h2v16Zm2-3 4-5 3 3 5-7 1.6 1.2-6.4 8.8-3-3L7.6 17 6 16Z'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 19h16v2H2V3h2v16Zm2-3 4-5 3 3 5-7 1.6 1.2-6.4 8.8-3-3L7.6 17 6 16Z'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+}
+
 .case-table {
   width: 100%;
   border-collapse: collapse;
