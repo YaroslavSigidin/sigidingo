@@ -538,12 +538,40 @@ ul {
 .services-cta-telegram {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
+  gap: 10px;
+  min-width: 238px;
+  padding: 12px 24px;
+  text-transform: none;
+  letter-spacing: 0.04em;
+  font-size: 13px;
+  font-family: "Sora", "Segoe UI", sans-serif;
+}
+
+.services-links .button.accent {
+  background: linear-gradient(180deg, #2a2d33 0%, #171a1f 100%);
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.22);
+}
+
+.services-links .button.accent:hover {
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.3);
+}
+
+.services-cta-telegram-icon {
+  width: 24px;
+  height: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .services-cta-telegram svg {
-  width: 14px;
-  height: 14px;
+  width: 12px;
+  height: 12px;
   flex-shrink: 0;
 }
 
