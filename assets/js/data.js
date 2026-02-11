@@ -47,7 +47,7 @@ const projectImageSets = {
     "assets/images/сайты/SOLOMADOM/Frame 2147223650.png"
   ),
   plitka: locals(
-    "assets/images/HERO/ОБЛОЖКА-1.jpg",
+    "assets/images/HERO/ОБЛОЖКА-3.jpg",
     "assets/images/сайты/PLITKA/ПЛ1 1.png",
     "assets/images/сайты/PLITKA/ПЛ2 1.jpg"
   ),
@@ -62,7 +62,7 @@ const projectImageSets = {
     "assets/images/сайты/AIR/Frame 2147223670.png"
   ),
   "plitka-service": locals(
-    "assets/images/HERO/ОБЛОЖКА-3.jpg",
+    "assets/images/HERO/ОБЛОЖКА-1.jpg",
     "assets/images/сайты/PLITKA SERVICE/ЛА1.png",
     "assets/images/сайты/PLITKA SERVICE/ЛА2.jpg"
   ),
