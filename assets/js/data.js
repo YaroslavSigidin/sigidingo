@@ -30,7 +30,7 @@ const projectImageSets = {
     "assets/images/сайты/AMAZON/Frame 2147223644.png"
   ),
   "castle-music": locals(
-    "assets/images/сайты/CASTLE MUSIC/Frame 2147223639.png",
+    "assets/images/HERO/CASTLE MUSIC.jpg",
     "assets/images/сайты/CASTLE MUSIC/Frame 2147223639.png",
     "assets/images/сайты/CASTLE MUSIC/Frame 2147223640.png",
     "assets/images/сайты/CASTLE MUSIC/Frame 2147223642.png"
@@ -47,12 +47,12 @@ const projectImageSets = {
     "assets/images/сайты/SOLOMADOM/Frame 2147223650.png"
   ),
   plitka: locals(
-    "assets/images/сайты/PLITKA/ПЛ1 1.png",
+    "assets/images/HERO/ОБЛОЖКА-1.jpg",
     "assets/images/сайты/PLITKA/ПЛ1 1.png",
     "assets/images/сайты/PLITKA/ПЛ2 1.jpg"
   ),
   ariva: locals(
-    "assets/images/сайты/ARIVA/АРИВА111 1.jpg",
+    "assets/images/HERO/ОБЛОЖКА-2.jpg",
     "assets/images/сайты/ARIVA/АРИВА111 1.jpg"
   ),
   air: locals(
@@ -62,7 +62,7 @@ const projectImageSets = {
     "assets/images/сайты/AIR/Frame 2147223670.png"
   ),
   "plitka-service": locals(
-    "assets/images/сайты/PLITKA SERVICE/ЛА1.png",
+    "assets/images/HERO/ОБЛОЖКА-3.jpg",
     "assets/images/сайты/PLITKA SERVICE/ЛА1.png",
     "assets/images/сайты/PLITKA SERVICE/ЛА2.jpg"
   ),
@@ -73,7 +73,7 @@ const projectImageSets = {
     "assets/images/сайты/PROFI/Frame 2147223669.png"
   ),
   iss: locals(
-    "assets/images/сайты/ISS/1000017608.png",
+    "assets/images/HERO/ISS.jpg",
     "assets/images/сайты/ISS/1000017605.png",
     "assets/images/сайты/ISS/1000017608.png",
     "assets/images/сайты/ISS/1000017609.png",
@@ -83,7 +83,7 @@ const projectImageSets = {
     "assets/images/сайты/ISS/М4 1.png"
   ),
   kvatro: locals(
-    "assets/images/сайты/KVATRO/1000017605.png",
+    "assets/images/HERO/KVATRO.jpg",
     "assets/images/сайты/KVATRO/1000017604.png",
     "assets/images/сайты/KVATRO/1000017605.png",
     "assets/images/сайты/KVATRO/1000017609.png",
@@ -128,7 +128,7 @@ const projectImageSets = {
     "assets/images/платформы/MIROX APP/Frame 2147224059.jpg"
   ),
   "tochka-rosta": locals(
-    "assets/images/платформы/TOCHKA ROSTA/Frame 2147223724.png",
+    "assets/images/HERO/ТОЧКА.jpg",
     "assets/images/платформы/TOCHKA ROSTA/Frame 2147223724.png"
   ),
   "media-kit": locals(
@@ -141,7 +141,7 @@ const projectImageSets = {
     "assets/images/сайты/SPACE CAMP/Frame 2147223664.png"
   ),
   "vihlop-expert": locals(
-    "assets/images/сайты/VIHLOP EXPERT/1000017610.png",
+    "assets/images/HERO/VIHLOP EXPERT.jpg",
     "assets/images/сайты/VIHLOP EXPERT/1000017605.png",
     "assets/images/сайты/VIHLOP EXPERT/1000017610.png",
     "assets/images/сайты/VIHLOP EXPERT/В1 1.png",
@@ -158,7 +158,7 @@ const projectImageSets = {
     "assets/images/it-platform/07.png"
   ),
   "weintek-panel": locals(
-    "assets/images/платформы/WEINTEK PANEL/Frame 2147223729.png",
+    "assets/images/HERO/ОБЛОЖКА-4.jpg",
     "assets/images/платформы/WEINTEK PANEL/Frame 2147223729.png",
     "assets/images/платформы/WEINTEK PANEL/Frame 2147223730.png"
   ),
