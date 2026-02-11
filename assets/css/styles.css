@@ -535,6 +535,18 @@ ul {
   justify-content: center;
 }
 
+.services-cta-telegram {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.services-cta-telegram svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
 .services-case-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
