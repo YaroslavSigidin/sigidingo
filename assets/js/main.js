@@ -277,8 +277,20 @@ const getProjectTimelineRange = project => {
   return { startMonth, endMonth, months, label };
 };
 
+const getProjectDurationWeeks = (project, monthsFallback) => {
+  const range = project?.calendarRange || {};
+  if (Number.isFinite(range.weeks) && Number(range.weeks) > 0) {
+    return Math.round(Number(range.weeks));
+  }
+  const timeline = Array.isArray(project?.timeline) ? project.timeline : [];
+  const totalDays = timeline.reduce((acc, item) => acc + parsePeriodToDays(item?.period || item), 0);
+  if (totalDays > 0) return Math.max(1, Math.round(totalDays / 7));
+  return Math.max(1, Math.round((monthsFallback * 30) / 7));
+};
+
 const renderTimelineYearOrbit = project => {
   const { startMonth, endMonth, months, label } = getProjectTimelineRange(project);
+  const weeks = getProjectDurationWeeks(project, months);
   const size = 212;
   const center = size / 2;
   const radius = 74;
@@ -291,8 +303,6 @@ const renderTimelineYearOrbit = project => {
     const y = center + Math.sin(angle) * (radius + 24);
     return `<span class="year-orbit-month" style="left:${x}px;top:${y}px;">${label}</span>`;
   }).join("");
-  const monthsLabel = months > 0 ? months.toFixed(months >= 10 ? 0 : 1) : "0";
-
   return `
     <div class="year-orbit">
       <div class="year-orbit-canvas" style="width:${size}px;height:${size}px;">
@@ -309,8 +319,8 @@ const renderTimelineYearOrbit = project => {
         </svg>
         <div class="year-orbit-months">${monthMarks}</div>
         <div class="year-orbit-center">
-          <strong>${monthsLabel}</strong>
-          <span>месяцев</span>
+          <strong>${weeks}</strong>
+          <span>недель</span>
         </div>
       </div>
       <p class="year-orbit-caption">${label}</p>
