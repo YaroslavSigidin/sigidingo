@@ -25,12 +25,12 @@ const projectImageSets = {
     "assets/images/платформы/AI/4.jpg"
   ),
   amazon: locals(
-    "ОБЛОЖКИ/ОБЛОЖКА-3.jpg",
+    "assets/images/сайты/AMAZON/Frame 2147223643.png",
     "assets/images/сайты/AMAZON/Frame 2147223643.png",
     "assets/images/сайты/AMAZON/Frame 2147223644.png"
   ),
   "castle-music": locals(
-    "ОБЛОЖКИ/КАСЛ.jpg",
+    "assets/images/сайты/CASTLE MUSIC/Frame 2147223639.png",
     "assets/images/сайты/CASTLE MUSIC/Frame 2147223639.png",
     "assets/images/сайты/CASTLE MUSIC/Frame 2147223640.png",
     "assets/images/сайты/CASTLE MUSIC/Frame 2147223642.png"
@@ -40,7 +40,7 @@ const projectImageSets = {
     "assets/images/сайты/RUSPAB/1000017605.png"
   ),
   solomadom: locals(
-    "ОБЛОЖКИ/СОЛОМА.jpg",
+    "assets/images/сайты/SOLOMADOM/Frame 2147223645.png",
     "assets/images/сайты/SOLOMADOM/Frame 2147223645.png",
     "assets/images/сайты/SOLOMADOM/Frame 2147223648.png",
     "assets/images/сайты/SOLOMADOM/Frame 2147223649.png",
@@ -67,13 +67,13 @@ const projectImageSets = {
     "assets/images/сайты/PLITKA SERVICE/ЛА2.jpg"
   ),
   profi: locals(
-    "ОБЛОЖКИ/ОБЛОЖКА-7.jpg",
+    "assets/images/сайты/PROFI/Frame 2147223665.png",
     "assets/images/сайты/PROFI/Frame 2147223665.png",
     "assets/images/сайты/PROFI/Frame 2147223668.png",
     "assets/images/сайты/PROFI/Frame 2147223669.png"
   ),
   iss: locals(
-    "ОБЛОЖКИ/ИСС.jpg",
+    "assets/images/сайты/ISS/1000017605.png",
     "assets/images/сайты/ISS/1000017605.png",
     "assets/images/сайты/ISS/1000017608.png",
     "assets/images/сайты/ISS/1000017609.png",
@@ -83,7 +83,7 @@ const projectImageSets = {
     "assets/images/сайты/ISS/М4 1.png"
   ),
   kvatro: locals(
-    "ОБЛОЖКИ/КВАТРО.jpg",
+    "assets/images/сайты/KVATRO/1000017604.png",
     "assets/images/сайты/KVATRO/1000017604.png",
     "assets/images/сайты/KVATRO/1000017605.png",
     "assets/images/сайты/KVATRO/1000017609.png",
@@ -93,7 +93,7 @@ const projectImageSets = {
     "assets/images/сайты/KVATRO/К4 1.png"
   ),
   "leki-travel": locals(
-    "ОБЛОЖКИ/ОБЛОЖКА-6.jpg",
+    "assets/images/сайты/LEKI TRAVEL/обл.jpg",
     "assets/images/сайты/LEKI TRAVEL/обл.jpg",
     "assets/images/сайты/LEKI TRAVEL/1000017605.png",
     "assets/images/сайты/LEKI TRAVEL/1000017606.png",
@@ -108,7 +108,7 @@ const projectImageSets = {
     "assets/images/сайты/LEKI TRAVEL/Л6 1.png"
   ),
   nok: locals(
-    "ОБЛОЖКИ/НОК НОВЫЙ.jpg",
+    "assets/images/сайты/NOK/Frame 1321316814.jpg",
     "assets/images/сайты/NOK/1000017604.png",
     "assets/images/сайты/NOK/1000017606.png",
     "assets/images/сайты/NOK/1000017610.png",
@@ -122,7 +122,7 @@ const projectImageSets = {
     "assets/images/сайты/NOK/Frame 1321316861.png"
   ),
   "mirox-app": locals(
-    "ОБЛОЖКИ/МИР АП.jpg",
+    "assets/images/платформы/MIROX APP/Frame 2147223980.jpg",
     "assets/images/платформы/MIROX APP/Frame 2147223980.jpg",
     "assets/images/платформы/MIROX APP/Frame 2147224058.jpg",
     "assets/images/платформы/MIROX APP/Frame 2147224059.jpg"
@@ -136,12 +136,12 @@ const projectImageSets = {
     "assets/images/платформы/Media Kit/Frame 2147223657.png"
   ),
   "space-camp": locals(
-    "ОБЛОЖКИ/спэйс.jpg",
+    "assets/images/сайты/SPACE CAMP/Frame 2147223663.png",
     "assets/images/сайты/SPACE CAMP/Frame 2147223663.png",
     "assets/images/сайты/SPACE CAMP/Frame 2147223664.png"
   ),
   "vihlop-expert": locals(
-    "ОБЛОЖКИ/ВЫХЛОП.jpg",
+    "assets/images/сайты/VIHLOP EXPERT/1000017605.png",
     "assets/images/сайты/VIHLOP EXPERT/1000017605.png",
     "assets/images/сайты/VIHLOP EXPERT/1000017610.png",
     "assets/images/сайты/VIHLOP EXPERT/В1 1.png",
@@ -174,7 +174,7 @@ const projectImageSets = {
     "assets/images/платформы/MIROX 1/82.jpg"
   ),
   "winglish": locals(
-    "ОБЛОЖКИ/WIN.jpg",
+    "assets/images/платформы/WINGLISH/Frame 2087325780.png",
     "assets/images/платформы/WINGLISH/Frame 2087325780.png",
     "assets/images/платформы/WINGLISH/Frame 2087325781.png",
     "assets/images/платформы/WINGLISH/Frame 2087325784.png",
