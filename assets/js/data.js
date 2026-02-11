@@ -162,7 +162,7 @@ const projectImageSets = {
     "assets/images/платформы/WEINTEK PANEL/Frame 2147223729.png",
     "assets/images/платформы/WEINTEK PANEL/Frame 2147223730.png"
   ),
-  "mirox-1": locals(
+  "mirox": locals(
     "assets/images/платформы/MIROX 1/ОБЛОЖКА.jpg",
     "assets/images/платформы/MIROX 1/75.jpg",
     "assets/images/платформы/MIROX 1/76.jpg",
@@ -214,10 +214,10 @@ const featuredProjects = [
     image: projectImageSets["it-platform"][0]
   },
   {
-    id: "mirox-1",
-    title: "MIROX 1",
+    id: "mirox",
+    title: "MIROX",
     subtitle: "",
-    image: projectImageSets["mirox-1"][0]
+    image: projectImageSets["mirox"][0]
   }
 ];
 
@@ -276,8 +276,8 @@ const projects = [
     caseKey: "octoclick"
   },
   {
-    id: "mirox-1",
-    title: "MIROX 1",
+    id: "mirox",
+    title: "MIROX",
     subtitle: "",
     description:
       "Продуктовый кабинет с тёмной темой и плотной аналитикой. В интерфейсе собраны KPI‑виджеты, тренды и быстрые действия для контроля процессов в одном окне. Решение сделано под ежедневную работу менеджеров и оперативный мониторинг.",
@@ -294,10 +294,10 @@ const projects = [
       "Упрощение ежедневного мониторинга",
       "Снижение времени на поиск данных"
     ],
-    caseKey: "mirox-1",
+    caseKey: "mirox",
     category: "uxui",
-    image: projectImageSets["mirox-1"][0],
-    gallery: projectImageSets["mirox-1"].slice(1)
+    image: projectImageSets["mirox"][0],
+    gallery: projectImageSets["mirox"].slice(1)
   },
   {
     id: "ai",
@@ -1072,8 +1072,8 @@ const caseStudies = {
     ],
     images: projectImageSets["mirox-app"]
   },
-  "mirox-1": {
-    title: "MIROX 1",
+  "mirox": {
+    title: "MIROX",
     subtitle: "Product analytics dashboard",
     tags: ["B2B", "Analytics", "KPI"],
     task: "Обновить интерфейс продуктового кабинета с плотной аналитикой: ускорить доступ к KPI, снизить шум и сделать мониторинг ежедневной работы управляемым.",
@@ -1112,7 +1112,7 @@ const caseStudies = {
         text: "Ключевые KPI стали находиться быстрее, а мониторинг превратился в ежедневную практику, а не эпизодическую проверку. Падение ошибок интерпретации и рост частоты использования подтвердили, что интерфейс стал не просто чище, а управленчески полезнее. Это прямое влияние UX на скорость продуктовых решений."
       }
     ],
-    images: projectImageSets["mirox-1"]
+    images: projectImageSets["mirox"]
   },
   ai: {
     title: "AI",

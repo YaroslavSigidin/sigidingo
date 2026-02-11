@@ -534,7 +534,7 @@ const staticPages = [
   ["/tests.html", "monthly", "0.6"],
   ["/case-ai.html", "monthly", "0.7"],
   ["/case-it-platform.html", "monthly", "0.7"],
-  ["/case-mirox-1.html", "monthly", "0.7"],
+  ["/case-mirox.html", "monthly", "0.7"],
   ["/case-mirox-app.html", "monthly", "0.7"],
   ["/case-nok.html", "monthly", "0.7"],
   ["/case-octoclick.html", "monthly", "0.7"],
