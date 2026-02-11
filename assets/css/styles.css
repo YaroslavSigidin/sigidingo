@@ -2893,6 +2893,35 @@ body[data-theme="dark"] .contact-list li {
   font-size: 16px;
 }
 
+.modal-case-full h4 {
+  margin-top: 28px;
+  margin-bottom: 8px;
+  font-size: 18px;
+}
+
+.modal-case-full h4:first-child {
+  margin-top: 8px;
+}
+
+.modal-case-full h5 {
+  margin: 0 0 12px;
+  font-size: 15px;
+  color: var(--text);
+}
+
+.modal-case-full .table-wrap {
+  overflow-x: auto;
+  border-radius: 12px;
+}
+
+.modal-case-full .case-table {
+  min-width: 760px;
+}
+
+.modal-case-full .case-grid {
+  gap: 18px;
+}
+
 .modal-content p,
 .modal-content ul {
   color: var(--muted);

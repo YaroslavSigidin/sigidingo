@@ -389,6 +389,9 @@ const openProjectModal = project => {
     if (project.caseKey && typeof caseStudies !== "undefined" && caseStudies[project.caseKey]) {
       const data = caseStudies[project.caseKey];
       modalStoryChapters = buildModalStoryChapters(project, data);
+      if (typeof data.modalFullHtml === "string" && data.modalFullHtml.trim()) {
+        detailsHost.innerHTML = data.modalFullHtml;
+      } else {
       detailsHost.innerHTML = `
         <h4>Задача</h4>
         <p>${data.task}</p>
@@ -418,6 +421,7 @@ const openProjectModal = project => {
             : ""
         }
       `;
+      }
     }
   }
   const gallery = qs("#modalGallery");
