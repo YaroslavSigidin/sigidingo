@@ -653,7 +653,7 @@ const projects = [
   },
   {
     id: "plitka-service",
-    title: "PLITKA SERVICE",
+    title: "AGROLAND",
     subtitle: "",
     description:
       "Лендинг с упором на скорость заявки и понятные блоки услуг. Визуальный стиль аккуратно подчеркивает надёжность сервиса.",
