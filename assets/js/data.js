@@ -44,11 +44,6 @@ const projectImageSets = {
     "assets/images/сайты/SOLOMADOM/Frame 2147223649.png",
     "assets/images/сайты/SOLOMADOM/Frame 2147223650.png"
   ),
-  plitka: locals(
-    "assets/images/HERO/ОБЛОЖКА-3.jpg",
-    "assets/images/сайты/PLITKA/ПЛ1 1.png",
-    "assets/images/сайты/PLITKA/ПЛ2 1.jpg"
-  ),
   ariva: locals(
     "assets/images/HERO/ОБЛОЖКА-2.jpg",
     "assets/images/сайты/ARIVA/АРИВА111 1.jpg"
@@ -58,11 +53,6 @@ const projectImageSets = {
   ),
   "trip-air": locals(
     "assets/images/сайты/AIR/Frame 2147223670.png"
-  ),
-  "plitka-service": locals(
-    "assets/images/HERO/ОБЛОЖКА-1.jpg",
-    "assets/images/сайты/PLITKA SERVICE/ЛА1.png",
-    "assets/images/сайты/PLITKA SERVICE/ЛА2.jpg"
   ),
   profi: locals(
     "assets/images/сайты/PROFI/HERO__.jpg",
@@ -640,51 +630,6 @@ const projects = [
     category: "web",
     image: projectImageSets["vihlop-expert"][0],
     gallery: projectImageSets["vihlop-expert"].slice(1)
-  },
-  {
-    id: "plitka",
-    title: "PLITKA SERVICE",
-    subtitle: "",
-    description:
-      "Сайт сервисной компании по укладке плитки. Структура выстроена вокруг примеров работ и понятного пути к заявке.",
-    timeline: [
-      { title: "Анализ услуг", period: "2 дня" },
-      { title: "Структура и UX", period: "3 дня" },
-      { title: "UI и адаптив", period: "4 дня" }
-    ],
-    technologies: ["Portfolio grid", "Service blocks", "Lead form", "Before/after"],
-    tools: ["Figma", "Notion"],
-    metrics: [
-      "Рост обращений",
-      "Упрощение выбора услуги",
-      "Повышение доверия"
-    ],
-    category: "web",
-    image: projectImageSets.plitka[0],
-    gallery: projectImageSets.plitka.slice(1)
-  },
-  {
-    id: "plitka-service",
-    title: "AGROLAND",
-    subtitle: "",
-    description:
-      "Лендинг с упором на скорость заявки и понятные блоки услуг. Визуальный стиль аккуратно подчеркивает надёжность сервиса.",
-    timeline: [
-      { title: "Сценарии и структура", period: "2 дня" },
-      { title: "Прототип", period: "2 дня" },
-      { title: "UI и финал", period: "3 дня" }
-    ],
-    technologies: ["CTA‑flow", "Service cards", "Trust blocks", "Responsive grid"],
-    tools: ["Figma", "Notion"],
-    metrics: [
-      "Рост заявок",
-      "Снижение времени принятия решения",
-      "Повышение конверсии"
-    ],
-    category: "web",
-    image: projectImageSets["plitka-service"][0],
-    gallery: projectImageSets["plitka-service"].slice(1)
-  },
   }
 ];
 
