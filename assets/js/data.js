@@ -40,8 +40,8 @@ const projectImageSets = {
     "assets/images/сайты/RUSPAB/1000017605.png"
   ),
   solomadom: locals(
-    "assets/images/сайты/SOLOMADOM/Frame 2147223645.png",
-    "assets/images/сайты/SOLOMADOM/Frame 2147223645.png",
+    "assets/images/HERO/SOLOMADOM.jpg",
+    "assets/images/HERO/SOLOMADOM.jpg",
     "assets/images/сайты/SOLOMADOM/Frame 2147223648.png",
     "assets/images/сайты/SOLOMADOM/Frame 2147223649.png",
     "assets/images/сайты/SOLOMADOM/Frame 2147223650.png"
@@ -134,14 +134,14 @@ const projectImageSets = {
     "assets/images/сайты/IN IT/Frame 2147223724.png"
   ),
   nok: locals(
-    "assets/images/сайты/NOK/Frame 1321316814.jpg",
+    "assets/images/HERO/NOK.jpg",
     "assets/images/сайты/NOK/1000017604.png",
     "assets/images/сайты/NOK/1000017606.png",
     "assets/images/сайты/NOK/1000017610.png",
     "assets/images/сайты/NOK/1000017613.png",
     "assets/images/сайты/NOK/1000017614.png",
     "assets/images/сайты/NOK/1000017616.png",
-    "assets/images/сайты/NOK/Frame 1321316814.jpg",
+    "assets/images/HERO/NOK.jpg",
     "assets/images/сайты/NOK/Frame 1321316816.png",
     "assets/images/сайты/NOK/Frame 1321316817.png",
     "assets/images/сайты/NOK/Frame 1321316859.png",
@@ -191,8 +191,8 @@ const projectImageSets = {
     "assets/images/платформы/MIROX 1/82.jpg"
   ),
   "winglish": locals(
-    "assets/images/платформы/WINGLISH/Frame 2087325780.png",
-    "assets/images/платформы/WINGLISH/Frame 2087325780.png",
+    "assets/images/HERO/WINGLISH.jpg",
+    "assets/images/HERO/WINGLISH.jpg",
     "assets/images/платформы/WINGLISH/Frame 2087325781.png",
     "assets/images/платформы/WINGLISH/Frame 2087325784.png",
     "assets/images/платформы/WINGLISH/Frame 2087325785.png"
