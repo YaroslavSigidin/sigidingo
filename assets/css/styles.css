@@ -3365,6 +3365,7 @@ body[data-theme="dark"] .modal-close {
   background: linear-gradient(145deg, rgba(12, 14, 16, 0.94), rgba(10, 10, 10, 0.9));
   padding: 16px 18px;
   box-shadow: 0 14px 36px rgba(0, 0, 0, 0.28);
+  filter: blur(0);
 }
 
 .modal-gallery-story h4 {
@@ -3408,6 +3409,11 @@ body[data-theme="dark"] .modal-close {
 
 .modal-story-inline p {
   margin: 0;
+}
+
+.modal.active .modal-gallery-story,
+.modal[aria-hidden="false"] .modal-gallery-story {
+  filter: blur(0);
 }
 
 body[data-theme="dark"] .modal-gallery-card {
