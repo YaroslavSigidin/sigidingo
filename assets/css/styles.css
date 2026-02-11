@@ -135,12 +135,6 @@ ul {
   gap: 18px;
 }
 
-@media (max-width: 860px) {
-  .services-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
 .services-card {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -152,6 +146,91 @@ ul {
   font-size: 24px;
   line-height: 1.2;
   margin-bottom: 10px;
+}
+
+.services-catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.service-mini-card {
+  background: color-mix(in srgb, var(--surface) 96%, transparent);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 220px;
+}
+
+.service-mini-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.service-mini-icon {
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--surface) 90%, transparent);
+  font-size: 14px;
+}
+
+.service-mini-icon svg {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.service-mini-head h2 {
+  font-size: 22px;
+  line-height: 1.15;
+  margin: 0;
+}
+
+.service-mini-card p {
+  color: var(--muted);
+  margin: 0;
+}
+
+.service-mini-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.service-mini-meta span {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 5px 9px;
+}
+
+.service-mini-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.service-mini-actions .button {
+  letter-spacing: 0.08em;
+  padding: 10px 12px;
+  flex: 1;
+  text-align: center;
 }
 
 .services-list {
@@ -209,6 +288,13 @@ ul {
 
 @media (max-width: 720px) {
   .services-case-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 860px) {
+  .services-grid,
+  .services-catalog-grid {
     grid-template-columns: 1fr;
   }
 }
