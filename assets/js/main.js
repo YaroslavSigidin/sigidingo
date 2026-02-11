@@ -308,13 +308,12 @@ const renderTimelineYearOrbit = project => {
           </circle>
         </svg>
         <div class="year-orbit-months">${monthMarks}</div>
-        <div class="year-orbit-period">${label}</div>
         <div class="year-orbit-center">
           <strong>${monthsLabel}</strong>
           <span>месяцев</span>
         </div>
       </div>
-      <p class="year-orbit-caption">от ${MONTH_SHORT[startMonth]} до ${MONTH_SHORT[endMonth]}</p>
+      <p class="year-orbit-caption">${label}</p>
     </div>
   `;
 };

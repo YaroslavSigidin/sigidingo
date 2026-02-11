@@ -3245,18 +3245,6 @@ body[data-theme="dark"] .theme-switch svg {
   inset: 0;
 }
 
-.year-orbit-period {
-  position: absolute;
-  top: 6px;
-  right: 8px;
-  font-family: Consolas, "IBM Plex Mono", monospace;
-  font-size: 9px;
-  letter-spacing: 0.08em;
-  color: rgba(255, 255, 255, 0.74);
-  text-align: right;
-  line-height: 1.2;
-}
-
 .year-orbit-month {
   position: absolute;
   transform: translate(-50%, -50%);
@@ -3309,8 +3297,7 @@ body:not([data-theme="dark"]) .year-orbit-track {
 
 body:not([data-theme="dark"]) .year-orbit-month,
 body:not([data-theme="dark"]) .year-orbit-caption,
-body:not([data-theme="dark"]) .year-orbit-center span,
-body:not([data-theme="dark"]) .year-orbit-period {
+body:not([data-theme="dark"]) .year-orbit-center span {
   color: rgba(11, 11, 11, 0.62);
 }
 
