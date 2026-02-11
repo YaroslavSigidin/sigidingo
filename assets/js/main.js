@@ -657,13 +657,13 @@ const renderArticles = () => {
         <div class="tag-list">
           ${item.tags.map(tag => `<span class="tag-pill">${tag}</span>`).join("")}
         </div>
-        <a class="button" href="post-template.html">Читать статью</a>
+        <a class="button" href="blog/${item.id}.html">Читать статью</a>
       </div>
     </article>
   `;
 
   const buildCard = item => `
-    <a class="article-link" href="post-template.html?post=${item.id}">
+    <a class="article-link" href="blog/${item.id}.html">
       <article class="article-card reveal">
         <div class="article-cover">
           <img src="${item.cover}" alt="${item.title}" loading="lazy" />
@@ -837,7 +837,7 @@ const renderArticlePage = () => {
     related.innerHTML = picks
       .map(
         item => `
-        <a class="article-link" href="post-template.html?post=${item.id}">
+        <a class="article-link" href="blog/${item.id}.html">
           <article class="article-card">
             <div class="article-cover">
               <img src="${item.cover}" alt="${item.title}" loading="lazy" />

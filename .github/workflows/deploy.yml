@@ -28,3 +28,19 @@ jobs:
             rm -rf /var/www/html/*
             cp -a "$TMP_DIR"/. /var/www/html/
             rm -rf "$TMP_DIR"
+            INDEXNOW_HOST="sigidingo.online"
+            INDEXNOW_KEY="c6b8f55e3f26472a9fe66f2131311a0b"
+            INDEXNOW_KEY_LOCATION="https://${INDEXNOW_HOST}/${INDEXNOW_KEY}.txt"
+            if [ -f /var/www/html/sitemap.xml ]; then
+              grep -oE '<loc>[^<]+' /var/www/html/sitemap.xml | sed 's#<loc>##' | while read -r URL; do
+                [ -z "$URL" ] && continue
+                curl -sS -G "https://yandex.com/indexnow" \
+                  --data-urlencode "url=${URL}" \
+                  --data-urlencode "key=${INDEXNOW_KEY}" \
+                  --data-urlencode "keyLocation=${INDEXNOW_KEY_LOCATION}" >/dev/null || true
+                curl -sS -G "https://www.bing.com/indexnow" \
+                  --data-urlencode "url=${URL}" \
+                  --data-urlencode "key=${INDEXNOW_KEY}" \
+                  --data-urlencode "keyLocation=${INDEXNOW_KEY_LOCATION}" >/dev/null || true
+              done
+            fi

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#070707" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="author" content="Yaroslav Sigidin" />
+    <title>Mobile‑first на практике: ошибки и решения — Блог Yaroslav Sigidin</title>
+    <meta name="description" content="Mobile-first — это не сжатие экранов, а мышление, структура и приоритеты." />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://sigidingo.online/blog/mobile-first.html" />
+    <link rel="alternate" hreflang="ru-RU" href="https://sigidingo.online/blog/mobile-first.html" />
+    <link rel="alternate" hreflang="x-default" href="https://sigidingo.online/blog/mobile-first.html" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Mobile‑first на практике: ошибки и решения — Блог Yaroslav Sigidin" />
+    <meta property="og:description" content="Mobile-first — это не сжатие экранов, а мышление, структура и приоритеты." />
+    <meta property="og:url" content="https://sigidingo.online/blog/mobile-first.html" />
+    <meta property="og:site_name" content="Yaroslav Sigidin" />
+    <meta property="og:image" content="https://sigidingo.online/assets/images/blog-covers/mobile-first.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Mobile‑first на практике: ошибки и решения — Блог Yaroslav Sigidin" />
+    <meta name="twitter:description" content="Mobile-first — это не сжатие экранов, а мышление, структура и приоритеты." />
+    <meta name="twitter:image" content="https://sigidingo.online/assets/images/blog-covers/mobile-first.svg" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Mobile‑first на практике: ошибки и решения","description":"Mobile-first — это не сжатие экранов, а мышление, структура и приоритеты.","datePublished":"2026-01-08","dateModified":"2026-01-08","author":{"@type":"Person","name":"Yaroslav Sigidin"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://sigidingo.online/blog/mobile-first.html"},"image":"https://sigidingo.online/assets/images/blog-covers/mobile-first.svg","inLanguage":"ru-RU"}</script>
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+    <link rel="manifest" href="../site.webmanifest" />
+    <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg" />
+    <link rel="shortcut icon" href="../assets/images/favicon.svg" />
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+      (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a);
+      })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js?id=106779298", "ym");
+
+      ym(106779298, "init", {
+        ssr: true,
+        webvisor: true,
+        clickmap: true,
+        ecommerce: "dataLayer",
+        referrer: document.referrer,
+        url: location.href,
+        accurateTrackBounce: true,
+        trackLinks: true
+      });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/106779298" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+  </head>
+  <body data-theme="dark">
+    <header>
+      <div class="container nav">
+        <a class="logo" href="../index.html">SIGIDINGO</a>
+        <nav class="nav-links" id="navLinks">
+          <a href="../portfolio.html" class="nav-link">Portfolio</a>
+          <a href="../services.html" class="nav-link">Services</a>
+          <a href="../about.html" class="nav-link">About / CV</a>
+          <a href="../index.html#contact" class="nav-link">Contact</a>
+          <a href="../blog.html" class="nav-link">Blog</a>
+          <a href="../tests.html" class="nav-link">Tests</a>
+        </nav>
+        <div class="nav-tools">
+          <a class="nav-telegram" href="https://t.me/sigidingo" target="_blank" rel="noreferrer">
+            <span class="icon-circle">
+              <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.8 4.6 2.9 11.9c-1.3.5-1.3 1.3-.2 1.7l4.7 1.5 1.8 5.4c.2.6.1.9.9.9.6 0 .9-.3 1.3-.7l2.3-2.2 4.8 3.5c.9.5 1.5.2 1.7-.8l3.1-14.7c.3-1.2-.5-1.7-1.5-1.3zM9.3 14.9l9-5.7c.4-.3.8-.1.5.2l-7.3 6.6-.3 3.2-1.9-4.3z"/></svg>
+            </span>
+            Telegram
+          </a>
+          <button class="theme-switch" data-theme-toggle type="button" aria-label="Toggle theme">
+            <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.1 2.2c-3.4.4-6.1 3.3-6.1 6.9 0 3.9 3.2 7.1 7.1 7.1 2.3 0 4.4-1.1 5.7-2.9-4 .8-7.5-2.6-6.7-6.7z"/></svg>
+            <span class="track"><span class="thumb"></span></span>
+          </button>
+        </div>
+        <button class="mobile-toggle" id="mobileToggle" type="button" aria-label="Open menu" aria-controls="navLinks" aria-expanded="false"><span></span><span></span><span></span></button>
+      </div>
+    </header>
+
+    <nav class="container breadcrumbs" aria-label="Breadcrumb">
+      <a href="../index.html">Главная</a>
+      <span class="breadcrumbs-sep">/</span>
+      <a href="../blog.html">Блог</a>
+      <span class="breadcrumbs-sep">/</span>
+      <span>Mobile‑first на практике: ошибки и решения</span>
+    </nav>
+
+    <main>
+      <section class="section article-hero">
+        <div class="container article-hero-layout">
+          <div class="article-hero-text">
+            <p class="section-subtitle">Блог</p>
+            <h1 class="section-title">Mobile‑first на практике: ошибки и решения</h1>
+            <p class="lead">Mobile-first — это не сжатие экранов, а мышление, структура и приоритеты.</p>
+            <div class="article-meta"><span>08.01.2026</span><span>18 мин чтения</span></div>
+            <div class="tag-list"><span class="tag-pill">Mobile</span><span class="tag-pill">UI</span></div>
+          </div>
+          <div class="article-hero-media">
+            <div class="article-hero-frame">
+              <img src="../assets/images/blog-covers/mobile-first.svg" alt="Mobile‑first на практике: ошибки и решения" loading="lazy" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container article-content" id="articleContent"><h2 class="article-reveal">Mobile-first: не только про экраны, а про мышление и структуру</h2>
+<p class="article-paragraph article-reveal">Подход mobile-first — это больше, чем просто дизайн для маленького экрана.</p>
+<p class="article-paragraph article-reveal">Часто думают, что достаточно «сжать» десктопный интерфейс под смартфон, но это заблуждение.</p>
+<p class="article-paragraph article-reveal">На самом деле mobile-first — это мышление и стратегия проектирования продукта, когда мобильный опыт ставится во главу угла.</p>
+<p class="article-paragraph article-reveal">Как справедливо отмечают эксперты, переход к mobile-first — это не просто сжатие сайта для маленьких экранов. Это переосмысление пользовательского опыта с учетом особенностей мобильных устройств.</p>
+<p class="article-paragraph article-reveal">Почему это важно? Сегодня более половины веб-трафика приходится на смартфоны, и первое знакомство пользователя с вашим продуктом чаще происходит именно на мобильном.</p>
+<p class="article-paragraph article-reveal">Меньший экран диктует свои правила: ограниченное пространство заставляет жестко приоритизировать контент и функции, избавляться от лишнего.</p>
+<p class="article-paragraph article-reveal">Mobile-first базируется на принципе прогрессивного улучшения: сперва создается лёгкая, быстрая, понятная мобильная основа, а уже потом — расширение под планшеты и десктоп с добавлением второстепенных элементов.</p>
+<p class="article-paragraph article-reveal">Это противоположно старому подходу «сначала десктоп», где мобильная версия выходит урезанной и неудобной.</p>
+<p class="article-paragraph article-reveal">Иными словами, mobile-first — это про фокус.</p>
+<p class="article-paragraph article-reveal">Нужно спросить себя: что действительно важно пользователю «на ходу» и как это подать максимально просто?</p>
+<p class="article-paragraph article-reveal">Это мышление заставляет думать о структуре интерфейса иначе: сначала обеспечить базовый сценарий на маленьком экране, где нет места лишнему, а потом уже достраивать деталями для больших экранов.</p>
+<p class="article-paragraph article-reveal">Как результат, получается продукт с чёткой иерархией, высокой скоростью и интуитивным UX на мобильном — что выгодно всем, включая десктопных пользователей.</p>
+<div class="article-divider article-reveal"><span>Ошибки</span></div>
+<h3 class="article-reveal">Типичные ошибки mobile-first дизайна (и как их избежать)</h3>
+<p class="article-paragraph article-reveal">Несмотря на растущую популярность mobile-first, на практике команды продолжают наступать на одни и те же грабли.</p>
+<p class="article-paragraph article-reveal">Ниже мы разберем самые частые ошибки при дизайне «сначала для мобильных» — и способы их исправления.</p>
+<p class="article-paragraph article-reveal">Почти все они происходят от непонимания принципа мышления.</p>
+<p class="article-paragraph article-reveal">Если знать врага в лицо, mobile-first перестанет быть пугающей философией и превратится в набор конкретных практик.</p>
+<div class="article-divider article-reveal"><span>Ошибка 1</span></div>
+<h3 class="article-reveal">Слишком мелкие элементы управления — интерфейс под лупой</h3>
+<p class="article-paragraph article-reveal">Симптом: пользователю приходится целиться, как снайперу, чтобы нажать кнопку или ссылку.</p>
+<p class="article-paragraph article-reveal">Чекбоксы, кнопки, ссылки — все крошечное, палец еле попадает.</p>
+<p class="article-paragraph article-reveal">В итоге промахи, «fat finger» эффект, раздражение и выход из продукта.</p>
+<p class="article-paragraph article-reveal">Почему так происходит: это результат попытки впихнуть десктопный UI в мобильный экран без изменений.</p>
+<p class="article-paragraph article-reveal">Элементы пропорционально уменьшаются, но физический палец-то не уменьшился.</p>
+<p class="article-paragraph article-reveal">Если на десктопе клик мышкой по 8px иконке ок, то на таче это промах 9 из 10.</p>
+<p class="article-paragraph article-reveal">Последствия: мелкие интерактивные области ведут к ошибочным нажатиям или вовсе невозможности совершить нужное действие.</p>
+<p class="article-paragraph article-reveal">Например, формы не заполняются, покупки не совершаются — просто потому что кнопка «Оформить» сделана по принципу «лишь бы влезла».</p>
+<p class="article-paragraph article-reveal">Конверсия стремится к нулю, фрустрация — к потолку.</p>
+<p class="article-paragraph article-reveal">Как исправить: увеличить тап-таргеты до комфортного размера.</p>
+<p class="article-paragraph article-reveal">Apple рекомендует минимум 44×44pt для интерактивных элементов, Material Design — не меньше 48dp.</p>
+<p class="article-paragraph article-reveal">Средний палец занимает площадку ~7–10 мм, значит, важные кнопки должны быть крупными и иметь отступы.</p>
+<p class="article-paragraph article-reveal">Если визуально кнопка нужна небольшая, увеличь невидимую область вокруг нее с помощью паддингов.</p>
+<p class="article-paragraph article-reveal">Также следи за читаемостью текста: минимальный размер шрифта около 11pt.</p>
+<div class="article-callout article-reveal"><div class="callout-head"><h4>Пример</h4></div><p>Walmart Canada увеличил покупки на 12% после увеличения кнопки «Add to Cart» и получил рост мобильных заказов на 98% после mobile-first редизайна.</p></div>
+<p class="article-paragraph article-reveal">Кейс: в одном интернет-магазине кнопка «Оформить заказ» была мала и частично перекрыта плавающей плашкой.</p>
+<p class="article-paragraph article-reveal">Кнопку увеличили на 20% и закрепили внизу экрана — завершение заказов выросло, а жалобы исчезли.</p>
+<div class="article-divider article-reveal"><span>Ошибка 2</span></div>
+<h3 class="article-reveal">Скрытые ключевые действия — поиск «волшебной кнопки»</h3>
+<p class="article-paragraph article-reveal">Симптом: пользователь хочет выполнить важное действие, но интерфейс молчит.</p>
+<p class="article-paragraph article-reveal">Ключевая функция спрятана за тремя слоями меню, иконкой без подписи или доступна только жестом.</p>
+<p class="article-paragraph article-reveal">Почему так происходит: в стремлении сделать экран чище команды убирают важное в меню.</p>
+<p class="article-paragraph article-reveal">Но на мобильном нет hover, а жесты редко очевидны новичкам.</p>
+<p class="article-paragraph article-reveal">Последствия: ключевые сценарии становятся квестом для посвященных.</p>
+<p class="article-paragraph article-reveal">Конверсия падает, потому что пользователи не находят действие.</p>
+<p class="article-paragraph article-reveal">Как исправить: важные вещи должны быть на виду, «в одно касание».</p>
+<p class="article-paragraph article-reveal">Иконка без текста допустима для второстепенных функций, но не для главного действия.</p>
+<p class="article-paragraph article-reveal">Жесты — только бонус, не единственный путь.</p>
+<div class="article-callout article-reveal"><div class="callout-head"><h4>Правило</h4></div><p>Если на экране за 5 секунд непонятно, как сделать главное действие — нужно переделывать.</p></div>
+<p class="article-paragraph article-reveal">Пример: в новостном приложении кнопку «Поделиться» спрятали в меню из трех точек.</p>
+<p class="article-paragraph article-reveal">Ее вынесли под статью — доля поделившихся выросла в разы.</p>
+<p class="article-paragraph article-reveal">Кейс: SaaS-сервис задач спрятал кнопку «Новая задача» в боковое меню.</p>
+<p class="article-paragraph article-reveal">После добавления заметной кнопки «+ Добавить» создание задач резко выросло.</p>
+<div class="article-divider article-reveal"><span>Ошибка 3</span></div>
+<h3 class="article-reveal">Перегруженные карточки без иерархии — информационная каша</h3>
+<p class="article-paragraph article-reveal">Симптом: карточка перегружена — фото, 10 иконок, длинные описания, рейтинги и кнопки, все одинакового веса.</p>
+<p class="article-paragraph article-reveal">Почему так происходит: желание «ничего не вырезать» с десктопа.</p>
+<p class="article-paragraph article-reveal">Отсутствие визуальной иерархии усугубляет проблему: заголовки не выделены, отступы минимальны, все сливается.</p>
+<p class="article-paragraph article-reveal">Последствия: пользователь тратит лишние секунды, не понимает, что главное, и уходит.</p>
+<p class="article-paragraph article-reveal">Как исправить: оставить только основное, второстепенное — убрать вглубь.</p>
+<p class="article-paragraph article-reveal">Выстроить визуальную иерархию: важное — крупнее и контрастнее.</p>
+<p class="article-paragraph article-reveal">Белое пространство — друг: отступы делают карточку «дышащей».</p>
+<p class="article-paragraph article-reveal">Лучше больше шагов, но каждый понятен, чем один экран-венегрет.</p>
+<p class="article-paragraph article-reveal">Пример: медиа-сайт сократил карточки до заголовка, картинки и 2–3 строк описания.</p>
+<p class="article-paragraph article-reveal">Вовлеченность выросла — пользователи стали открывать больше статей.</p>
+<p class="article-paragraph article-reveal">Другой пример: e-commerce каталог оставил на карточке фото, название и цену, остальное перенес внутрь.</p>
+<p class="article-paragraph article-reveal">Конверсия добавления в корзину выросла.</p>
+<div class="article-divider article-reveal"><span>Ошибка 4</span></div>
+<h3 class="article-reveal">Плохая навигация на мобильном — лабиринт вместо меню</h3>
+<p class="article-paragraph article-reveal">Симптом: пользователь не понимает, как попасть в нужный раздел.</p>
+<p class="article-paragraph article-reveal">Меню спрятано, пунктов много, вложенность глубока, поиска нет.</p>
+<p class="article-paragraph article-reveal">Почему так происходит: сложную структуру десктопа просто прячут за гамбургер.</p>
+<p class="article-paragraph article-reveal">Последствия: потерянный пользователь = ушедший пользователь.</p>
+<p class="article-paragraph article-reveal">Как исправить: минимизировать уровни вложенности и показать путь.</p>
+<p class="article-paragraph article-reveal">Нижняя навигация хорошо работает для 3–5 ключевых разделов.</p>
+<p class="article-paragraph article-reveal">Поиск должен быть видимым, если контента много.</p>
+<p class="article-paragraph article-reveal">Пункты меню — понятные и короткие, без перегруза.</p>
+<p class="article-paragraph article-reveal">Пример: новостной портал сократил меню и вывел 4 ключевых раздела в нижние вкладки.</p>
+<p class="article-paragraph article-reveal">Вовлеченность выросла — пользователи быстрее находили нужное.</p>
+<p class="article-paragraph article-reveal">Другой пример: магазин электроники упростил каталог до 2 шагов и добавил поиск.</p>
+<div class="article-divider article-reveal"><span>Ошибка 5</span></div>
+<h3 class="article-reveal">Неверное переосмысление десктопного опыта — мобильный не настольный</h3>
+<p class="article-paragraph article-reveal">Симптом: мобильная версия перегружена как десктоп или, наоборот, слишком урезана.</p>
+<p class="article-paragraph article-reveal">Почему так происходит: команды либо «сжимают и переносят», либо «отрезают лишнее» без понимания сценариев.</p>
+<p class="article-paragraph article-reveal">Последствия: мобильный UX не работает — либо невозможно пользоваться, либо не хватает функций.</p>
+<p class="article-paragraph article-reveal">Как исправить: понять, какие задачи люди решают с телефона.</p>
+<p class="article-paragraph article-reveal">Сделать mobile-first MVP: минимальные функции, которые реально нужны на ходу.</p>
+<p class="article-paragraph article-reveal">Сложное — оставить для десктопа или дать аккуратную альтернативу.</p>
+<p class="article-paragraph article-reveal">Использовать возможности устройства: камера, геолокация, офлайн, push.</p>
+<p class="article-paragraph article-reveal">Пример: финсервис упростил мобильное приложение до балансов и подтверждения платежей.</p>
+<p class="article-paragraph article-reveal">Активность выросла, жалобы исчезли.</p>
+<div class="article-divider article-reveal"><span>Советы</span></div>
+<h3 class="article-reveal">Советы и паттерны для успешного mobile-first дизайна</h3>
+<ul class="article-list article-reveal"><li>Думай mobile-first с самого начала проекта: если фича не ложится на маленький экран, возможно, она не ключевая.</li><li>Выстраивай визуальную иерархию: главное — крупнее и контрастнее, второстепенное — тише.</li><li>Проектируй «толстые пальцы, большие пальцы»: основные действия в зоне большого пальца, элементы — от 44–48px.</li><li>Используй проверенные паттерны: bottom nav, FAB, карточки, pull-to-refresh, знакомые иконки.</li><li>Планируй адаптивность с брейкпоинтами и progressive enhancement.</li><li>Думай о производительности и доступности: оптимизация, контраст, большие кнопки, простые сценарии.</li><li>Тестируй на реальных устройствах и пользователях — это быстрее всего выявляет проблемы.</li></ul>
+<div class="article-divider article-reveal"><span>Выводы</span></div>
+<h3 class="article-reveal">Выводы</h3>
+<p class="article-paragraph article-reveal">Mobile-first сегодня — это стандарт мышления при создании интерфейсов.</p>
+<p class="article-paragraph article-reveal">Это стратегия, где мобильный опыт задает тон всему продукту.</p>
+<p class="article-paragraph article-reveal">Правильно реализованный mobile-first улучшает UX на всех устройствах.</p>
+<p class="article-paragraph article-reveal">Подход дисциплинирует команду и заставляет ранжировать функции по важности.</p>
+<p class="article-paragraph article-reveal">В итоге выигрывают все: пользователи получают быстрый, удобный сервис, а бизнес — рост конверсий и удовлетворенности.</p>
+<p class="article-paragraph article-reveal">Главное — помнить, что mobile-first — это про людей и их контекст.</p>
+<div class="article-divider article-reveal"><span>Чек-лист</span></div>
+<h3 class="article-reveal">Чек-лист mobile-first интерфейса</h3>
+<p class="article-paragraph article-reveal">Перед релизом проверь мобильный UX по следующим пунктам.</p>
+<ul class="article-list article-reveal"><li>Минимальный комфорт размеров: все кнопки и кликабельные элементы имеют размер 44–48px, нигде не требуется «ювелирная точность».</li><li>Видны ли главные действия: основная цель экрана доступна в одно касание и не спрятана в меню.</li><li>Простая навигация: до основных разделов можно добраться за 1–2 тапа, поиск есть при большом объеме контента.</li><li>Читаемый контент: текст крупный и контрастный, длинные блоки разбиты на короткие абзацы.</li><li>Четкая иерархия: за 5 секунд понятно, что главное на экране.</li><li>Тапы вместо ховеров: все действия доступны по касанию, нет скрытых hover-сценариев.</li><li>Жесты дополнительны: жесты не являются единственным способом выполнить важное действие.</li><li>Производительность и загрузка: быстрый рендер, оптимизированные изображения, есть индикаторы ожидания.</li><li>Адаптация под разные экраны: интерфейс не ломается от 320px до планшета.</li><li>Использование возможностей устройства: камера, геолокация, офлайн, push — если это улучшает UX.</li><li>Тестирование и отзывы: сценарии проверены на реальных устройствах и пользователях.</li></ul></div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <p class="section-subtitle">Related</p>
+          <h2 class="section-title">Похожие статьи</h2>
+          <div class="articles-grid blog-feed-grid">
+        <a class="article-link" href="./future-of-ux.html">
+          <article class="article-card">
+            <div class="article-cover">
+              <img src="../assets/images/blog-covers/future-of-ux.svg" alt="Будущее UX: как ИИ меняет дизайн-процессы" loading="lazy" />
+            </div>
+            <div class="article-body">
+              <div class="article-meta">
+                <span>20.01.2026</span>
+                <span>6 мин чтения</span>
+              </div>
+              <h4>Будущее UX: как ИИ меняет дизайн-процессы</h4>
+              <p>ИИ стал рабочим инструментом UX: он снимает рутину, ускоряет анализ, прототипирование и тестирование, но не заменяет ответственность дизайнера.</p>
+            </div>
+          </article>
+        </a>
+      
+        <a class="article-link" href="./systems-thinking.html">
+          <article class="article-card">
+            <div class="article-cover">
+              <img src="../assets/images/blog-covers/systems-thinking.svg" alt="Системное мышление в UX/UI" loading="lazy" />
+            </div>
+            <div class="article-body">
+              <div class="article-meta">
+                <span>14.01.2026</span>
+                <span>5 мин</span>
+              </div>
+              <h4>Системное мышление в UX/UI</h4>
+              <p>Почему дизайн‑система — это не библиотека компонентов, а способ держать продукт консистентным и масштабируемым.</p>
+            </div>
+          </article>
+        </a>
+      
+        <a class="article-link" href="./analytics-for-designers.html">
+          <article class="article-card">
+            <div class="article-cover">
+              <img src="../assets/images/blog-covers/analytics-for-designers.svg" alt="Аналитика для дизайнеров: метрики, которые важно знать" loading="lazy" />
+            </div>
+            <div class="article-body">
+              <div class="article-meta">
+                <span>03.01.2026</span>
+                <span>7 мин</span>
+              </div>
+              <h4>Аналитика для дизайнеров: метрики, которые важно знать</h4>
+              <p>Какие цифры реально помогают принимать дизайн‑решения: от конверсий до time‑to‑task.</p>
+            </div>
+          </article>
+        </a>
+      
+        <a class="article-link" href="./design-handoff.html">
+          <article class="article-card">
+            <div class="article-cover">
+              <img src="../assets/images/blog-covers/design-handoff.svg" alt="Дизайн‑хэнд‑офф без боли: как передавать макеты в разработку" loading="lazy" />
+            </div>
+            <div class="article-body">
+              <div class="article-meta">
+                <span>26.12.2025</span>
+                <span>17 мин чтения</span>
+              </div>
+              <h4>Дизайн‑хэнд‑офф без боли: как передавать макеты в разработку</h4>
+              <p>Практическая система передачи дизайна: слои, спецификации, токены, сценарии и контроль качества, чтобы дизайн доезжал в прод.</p>
+            </div>
+          </article>
+        </a>
+      
+        <a class="article-link" href="./ux-copy.html">
+          <article class="article-card">
+            <div class="article-cover">
+              <img src="../assets/images/blog-covers/ux-copy.svg" alt="UX‑тексты, которые помогают пользователю" loading="lazy" />
+            </div>
+            <div class="article-body">
+              <div class="article-meta">
+                <span>12.12.2025</span>
+                <span>16 мин чтения</span>
+              </div>
+              <h4>UX‑тексты, которые помогают пользователю</h4>
+              <p>Как писать микрокопирайтинг для интерфейсов: ясность, тональность, ошибки и сценарии.</p>
+            </div>
+          </article>
+        </a>
+      
+        <a class="article-link" href="./product-metrics.html">
+          <article class="article-card">
+            <div class="article-cover">
+              <img src="../assets/images/blog-covers/product-metrics.svg" alt="Продуктовые метрики без шума: что измерять дизайнеру" loading="lazy" />
+            </div>
+            <div class="article-body">
+              <div class="article-meta">
+                <span>02.12.2025</span>
+                <span>15 мин чтения</span>
+              </div>
+              <h4>Продуктовые метрики без шума: что измерять дизайнеру</h4>
+              <p>Понятная система метрик для UX: что считать, как читать и как связывать с решениями.</p>
+            </div>
+          </article>
+        </a>
+      </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div><p class="section-subtitle">Mail</p><a href="mailto:sigidingo@gmail.com">sigidingo@gmail.com</a></div>
+        <div><p class="section-subtitle">Telegram</p><a href="https://t.me/sigidingo" target="_blank" rel="noreferrer">@sigidingo</a></div>
+        <div><p class="section-subtitle">Number</p><a href="tel:+79619710515">+7 961 971-05-15</a></div>
+        <div><p class="section-subtitle">Location</p><p>Краснодар</p></div>
+      </div>
+    </footer>
+
+    <script src="../assets/js/main.js?v=20260211-4"></script>
+  </body>
+</html>

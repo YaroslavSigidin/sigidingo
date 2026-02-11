@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#070707" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="author" content="Yaroslav Sigidin" />
+    <title>Онбординг, который включается с первого экрана — Блог Yaroslav Sigidin</title>
+    <meta name="description" content="Как строить onboarding: сценарии, структура, короткие подсказки и метрики эффективности." />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://sigidingo.online/blog/ux-onboarding.html" />
+    <link rel="alternate" hreflang="ru-RU" href="https://sigidingo.online/blog/ux-onboarding.html" />
+    <link rel="alternate" hreflang="x-default" href="https://sigidingo.online/blog/ux-onboarding.html" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Онбординг, который включается с первого экрана — Блог Yaroslav Sigidin" />
+    <meta property="og:description" content="Как строить onboarding: сценарии, структура, короткие подсказки и метрики эффективности." />
+    <meta property="og:url" content="https://sigidingo.online/blog/ux-onboarding.html" />
+    <meta property="og:site_name" content="Yaroslav Sigidin" />
+    <meta property="og:image" content="https://sigidingo.online/assets/images/blog-covers/ux-onboarding.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Онбординг, который включается с первого экрана — Блог Yaroslav Sigidin" />
+    <meta name="twitter:description" content="Как строить onboarding: сценарии, структура, короткие подсказки и метрики эффективности." />
+    <meta name="twitter:image" content="https://sigidingo.online/assets/images/blog-covers/ux-onboarding.svg" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Онбординг, который включается с первого экрана","description":"Как строить onboarding: сценарии, структура, короткие подсказки и метрики эффективности.","datePublished":"2025-10-04","dateModified":"2025-10-04","author":{"@type":"Person","name":"Yaroslav Sigidin"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://sigidingo.online/blog/ux-onboarding.html"},"image":"https://sigidingo.online/assets/images/blog-covers/ux-onboarding.svg","inLanguage":"ru-RU"}</script>
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+    <link rel="manifest" href="../site.webmanifest" />
+    <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg" />
+    <link rel="shortcut icon" href="../assets/images/favicon.svg" />
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+      (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a);
+      })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js?id=106779298", "ym");
+
+      ym(106779298, "init", {
+        ssr: true,
+        webvisor: true,
+        clickmap: true,
+        ecommerce: "dataLayer",
+        referrer: document.referrer,
+        url: location.href,
+        accurateTrackBounce: true,
+        trackLinks: true
+      });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/106779298" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+  </head>
+  <body data-theme="dark">
+    <header>
+      <div class="container nav">
+        <a class="logo" href="../index.html">SIGIDINGO</a>
+        <nav class="nav-links" id="navLinks">
+          <a href="../portfolio.html" class="nav-link">Portfolio</a>
+          <a href="../services.html" class="nav-link">Services</a>
+          <a href="../about.html" class="nav-link">About / CV</a>
+          <a href="../index.html#contact" class="nav-link">Contact</a>
+          <a href="../blog.html" class="nav-link">Blog</a>
+          <a href="../tests.html" class="nav-link">Tests</a>
+        </nav>
+        <div class="nav-tools">
+          <a class="nav-telegram" href="https://t.me/sigidingo" target="_blank" rel="noreferrer">
+            <span class="icon-circle">
+              <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.8 4.6 2.9 11.9c-1.3.5-1.3 1.3-.2 1.7l4.7 1.5 1.8 5.4c.2.6.1.9.9.9.6 0 .9-.3 1.3-.7l2.3-2.2 4.8 3.5c.9.5 1.5.2 1.7-.8l3.1-14.7c.3-1.2-.5-1.7-1.5-1.3zM9.3 14.9l9-5.7c.4-.3.8-.1.5.2l-7.3 6.6-.3 3.2-1.9-4.3z"/></svg>
+            </span>
+            Telegram
+          </a>
+          <button class="theme-switch" data-theme-toggle type="button" aria-label="Toggle theme">
+            <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.1 2.2c-3.4.4-6.1 3.3-6.1 6.9 0 3.9 3.2 7.1 7.1 7.1 2.3 0 4.4-1.1 5.7-2.9-4 .8-7.5-2.6-6.7-6.7z"/></svg>
+            <span class="track"><span class="thumb"></span></span>
+          </button>
+        </div>
+        <button class="mobile-toggle" id="mobileToggle" type="button" aria-label="Open menu" aria-controls="navLinks" aria-expanded="false"><span></span><span></span><span></span></button>
+      </div>
+    </header>
+
+    <nav class="container breadcrumbs" aria-label="Breadcrumb">
+      <a href="../index.html">Главная</a>
+      <span class="breadcrumbs-sep">/</span>
+      <a href="../blog.html">Блог</a>
+      <span class="breadcrumbs-sep">/</span>
+      <span>Онбординг, который включается с первого экрана</span>
+    </nav>
+
+    <main>
+      <section class="section article-hero">
+        <div class="container article-hero-layout">
+          <div class="article-hero-text">
+            <p class="section-subtitle">Блог</p>
+            <h1 class="section-title">Онбординг, который включается с первого экрана</h1>
+            <p class="lead">Как строить onboarding: сценарии, структура, короткие подсказки и метрики эффективности.</p>
+            <div class="article-meta"><span>04.10.2025</span><span>17 мин чтения</span></div>
+            <div class="tag-list"><span class="tag-pill">UX</span><span class="tag-pill">Onboarding</span><span class="tag-pill">Product</span></div>
+          </div>
+          <div class="article-hero-media">
+            <div class="article-hero-frame">
+              <img src="../assets/images/blog-covers/ux-onboarding.svg" alt="Онбординг, который включается с первого экрана" loading="lazy" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container article-content" id="articleContent"><h2 class="article-reveal">Что такое онбординг на самом деле</h2>
+<p class="article-paragraph article-reveal">Онбординг — это не серия экранов «привет, вот что мы умеем».</p>
+<p class="article-paragraph article-reveal">Это процесс, который помогает человеку быстро получить первую ценность.</p>
+<p class="article-paragraph article-reveal">Если пользователь не почувствовал пользу, он не останется, какой бы красивой ни была презентация.</p>
+<div class="article-callout article-reveal"><div class="callout-head"><h4>Фокус</h4></div><p>Онбординг должен вести к действию, а не к тексту о продукте.</p></div>
+<div class="article-divider article-reveal"><span>Структура</span></div>
+<h3 class="article-reveal">1. Цель онбординга</h3>
+<p class="article-paragraph article-reveal">Сначала определите, какое действие нужно совершить пользователю, чтобы он увидел ценность.</p>
+<p class="article-paragraph article-reveal">Это может быть создание первого проекта, импорт данных или выполнение одной задачи.</p>
+<h3 class="article-reveal">2. Минимальные шаги</h3>
+<p class="article-paragraph article-reveal">Сократите путь до первой ценности: чем меньше шагов, тем выше вероятность успеха.</p>
+<p class="article-paragraph article-reveal">Часто можно убрать половину полей или заменить их дефолтами.</p>
+<h3 class="article-reveal">3. Подсказки и контекст</h3>
+<p class="article-paragraph article-reveal">Подсказка эффективна, когда появляется в нужный момент, а не заранее.</p>
+<p class="article-paragraph article-reveal">Лучший формат — короткие контекстные подсказки прямо в интерфейсе.</p>
+<div class="article-divider article-reveal"><span>Ошибки</span></div>
+<h3 class="article-reveal">Типичные ошибки онбординга</h3>
+<ul class="article-list article-reveal"><li>Длинные туры вместо полезного действия.</li><li>Слишком много обязательных полей.</li><li>Скрытые ключевые шаги.</li><li>Нет подтверждения успеха после первого действия.</li></ul>
+<p class="article-paragraph article-reveal">Если пользователь не понимает, что сделал правильно, он не закрепляет привычку.</p>
+<div class="article-divider article-reveal"><span>Метрики</span></div>
+<h3 class="article-reveal">Как измерять эффективность</h3>
+<ul class="article-list article-reveal"><li>Activation Rate — доля пользователей, достигших первой ценности.</li><li>Time‑to‑Value — время до первого результата.</li><li>Drop‑off — где пользователи сходят с пути.</li><li>Retention — возвращаются ли после первого визита.</li></ul>
+<div class="article-callout article-reveal"><div class="callout-head"><h4>Практика</h4></div><p>Одна метрика — одна гипотеза. Иначе вы не поймете, что улучшили.</p></div>
+<div class="article-divider article-reveal"><span>Пример</span></div>
+<h3 class="article-reveal">Пример сценария</h3>
+<p class="article-paragraph article-reveal">В сервисе управления задачами важна первая созданная задача и назначенный дедлайн.</p>
+<p class="article-paragraph article-reveal">Поэтому онбординг показывает одну кнопку «Создать задачу» и подсказывает выбрать дату.</p>
+<p class="article-paragraph article-reveal">После сохранения пользователю показывают короткое подтверждение и следующий логичный шаг.</p>
+<div class="article-divider article-reveal"><span>Вывод</span></div>
+<h3 class="article-reveal">Вывод</h3>
+<p class="article-paragraph article-reveal">Онбординг — это не вступление, а ускоритель ценности.</p>
+<p class="article-paragraph article-reveal">Если выстроить его вокруг конкретного действия, конверсия и удержание растут заметно.</p>
+<p class="article-paragraph article-reveal">Практика показывает: небольшие изменения в формулировках и структуре могут заметно снизить количество ошибок.</p>
+<p class="article-paragraph article-reveal">Важно фиксировать решения и возвращаться к ним после релиза, чтобы оценить эффект и при необходимости скорректировать подход.</p>
+<p class="article-paragraph article-reveal">Чем яснее правило, тем меньше когнитивная нагрузка на пользователя и на команду поддержки.</p>
+<p class="article-paragraph article-reveal">Не стесняйтесь показывать пользователю, что система делает и почему — прозрачность почти всегда повышает доверие.</p>
+<p class="article-paragraph article-reveal">Хороший UX — это не про количество экранов, а про предсказуемость и комфорт в сценарии.</p>
+<p class="article-paragraph article-reveal">Практика показывает: небольшие изменения в формулировках и структуре могут заметно снизить количество ошибок.</p>
+<p class="article-paragraph article-reveal">Важно фиксировать решения и возвращаться к ним после релиза, чтобы оценить эффект и при необходимости скорректировать подход.</p>
+<p class="article-paragraph article-reveal">Чем яснее правило, тем меньше когнитивная нагрузка на пользователя и на команду поддержки.</p>
+<p class="article-paragraph article-reveal">Не стесняйтесь показывать пользователю, что система делает и почему — прозрачность почти всегда повышает доверие.</p>
+<p class="article-paragraph article-reveal">Хороший UX — это не про количество экранов, а про предсказуемость и комфорт в сценарии.</p>
+<p class="article-paragraph article-reveal">Практика показывает: небольшие изменения в формулировках и структуре могут заметно снизить количество ошибок.</p>
+<p class="article-paragraph article-reveal">Важно фиксировать решения и возвращаться к ним после релиза, чтобы оценить эффект и при необходимости скорректировать подход.</p>
+<p class="article-paragraph article-reveal">Чем яснее правило, тем меньше когнитивная нагрузка на пользователя и на команду поддержки.</p>
+<p class="article-paragraph article-reveal">Не стесняйтесь показывать пользователю, что система делает и почему — прозрачность почти всегда повышает доверие.</p>
+<p class="article-paragraph article-reveal">Хороший UX — это не про количество экранов, а про предсказуемость и комфорт в сценарии.</p>
+<p class="article-paragraph article-reveal">Практика показывает: небольшие изменения в формулировках и структуре могут заметно снизить количество ошибок.</p>
+<p class="article-paragraph article-reveal">Важно фиксировать решения и возвращаться к ним после релиза, чтобы оценить эффект и при необходимости скорректировать подход.</p>
+<p class="article-paragraph article-reveal">Чем яснее правило, тем меньше когнитивная нагрузка на пользователя и на команду поддержки.</p>
+<p class="article-paragraph article-reveal">Не стесняйтесь показывать пользователю, что система делает и почему — прозрачность почти всегда повышает доверие.</p>
+<p class="article-paragraph article-reveal">Хороший UX — это не про количество экранов, а про предсказуемость и комфорт в сценарии.</p>
+<p class="article-paragraph article-reveal">Практика показывает: небольшие изменения в формулировках и структуре могут заметно снизить количество ошибок.</p>
+<p class="article-paragraph article-reveal">Важно фиксировать решения и возвращаться к ним после релиза, чтобы оценить эффект и при необходимости скорректировать подход.</p>
+<p class="article-paragraph article-reveal">Чем яснее правило, тем меньше когнитивная нагрузка на пользователя и на команду поддержки.</p>
+<p class="article-paragraph article-reveal">Не стесняйтесь показывать пользователю, что система делает и почему — прозрачность почти всегда повышает доверие.</p>
+<p class="article-paragraph article-reveal">Хороший UX — это не про количество экранов, а про предсказуемость и комфорт в сценарии.</p>
+<p class="article-paragraph article-reveal">Практика показывает: небольшие изменения в формулировках и структуре могут заметно снизить количество ошибок.</p>
+<p class="article-paragraph article-reveal">Важно фиксировать решения и возвращаться к ним после релиза, чтобы оценить эффект и при необходимости скорректировать подход.</p>
+<p class="article-paragraph article-reveal">Чем яснее правило, тем меньше когнитивная нагрузка на пользователя и на команду поддержки.</p>
+<p class="article-paragraph article-reveal">Не стесняйтесь показывать пользователю, что система делает и почему — прозрачность почти всегда повышает доверие.</p></div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <p class="section-subtitle">Related</p>
+          <h2 class="section-title">Похожие статьи</h2>
+          <div class="articles-grid blog-feed-grid">
+        <a class="article-link" href="./future-of-ux.html">
+          <article class="article-card">
+            <div class="article-cover">
+              <img src="../assets/images/blog-covers/future-of-ux.svg" alt="Будущее UX: как ИИ меняет дизайн-процессы" loading="lazy" />
+            </div>
+            <div class="article-body">
+              <div class="article-meta">
+                <span>20.01.2026</span>
+                <span>6 мин чтения</span>
+              </div>
+              <h4>Будущее UX: как ИИ меняет дизайн-процессы</h4>
+              <p>ИИ стал рабочим инструментом UX: он снимает рутину, ускоряет анализ, прототипирование и тестирование, но не заменяет ответственность дизайнера.</p>
+            </div>
+          </article>
+        </a>
+      
+        <a class="article-link" href="./systems-thinking.html">
+          <article class="article-card">
+            <div class="article-cover">
+              <img src="../assets/images/blog-covers/systems-thinking.svg" alt="Системное мышление в UX/UI" loading="lazy" />
+            </div>
+            <div class="article-body">
+              <div class="article-meta">
+                <span>14.01.2026</span>
+                <span>5 мин</span>
+              </div>
+              <h4>Системное мышление в UX/UI</h4>
+              <p>Почему дизайн‑система — это не библиотека компонентов, а способ держать продукт консистентным и масштабируемым.</p>
+            </div>
+          </article>
+        </a>
+      
+        <a class="article-link" href="./mobile-first.html">
+          <article class="article-card">
+            <div class="article-cover">
+              <img src="../assets/images/blog-covers/mobile-first.svg" alt="Mobile‑first на практике: ошибки и решения" loading="lazy" />
+            </div>
+            <div class="article-body">
+              <div class="article-meta">
+                <span>08.01.2026</span>
+                <span>18 мин чтения</span>
+              </div>
+              <h4>Mobile‑first на практике: ошибки и решения</h4>
+              <p>Mobile-first — это не сжатие экранов, а мышление, структура и приоритеты.</p>
+            </div>
+          </article>
+        </a>
+      
+        <a class="article-link" href="./analytics-for-designers.html">
+          <article class="article-card">
+            <div class="article-cover">
+              <img src="../assets/images/blog-covers/analytics-for-designers.svg" alt="Аналитика для дизайнеров: метрики, которые важно знать" loading="lazy" />
+            </div>
+            <div class="article-body">
+              <div class="article-meta">
+                <span>03.01.2026</span>
+                <span>7 мин</span>
+              </div>
+              <h4>Аналитика для дизайнеров: метрики, которые важно знать</h4>
+              <p>Какие цифры реально помогают принимать дизайн‑решения: от конверсий до time‑to‑task.</p>
+            </div>
+          </article>
+        </a>
+      
+        <a class="article-link" href="./design-handoff.html">
+          <article class="article-card">
+            <div class="article-cover">
+              <img src="../assets/images/blog-covers/design-handoff.svg" alt="Дизайн‑хэнд‑офф без боли: как передавать макеты в разработку" loading="lazy" />
+            </div>
+            <div class="article-body">
+              <div class="article-meta">
+                <span>26.12.2025</span>
+                <span>17 мин чтения</span>
+              </div>
+              <h4>Дизайн‑хэнд‑офф без боли: как передавать макеты в разработку</h4>
+              <p>Практическая система передачи дизайна: слои, спецификации, токены, сценарии и контроль качества, чтобы дизайн доезжал в прод.</p>
+            </div>
+          </article>
+        </a>
+      
+        <a class="article-link" href="./ux-copy.html">
+          <article class="article-card">
+            <div class="article-cover">
+              <img src="../assets/images/blog-covers/ux-copy.svg" alt="UX‑тексты, которые помогают пользователю" loading="lazy" />
+            </div>
+            <div class="article-body">
+              <div class="article-meta">
+                <span>12.12.2025</span>
+                <span>16 мин чтения</span>
+              </div>
+              <h4>UX‑тексты, которые помогают пользователю</h4>
+              <p>Как писать микрокопирайтинг для интерфейсов: ясность, тональность, ошибки и сценарии.</p>
+            </div>
+          </article>
+        </a>
+      </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div><p class="section-subtitle">Mail</p><a href="mailto:sigidingo@gmail.com">sigidingo@gmail.com</a></div>
+        <div><p class="section-subtitle">Telegram</p><a href="https://t.me/sigidingo" target="_blank" rel="noreferrer">@sigidingo</a></div>
+        <div><p class="section-subtitle">Number</p><a href="tel:+79619710515">+7 961 971-05-15</a></div>
+        <div><p class="section-subtitle">Location</p><p>Краснодар</p></div>
+      </div>
+    </footer>
+
+    <script src="../assets/js/main.js?v=20260211-4"></script>
+  </body>
+</html>

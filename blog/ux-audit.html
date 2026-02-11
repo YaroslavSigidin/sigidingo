@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#070707" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="author" content="Yaroslav Sigidin" />
+    <title>UX‑аудит без редизайна: как найти рост в текущем интерфейсе — Блог Yaroslav Sigidin</title>
+    <meta name="description" content="Пошаговый подход к аудиту: цели, сценарии, эвристики, данные, гипотезы и план улучшений без тотальной переделки." />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://sigidingo.online/blog/ux-audit.html" />
+    <link rel="alternate" hreflang="ru-RU" href="https://sigidingo.online/blog/ux-audit.html" />
+    <link rel="alternate" hreflang="x-default" href="https://sigidingo.online/blog/ux-audit.html" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="UX‑аудит без редизайна: как найти рост в текущем интерфейсе — Блог Yaroslav Sigidin" />
+    <meta property="og:description" content="Пошаговый подход к аудиту: цели, сценарии, эвристики, данные, гипотезы и план улучшений без тотальной переделки." />
+    <meta property="og:url" content="https://sigidingo.online/blog/ux-audit.html" />
+    <meta property="og:site_name" content="Yaroslav Sigidin" />
+    <meta property="og:image" content="https://sigidingo.online/assets/images/blog-covers/ux-audit.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="UX‑аудит без редизайна: как найти рост в текущем интерфейсе — Блог Yaroslav Sigidin" />
+    <meta name="twitter:description" content="Пошаговый подход к аудиту: цели, сценарии, эвристики, данные, гипотезы и план улучшений без тотальной переделки." />
+    <meta name="twitter:image" content="https://sigidingo.online/assets/images/blog-covers/ux-audit.svg" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"UX‑аудит без редизайна: как найти рост в текущем интерфейсе","description":"Пошаговый подход к аудиту: цели, сценарии, эвристики, данные, гипотезы и план улучшений без тотальной переделки.","datePublished":"2026-02-05","dateModified":"2026-02-05","author":{"@type":"Person","name":"Yaroslav Sigidin"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://sigidingo.online/blog/ux-audit.html"},"image":"https://sigidingo.online/assets/images/blog-covers/ux-audit.svg","inLanguage":"ru-RU"}</script>
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+    <link rel="manifest" href="../site.webmanifest" />
+    <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg" />
+    <link rel="shortcut icon" href="../assets/images/favicon.svg" />
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+      (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a);
+      })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js?id=106779298", "ym");
+
+      ym(106779298, "init", {
+        ssr: true,
+        webvisor: true,
+        clickmap: true,
+        ecommerce: "dataLayer",
+        referrer: document.referrer,
+        url: location.href,
+        accurateTrackBounce: true,
+        trackLinks: true
+      });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/106779298" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+  </head>
+  <body data-theme="dark">
+    <header>
+      <div class="container nav">
+        <a class="logo" href="../index.html">SIGIDINGO</a>
+        <nav class="nav-links" id="navLinks">
+          <a href="../portfolio.html" class="nav-link">Portfolio</a>
+          <a href="../services.html" class="nav-link">Services</a>
+          <a href="../about.html" class="nav-link">About / CV</a>
+          <a href="../index.html#contact" class="nav-link">Contact</a>
+          <a href="../blog.html" class="nav-link">Blog</a>
+          <a href="../tests.html" class="nav-link">Tests</a>
+        </nav>
+        <div class="nav-tools">
+          <a class="nav-telegram" href="https://t.me/sigidingo" target="_blank" rel="noreferrer">
+            <span class="icon-circle">
+              <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.8 4.6 2.9 11.9c-1.3.5-1.3 1.3-.2 1.7l4.7 1.5 1.8 5.4c.2.6.1.9.9.9.6 0 .9-.3 1.3-.7l2.3-2.2 4.8 3.5c.9.5 1.5.2 1.7-.8l3.1-14.7c.3-1.2-.5-1.7-1.5-1.3zM9.3 14.9l9-5.7c.4-.3.8-.1.5.2l-7.3 6.6-.3 3.2-1.9-4.3z"/></svg>
+            </span>
+            Telegram
+          </a>
+          <button class="theme-switch" data-theme-toggle type="button" aria-label="Toggle theme">
+            <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.1 2.2c-3.4.4-6.1 3.3-6.1 6.9 0 3.9 3.2 7.1 7.1 7.1 2.3 0 4.4-1.1 5.7-2.9-4 .8-7.5-2.6-6.7-6.7z"/></svg>
+            <span class="track"><span class="thumb"></span></span>
+          </button>
+        </div>
+        <button class="mobile-toggle" id="mobileToggle" type="button" aria-label="Open menu" aria-controls="navLinks" aria-expanded="false"><span></span><span></span><span></span></button>
+      </div>
+    </header>
+
+    <nav class="container breadcrumbs" aria-label="Breadcrumb">
+      <a href="../index.html">Главная</a>
+      <span class="breadcrumbs-sep">/</span>
+      <a href="../blog.html">Блог</a>
+      <span class="breadcrumbs-sep">/</span>
+      <span>UX‑аудит без редизайна: как найти рост в текущем интерфейсе</span>
+    </nav>
+
+    <main>
+      <section class="section article-hero">
+        <div class="container article-hero-layout">
+          <div class="article-hero-text">
+            <p class="section-subtitle">Блог</p>
+            <h1 class="section-title">UX‑аудит без редизайна: как найти рост в текущем интерфейсе</h1>
+            <p class="lead">Пошаговый подход к аудиту: цели, сценарии, эвристики, данные, гипотезы и план улучшений без тотальной переделки.</p>
+            <div class="article-meta"><span>05.02.2026</span><span>17 мин чтения</span></div>
+            <div class="tag-list"><span class="tag-pill">UX</span><span class="tag-pill">Research</span><span class="tag-pill">Process</span></div>
+          </div>
+          <div class="article-hero-media">
+            <div class="article-hero-frame">
+              <img src="../assets/images/blog-covers/ux-audit.svg" alt="UX‑аудит без редизайна: как найти рост в текущем интерфейсе" loading="lazy" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container article-content" id="articleContent"><h2 class="article-reveal">Зачем аудит, если дизайн уже «нормальный»</h2>
+<p class="article-paragraph article-reveal">UX‑аудит — это способ понять, где продукт теряет деньги, время и внимание пользователя, не прибегая к редизайну ради редизайна.</p>
+<p class="article-paragraph article-reveal">Часто команда чувствует, что «что‑то не так», но не может назвать конкретную проблему: конверсия не растет, люди уходят на ключевом шаге, поддержка завалена похожими вопросами.</p>
+<p class="article-paragraph article-reveal">Аудит дает структуру: фиксирует факты, превращает хаос наблюдений в понятную карту трения и помогает выбрать небольшие изменения с максимальным эффектом.</p>
+<div class="article-callout article-reveal"><div class="callout-head"><h4>Цель аудита</h4></div><p>Не «сделать красиво», а убрать препятствия между пользователем и ценностью продукта.</p></div>
+<div class="article-divider article-reveal"><span>Подготовка</span></div>
+<h3 class="article-reveal">1. Сформулировать бизнес‑цель и ключевые сценарии</h3>
+<p class="article-paragraph article-reveal">Любой аудит начинается с вопроса «что для нас успех?». Это может быть рост конверсии, снижение оттока, рост активации или увеличение LTV.</p>
+<p class="article-paragraph article-reveal">Дальше выбираются сценарии, которые сильнее всего влияют на цель: регистрация, первый заказ, повторная покупка, настройка профиля, поиск товара.</p>
+<p class="article-paragraph article-reveal">Если сценариев слишком много, аудит расплывается. Лучше выбрать 2–3 критичных пути и глубоко их разобрать.</p>
+<h3 class="article-reveal">2. Собрать факты и контекст</h3>
+<p class="article-paragraph article-reveal">Интуиция полезна, но аудит должен опираться на данные. Даже если аналитика ограничена, можно собрать минимальный набор сигналов.</p>
+<ul class="article-list article-reveal"><li>Воронка и точки выхода (по шагам).</li><li>Запросы в поддержку и частые жалобы.</li><li>Записи сессий, клики и тепловые карты.</li><li>Интервью или быстрые опросы пользователей.</li><li>Обратная связь от продаж или аккаунт‑менеджеров.</li></ul>
+<p class="article-paragraph article-reveal">На этом этапе полезно сформулировать, какие типы пользователей проходят путь, что для них важно и какие ограничения есть у бизнеса.</p>
+<div class="article-divider article-reveal"><span>Диагностика</span></div>
+<h3 class="article-reveal">3. Эвристики: найти нарушения базовых принципов</h3>
+<p class="article-paragraph article-reveal">Эвристический анализ помогает быстро обнаружить системные проблемы: несоответствие ожиданиям, перегруженность, отсутствие обратной связи, избыточные шаги.</p>
+<p class="article-paragraph article-reveal">Важно фиксировать не только «что плохо», но и «почему это мешает сценарию». Например: «в шаге оплаты не показана итоговая сумма, пользователь теряет доверие и уходит».</p>
+<ul class="article-list article-reveal"><li>Нечитаемая иерархия: ключевое действие не видно.</li><li>Слишком много обязательных полей.</li><li>Нет объяснения, что произойдет после нажатия.</li><li>Слишком агрессивные ошибки и отсутствие подсказок.</li><li>Сложные формулировки, которые нельзя понять с первого взгляда.</li></ul>
+<h3 class="article-reveal">4. Карта трения и точки потерь</h3>
+<p class="article-paragraph article-reveal">Соберите все проблемы в одну карту: шаг сценария → проблема → эффект → доказательство. Это превращает список замечаний в управляемую систему.</p>
+<p class="article-paragraph article-reveal">Карта помогает увидеть, где потери максимальны: например, 35% пользователей уходят на шаге выбора тарифа или 40% не завершают подтверждение.</p>
+<div class="article-divider article-reveal"><span>Гипотезы</span></div>
+<h3 class="article-reveal">5. От проблем к решениям</h3>
+<p class="article-paragraph article-reveal">Каждая проблема должна превратиться в гипотезу улучшения: «Если мы упростим шаг и покажем выгоду, конверсия вырастет».</p>
+<p class="article-paragraph article-reveal">Важно избегать общих формулировок. Гипотеза должна быть конкретной и проверяемой: что меняем, где, какой эффект ожидаем.</p>
+<div class="article-callout article-reveal"><div class="callout-head"><h4>Принцип</h4></div><p>Слабая гипотеза = слабый результат. Формулируйте, как эксперимент, а не как пожелание.</p></div>
+<h3 class="article-reveal">6. Приоритизация: что дает быстрый эффект</h3>
+<p class="article-paragraph article-reveal">Аудит ценен тем, что позволяет быстро выбрать 3–5 изменений с максимальной отдачей. Для этого используйте простую матрицу.</p>
+<ul class="article-list article-reveal"><li>Impact: сколько пользователей затронет проблема.</li><li>Effort: сколько ресурсов нужно на исправление.</li><li>Risk: насколько изменение влияет на бизнес‑логику.</li></ul>
+<p class="article-paragraph article-reveal">Часто наибольший эффект дают не радикальные редизайны, а небольшие правки: тексты, порядок шагов, прозрачность цен, подсказки.</p>
+<div class="article-divider article-reveal"><span>Практика</span></div>
+<h3 class="article-reveal">7. Быстрые проверки в полях</h3>
+<p class="article-paragraph article-reveal">Аудит не обязательно заканчивается документом. Хорошая практика — сразу проверять спорные места: посмотреть на реальные сессии, задать 3 вопроса пользователям, проверить на коллегах.</p>
+<p class="article-paragraph article-reveal">Даже 5 коротких интервью способны подтвердить, что проблема реальна: люди не понимают шаг, путаются в формулировках или не видят кнопку.</p>
+<p class="article-paragraph article-reveal">Если у вас нет времени на исследования, используйте быстрые проверки: модератор + прототип, звонок с ключевым клиентом, экспресс‑опрос внутри продукта.</p>
+<h3 class="article-reveal">8. Прототипы без разработки</h3>
+<p class="article-paragraph article-reveal">Перед тем как отдавать изменения в разработку, полезно собрать «доказательство» — быстрый прототип ключевого шага.</p>
+<p class="article-paragraph article-reveal">Так вы проверяете гипотезу на понимание и снимаете риск дорогих правок после релиза.</p>
+<div class="article-divider article-reveal"><span>Коммуникация</span></div>
+<h3 class="article-reveal">Как говорить с бизнесом о результатах</h3>
+<p class="article-paragraph article-reveal">Бизнесу не нужен список UI‑замечаний. Ему нужен эффект: «мы теряем X% на шаге Y и можем вернуть Z% за счет исправления».</p>
+<p class="article-paragraph article-reveal">Фокусируйтесь на связи «проблема → риск → эффект». Тогда аудит воспринимается как инвестиция, а не как декоративная работа.</p>
+<ul class="article-list article-reveal"><li>«На шаге оплаты теряется 28% — причина в отсутствии итоговой суммы».</li><li>«Сократим форму на 3 поля и снизим время прохождения на 20%».</li><li>«Добавим подсказку про сроки — снизим обращения в поддержку».</li></ul>
+<div class="article-divider article-reveal"><span>Пример</span></div>
+<h3 class="article-reveal">Мини‑кейс: аудит оформления заказа</h3>
+<p class="article-paragraph article-reveal">В одном e‑commerce проекте аудит показал, что пользователи массово уходят на шаге доставки. На экране было сразу пять способов, но условия показывались мелким текстом.</p>
+<p class="article-paragraph article-reveal">После упрощения списка до двух основных опций и явного отображения сроков конверсия в оформление выросла на 11%.</p>
+<p class="article-paragraph article-reveal">Ключевое улучшение оказалось не в дизайне, а в логике: убрать лишнее и сделать выбор прозрачным.</p>
+<p class="article-paragraph article-reveal">Этот пример показывает, что аудит работает лучше всего там, где пользователь принимает решение. Достаточно сделать информацию ясной, и ценность продукта начинает «продавать себя».</p>
+<div class="article-divider article-reveal"><span>Чек‑лист</span></div>
+<ul class="article-list article-reveal"><li>Цель аудита зафиксирована и измерима.</li><li>Определены 2–3 ключевых сценария.</li><li>Собраны данные: воронка, поддержка, наблюдения.</li><li>Проблемы связаны с конкретными шагами.</li><li>Есть карта трения и приоритеты.</li><li>Гипотезы сформулированы как эксперименты.</li><li>Изменения можно протестировать быстро.</li><li>Отчет понятен бизнесу и разработке.</li></ul>
+<div class="article-divider article-reveal"><span>Результат</span></div>
+<h3 class="article-reveal">Как выглядит хороший отчет по аудиту</h3>
+<p class="article-paragraph article-reveal">Итоговый отчет должен быть понятен не только дизайнеру, но и продакту, разработчику, бизнесу. Он отвечает на вопросы «где болит» и «что делать».</p>
+<ul class="article-list article-reveal"><li>Карта сценариев и основные потери.</li><li>Список проблем с доказательствами.</li><li>Гипотезы улучшений и ожидаемый эффект.</li><li>Приоритеты и быстрые победы на 2–4 недели.</li><li>Рекомендации по дальнейшим исследованиям.</li></ul>
+<p class="article-paragraph article-reveal">Хороший аудит помогает запустить итеративный цикл улучшений. Это не финальная точка, а отправная для серии экспериментов.</p>
+<div class="article-divider article-reveal"><span>После внедрения</span></div>
+<h3 class="article-reveal">Закрепить эффект и не откатиться назад</h3>
+<p class="article-paragraph article-reveal">После первых улучшений важно зафиксировать метрики и сравнить их с базовой линией. Без этого легко перепутать эффект с сезонностью или трафиком.</p>
+<p class="article-paragraph article-reveal">Рекомендуется заранее определить, какие показатели считаем улучшением, и за какой период. Это придает изменениям прозрачность и снижает споры.</p>
+<p class="article-paragraph article-reveal">Если улучшение подтвердилось, изменения должны попасть в системные правила: тексты, компоненты, паттерны. Иначе через несколько релизов проблема вернется.</p>
+<p class="article-paragraph article-reveal">Хорошая практика — провести короткий повторный аудит через 6–8 недель и проверить, не появились ли новые узкие места на фоне роста трафика.</p>
+<div class="article-divider article-reveal"><span>Вывод</span></div>
+<p class="article-paragraph article-reveal">UX‑аудит ценен тем, что дает быстрый эффект без дорогостоящего редизайна. Он превращает ощущения в факты, а факты — в план действий.</p>
+<p class="article-paragraph article-reveal">Если вы хотите роста, начните с аудита: он покажет, где продукт теряет людей и какие улучшения дадут максимальную отдачу уже в ближайший спринт.</p>
+<p class="article-paragraph article-reveal">Регулярные аудиты раз в полгода помогают поддерживать качество сценариев и замечать новые точки потерь до того, как они ударят по метрикам.</p>
+<p class="article-paragraph article-reveal">Это дешевле, чем редизайн, и дает стабильный рост за счет постоянных небольших улучшений.</p>
+<p class="article-paragraph article-reveal">Аудит превращает UX в управляемый процесс, а не в серию случайных правок.</p></div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <p class="section-subtitle">Related</p>
+          <h2 class="section-title">Похожие статьи</h2>
+          <div class="articles-grid blog-feed-grid">
+        <a class="article-link" href="./future-of-ux.html">
+          <article class="article-card">
+            <div class="article-cover">
+              <img src="../assets/images/blog-covers/future-of-ux.svg" alt="Будущее UX: как ИИ меняет дизайн-процессы" loading="lazy" />
+            </div>
+            <div class="article-body">
+              <div class="article-meta">
+                <span>20.01.2026</span>
+                <span>6 мин чтения</span>
+              </div>
+              <h4>Будущее UX: как ИИ меняет дизайн-процессы</h4>
+              <p>ИИ стал рабочим инструментом UX: он снимает рутину, ускоряет анализ, прототипирование и тестирование, но не заменяет ответственность дизайнера.</p>
+            </div>
+          </article>
+        </a>
+      
+        <a class="article-link" href="./systems-thinking.html">
+          <article class="article-card">
+            <div class="article-cover">
+              <img src="../assets/images/blog-covers/systems-thinking.svg" alt="Системное мышление в UX/UI" loading="lazy" />
+            </div>
+            <div class="article-body">
+              <div class="article-meta">
+                <span>14.01.2026</span>
+                <span>5 мин</span>
+              </div>
+              <h4>Системное мышление в UX/UI</h4>
+              <p>Почему дизайн‑система — это не библиотека компонентов, а способ держать продукт консистентным и масштабируемым.</p>
+            </div>
+          </article>
+        </a>
+      
+        <a class="article-link" href="./mobile-first.html">
+          <article class="article-card">
+            <div class="article-cover">
+              <img src="../assets/images/blog-covers/mobile-first.svg" alt="Mobile‑first на практике: ошибки и решения" loading="lazy" />
+            </div>
+            <div class="article-body">
+              <div class="article-meta">
+                <span>08.01.2026</span>
+                <span>18 мин чтения</span>
+              </div>
+              <h4>Mobile‑first на практике: ошибки и решения</h4>
+              <p>Mobile-first — это не сжатие экранов, а мышление, структура и приоритеты.</p>
+            </div>
+          </article>
+        </a>
+      
+        <a class="article-link" href="./analytics-for-designers.html">
+          <article class="article-card">
+            <div class="article-cover">
+              <img src="../assets/images/blog-covers/analytics-for-designers.svg" alt="Аналитика для дизайнеров: метрики, которые важно знать" loading="lazy" />
+            </div>
+            <div class="article-body">
+              <div class="article-meta">
+                <span>03.01.2026</span>
+                <span>7 мин</span>
+              </div>
+              <h4>Аналитика для дизайнеров: метрики, которые важно знать</h4>
+              <p>Какие цифры реально помогают принимать дизайн‑решения: от конверсий до time‑to‑task.</p>
+            </div>
+          </article>
+        </a>
+      
+        <a class="article-link" href="./design-handoff.html">
+          <article class="article-card">
+            <div class="article-cover">
+              <img src="../assets/images/blog-covers/design-handoff.svg" alt="Дизайн‑хэнд‑офф без боли: как передавать макеты в разработку" loading="lazy" />
+            </div>
+            <div class="article-body">
+              <div class="article-meta">
+                <span>26.12.2025</span>
+                <span>17 мин чтения</span>
+              </div>
+              <h4>Дизайн‑хэнд‑офф без боли: как передавать макеты в разработку</h4>
+              <p>Практическая система передачи дизайна: слои, спецификации, токены, сценарии и контроль качества, чтобы дизайн доезжал в прод.</p>
+            </div>
+          </article>
+        </a>
+      
+        <a class="article-link" href="./ux-copy.html">
+          <article class="article-card">
+            <div class="article-cover">
+              <img src="../assets/images/blog-covers/ux-copy.svg" alt="UX‑тексты, которые помогают пользователю" loading="lazy" />
+            </div>
+            <div class="article-body">
+              <div class="article-meta">
+                <span>12.12.2025</span>
+                <span>16 мин чтения</span>
+              </div>
+              <h4>UX‑тексты, которые помогают пользователю</h4>
+              <p>Как писать микрокопирайтинг для интерфейсов: ясность, тональность, ошибки и сценарии.</p>
+            </div>
+          </article>
+        </a>
+      </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div><p class="section-subtitle">Mail</p><a href="mailto:sigidingo@gmail.com">sigidingo@gmail.com</a></div>
+        <div><p class="section-subtitle">Telegram</p><a href="https://t.me/sigidingo" target="_blank" rel="noreferrer">@sigidingo</a></div>
+        <div><p class="section-subtitle">Number</p><a href="tel:+79619710515">+7 961 971-05-15</a></div>
+        <div><p class="section-subtitle">Location</p><p>Краснодар</p></div>
+      </div>
+    </footer>
+
+    <script src="../assets/js/main.js?v=20260211-4"></script>
+  </body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#070707" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="author" content="Yaroslav Sigidin" />
+    <title>Как составить CJM для интернет-магазина: этапы, события, метрики и типовые провалы — Блог Yaroslav Sigidin</title>
+    <meta name="description" content="Полная карта пути клиента для e-commerce: этапы от первого касания до лояльности, ключевые метрики и частые точки провала." />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://sigidingo.online/blog/cjm-ecommerce-guide.html" />
+    <link rel="alternate" hreflang="ru-RU" href="https://sigidingo.online/blog/cjm-ecommerce-guide.html" />
+    <link rel="alternate" hreflang="x-default" href="https://sigidingo.online/blog/cjm-ecommerce-guide.html" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Как составить CJM для интернет-магазина: этапы, события, метрики и типовые провалы — Блог Yaroslav Sigidin" />
+    <meta property="og:description" content="Полная карта пути клиента для e-commerce: этапы от первого касания до лояльности, ключевые метрики и частые точки провала." />
+    <meta property="og:url" content="https://sigidingo.online/blog/cjm-ecommerce-guide.html" />
+    <meta property="og:site_name" content="Yaroslav Sigidin" />
+    <meta property="og:image" content="https://sigidingo.online/assets/images/blog-covers/systems-thinking.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Как составить CJM для интернет-магазина: этапы, события, метрики и типовые провалы — Блог Yaroslav Sigidin" />
+    <meta name="twitter:description" content="Полная карта пути клиента для e-commerce: этапы от первого касания до лояльности, ключевые метрики и частые точки провала." />
+    <meta name="twitter:image" content="https://sigidingo.online/assets/images/blog-covers/systems-thinking.svg" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Как составить CJM для интернет-магазина: этапы, события, метрики и типовые провалы","description":"Полная карта пути клиента для e-commerce: этапы от первого касания до лояльности, ключевые метрики и частые точки провала.","datePublished":"2026-02-11","dateModified":"2026-02-11","author":{"@type":"Person","name":"Yaroslav Sigidin"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://sigidingo.online/blog/cjm-ecommerce-guide.html"},"image":"https://sigidingo.online/assets/images/blog-covers/systems-thinking.svg","inLanguage":"ru-RU"}</script>
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+    <link rel="manifest" href="../site.webmanifest" />
+    <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg" />
+    <link rel="shortcut icon" href="../assets/images/favicon.svg" />
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+      (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a);
+      })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js?id=106779298", "ym");
+
+      ym(106779298, "init", {
+        ssr: true,
+        webvisor: true,
+        clickmap: true,
+        ecommerce: "dataLayer",
+        referrer: document.referrer,
+        url: location.href,
+        accurateTrackBounce: true,
+        trackLinks: true
+      });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/106779298" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+  </head>
+  <body data-theme="dark">
+    <header>
+      <div class="container nav">
+        <a class="logo" href="../index.html">SIGIDINGO</a>
+        <nav class="nav-links" id="navLinks">
+          <a href="../portfolio.html" class="nav-link">Portfolio</a>
+          <a href="../services.html" class="nav-link">Services</a>
+          <a href="../about.html" class="nav-link">About / CV</a>
+          <a href="../index.html#contact" class="nav-link">Contact</a>
+          <a href="../blog.html" class="nav-link">Blog</a>
+          <a href="../tests.html" class="nav-link">Tests</a>
+        </nav>
+        <div class="nav-tools">
+          <a class="nav-telegram" href="https://t.me/sigidingo" target="_blank" rel="noreferrer">
+            <span class="icon-circle">
+              <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.8 4.6 2.9 11.9c-1.3.5-1.3 1.3-.2 1.7l4.7 1.5 1.8 5.4c.2.6.1.9.9.9.6 0 .9-.3 1.3-.7l2.3-2.2 4.8 3.5c.9.5 1.5.2 1.7-.8l3.1-14.7c.3-1.2-.5-1.7-1.5-1.3zM9.3 14.9l9-5.7c.4-.3.8-.1.5.2l-7.3 6.6-.3 3.2-1.9-4.3z"/></svg>
+            </span>
+            Telegram
+          </a>
+          <button class="theme-switch" data-theme-toggle type="button" aria-label="Toggle theme">
+            <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.1 2.2c-3.4.4-6.1 3.3-6.1 6.9 0 3.9 3.2 7.1 7.1 7.1 2.3 0 4.4-1.1 5.7-2.9-4 .8-7.5-2.6-6.7-6.7z"/></svg>
+            <span class="track"><span class="thumb"></span></span>
+          </button>
+        </div>
+        <button class="mobile-toggle" id="mobileToggle" type="button" aria-label="Open menu" aria-controls="navLinks" aria-expanded="false"><span></span><span></span><span></span></button>
+      </div>
+    </header>
+
+    <nav class="container breadcrumbs" aria-label="Breadcrumb">
+      <a href="../index.html">Главная</a>
+      <span class="breadcrumbs-sep">/</span>
+      <a href="../blog.html">Блог</a>
+      <span class="breadcrumbs-sep">/</span>
+      <span>Как составить CJM для интернет-магазина: этапы, события, метрики и типовые провалы</span>
+    </nav>
+
+    <main>
+      <section class="section article-hero">
+        <div class="container article-hero-layout">
+          <div class="article-hero-text">
+            <p class="section-subtitle">Блог</p>
+            <h1 class="section-title">Как составить CJM для интернет-магазина: этапы, события, метрики и типовые провалы</h1>
+            <p class="lead">Полная карта пути клиента для e-commerce: этапы от первого касания до лояльности, ключевые метрики и частые точки провала.</p>
+            <div class="article-meta"><span>11.02.2026</span><span>19 мин чтения</span></div>
+            <div class="tag-list"><span class="tag-pill">UX</span><span class="tag-pill">Product</span><span class="tag-pill">CJM</span></div>
+          </div>
+          <div class="article-hero-media">
+            <div class="article-hero-frame">
+              <img src="../assets/images/blog-covers/systems-thinking.svg" alt="Как составить CJM для интернет-магазина: этапы, события, метрики и типовые провалы" loading="lazy" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container article-content" id="articleContent"><h2 class="article-reveal">Зачем интернет-магазину Customer Journey Map</h2>
+<p class="article-paragraph article-reveal">CJM — это визуальная карта пути клиента от первого знакомства с брендом до повторной покупки. Она помогает увидеть барьеры и улучшить опыт на каждом этапе.</p>
+<div class="article-divider article-reveal"><span>Этапы пути</span></div>
+<ul class="article-list article-reveal"><li>Awareness: осознание потребности.</li><li>Acquisition: поиск решения и первый контакт с магазином.</li><li>Consideration: изучение ассортимента и сравнение вариантов.</li><li>Purchase: оформление и оплата заказа.</li><li>Delivery: ожидание и получение товара.</li><li>Usage: использование продукта.</li><li>Retention: повторные покупки и лояльность.</li></ul>
+<h3 class="article-reveal">Ключевые события и точки контакта</h3>
+<p class="article-paragraph article-reveal">Для каждого этапа фиксируйте реальные действия: просмотр рекламы, визит на сайт, использование фильтров, добавление в корзину, оформление заказа, получение уведомлений, обращение в поддержку.</p>
+<p class="article-paragraph article-reveal">Чем точнее карта событий, тем проще понять, где теряется пользователь.</p>
+<div class="article-divider article-reveal"><span>Метрики</span></div>
+<ul class="article-list article-reveal"><li>Привлечение: трафик, CTR, CAC.</li><li>Выбор: глубина просмотра, bounce rate, add-to-cart rate.</li><li>Покупка: CR, брошенные корзины, средний чек.</li><li>Доставка: срок, процент задержек, возвраты.</li><li>Лояльность: retention, повторные покупки, NPS, LTV.</li></ul>
+<div class="article-divider article-reveal"><span>Типовые провалы</span></div>
+<ul class="article-list article-reveal"><li>Фокус только на этапе покупки и игнор post-purchase опыта.</li><li>Сложный checkout с обязательной регистрацией.</li><li>Скрытые комиссии и неожиданные доплаты на финальном шаге.</li><li>Отсутствие коммуникации после оплаты и во время доставки.</li><li>Игнор мобильного сценария.</li><li>Карта составлена формально и не влияет на roadmap.</li></ul>
+<div class="article-callout article-reveal"><div class="callout-head"><h4>Практика</h4></div><p>CJM работает только тогда, когда по каждой найденной проблеме есть владелец, гипотеза и срок внедрения.</p></div>
+<p class="article-paragraph article-reveal">Сильная карта пути клиента помогает не просто «описать процесс», а системно улучшать опыт, конверсию и повторные продажи.</p></div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <p class="section-subtitle">Related</p>
+          <h2 class="section-title">Похожие статьи</h2>
+          <div class="articles-grid blog-feed-grid">
+        <a class="article-link" href="./future-of-ux.html">
+          <article class="article-card">
+            <div class="article-cover">
+              <img src="../assets/images/blog-covers/future-of-ux.svg" alt="Будущее UX: как ИИ меняет дизайн-процессы" loading="lazy" />
+            </div>
+            <div class="article-body">
+              <div class="article-meta">
+                <span>20.01.2026</span>
+                <span>6 мин чтения</span>
+              </div>
+              <h4>Будущее UX: как ИИ меняет дизайн-процессы</h4>
+              <p>ИИ стал рабочим инструментом UX: он снимает рутину, ускоряет анализ, прототипирование и тестирование, но не заменяет ответственность дизайнера.</p>
+            </div>
+          </article>
+        </a>
+      
+        <a class="article-link" href="./systems-thinking.html">
+          <article class="article-card">
+            <div class="article-cover">
+              <img src="../assets/images/blog-covers/systems-thinking.svg" alt="Системное мышление в UX/UI" loading="lazy" />
+            </div>
+            <div class="article-body">
+              <div class="article-meta">
+                <span>14.01.2026</span>
+                <span>5 мин</span>
+              </div>
+              <h4>Системное мышление в UX/UI</h4>
+              <p>Почему дизайн‑система — это не библиотека компонентов, а способ держать продукт консистентным и масштабируемым.</p>
+            </div>
+          </article>
+        </a>
+      
+        <a class="article-link" href="./mobile-first.html">
+          <article class="article-card">
+            <div class="article-cover">
+              <img src="../assets/images/blog-covers/mobile-first.svg" alt="Mobile‑first на практике: ошибки и решения" loading="lazy" />
+            </div>
+            <div class="article-body">
+              <div class="article-meta">
+                <span>08.01.2026</span>
+                <span>18 мин чтения</span>
+              </div>
+              <h4>Mobile‑first на практике: ошибки и решения</h4>
+              <p>Mobile-first — это не сжатие экранов, а мышление, структура и приоритеты.</p>
+            </div>
+          </article>
+        </a>
+      
+        <a class="article-link" href="./analytics-for-designers.html">
+          <article class="article-card">
+            <div class="article-cover">
+              <img src="../assets/images/blog-covers/analytics-for-designers.svg" alt="Аналитика для дизайнеров: метрики, которые важно знать" loading="lazy" />
+            </div>
+            <div class="article-body">
+              <div class="article-meta">
+                <span>03.01.2026</span>
+                <span>7 мин</span>
+              </div>
+              <h4>Аналитика для дизайнеров: метрики, которые важно знать</h4>
+              <p>Какие цифры реально помогают принимать дизайн‑решения: от конверсий до time‑to‑task.</p>
+            </div>
+          </article>
+        </a>
+      
+        <a class="article-link" href="./design-handoff.html">
+          <article class="article-card">
+            <div class="article-cover">
+              <img src="../assets/images/blog-covers/design-handoff.svg" alt="Дизайн‑хэнд‑офф без боли: как передавать макеты в разработку" loading="lazy" />
+            </div>
+            <div class="article-body">
+              <div class="article-meta">
+                <span>26.12.2025</span>
+                <span>17 мин чтения</span>
+              </div>
+              <h4>Дизайн‑хэнд‑офф без боли: как передавать макеты в разработку</h4>
+              <p>Практическая система передачи дизайна: слои, спецификации, токены, сценарии и контроль качества, чтобы дизайн доезжал в прод.</p>
+            </div>
+          </article>
+        </a>
+      
+        <a class="article-link" href="./ux-copy.html">
+          <article class="article-card">
+            <div class="article-cover">
+              <img src="../assets/images/blog-covers/ux-copy.svg" alt="UX‑тексты, которые помогают пользователю" loading="lazy" />
+            </div>
+            <div class="article-body">
+              <div class="article-meta">
+                <span>12.12.2025</span>
+                <span>16 мин чтения</span>
+              </div>
+              <h4>UX‑тексты, которые помогают пользователю</h4>
+              <p>Как писать микрокопирайтинг для интерфейсов: ясность, тональность, ошибки и сценарии.</p>
+            </div>
+          </article>
+        </a>
+      </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div><p class="section-subtitle">Mail</p><a href="mailto:sigidingo@gmail.com">sigidingo@gmail.com</a></div>
+        <div><p class="section-subtitle">Telegram</p><a href="https://t.me/sigidingo" target="_blank" rel="noreferrer">@sigidingo</a></div>
+        <div><p class="section-subtitle">Number</p><a href="tel:+79619710515">+7 961 971-05-15</a></div>
+        <div><p class="section-subtitle">Location</p><p>Краснодар</p></div>
+      </div>
+    </footer>
+
+    <script src="../assets/js/main.js?v=20260211-4"></script>
+  </body>
+</html>
