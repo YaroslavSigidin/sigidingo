@@ -388,12 +388,29 @@ ul {
   display: grid;
   place-items: center;
   padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.28s ease, visibility 0s linear 0.28s;
+}
+
+.service-modal.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity 0.28s ease;
+}
+
+.service-modal.is-closing {
+  pointer-events: none;
 }
 
 .service-modal-backdrop {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.62);
+  opacity: 0;
+  transition: opacity 0.28s ease;
 }
 
 .service-modal-dialog {
@@ -405,6 +422,18 @@ ul {
   border: 1px solid var(--border);
   background: color-mix(in srgb, var(--surface) 98%, transparent);
   box-shadow: var(--shadow);
+  opacity: 0;
+  transform: translateY(18px) scale(0.985);
+  transition: transform 0.3s ease, opacity 0.24s ease;
+}
+
+.service-modal.is-open .service-modal-backdrop {
+  opacity: 1;
+}
+
+.service-modal.is-open .service-modal-dialog {
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
 
 .service-modal-head {
@@ -431,6 +460,16 @@ ul {
   font-size: 22px;
   line-height: 1;
   cursor: pointer;
+  transition: transform 0.18s ease, background-color 0.18s ease, border-color 0.18s ease;
+}
+
+.service-modal-close:hover {
+  background: color-mix(in srgb, var(--surface) 80%, var(--text) 20%);
+  border-color: color-mix(in srgb, var(--text) 30%, transparent);
+}
+
+.service-modal-close:active {
+  transform: scale(0.92);
 }
 
 .service-modal-body {

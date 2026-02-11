@@ -187,6 +187,8 @@
   const modalTimeline = document.getElementById("serviceModalTimeline");
   const modalPrice = document.getElementById("serviceModalPrice");
   const modalOrder = document.getElementById("serviceModalOrder");
+  let isModalClosing = false;
+  let closeTimerId = null;
 
   const renderList = (target, list) => {
     target.innerHTML = "";
@@ -211,16 +213,52 @@
     renderList(modalDeliverables, data.deliverables);
     renderList(modalOutcome, data.outcome);
 
+    if (closeTimerId) {
+      clearTimeout(closeTimerId);
+      closeTimerId = null;
+    }
+
+    isModalClosing = false;
+    modal.classList.remove("is-closing");
     modal.hidden = false;
     modal.setAttribute("aria-hidden", "false");
     document.body.classList.add("modal-open");
+    requestAnimationFrame(() => {
+      modal.classList.add("is-open");
+    });
   };
 
   const closeModal = () => {
-    if (!modal) return;
-    modal.hidden = true;
-    modal.setAttribute("aria-hidden", "true");
-    document.body.classList.remove("modal-open");
+    if (!modal || modal.hidden || isModalClosing) return;
+
+    const finalizeClose = () => {
+      modal.hidden = true;
+      modal.setAttribute("aria-hidden", "true");
+      modal.classList.remove("is-closing");
+      document.body.classList.remove("modal-open");
+      isModalClosing = false;
+    };
+
+    isModalClosing = true;
+    modal.classList.remove("is-open");
+    modal.classList.add("is-closing");
+
+    const onTransitionEnd = event => {
+      if (event.target !== modal) return;
+      modal.removeEventListener("transitionend", onTransitionEnd);
+      if (closeTimerId) {
+        clearTimeout(closeTimerId);
+        closeTimerId = null;
+      }
+      finalizeClose();
+    };
+
+    modal.addEventListener("transitionend", onTransitionEnd);
+    closeTimerId = setTimeout(() => {
+      modal.removeEventListener("transitionend", onTransitionEnd);
+      closeTimerId = null;
+      finalizeClose();
+    }, 320);
   };
 
   document.querySelectorAll(".service-mini-card[data-service]").forEach(card => {
