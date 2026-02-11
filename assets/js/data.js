@@ -726,7 +726,7 @@ const projects = [
 const caseStudies = {
   octoclick: {
     title: "Octoclick",
-    subtitle: "Product redesign for an AdTech platform",
+    subtitle: "AdTech продуктовая платформа",
     tags: ["AdTech", "Dashboard", "Design System"],
     task: "Провести продуктовый редизайн рекламной платформы: ускорить запуск кампаний, улучшить читабельность аналитики и подготовить масштабируемую дизайн‑систему без потери плотности данных.",
     whatDone: [
@@ -989,7 +989,7 @@ const caseStudies = {
   },
   visiflow: {
     title: "VISI FLOW",
-    subtitle: "AI‑platform for construction documentation",
+    subtitle: "AI B2B платформа",
     tags: ["AI", "B2B", "Workflow"],
     task: "Спроектировать интерфейс AI‑платформы для обработки строительной документации: ускорить проверку, снизить ошибки и обеспечить прозрачные статусы.",
     whatDone: [
@@ -1031,7 +1031,7 @@ const caseStudies = {
   },
   "mirox-app": {
     title: "MIROX APP",
-    subtitle: "Mobile field tasks platform",
+    subtitle: "Мобильная рабочая платформа",
     tags: ["Mobile", "Workflow", "Operations"],
     task: "Создать мобильное приложение для полевых задач: быстрое закрытие работ, офлайн‑режим, минимум шагов до результата.",
     whatDone: [
@@ -1073,7 +1073,7 @@ const caseStudies = {
   },
   "mirox": {
     title: "MIROX",
-    subtitle: "SaaS platform for brands & creators",
+    subtitle: "SaaS для брендов",
     tags: ["SaaS", "MarTech", "Marketplace"],
     task: "Спроектировать веб‑платформу для брендов и креаторов с адаптацией под desktop, mobile и iPad: объединить брифинг, AI‑скоринг/подбор, модерацию контента, отчётность и постоплату в единый прозрачный процесс.",
     whatDone: [
@@ -1116,7 +1116,7 @@ const caseStudies = {
   },
   ai: {
     title: "AI",
-    subtitle: "AI‑assistant console",
+    subtitle: "AI сервисный интерфейс",
     tags: ["AI", "Console", "Productivity"],
     task: "Спроектировать консоль AI‑ассистента: быстрый ввод запросов, понятная выдача и контекстная история для повторного использования.",
     whatDone: [
@@ -1158,7 +1158,7 @@ const caseStudies = {
   },
   nok: {
     title: "NOK / ИСС",
-    subtitle: "Educational web platform",
+    subtitle: "Образовательная веб-платформа",
     tags: ["Education", "CRM", "Landing"],
     task: "Создать информативный сайт на 4 страницы для Института современных специальностей: упростить выбор программы, ускорить подачу заявки и связать процесс с CRM‑работой кураторов.",
     whatDone: [
@@ -1200,7 +1200,7 @@ const caseStudies = {
   },
   "pazl-kod-platform": {
     title: "PAZL&KOD Platform",
-    subtitle: "Educational platform for managers, students and teachers",
+    subtitle: "Платформа управления обучением",
     tags: ["EdTech", "Dashboard", "UX/UI"],
     task: "Спроектировать образовательную платформу с адаптацией под desktop, mobile и iPad, которая автоматизирует ручные процессы менеджеров, студентов и преподавателей: от управления группами до прозрачной рейтинговой системы.",
     whatDone: [
@@ -1243,7 +1243,7 @@ const caseStudies = {
   },
   "in-it": {
     title: "IN IT",
-    subtitle: "Educational admin workspace",
+    subtitle: "Образовательный admin workspace",
     tags: ["EdTech", "Admin", "UX/UI"],
     task: "Спроектировать рабочую зону менеджера/куратора/преподавателя для образовательной системы: единая навигация, управление студентами и группами, тестирования, статистика и настройки с адаптацией под desktop/mobile/iPad.",
     whatDone: [
@@ -1286,7 +1286,7 @@ const caseStudies = {
   },
   winglish: {
     title: "WINGLISH",
-    subtitle: "EdTech mobile platform",
+    subtitle: "EdTech мобильная платформа",
     tags: ["UX/UI", "EdTech"],
     task: "Спроектировать мобильную платформу изучения английского с быстрым входом, короткими уроками и понятной системой прогресса.",
     whatDone: [

@@ -3382,6 +3382,14 @@ body[data-theme="dark"] .contact-list li {
   text-align: center;
 }
 
+#caseSubtitle {
+  font-size: 14px;
+  line-height: 1.4;
+  opacity: 0.5;
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
 .case-grid {
   display: grid;
   gap: 40px;
