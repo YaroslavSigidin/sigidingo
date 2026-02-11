@@ -194,17 +194,11 @@ const renderProjects = () => {
       .filter(project => activeFilter === "all" || project.category === activeFilter)
       .forEach(project => {
         const tagLabel = project.category === "uxui" ? "UX/UI" : "WEB";
-        const primaryLink = getPrimaryProjectLink(project);
         const card = document.createElement("article");
         card.className = "project-card reveal";
         card.dataset.projectId = project.id;
         card.innerHTML = `
           <img src="${project.image}" alt="${project.title}" loading="lazy" />
-          ${
-            primaryLink
-              ? `<a class="project-link-icon" href="${primaryLink.url}" target="_blank" rel="noopener noreferrer" aria-label="Открыть сайт проекта"></a>`
-              : ""
-          }
           <div class="content">
             <span class="tag">${tagLabel}</span>
             <h3>${project.title}</h3>
@@ -219,10 +213,7 @@ const renderProjects = () => {
           </div>
         `;
         bindImageFallback(qs("img", card));
-        card.addEventListener("click", event => {
-          if (event.target.closest(".project-link-icon")) return;
-          openProjectModal(project);
-        });
+        card.addEventListener("click", () => openProjectModal(project));
         grid.appendChild(card);
       });
     initReveal();
@@ -230,7 +221,6 @@ const renderProjects = () => {
 
   if (!grid.dataset.modalDelegationBound) {
     grid.addEventListener("click", event => {
-      if (event.target.closest(".project-link-icon")) return;
       const card = event.target.closest(".project-card");
       if (!card) return;
       const { projectId } = card.dataset;
