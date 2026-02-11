@@ -631,7 +631,7 @@ const projects = [
   },
   {
     id: "plitka",
-    title: "PLITKA",
+    title: "PLITKA SERVICE",
     subtitle: "",
     description:
       "Сайт сервисной компании по укладке плитки. Структура выстроена вокруг примеров работ и понятного пути к заявке.",
