@@ -226,11 +226,16 @@ const projects = [
     description:
       "B2B‑платформа для конвертации строительной документации в структурированные данные с помощью AI. Проектировал плотные таблицы, проверку результатов и сценарии пакетной обработки, сохранив строгую иерархию и читаемость. Фокус на контроле статусов, корректности и быстром переходе между задачами.",
     timeline: [
-      { title: "Анализ процессов и ролей", period: "1 неделя" },
-      { title: "Информационная архитектура", period: "1 неделя" },
-      { title: "UI‑концепция и прототип", period: "2 недели" },
-      { title: "Детализация и передача", period: "1 неделя" }
+      { title: "Анализ процессов и ролей", period: "7 дней" },
+      { title: "Информационная архитектура", period: "7 дней" },
+      { title: "UI‑концепция и прототип", period: "14 дней" },
+      { title: "Детализация и передача", period: "7 дней" }
     ],
+    calendarRange: {
+      startMonth: 6,
+      months: 1,
+      label: "Июль 2025"
+    },
     technologies: ["AI‑конвертация", "Workflow‑статусы", "Data tables", "Версионирование"],
     tools: ["Figma", "FigJam", "Notion", "ProtoPie"],
     metrics: [
@@ -279,11 +284,16 @@ const projects = [
     description:
       "MIROX — SaaS‑платформа для работы брендов и креаторов в одном контуре: бриф кампании, AI‑подбор исполнителей, согласование ТЗ, модерация видео, отчётность и постоплата через платформу. Спроектировал role‑based интерфейс для брендов, креаторов и админ‑команды с фокусом на скорость запуска кампаний и прозрачность статусов.",
     timeline: [
-      { title: "Сбор требований", period: "1 неделя" },
-      { title: "Каркас и метрики", period: "1 неделя" },
-      { title: "UI и визуализация", period: "2 недели" },
-      { title: "Прототип и уточнения", period: "1 неделя" }
+      { title: "Сбор требований", period: "7 дней" },
+      { title: "Каркас и метрики", period: "7 дней" },
+      { title: "UI и визуализация", period: "14 дней" },
+      { title: "Прототип и уточнения", period: "7 дней" }
     ],
+    calendarRange: {
+      startMonth: 8,
+      endMonth: 1,
+      label: "15.09.2025 — 02.02.2026"
+    },
     technologies: ["Role‑based UI", "AI matching", "Campaign workflow", "Moderation & reports"],
     tools: ["Figma", "FigJam", "Notion"],
     metrics: [
@@ -305,7 +315,7 @@ const projects = [
     timeline: [
       { title: "Сценарии запросов", period: "3 дня" },
       { title: "UX‑потоки и каркас", period: "4 дня" },
-      { title: "UI‑концепция", period: "1 неделя" }
+      { title: "UI‑концепция", period: "7 дней" }
     ],
     technologies: ["Prompt‑workspace", "History view", "Context blocks", "Quick actions"],
     tools: ["Figma", "FigJam", "Notion"],
@@ -328,8 +338,13 @@ const projects = [
     timeline: [
       { title: "Сценарии мобильного использования", period: "4 дня" },
       { title: "Каркас и навигация", period: "5 дней" },
-      { title: "UI и прототип", period: "1 неделя" }
+      { title: "UI и прототип", period: "7 дней" }
     ],
+    calendarRange: {
+      startMonth: 8,
+      endMonth: 1,
+      label: "15.09.2025 — 02.02.2026"
+    },
     technologies: ["Mobile‑first", "Quick actions", "Status tracking", "Offline‑ready"],
     tools: ["Figma", "FigJam", "ProtoPie"],
     metrics: [
@@ -349,10 +364,15 @@ const projects = [
     description:
       "EdTech‑приложение для обучения английскому с короткими уроками и системой прогресса. Упор на мотивацию: визуальные уровни, карточки заданий и быстрые проверочные сценарии. Интерфейс адаптирован для ежедневных коротких сессий.",
     timeline: [
-      { title: "Исследование целевой аудитории", period: "1 неделя" },
-      { title: "Структура уроков", period: "1 неделя" },
-      { title: "UI‑концепция и прототип", period: "2 недели" }
+      { title: "Исследование целевой аудитории", period: "7 дней" },
+      { title: "Структура уроков", period: "7 дней" },
+      { title: "UI‑концепция и прототип", period: "14 дней" }
     ],
+    calendarRange: {
+      startMonth: 4,
+      months: 1,
+      label: "14.05.2024"
+    },
     technologies: ["Gamification", "Progress tracking", "Lesson builder", "Micro‑learning"],
     tools: ["Figma", "FigJam", "Notion"],
     metrics: [
@@ -374,9 +394,14 @@ const projects = [
       "Платформа для образовательной и сертификационной деятельности с табличными блоками и фильтрами. Сценарии рассчитаны на операционные задачи: поиск, согласование, контроль статусов. Визуально — чистая сетка и минимальный шум.",
     timeline: [
       { title: "Сбор требований", period: "4 дня" },
-      { title: "Прототип и структура", period: "1 неделя" },
-      { title: "UI и спецификация", period: "1 неделя" }
+      { title: "Прототип и структура", period: "7 дней" },
+      { title: "UI и спецификация", period: "7 дней" }
     ],
+    calendarRange: {
+      startMonth: 9,
+      months: 1,
+      label: "01.10.2023"
+    },
     technologies: ["Data tables", "Advanced filters", "Approval flow", "Role‑based access"],
     tools: ["Figma", "FigJam", "Notion"],
     metrics: [
@@ -400,6 +425,11 @@ const projects = [
       { title: "User Flow / Work Flow / Wireframes", period: "Март 2024" },
       { title: "UI‑макеты и микровзаимодействия", period: "Апрель 2024" }
     ],
+    calendarRange: {
+      startMonth: 4,
+      months: 1,
+      label: "14.05.2024"
+    },
     technologies: ["Role‑based UI", "Data tables", "Filters & sorting", "Modular system"],
     tools: ["Figma", "FigJam", "Notion"],
     metrics: [
@@ -419,10 +449,15 @@ const projects = [
     description:
       "Административная образовательная платформа: рабочая зона менеджера с модульной навигацией, статистикой, табличными сценариями и управлением тестированиями по ролям.",
     timeline: [
-      { title: "Карта процессов и сценариев", period: "1 неделя" },
-      { title: "Wireframes и структура данных", period: "1 неделя" },
-      { title: "UI‑макеты и интеракции", period: "2 недели" }
+      { title: "Карта процессов и сценариев", period: "7 дней" },
+      { title: "Wireframes и структура данных", period: "7 дней" },
+      { title: "UI‑макеты и интеракции", period: "14 дней" }
     ],
+    calendarRange: {
+      startMonth: 1,
+      months: 1,
+      label: "20.02.2024"
+    },
     technologies: ["EdTech admin", "Data tables", "Filtering", "Role‑based flows"],
     tools: ["Figma", "FigJam", "Notion"],
     metrics: [
@@ -444,8 +479,13 @@ const projects = [
     timeline: [
       { title: "Концепция и moodboard", period: "3 дня" },
       { title: "UX‑структура", period: "3 дня" },
-      { title: "UI и анимации", period: "1 неделя" }
+      { title: "UI и анимации", period: "7 дней" }
     ],
+    calendarRange: {
+      startMonth: 3,
+      months: 1,
+      label: "20.04.2025"
+    },
     technologies: ["Storytelling", "Hero‑visuals", "CTA‑flow", "Responsive grid"],
     tools: ["Figma", "FigJam", "Notion"],
     metrics: [
@@ -466,9 +506,14 @@ const projects = [
       "Интерфейс мониторинга с акцентом на показатели и динамику. Плотные графики, статистические блоки и ясная иерархия дают возможность быстро принимать решения на основе данных.",
     timeline: [
       { title: "Сбор показателей", period: "4 дня" },
-      { title: "Прототип дашборда", period: "1 неделя" },
-      { title: "UI и детализация", period: "1 неделя" }
+      { title: "Прототип дашборда", period: "7 дней" },
+      { title: "UI и детализация", period: "7 дней" }
     ],
+    calendarRange: {
+      startMonth: 4,
+      months: 1,
+      label: "14.05.2024"
+    },
     technologies: ["Monitoring dashboards", "Charts", "Alerts", "Data density"],
     tools: ["Figma", "FigJam", "Notion"],
     metrics: [
@@ -488,9 +533,14 @@ const projects = [
       "Портал для бизнес‑ивентов и статей с акцентом на структуру контента. Строгая сетка, крупные заголовки и понятные CTA упрощают навигацию и повышают конверсию в заявку.",
     timeline: [
       { title: "Контентная карта", period: "3 дня" },
-      { title: "Структура и UX", period: "1 неделя" },
-      { title: "UI и оформление", period: "1 неделя" }
+      { title: "Структура и UX", period: "7 дней" },
+      { title: "UI и оформление", period: "7 дней" }
     ],
+    calendarRange: {
+      startMonth: 1,
+      months: 1,
+      label: "10.02.2025"
+    },
     technologies: ["Content grid", "Event cards", "CTA‑blocks", "SEO‑структура"],
     tools: ["Figma", "FigJam", "Notion"],
     metrics: [
@@ -511,8 +561,13 @@ const projects = [
     timeline: [
       { title: "Структура услуг", period: "3 дня" },
       { title: "Прототип и тексты", period: "5 дней" },
-      { title: "UI и адаптив", period: "1 неделя" }
+      { title: "UI и адаптив", period: "7 дней" }
     ],
+    calendarRange: {
+      startMonth: 10,
+      months: 1,
+      label: "10.11.2023"
+    },
     technologies: ["Service catalog", "Trust blocks", "Lead form", "Responsive grid"],
     tools: ["Figma", "FigJam", "Notion"],
     metrics: [
@@ -534,8 +589,13 @@ const projects = [
     timeline: [
       { title: "Анализ аудитории", period: "3 дня" },
       { title: "Воронка и структура", period: "4 дня" },
-      { title: "UI и конверсия", period: "1 неделя" }
+      { title: "UI и конверсия", period: "7 дней" }
     ],
+    calendarRange: {
+      startMonth: 7,
+      months: 1,
+      label: "05.08.2024"
+    },
     technologies: ["Marketing funnel", "Pricing blocks", "Proof sections", "CTA‑flow"],
     tools: ["Figma", "FigJam", "Notion"],
     metrics: [
@@ -557,8 +617,13 @@ const projects = [
     timeline: [
       { title: "Арт‑направление", period: "3 дня" },
       { title: "UX‑структура", period: "4 дня" },
-      { title: "UI и медиа", period: "1 неделя" }
+      { title: "UI и медиа", period: "7 дней" }
     ],
+    calendarRange: {
+      startMonth: 5,
+      months: 1,
+      label: "10.06.2025"
+    },
     technologies: ["Media gallery", "Release cards", "Event blocks", "Brand visuals"],
     tools: ["Figma", "FigJam", "Notion"],
     metrics: [
@@ -579,8 +644,13 @@ const projects = [
     timeline: [
       { title: "Сценарии и афиша", period: "3 дня" },
       { title: "UI‑концепция", period: "4 дня" },
-      { title: "Визуальная система", period: "1 неделя" }
+      { title: "Визуальная система", period: "7 дней" }
     ],
+    calendarRange: {
+      startMonth: 0,
+      months: 1,
+      label: "12.01.2024"
+    },
     technologies: ["Hero media", "Tour schedule", "CTA‑blocks", "Brand typography"],
     tools: ["Figma", "FigJam", "Notion"],
     metrics: [
@@ -605,8 +675,13 @@ const projects = [
     timeline: [
       { title: "Карта маршрутов", period: "3 дня" },
       { title: "UX‑структура", period: "5 дней" },
-      { title: "UI и адаптив", period: "1 неделя" }
+      { title: "UI и адаптив", period: "7 дней" }
     ],
+    calendarRange: {
+      startMonth: 0,
+      months: 1,
+      label: "25.01.2024"
+    },
     technologies: ["Route cards", "Booking CTA", "Filters", "Photo‑driven UI"],
     tools: ["Figma", "FigJam", "Notion"],
     metrics: [
@@ -628,8 +703,13 @@ const projects = [
     timeline: [
       { title: "Структура услуг", period: "3 дня" },
       { title: "Прототип и тексты", period: "4 дня" },
-      { title: "UI и адаптив", period: "1 неделя" }
+      { title: "UI и адаптив", period: "7 дней" }
     ],
+    calendarRange: {
+      startMonth: 7,
+      months: 12,
+      label: "16.08.2023 — 03.09.2025"
+    },
     technologies: ["Service list", "Pricing blocks", "Lead form", "Trust badges"],
     tools: ["Figma", "FigJam", "Notion"],
     metrics: [

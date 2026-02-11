@@ -292,6 +292,15 @@ const getProjectTimelineRange = project => {
   return { startMonth, endMonth, months, label };
 };
 
+const pluralizeRu = (value, one, few, many) => {
+  const abs = Math.abs(value) % 100;
+  const mod10 = abs % 10;
+  if (abs > 10 && abs < 20) return many;
+  if (mod10 > 1 && mod10 < 5) return few;
+  if (mod10 === 1) return one;
+  return many;
+};
+
 const getProjectDurationWeeks = (project, monthsFallback) => {
   const range = project?.calendarRange || {};
   if (Number.isFinite(range.weeks) && Number(range.weeks) > 0) {
@@ -303,9 +312,27 @@ const getProjectDurationWeeks = (project, monthsFallback) => {
   return Math.max(1, Math.round((monthsFallback * 30) / 7));
 };
 
+const getProjectDurationLabel = (project, months) => {
+  if (months >= 11.5) {
+    return { value: "1", unit: "год" };
+  }
+  if (months >= 1) {
+    const roundedMonths = Math.max(1, Math.round(months));
+    return {
+      value: String(roundedMonths),
+      unit: pluralizeRu(roundedMonths, "месяц", "месяца", "месяцев")
+    };
+  }
+  const weeks = getProjectDurationWeeks(project, months);
+  return {
+    value: String(weeks),
+    unit: pluralizeRu(weeks, "неделя", "недели", "недель")
+  };
+};
+
 const renderTimelineYearOrbit = project => {
   const { startMonth, endMonth, months, label } = getProjectTimelineRange(project);
-  const weeks = getProjectDurationWeeks(project, months);
+  const duration = getProjectDurationLabel(project, months);
   const size = 212;
   const center = size / 2;
   const radius = 74;
@@ -334,8 +361,8 @@ const renderTimelineYearOrbit = project => {
         </svg>
         <div class="year-orbit-months">${monthMarks}</div>
         <div class="year-orbit-center">
-          <strong>${weeks}</strong>
-          <span>недель</span>
+          <strong>${duration.value}</strong>
+          <span>${duration.unit}</span>
         </div>
       </div>
       <p class="year-orbit-caption">${label}</p>
