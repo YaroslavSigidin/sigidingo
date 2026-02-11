@@ -1,6 +1,6 @@
 const qs = (sel, scope = document) => scope.querySelector(sel);
 const qsa = (sel, scope = document) => Array.from(scope.querySelectorAll(sel));
-const FALLBACK_COVER = "assets/images/it-platform/cover.png";
+const FALLBACK_COVER = "assets/images/HERO/PROFI.jpg";
 
 const bindImageFallback = image => {
   if (!image) return;
@@ -332,7 +332,7 @@ const renderServicesProofCards = () => {
   const host = qs("#servicesCaseGrid");
   if (!host || typeof projects === "undefined") return;
 
-  const proofIds = ["visiflow", "octoclick", "it-platform", "ai", "mirox-app", "nok"];
+  const proofIds = ["visiflow", "octoclick", "ai", "mirox-app", "nok"];
   const proofProjects = proofIds
     .map(id => projects.find(item => item.id === id))
     .filter(Boolean);
