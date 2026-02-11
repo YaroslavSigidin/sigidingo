@@ -178,63 +178,59 @@
     }
   };
 
-  const modal = document.getElementById("serviceModal");
-  const modalTitle = document.getElementById("serviceModalTitle");
-  const modalLead = document.getElementById("serviceModalLead");
-  const modalTasks = document.getElementById("serviceModalTasks");
-  const modalDeliverables = document.getElementById("serviceModalDeliverables");
-  const modalOutcome = document.getElementById("serviceModalOutcome");
-  const modalTimeline = document.getElementById("serviceModalTimeline");
-  const modalPrice = document.getElementById("serviceModalPrice");
-  const modalOrder = document.getElementById("serviceModalOrder");
+  const serviceCards = Array.from(document.querySelectorAll(".service-mini-card[data-service]"));
 
-  const renderList = (target, list) => {
-    target.innerHTML = "";
-    list.forEach(item => {
-      const li = document.createElement("li");
-      li.textContent = item;
-      target.appendChild(li);
+  const buildPanel = data => {
+    const tasks = data.tasks.slice(0, 2).map(item => `<li>${item}</li>`).join("");
+    const deliverables = data.deliverables.slice(0, 2).map(item => `<li>${item}</li>`).join("");
+
+    return `
+      <h4>${data.title}</h4>
+      <p>${data.lead}</p>
+      <ul>${tasks}${deliverables}</ul>
+      <span class="mini-meta">${data.timeline} · ${data.price}</span>
+    `;
+  };
+
+  const closeAllCards = () => {
+    serviceCards.forEach(card => {
+      card.classList.remove("is-open");
+      card.setAttribute("aria-expanded", "false");
+      const panel = card.querySelector(".service-click-panel");
+      if (panel) panel.hidden = true;
     });
   };
 
-  const openModal = serviceId => {
+  serviceCards.forEach(card => {
+    const serviceId = card.dataset.service;
+    const panel = card.querySelector(".service-click-panel");
     const data = detailsData[serviceId];
-    if (!data || !modal) return;
+    if (!panel || !data) return;
 
-    modalTitle.textContent = data.title;
-    modalLead.textContent = data.lead;
-    modalTimeline.textContent = data.timeline;
-    modalPrice.textContent = data.price;
-    modalOrder.href = `https://t.me/sigidingo?text=${encodeURIComponent(data.orderText)}`;
+    panel.innerHTML = buildPanel(data);
 
-    renderList(modalTasks, data.tasks);
-    renderList(modalDeliverables, data.deliverables);
-    renderList(modalOutcome, data.outcome);
+    const toggleCard = () => {
+      const willOpen = !card.classList.contains("is-open");
+      closeAllCards();
+      if (willOpen) {
+        card.classList.add("is-open");
+        card.setAttribute("aria-expanded", "true");
+        panel.hidden = false;
+      }
+    };
 
-    modal.hidden = false;
-    modal.setAttribute("aria-hidden", "false");
-    document.body.classList.add("modal-open");
-  };
-
-  const closeModal = () => {
-    if (!modal) return;
-    modal.hidden = true;
-    modal.setAttribute("aria-hidden", "true");
-    document.body.classList.remove("modal-open");
-  };
-
-  document.querySelectorAll(".js-service-more").forEach(button => {
-    button.addEventListener("click", () => openModal(button.dataset.service));
+    card.addEventListener("click", toggleCard);
+    card.addEventListener("keydown", event => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        toggleCard();
+      }
+    });
   });
 
-  document.querySelectorAll("[data-close-service-modal]").forEach(button => {
-    button.addEventListener("click", closeModal);
-  });
-
-  document.addEventListener("keydown", event => {
-    if (event.key === "Escape" && modal && !modal.hidden) {
-      closeModal();
-    }
+  document.addEventListener("click", event => {
+    const insideCard = event.target.closest(".service-mini-card");
+    if (!insideCard) closeAllCards();
   });
 
   const faqSearch = document.getElementById("faqSearch");

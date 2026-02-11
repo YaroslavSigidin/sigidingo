@@ -221,16 +221,71 @@ ul {
   padding: 5px 9px;
 }
 
-.service-mini-actions {
-  display: flex;
+.service-mini-card {
+  cursor: pointer;
+}
+
+.service-mini-card:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--accent) 60%, white);
+  outline-offset: 2px;
+}
+
+.service-hover-icon {
+  margin-left: auto;
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: var(--muted);
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.service-mini-card:hover .service-hover-icon,
+.service-mini-card:focus-visible .service-hover-icon,
+.service-mini-card.is-open .service-hover-icon {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.service-mini-card.is-open .service-hover-icon {
+  transform: rotate(45deg);
+}
+
+.service-click-panel {
+  border: 1px dashed var(--border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  text-align: left;
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  display: grid;
   gap: 8px;
 }
 
-.service-mini-actions .button {
+.service-click-panel h4 {
+  margin: 0;
+  font-size: 14px;
+}
+
+.service-click-panel ul {
+  list-style: disc;
+  padding-left: 18px;
+  color: var(--muted);
+  display: grid;
+  gap: 5px;
+}
+
+.service-click-panel .mini-meta {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
   letter-spacing: 0.08em;
-  padding: 10px 12px;
-  flex: 1;
-  text-align: center;
+  text-transform: uppercase;
+  color: var(--muted);
 }
 
 .faq-pro {
@@ -328,109 +383,6 @@ ul {
   padding: 12px;
 }
 
-.service-modal[hidden] {
-  display: none;
-}
-
-.service-modal {
-  position: fixed;
-  inset: 0;
-  z-index: 1200;
-  display: grid;
-  place-items: center;
-  padding: 20px;
-}
-
-.service-modal-backdrop {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.62);
-}
-
-.service-modal-dialog {
-  position: relative;
-  width: min(860px, 95vw);
-  max-height: min(88vh, 920px);
-  overflow: auto;
-  border-radius: 16px;
-  border: 1px solid var(--border);
-  background: color-mix(in srgb, var(--surface) 98%, transparent);
-  box-shadow: var(--shadow);
-}
-
-.service-modal-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 16px 18px;
-  border-bottom: 1px solid var(--border);
-}
-
-.service-modal-head h3 {
-  margin: 0;
-  font-size: 22px;
-}
-
-.service-modal-close {
-  width: 34px;
-  height: 34px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  background: var(--surface);
-  color: var(--text);
-  font-size: 22px;
-  line-height: 1;
-  cursor: pointer;
-}
-
-.service-modal-body {
-  padding: 16px 18px;
-  display: grid;
-  gap: 14px;
-  text-align: left;
-}
-
-.service-modal-body h4 {
-  margin-bottom: 6px;
-}
-
-.service-modal-body > p {
-  color: var(--muted);
-}
-
-.service-modal-body ul {
-  list-style: disc;
-  padding-left: 18px;
-  color: var(--muted);
-  display: grid;
-  gap: 6px;
-}
-
-.service-modal-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.service-modal-meta span {
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  padding: 6px 10px;
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.service-modal-foot {
-  padding: 16px 18px;
-  border-top: 1px solid var(--border);
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
 .services-list {
   list-style: disc;
   margin-top: 12px;
@@ -496,7 +448,6 @@ ul {
     grid-template-columns: 1fr;
   }
 
-  .service-mini-actions,
   .faq-actions {
     flex-direction: column;
   }
