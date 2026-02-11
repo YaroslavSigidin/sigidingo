@@ -716,7 +716,6 @@ const projects = [
     category: "uxui",
     image: projectImageSets["media-kit"][0],
     gallery: projectImageSets["media-kit"].slice(1)
-  },
   }
 ];
 
