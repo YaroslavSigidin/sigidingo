@@ -3065,7 +3065,7 @@ body[data-theme="dark"] .about-cv-card--stats .stat-card {
 }
 
 .project-card .content {
-  padding: 14px 16px 18px;
+  padding: 14px 60px 18px 16px;
   position: relative;
   z-index: 1;
   text-align: left;
@@ -3084,33 +3084,69 @@ body[data-theme="dark"] .about-cv-card--stats .stat-card {
   text-overflow: ellipsis;
 }
 
-.project-live-links {
-  margin-top: 10px;
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.project-live-link {
+.project-link-icon {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.36);
+  background: rgba(11, 15, 20, 0.74);
+  z-index: 3;
   display: inline-flex;
   align-items: center;
-  height: 28px;
-  padding: 0 10px;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.7);
-  color: var(--text);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
+  justify-content: center;
   text-decoration: none;
+  color: #fff;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.project-link-icon::before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24'%3E%3Cpath stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m10 14 10-10m0 0h-7m7 0v7M14 10v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h8'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24'%3E%3Cpath stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m10 14 10-10m0 0h-7m7 0v7M14 10v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h8'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.project-link-icon:hover {
+  transform: translateY(-1px);
+  background: rgba(11, 15, 20, 0.92);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.modal-primary-link {
+  margin-top: 12px;
+  width: 100%;
+  min-height: 40px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--surface-elevated);
+  color: var(--text);
+  text-decoration: none;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 12px;
   transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
 }
 
-.project-live-link:hover {
+.modal-primary-link:hover {
   transform: translateY(-1px);
   border-color: var(--accent);
-  background: rgba(255, 255, 255, 0.92);
+  background: color-mix(in srgb, var(--surface-elevated) 86%, var(--accent) 14%);
+}
+
+.modal-primary-link.is-hidden {
+  display: none;
 }
 
 .project-card .tag {
@@ -4013,35 +4049,6 @@ input[type=\"checkbox\"] {
 .modal[aria-hidden="false"] .modal-cover img {
   opacity: 1;
   transform: scale(1);
-}
-
-.modal-live-links-wrap {
-  position: absolute;
-  left: 14px;
-  bottom: 14px;
-  z-index: 3;
-}
-
-.modal-live-links-wrap.is-empty {
-  display: none;
-}
-
-.project-live-links-modal {
-  margin-top: 0;
-}
-
-.project-live-link-modal {
-  height: 32px;
-  padding: 0 12px;
-  border-color: rgba(255, 255, 255, 0.28);
-  background: rgba(12, 14, 16, 0.64);
-  color: #fff;
-  backdrop-filter: blur(6px);
-}
-
-.project-live-link-modal:hover {
-  background: rgba(12, 14, 16, 0.82);
-  border-color: rgba(255, 255, 255, 0.46);
 }
 
 body[data-theme="dark"] .modal-close {

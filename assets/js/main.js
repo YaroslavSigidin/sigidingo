@@ -178,24 +178,9 @@ const renderFeatured = () => {
   });
 };
 
-const buildProjectLiveLinks = (project, variant = "card") => {
+const getPrimaryProjectLink = project => {
   const links = Array.isArray(project?.liveLinks) ? project.liveLinks.filter(item => item?.url) : [];
-  if (!links.length) return "";
-  const listClass = variant === "modal" ? "project-live-links project-live-links-modal" : "project-live-links";
-  const linkClass = variant === "modal" ? "project-live-link project-live-link-modal" : "project-live-link";
-  return `
-    <div class="${listClass}">
-      ${links
-        .map(
-          link => `
-        <a class="${linkClass}" href="${link.url}" target="_blank" rel="noopener noreferrer">
-          ${link.label || "Сайт"}
-        </a>
-      `
-        )
-        .join("")}
-    </div>
-  `;
+  return links.length ? links[0] : null;
 };
 
 const renderProjects = () => {
@@ -209,16 +194,21 @@ const renderProjects = () => {
       .filter(project => activeFilter === "all" || project.category === activeFilter)
       .forEach(project => {
         const tagLabel = project.category === "uxui" ? "UX/UI" : "WEB";
+        const primaryLink = getPrimaryProjectLink(project);
         const card = document.createElement("article");
         card.className = "project-card reveal";
         card.dataset.projectId = project.id;
         card.innerHTML = `
           <img src="${project.image}" alt="${project.title}" loading="lazy" />
+          ${
+            primaryLink
+              ? `<a class="project-link-icon" href="${primaryLink.url}" target="_blank" rel="noopener noreferrer" aria-label="Открыть сайт проекта"></a>`
+              : ""
+          }
           <div class="content">
             <span class="tag">${tagLabel}</span>
             <h3>${project.title}</h3>
             <p>${project.subtitle || ""}</p>
-            ${buildProjectLiveLinks(project)}
             ${
               project.tags
                 ? `<div class="tag-list">${project.tags
@@ -230,7 +220,7 @@ const renderProjects = () => {
         `;
         bindImageFallback(qs("img", card));
         card.addEventListener("click", event => {
-          if (event.target.closest(".project-live-link")) return;
+          if (event.target.closest(".project-link-icon")) return;
           openProjectModal(project);
         });
         grid.appendChild(card);
@@ -240,7 +230,7 @@ const renderProjects = () => {
 
   if (!grid.dataset.modalDelegationBound) {
     grid.addEventListener("click", event => {
-      if (event.target.closest(".project-live-link")) return;
+      if (event.target.closest(".project-link-icon")) return;
       const card = event.target.closest(".project-card");
       if (!card) return;
       const { projectId } = card.dataset;
@@ -434,10 +424,17 @@ const openProjectModal = project => {
   if (description) {
     description.textContent = project.description || project.subtitle || "";
   }
-  const modalLiveLinks = qs("#modalLiveLinks");
-  if (modalLiveLinks) {
-    modalLiveLinks.innerHTML = buildProjectLiveLinks(project, "modal");
-    modalLiveLinks.classList.toggle("is-empty", !Array.isArray(project?.liveLinks) || !project.liveLinks.length);
+  const sidePrimaryLink = qs("#modalPrimaryLink");
+  if (sidePrimaryLink) {
+    const primaryLink = getPrimaryProjectLink(project);
+    if (primaryLink) {
+      sidePrimaryLink.href = primaryLink.url;
+      sidePrimaryLink.textContent = `Открыть ${primaryLink.label || "сайт проекта"}`;
+      sidePrimaryLink.classList.remove("is-hidden");
+    } else {
+      sidePrimaryLink.removeAttribute("href");
+      sidePrimaryLink.classList.add("is-hidden");
+    }
   }
   const sideTitle = qs("#modalSideTitle");
   if (sideTitle) sideTitle.textContent = project.title || "Проект";
