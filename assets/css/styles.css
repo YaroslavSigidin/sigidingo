@@ -2909,6 +2909,25 @@ body[data-theme="dark"] .contact-list li {
   color: var(--text);
 }
 
+.modal-case-full {
+  display: grid;
+  gap: 14px;
+  text-align: left;
+}
+
+.modal-case-card {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.modal-case-card > p:last-child,
+.modal-case-card > ul:last-child,
+.modal-case-card > div:last-child {
+  margin-bottom: 0;
+}
+
 .modal-case-full .table-wrap {
   overflow-x: auto;
   border-radius: 12px;
@@ -2920,6 +2939,7 @@ body[data-theme="dark"] .contact-list li {
 
 .modal-case-full .case-grid {
   gap: 18px;
+  grid-template-columns: 1fr;
 }
 
 .modal-content p,
