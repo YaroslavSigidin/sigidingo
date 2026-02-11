@@ -18,19 +18,21 @@ const projectImageSets = {
     "assets/images/платформы/Octoclick/Slide 16_9 - 23.png"
   ),
   ai: locals(
-    "assets/images/платформы/AI/ОБЛОЖКА.jpg",
+    "assets/images/платформы/AI/HERO.png",
+    "assets/images/платформы/AI/HERO.png",
     "assets/images/платформы/AI/1.jpg",
     "assets/images/платформы/AI/2.jpg",
     "assets/images/платформы/AI/3.jpg",
     "assets/images/платформы/AI/4.jpg"
   ),
   amazon: locals(
-    "assets/images/сайты/AMAZON/Frame 2147223643.png",
-    "assets/images/сайты/AMAZON/Frame 2147223643.png",
+    "assets/images/сайты/AMAZON/HERO.png",
+    "assets/images/сайты/AMAZON/HERO.png",
     "assets/images/сайты/AMAZON/Frame 2147223644.png"
   ),
   "castle-music": locals(
-    "assets/images/HERO/CASTLE MUSIC.jpg",
+    "assets/images/сайты/CASTLE MUSIC/HERO_____.jpg",
+    "assets/images/сайты/CASTLE MUSIC/HERO_____.jpg",
     "assets/images/сайты/CASTLE MUSIC/Frame 2147223639.png",
     "assets/images/сайты/CASTLE MUSIC/Frame 2147223640.png",
     "assets/images/сайты/CASTLE MUSIC/Frame 2147223642.png"
@@ -67,13 +69,14 @@ const projectImageSets = {
     "assets/images/сайты/PLITKA SERVICE/ЛА2.jpg"
   ),
   profi: locals(
-    "assets/images/сайты/PROFI/Frame 2147223665.png",
-    "assets/images/сайты/PROFI/Frame 2147223665.png",
+    "assets/images/сайты/PROFI/HERO__.jpg",
+    "assets/images/сайты/PROFI/HERO__.jpg",
     "assets/images/сайты/PROFI/Frame 2147223668.png",
     "assets/images/сайты/PROFI/Frame 2147223669.png"
   ),
   iss: locals(
-    "assets/images/HERO/ISS.jpg",
+    "assets/images/сайты/ISS/HERO.jpg",
+    "assets/images/сайты/ISS/HERO.jpg",
     "assets/images/сайты/ISS/1000017605.png",
     "assets/images/сайты/ISS/1000017608.png",
     "assets/images/сайты/ISS/1000017609.png",
@@ -93,8 +96,8 @@ const projectImageSets = {
     "assets/images/сайты/KVATRO/К4 1.png"
   ),
   "leki-travel": locals(
-    "assets/images/сайты/LEKI TRAVEL/обл.jpg",
-    "assets/images/сайты/LEKI TRAVEL/обл.jpg",
+    "assets/images/сайты/LEKI TRAVEL/HERO____.jpg",
+    "assets/images/сайты/LEKI TRAVEL/HERO____.jpg",
     "assets/images/сайты/LEKI TRAVEL/1000017605.png",
     "assets/images/сайты/LEKI TRAVEL/1000017606.png",
     "assets/images/сайты/LEKI TRAVEL/1000017610.png",
@@ -148,13 +151,15 @@ const projectImageSets = {
     "assets/images/сайты/NOK/Frame 1321316861.png"
   ),
   "mirox-app": locals(
-    "assets/images/платформы/MIROX APP/Frame 2147223980.jpg",
+    "assets/images/платформы/MIROX APP/HERO_.jpg",
+    "assets/images/платформы/MIROX APP/HERO_.jpg",
     "assets/images/платформы/MIROX APP/Frame 2147223980.jpg",
     "assets/images/платформы/MIROX APP/Frame 2147224058.jpg",
     "assets/images/платформы/MIROX APP/Frame 2147224059.jpg"
   ),
   "tochka-rosta": locals(
-    "assets/images/HERO/ТОЧКА.jpg",
+    "assets/images/платформы/TOCHKA ROSTA/HERO.jpg",
+    "assets/images/платформы/TOCHKA ROSTA/HERO.jpg",
     "assets/images/платформы/TOCHKA ROSTA/Frame 2147223724.png"
   ),
   "media-kit": locals(
@@ -162,8 +167,8 @@ const projectImageSets = {
     "assets/images/платформы/Media Kit/Frame 2147223657.png"
   ),
   "space-camp": locals(
-    "assets/images/сайты/SPACE CAMP/Frame 2147223663.png",
-    "assets/images/сайты/SPACE CAMP/Frame 2147223663.png",
+    "assets/images/сайты/SPACE CAMP/HERO.jpg",
+    "assets/images/сайты/SPACE CAMP/HERO.jpg",
     "assets/images/сайты/SPACE CAMP/Frame 2147223664.png"
   ),
   "vihlop-expert": locals(
@@ -191,14 +196,15 @@ const projectImageSets = {
     "assets/images/платформы/MIROX 1/82.jpg"
   ),
   "winglish": locals(
-    "assets/images/HERO/WINGLISH.jpg",
-    "assets/images/HERO/WINGLISH.jpg",
+    "assets/images/платформы/WINGLISH/HERO.jpg",
+    "assets/images/платформы/WINGLISH/HERO.jpg",
     "assets/images/платформы/WINGLISH/Frame 2087325781.png",
     "assets/images/платформы/WINGLISH/Frame 2087325784.png",
     "assets/images/платформы/WINGLISH/Frame 2087325785.png"
   ),
   "visiflow": locals(
-    "assets/images/платформы/в IT Platform/VISIFLOW/ОБЛОЖКА.jpg",
+    "assets/images/платформы/visiflow/HERO.jpg",
+    "assets/images/платформы/visiflow/HERO.jpg",
     "assets/images/платформы/visiflow/frame-2147223711.jpg",
     "assets/images/платформы/visiflow/cover.jpg",
     "assets/images/платформы/visiflow/slide-7.jpg",
