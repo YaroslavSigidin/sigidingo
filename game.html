@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#070707" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="author" content="Yaroslav Sigidin" />
+    <title>Game Lab — Sigidingo</title>
+    <meta
+      name="description"
+      content="Игровая страница Sigidingo: интерактивный раннер, концепции геймификации портфолио, UX/UI-рекомендации, техническая архитектура, KPI и A/B-тесты."
+    />
+
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://sigidingo.online/game.html" />
+    <link rel="alternate" hreflang="ru-RU" href="https://sigidingo.online/game.html" />
+    <link rel="alternate" hreflang="x-default" href="https://sigidingo.online/game.html" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Game Lab — Sigidingo" />
+    <meta
+      property="og:description"
+      content="Игровая страница портфолио: раннер, механики, UX-рекомендации, стек, план реализации и аналитика."
+    />
+    <meta property="og:url" content="https://sigidingo.online/game.html" />
+    <meta property="og:site_name" content="Yaroslav Sigidin" />
+    <meta property="og:image" content="https://sigidingo.online/assets/images/HERO/PROFI.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Sigidingo game lab" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@sigidingo" />
+    <meta name="twitter:title" content="Game Lab — Sigidingo" />
+    <meta
+      name="twitter:description"
+      content="Игровая страница портфолио: раннер, механики, UX-рекомендации, стек, план реализации и аналитика."
+    />
+    <meta name="twitter:image" content="https://sigidingo.online/assets/images/HERO/PROFI.jpg" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Game Lab — Sigidingo",
+        "description": "Игровая страница портфолио с интерактивным раннером и UX/UI-стратегией геймификации.",
+        "url": "https://sigidingo.online/game.html",
+        "inLanguage": "ru-RU"
+      }
+    </script>
+
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <link rel="stylesheet" href="assets/css/game.css" />
+    <link rel="manifest" href="site.webmanifest" />
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
+    <link rel="shortcut icon" href="assets/images/favicon.svg" />
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+      (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a);
+      })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js?id=106779298", "ym");
+
+      ym(106779298, "init", {
+        ssr: true,
+        webvisor: true,
+        clickmap: true,
+        ecommerce: "dataLayer",
+        referrer: document.referrer,
+        url: location.href,
+        accurateTrackBounce: true,
+        trackLinks: true
+      });
+    </script>
+    <noscript><div><img decoding="async" loading="eager" height="1" width="1" src="https://mc.yandex.ru/watch/106779298" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+  </head>
+  <body data-theme="dark">
+    <header>
+      <div class="container nav">
+        <a class="logo" href="index.html">SIGIDINGO</a>
+        <nav class="nav-links" id="navLinks">
+          <a href="portfolio.html" class="nav-link">Portfolio</a>
+          <a href="services.html" class="nav-link">Services</a>
+          <a href="about.html" class="nav-link">About / CV</a>
+          <a href="index.html#contact" class="nav-link">Contact</a>
+          <a href="blog.html" class="nav-link">Blog</a>
+          <a href="tests.html" class="nav-link">Tests</a>
+          <a href="game.html" class="nav-link active">Game</a>
+        </nav>
+        <div class="nav-tools">
+          <a class="nav-telegram" href="https://t.me/sigidingo" target="_blank" rel="noreferrer">
+            <span class="icon-circle">
+              <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="currentColor" d="M21.8 4.6 2.9 11.9c-1.3.5-1.3 1.3-.2 1.7l4.7 1.5 1.8 5.4c.2.6.1.9.9.9.6 0 .9-.3 1.3-.7l2.3-2.2 4.8 3.5c.9.5 1.5.2 1.7-.8l3.1-14.7c.3-1.2-.5-1.7-1.5-1.3zM9.3 14.9l9-5.7c.4-.3.8-.1.5.2l-7.3 6.6-.3 3.2-1.9-4.3z"/>
+              </svg>
+            </span>
+            Telegram
+          </a>
+          <button class="theme-switch" data-theme-toggle type="button" aria-label="Toggle theme">
+            <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor" d="M12.1 2.2c-3.4.4-6.1 3.3-6.1 6.9 0 3.9 3.2 7.1 7.1 7.1 2.3 0 4.4-1.1 5.7-2.9-4 .8-7.5-2.6-6.7-6.7z"/>
+            </svg>
+            <span class="track"><span class="thumb"></span></span>
+          </button>
+        </div>
+        <button class="mobile-toggle" id="mobileToggle" type="button" aria-label="Open menu" aria-controls="navLinks" aria-expanded="false"><span></span><span></span><span></span></button>
+      </div>
+    </header>
+
+    <main>
+      <section class="section game-hero">
+        <div class="container game-hero-grid">
+          <div>
+            <p class="section-subtitle">Game Lab / UX Strategy</p>
+            <h1 class="section-title game-title">Игровая страница портфолио: стратегия + рабочий прототип</h1>
+            <p class="game-lead">
+              На этой странице собрана полная концепция геймификации для sigidingo.online и сразу встроен
+              игровой модуль формата endless runner. Это позволяет одновременно показать UX-подход и вовлечь
+              пользователя интерактивом.
+            </p>
+            <div class="game-kpi-line">
+              <span>Цель: +вовлечённость</span>
+              <span>Формат: минималистичный раннер</span>
+              <span>Адаптация: desktop + mobile</span>
+            </div>
+          </div>
+          <aside class="game-note-card">
+            <h2>Что реализовано на странице</h2>
+            <ul>
+              <li>Играбельный раннер с прогрессией скорости и рекордами</li>
+              <li>Система бейджей достижений</li>
+              <li>Пауза, перезапуск, звук и мобильные кнопки</li>
+              <li>LocalStorage для прогресса</li>
+              <li>События для Яндекс.Метрики (старт, финиш, бейдж)</li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section game-area-wrap">
+        <div class="container">
+          <div class="game-shell reveal">
+            <div class="game-topbar">
+              <div class="hud-block">
+                <span class="hud-label">Score</span>
+                <strong id="scoreValue">0</strong>
+              </div>
+              <div class="hud-block">
+                <span class="hud-label">Best</span>
+                <strong id="bestValue">0</strong>
+              </div>
+              <div class="hud-block">
+                <span class="hud-label">Badge</span>
+                <strong id="badgeValue">Ready</strong>
+              </div>
+              <div class="hud-actions">
+                <button id="pauseBtn" class="button" type="button">Pause</button>
+                <button id="soundBtn" class="button" type="button" aria-pressed="true">Sound: On</button>
+                <button id="restartBtn" class="button accent" type="button">Restart</button>
+              </div>
+            </div>
+
+            <canvas id="runnerCanvas" width="960" height="420" aria-label="HTML5 game: Dino-run on sigidingo">
+              Ваш браузер не поддерживает Canvas. Откройте страницу в современном браузере, чтобы запустить игру.
+            </canvas>
+
+            <div class="touch-controls" aria-label="Mobile controls">
+              <button id="jumpBtn" type="button" class="button accent">Jump</button>
+              <button id="pauseBtnMobile" type="button" class="button">Pause</button>
+            </div>
+
+            <p class="game-hint">
+              Управление: <strong>Space / ArrowUp / Tap</strong> для прыжка, <strong>P</strong> для паузы, <strong>R</strong> для рестарта.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container content-grid">
+          <article class="content-card reveal">
+            <h2>1. Анализ текущего сайта</h2>
+            <p>
+              Текущий сайт выполнен в минималистичном стиле, с акцентом на кейсы и профессиональную подачу.
+              Игровой модуль внедрён как отдельная страница, чтобы не перегружать основной поток портфолио и
+              при этом увеличить глубину взаимодействия.
+            </p>
+            <ul>
+              <li>Сильные стороны: ясная структура, адаптивность, чистая визуальная система.</li>
+              <li>Риск: избыточный motion может отвлекать от кейсов.</li>
+              <li>Решение: игра вынесена в отдельный раздел и сохраняет брендовые цвета/типографику.</li>
+            </ul>
+          </article>
+
+          <article class="content-card reveal">
+            <h2>2. Концепции игровых страниц</h2>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Концепция</th>
+                    <th>Плюс для бренда</th>
+                    <th>Сложность</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Endless runner</td>
+                    <td>Быстрый вход и высокая вовлечённость</td>
+                    <td>Низкая</td>
+                  </tr>
+                  <tr>
+                    <td>Mario-like платформер</td>
+                    <td>Сторителлинг по этапам карьеры</td>
+                    <td>Высокая</td>
+                  </tr>
+                  <tr>
+                    <td>Мини-игры/пазлы</td>
+                    <td>UX-образовательный эффект</td>
+                    <td>Средняя</td>
+                  </tr>
+                  <tr>
+                    <td>Кликер</td>
+                    <td>Повторные визиты и лёгкая механика</td>
+                    <td>Низкая</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="content-card reveal">
+            <h2>3. Механики и уровни</h2>
+            <ul>
+              <li>Автобег персонажа и прыжок по одному действию (клавиша/тап).</li>
+              <li>Усложнение со временем: плавное увеличение скорости.</li>
+              <li>Награды: бейджи за 100 / 300 / 600 очков.</li>
+              <li>Сохранение best score и полученных бейджей в LocalStorage.</li>
+              <li>Быстрые кнопки паузы/рестарта для сокращения фрустрации.</li>
+            </ul>
+          </article>
+
+          <article class="content-card reveal">
+            <h2>4. UI/UX рекомендации для вовлечения</h2>
+            <ul>
+              <li>Интеграция с темой сайта: те же цвета, та же типографика, те же отступы.</li>
+              <li>Микровзаимодействия: вспышка при наборе очков и мягкие hover/press состояния.</li>
+              <li>Доступность: aria-label и fallback-текст внутри canvas.</li>
+              <li>Адаптивность: отдельные mobile-кнопки Jump/Pause ниже canvas.</li>
+              <li>Производительность: Canvas + requestAnimationFrame, без тяжёлых ассетов.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container content-grid">
+          <article class="content-card reveal">
+            <h2>5. Техническая архитектура и стек</h2>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Компонент</th>
+                    <th>Технология</th>
+                    <th>Назначение</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Frontend</td>
+                    <td>HTML5 Canvas + JS</td>
+                    <td>Рендер и логика раннера</td>
+                  </tr>
+                  <tr>
+                    <td>UI</td>
+                    <td>HTML/CSS</td>
+                    <td>HUD, кнопки, контент секции</td>
+                  </tr>
+                  <tr>
+                    <td>Storage</td>
+                    <td>LocalStorage</td>
+                    <td>Best score, badges, настройки</td>
+                  </tr>
+                  <tr>
+                    <td>Analytics</td>
+                    <td>Yandex.Metrika events</td>
+                    <td>Старт/финиш/бейджи</td>
+                  </tr>
+                  <tr>
+                    <td>CI/CD</td>
+                    <td>GitHub Actions</td>
+                    <td>Auto-deploy на Timeweb VPS</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="content-card reveal">
+            <h2>6. План реализации</h2>
+            <ol>
+              <li>Концепция и прототип (3-5 дней).</li>
+              <li>UI-дизайн и игровой HUD (5-7 дней).</li>
+              <li>Разработка ядра и коллизий (7-10 дней).</li>
+              <li>Интеграция контента и наград (5-7 дней).</li>
+              <li>Тестирование, оптимизация, запуск A/B (10-14 дней).</li>
+            </ol>
+            <p>
+              Для текущего релиза сделан MVP: игра + контентная страница + аналитическая база под дальнейшие
+              итерации.
+            </p>
+          </article>
+
+          <article class="content-card reveal">
+            <h2>7. Промты для Codex/Cursor</h2>
+            <pre><code>Prompt: "Generate a complete HTML/JS code for a 2D endless runner game.
+Inputs: 800x400, single jump key, score, localStorage best score,
+mobile tap controls, pause/restart, accessibility labels."</code></pre>
+            <pre><code>Prompt: "Generate Phaser 3 platformer with scene preload/create/update,
+collectibles, score and responsive controls for mobile + keyboard."</code></pre>
+            <pre><code>Prompt: "Create a QA checklist and deployment pipeline for game page:
+cross-browser tests, Lighthouse, analytics event verification, auto deploy."</code></pre>
+          </article>
+
+          <article class="content-card reveal">
+            <h2>8. KPI, аналитика и A/B-тест</h2>
+            <ul>
+              <li>KPI вовлечённости: среднее время на странице и bounce rate.</li>
+              <li>KPI удержания: повторные визиты в течение 7 дней.</li>
+              <li>KPI конверсии: рост переходов к контактам после игры.</li>
+              <li>A/B: вариант A без игры, вариант B с игрой и бейджами.</li>
+            </ul>
+            <p>
+              Рекомендуемые события: <code>game_start</code>, <code>game_over</code>, <code>badge_earned</code>,
+              <code>game_restart</code>.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container contact-card mini-cta reveal">
+          <p class="section-subtitle">Next Step</p>
+          <h2>Нужно расширить до платформера с уровнями по кейсам?</h2>
+          <p>
+            Можно сделать вторую итерацию: уровни "Projects", "Process", "Contact" и общий рейтинг.
+            Это даст более сильный storytelling-эффект для портфолио.
+          </p>
+          <div class="contact-actions">
+            <a class="button accent" href="https://t.me/sigidingo" target="_blank" rel="noreferrer">Обсудить в Telegram</a>
+            <a class="button" href="portfolio.html">Смотреть кейсы</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="assets/js/main.js?v=20260211-5"></script>
+    <script src="assets/js/game.js?v=20260211-1"></script>
+  </body>
+</html>

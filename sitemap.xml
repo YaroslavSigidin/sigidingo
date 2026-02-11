@@ -37,6 +37,12 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://sigidingo.online/game.html</loc>
+    <lastmod>2026-02-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://sigidingo.online/case-ai.html</loc>
     <lastmod>2026-02-11</lastmod>
     <changefreq>monthly</changefreq>
