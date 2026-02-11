@@ -260,7 +260,8 @@ const projects = [
     ],
     calendarRange: {
       startMonth: 9,
-      endMonth: 8
+      endMonth: 8,
+      label: "16.10.2024 — 10.09.2025"
     },
     technologies: ["Design System", "Data Visualization", "Role‑based UI", "Responsive grid"],
     tools: ["Figma", "FigJam", "Notion", "Jira"],

@@ -239,7 +239,7 @@ const renderProjects = () => {
   renderGrid();
 };
 
-const MONTH_SHORT = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+const MONTH_SHORT = ["ЯНВ", "ФЕВ", "МАР", "АПР", "МАЙ", "ИЮН", "ИЮЛ", "АВГ", "СЕН", "ОКТ", "НОЯ", "ДЕК"];
 
 const parsePeriodToDays = period => {
   if (!period) return 0;
@@ -271,11 +271,14 @@ const getProjectTimelineRange = project => {
 
   const startMonth = hasStart ? Math.max(0, Math.min(11, Number(range.startMonth))) : 0;
   const endMonth = months > 0 ? (Math.floor(startMonth + months - 0.001) % 12 + 12) % 12 : startMonth;
-  return { startMonth, endMonth, months };
+  const label = typeof range.label === "string" && range.label.trim()
+    ? range.label.trim()
+    : `${MONTH_SHORT[startMonth]} — ${MONTH_SHORT[endMonth]}`;
+  return { startMonth, endMonth, months, label };
 };
 
 const renderTimelineYearOrbit = project => {
-  const { startMonth, endMonth, months } = getProjectTimelineRange(project);
+  const { startMonth, endMonth, months, label } = getProjectTimelineRange(project);
   const size = 212;
   const center = size / 2;
   const radius = 74;
@@ -305,12 +308,13 @@ const renderTimelineYearOrbit = project => {
           </circle>
         </svg>
         <div class="year-orbit-months">${monthMarks}</div>
+        <div class="year-orbit-period">${label}</div>
         <div class="year-orbit-center">
           <strong>${monthsLabel}</strong>
-          <span>months</span>
+          <span>месяцев</span>
         </div>
       </div>
-      <p class="year-orbit-caption">${MONTH_SHORT[startMonth]} -> ${MONTH_SHORT[endMonth]}</p>
+      <p class="year-orbit-caption">от ${MONTH_SHORT[startMonth]} до ${MONTH_SHORT[endMonth]}</p>
     </div>
   `;
 };
