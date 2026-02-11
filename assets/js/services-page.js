@@ -209,21 +209,23 @@
 
     panel.innerHTML = buildPanel(data);
 
-    const toggleCard = () => {
-      const willOpen = !card.classList.contains("is-open");
+    const openCard = () => {
+      if (card.classList.contains("is-open")) return;
       closeAllCards();
-      if (willOpen) {
-        card.classList.add("is-open");
-        card.setAttribute("aria-expanded", "true");
-        panel.hidden = false;
-      }
+      card.classList.add("is-open");
+      card.setAttribute("aria-expanded", "true");
+      panel.hidden = false;
     };
 
-    card.addEventListener("click", toggleCard);
+    card.addEventListener("click", event => {
+      // Clicking inside expanded details should not toggle/close the card.
+      if (event.target.closest(".service-click-panel")) return;
+      openCard();
+    });
     card.addEventListener("keydown", event => {
       if (event.key === "Enter" || event.key === " ") {
         event.preventDefault();
-        toggleCard();
+        openCard();
       }
     });
   });
