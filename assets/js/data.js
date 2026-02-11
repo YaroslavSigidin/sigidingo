@@ -137,14 +137,14 @@ const projectImageSets = {
     "assets/images/сайты/IN IT/Frame 2147223724.png"
   ),
   nok: locals(
-    "assets/images/HERO/NOK.jpg",
+    "assets/images/HERO/NOK-20260212.jpg",
     "assets/images/сайты/NOK/1000017604.png",
     "assets/images/сайты/NOK/1000017606.png",
     "assets/images/сайты/NOK/1000017610.png",
     "assets/images/сайты/NOK/1000017613.png",
     "assets/images/сайты/NOK/1000017614.png",
     "assets/images/сайты/NOK/1000017616.png",
-    "assets/images/HERO/NOK.jpg",
+    "assets/images/HERO/NOK-20260212.jpg",
     "assets/images/сайты/NOK/Frame 1321316816.png",
     "assets/images/сайты/NOK/Frame 1321316817.png",
     "assets/images/сайты/NOK/Frame 1321316859.png",
