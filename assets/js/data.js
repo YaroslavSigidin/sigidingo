@@ -61,7 +61,6 @@ const projectImageSets = {
   ),
   iss: locals(
     "assets/images/сайты/ISS/HERO.jpg",
-    "assets/images/сайты/ISS/HERO.jpg",
     "assets/images/сайты/ISS/1000017605.png",
     "assets/images/сайты/ISS/1000017608.png",
     "assets/images/сайты/ISS/1000017609.png",
