@@ -56,7 +56,6 @@ const projectImageSets = {
   ),
   profi: locals(
     "assets/images/сайты/PROFI/HERO__.jpg",
-    "assets/images/сайты/PROFI/HERO__.jpg",
     "assets/images/сайты/PROFI/Frame 2147223668.png",
     "assets/images/сайты/PROFI/Frame 2147223669.png"
   ),
