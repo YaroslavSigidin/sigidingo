@@ -6,7 +6,7 @@ const PRECACHE_URLS = [
   "/",
   "/index.html",
   "/portfolio.html",
-  "/assets/css/styles.css?v=20260212-2",
+  "/assets/css/styles.css?v=20260212-3",
   "/assets/js/main.js?v=20260212-2"
 ];
 
