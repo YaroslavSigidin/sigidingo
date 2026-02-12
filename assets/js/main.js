@@ -1,6 +1,7 @@
 const qs = (sel, scope = document) => scope.querySelector(sel);
 const qsa = (sel, scope = document) => Array.from(scope.querySelectorAll(sel));
 const FALLBACK_COVER = "assets/images/HERO/PROFI.jpg";
+const SERVICE_WORKER_PATH = "/sw.js";
 
 const bindImageFallback = image => {
   if (!image) return;
@@ -60,6 +61,13 @@ const initNav = () => {
   });
 };
 
+const initServiceWorker = () => {
+  if (!("serviceWorker" in navigator)) return;
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register(SERVICE_WORKER_PATH).catch(() => {});
+  });
+};
+
 const initMobilePortfolioDefault = () => {
   const isMobile = window.matchMedia("(max-width: 860px)").matches;
   if (!isMobile) return;
@@ -67,7 +75,7 @@ const initMobilePortfolioDefault = () => {
   if (!path.endsWith("/") && !path.endsWith("/index.html") && !path.endsWith("index.html")) return;
   if (sessionStorage.getItem("mobilePortfolioRedirect")) return;
   sessionStorage.setItem("mobilePortfolioRedirect", "true");
-  window.location.replace("portfolio.html");
+  return;
 };
 
 const applyTheme = theme => {
@@ -155,7 +163,7 @@ const renderFeatured = () => {
     const card = document.createElement("article");
     card.className = "project-card reveal";
     card.innerHTML = `
-      <img src="${project.image}" alt="${project.title}" loading="lazy" />
+      <img src="${project.image}" alt="${project.title}" loading="lazy" decoding="async" />
       <div class="content">
         <span class="tag">Case study</span>
         <h3>${project.title}</h3>
@@ -198,7 +206,7 @@ const renderProjects = () => {
         card.className = "project-card reveal";
         card.dataset.projectId = project.id;
         card.innerHTML = `
-          <img src="${project.image}" alt="${project.title}" loading="lazy" />
+          <img src="${project.image}" alt="${project.title}" loading="lazy" decoding="async" />
           <div class="content">
             <span class="tag">${tagLabel}</span>
             <h3>${project.title}</h3>
@@ -375,18 +383,18 @@ const renderServicesProofCards = () => {
     const card = document.createElement("article");
     card.className = "project-card reveal";
     card.innerHTML = `
-      <img src="${project.image}" alt="${project.title}" loading="lazy" />
+      <img src="${project.image}" alt="${project.title}" loading="lazy" decoding="async" />
       <div class="content">
         <span class="tag">Case study</span>
         <h3>${project.title}</h3>
         <p>${project.description || project.subtitle || ""}</p>
-        <a class="proof-link" href="case-${project.id}.html">Смотреть кейс</a>
+        <a class="proof-link" href="case-">Смотреть кейс</a>
       </div>
     `;
     bindImageFallback(qs("img", card));
     card.addEventListener("click", event => {
       if (event.target.closest(".proof-link")) return;
-      navigateWithTransition(`case-${project.id}.html`);
+      navigateWithTransition(`case-`);
     });
     host.appendChild(card);
   });
@@ -575,7 +583,7 @@ const openProjectModal = project => {
       const card = document.createElement("div");
       card.className = "recommendation-card";
       card.innerHTML = `
-        <img src="${item.image}" alt="${item.title}" loading="lazy" />
+        <img src="${item.image}" alt="${item.title}" loading="lazy" decoding="async" />
         <div class="info">
           <strong>${item.title}</strong>
           <div class="tag-list">
@@ -851,7 +859,7 @@ const renderArticles = () => {
   const buildFeatured = item => `
     <article class="article-featured reveal">
       <div class="article-cover">
-        <img src="${item.cover}" alt="${item.title}" loading="lazy" />
+        <img src="${item.cover}" alt="${item.title}" loading="lazy" decoding="async" />
       </div>
       <div class="article-body">
         <div class="article-meta">
@@ -863,16 +871,16 @@ const renderArticles = () => {
         <div class="tag-list">
           ${item.tags.map(tag => `<span class="tag-pill">${tag}</span>`).join("")}
         </div>
-        <a class="button" href="blog/${item.id}.html">Читать статью</a>
+        <a class="button" href="blog/">Читать статью</a>
       </div>
     </article>
   `;
 
   const buildCard = item => `
-    <a class="article-link" href="blog/${item.id}.html">
+    <a class="article-link" href="blog/">
       <article class="article-card reveal">
         <div class="article-cover">
-          <img src="${item.cover}" alt="${item.title}" loading="lazy" />
+          <img src="${item.cover}" alt="${item.title}" loading="lazy" decoding="async" />
         </div>
         <div class="article-body">
           <div class="article-meta">
@@ -1043,10 +1051,10 @@ const renderArticlePage = () => {
     related.innerHTML = picks
       .map(
         item => `
-        <a class="article-link" href="blog/${item.id}.html">
+        <a class="article-link" href="blog/">
           <article class="article-card">
             <div class="article-cover">
-              <img src="${item.cover}" alt="${item.title}" loading="lazy" />
+              <img src="${item.cover}" alt="${item.title}" loading="lazy" decoding="async" />
             </div>
             <div class="article-body">
               <div class="article-meta">
@@ -1212,7 +1220,7 @@ const renderCaseStudy = () => {
   if (galleryEl) {
     galleryEl.innerHTML = data.images
       .map(
-        img => `<img src="${img}" alt="${data.title}" loading="lazy" />`
+        img => `<img src="${img}" alt="${data.title}" loading="lazy" decoding="async" />`
       )
       .join("");
   }
@@ -1373,6 +1381,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   initNav();
+  initServiceWorker();
   initThemeToggle();
   initMobilePortfolioDefault();
   qsa(".section-title, .section-subtitle, .hero-title, .case-hero h1").forEach(el => {
