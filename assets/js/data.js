@@ -39,7 +39,6 @@ const projectImageSets = {
   ),
   solomadom: locals(
     "assets/images/HERO/SOLOMADOM.jpg",
-    "assets/images/HERO/SOLOMADOM.jpg",
     "assets/images/сайты/SOLOMADOM/Frame 2147223648.png",
     "assets/images/сайты/SOLOMADOM/Frame 2147223649.png",
     "assets/images/сайты/SOLOMADOM/Frame 2147223650.png"
