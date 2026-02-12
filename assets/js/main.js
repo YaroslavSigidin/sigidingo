@@ -664,9 +664,14 @@ const openProjectModal = project => {
   if (gallery) {
     gallery.innerHTML = "";
   }
-  const images = (project.gallery && project.gallery.length ? project.gallery : [project.image]).filter(
-    Boolean
-  );
+  const modalCoverSrc = (project.image || project.preview || "").split("?")[0];
+  const images = (project.gallery && project.gallery.length ? project.gallery : [project.image])
+    .filter(Boolean)
+    .filter((src, index) => {
+      // Skip first gallery frame if it duplicates the modal cover image.
+      if (index !== 0 || !modalCoverSrc) return true;
+      return String(src).split("?")[0] !== modalCoverSrc;
+    });
   if (gallery) {
     images.forEach((img, index) => {
       const card = document.createElement("div");
