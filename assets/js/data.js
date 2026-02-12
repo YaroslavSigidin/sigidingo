@@ -32,7 +32,6 @@ const projectImageSets = {
   ),
   "castle-music": locals(
     "assets/images/сайты/CASTLE MUSIC/HERO_____.jpg",
-    "assets/images/сайты/CASTLE MUSIC/HERO_____.jpg",
     "assets/images/сайты/CASTLE MUSIC/Frame 2147223639.png",
     "assets/images/сайты/CASTLE MUSIC/Frame 2147223640.png",
     "assets/images/сайты/CASTLE MUSIC/Frame 2147223642.png"
