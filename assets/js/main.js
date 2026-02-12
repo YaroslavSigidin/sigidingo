@@ -975,7 +975,9 @@ const renderArticles = () => {
 
   const featured = articles.find(item => item.featured) || articles[0];
 
-  const buildFeatured = item => `
+  const buildFeatured = item => {
+    const articleHref = `/blog/${encodeURIComponent(item.id)}/`;
+    return `
     <article class="article-featured reveal">
       <div class="article-cover">
         <img src="${item.cover}" alt="${item.title}" loading="lazy" decoding="async" />
@@ -990,13 +992,16 @@ const renderArticles = () => {
         <div class="tag-list">
           ${item.tags.map(tag => `<span class="tag-pill">${tag}</span>`).join("")}
         </div>
-        <a class="button" href="blog/">Читать статью</a>
+        <a class="button" href="${articleHref}">Читать статью</a>
       </div>
     </article>
   `;
+  };
 
-  const buildCard = item => `
-    <a class="article-link" href="blog/">
+  const buildCard = item => {
+    const articleHref = `/blog/${encodeURIComponent(item.id)}/`;
+    return `
+    <a class="article-link" href="${articleHref}">
       <article class="article-card reveal">
         <div class="article-cover">
           <img src="${item.cover}" alt="${item.title}" loading="lazy" decoding="async" />
@@ -1015,6 +1020,7 @@ const renderArticles = () => {
       </article>
     </a>
   `;
+  };
 
   const featuredHost = qs("#articlesFeatured") || qs("#blogFeatured");
   if (featuredHost) {
@@ -1170,7 +1176,7 @@ const renderArticlePage = () => {
     related.innerHTML = picks
       .map(
         item => `
-        <a class="article-link" href="blog/">
+        <a class="article-link" href="/blog/${encodeURIComponent(item.id)}/">
           <article class="article-card">
             <div class="article-cover">
               <img src="${item.cover}" alt="${item.title}" loading="lazy" decoding="async" />
