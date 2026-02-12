@@ -79,7 +79,6 @@ const projectImageSets = {
   ),
   "leki-travel": locals(
     "assets/images/сайты/LEKI TRAVEL/HERO____.jpg",
-    "assets/images/сайты/LEKI TRAVEL/HERO____.jpg",
     "assets/images/сайты/LEKI TRAVEL/1000017605.png",
     "assets/images/сайты/LEKI TRAVEL/1000017606.png",
     "assets/images/сайты/LEKI TRAVEL/1000017610.png",
