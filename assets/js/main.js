@@ -5,6 +5,24 @@ const SERVICE_WORKER_PATH = "/sw.js";
 const DATA_BUNDLE = "assets/js/data.js?v=20260212-1";
 let dataHydrated = false;
 let dataBundlePromise = null;
+const RESPONSIVE_IMAGES = new Set([
+  "assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/visiflow/HERO.jpg",
+  "assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/Octoclick/%D0%9E%D0%91%D0%9B%D0%9E%D0%96%D0%9A%D0%90.jpg",
+  "assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/MIROX%201/%D0%9E%D0%91%D0%9B%D0%9E%D0%96%D0%9A%D0%90.jpg",
+  "assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/AI/HERO.png",
+  "assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/MIROX%20APP/HERO_.jpg",
+  "assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/WINGLISH/HERO.jpg",
+  "assets/images/HERO/NOK-20260212.jpg",
+  "assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/SPACE%20CAMP/HERO.jpg",
+  "assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/ISS/HERO.jpg",
+  "assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/PROFI/HERO__.jpg",
+  "assets/images/HERO/SOLOMADOM.jpg",
+  "assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/AMAZON/HERO.png",
+  "assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/CASTLE%20MUSIC/HERO_____.jpg",
+  "assets/images/HERO/KVATRO.jpg",
+  "assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/LEKI%20TRAVEL/HERO____.jpg",
+  "assets/images/HERO/VIHLOP%20EXPERT.jpg"
+]);
 
 const isDataAvailable = () =>
   typeof projects !== "undefined" ||
@@ -85,6 +103,31 @@ const getResponsiveImageAttrs = src => {
     srcset: `${base}-640${ext} 640w, ${base}-960${ext} 960w, ${src} 1200w`,
     sizes: "(max-width: 720px) 92vw, (max-width: 1200px) 45vw, 586px"
   };
+};
+
+const getModernSourceSet = (src, ext) => {
+  const dot = src.lastIndexOf(".");
+  if (dot <= 0) return "";
+  const base = src.slice(0, dot);
+  return `${base}-640.${ext} 640w, ${base}-960.${ext} 960w, ${base}.${ext} 1200w`;
+};
+
+const renderPicture = ({ src, alt, loading = "lazy", decoding = "async" }) => {
+  const normalized = src.replace(/-(640|960)(?=\.[a-zA-Z0-9]+$)/, "");
+  if (!RESPONSIVE_IMAGES.has(normalized)) {
+    return `<img src="${src}" alt="${alt || ""}" loading="${loading}" decoding="${decoding}" />`;
+  }
+  const { srcset, sizes } = getResponsiveImageAttrs(src);
+  const avifSet = getModernSourceSet(src, "avif");
+  const webpSet = getModernSourceSet(src, "webp");
+  return `
+    <picture>
+      <source type="image/avif" srcset="${avifSet}" sizes="${sizes}">
+      <source type="image/webp" srcset="${webpSet}" sizes="${sizes}">
+      <img src="${src}" alt="${alt || ""}" loading="${loading}" decoding="${decoding}"
+        ${srcset ? `srcset="${srcset}" sizes="${sizes}"` : ""} />
+    </picture>
+  `;
 };
 
 const initNav = () => {
@@ -233,12 +276,10 @@ const renderFeatured = () => {
   if (!container || typeof featuredProjects === "undefined") return;
   container.innerHTML = "";
   featuredProjects.forEach(project => {
-    const { srcset, sizes } = getResponsiveImageAttrs(project.image);
     const card = document.createElement("article");
     card.className = "project-card reveal";
     card.innerHTML = `
-      <img src="${project.image}" alt="${project.title}" loading="lazy" decoding="async"
-        ${srcset ? `srcset="${srcset}" sizes="${sizes}"` : ""} />
+      ${renderPicture({ src: project.image, alt: project.title })}
       <div class="content">
         <span class="tag">Case study</span>
         <h3>${project.title}</h3>
@@ -281,10 +322,8 @@ const renderProjects = () => {
     const card = document.createElement("article");
     card.className = "project-card reveal";
     card.dataset.projectId = project.id;
-    const { srcset, sizes } = getResponsiveImageAttrs(project.image);
     card.innerHTML = `
-          <img src="${project.image}" alt="${project.title}" loading="lazy" decoding="async"
-            ${srcset ? `srcset="${srcset}" sizes="${sizes}"` : ""} />
+          ${renderPicture({ src: project.image, alt: project.title })}
           <div class="content">
             <span class="tag">${tagLabel}</span>
             <h3>${project.title}</h3>
@@ -460,12 +499,10 @@ const renderServicesProofCards = () => {
   host.innerHTML = "";
 
   proofProjects.forEach(project => {
-    const { srcset, sizes } = getResponsiveImageAttrs(project.image);
     const card = document.createElement("article");
     card.className = "project-card reveal";
     card.innerHTML = `
-      <img src="${project.image}" alt="${project.title}" loading="lazy" decoding="async"
-        ${srcset ? `srcset="${srcset}" sizes="${sizes}"` : ""} />
+      ${renderPicture({ src: project.image, alt: project.title })}
       <div class="content">
         <span class="tag">Case study</span>
         <h3>${project.title}</h3>
@@ -662,12 +699,10 @@ const openProjectModal = project => {
     recommendations.innerHTML = "";
     const list = projects.filter(item => item.id !== project.id).slice(0, 4);
     list.forEach(item => {
-      const { srcset, sizes } = getResponsiveImageAttrs(item.image);
       const card = document.createElement("div");
       card.className = "recommendation-card";
       card.innerHTML = `
-        <img src="${item.image}" alt="${item.title}" loading="lazy" decoding="async"
-          ${srcset ? `srcset="${srcset}" sizes="${sizes}"` : ""} />
+        ${renderPicture({ src: item.image, alt: item.title })}
         <div class="info">
           <strong>${item.title}</strong>
           <div class="tag-list">
