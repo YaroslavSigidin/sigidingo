@@ -2,6 +2,68 @@ const qs = (sel, scope = document) => scope.querySelector(sel);
 const qsa = (sel, scope = document) => Array.from(scope.querySelectorAll(sel));
 const FALLBACK_COVER = "assets/images/HERO/PROFI.jpg";
 const SERVICE_WORKER_PATH = "/sw.js";
+const DATA_BUNDLE = "assets/js/data.js?v=20260212-1";
+let dataHydrated = false;
+let dataBundlePromise = null;
+
+const isDataAvailable = () =>
+  typeof projects !== "undefined" ||
+  typeof featuredProjects !== "undefined" ||
+  typeof caseStudies !== "undefined" ||
+  typeof articles !== "undefined";
+
+const loadDataBundle = () => {
+  if (isDataAvailable()) return Promise.resolve();
+  if (dataBundlePromise) return dataBundlePromise;
+  dataBundlePromise = new Promise((resolve, reject) => {
+    const existing = document.querySelector(`script[src^="${DATA_BUNDLE}"]`);
+    if (existing && existing.dataset.loaded === "true") {
+      resolve();
+      return;
+    }
+    const script = existing || document.createElement("script");
+    script.src = DATA_BUNDLE;
+    script.defer = true;
+    script.dataset.loaded = "false";
+    script.onload = () => {
+      script.dataset.loaded = "true";
+      resolve();
+    };
+    script.onerror = () => reject(new Error("Failed to load data bundle"));
+    if (!existing) {
+      document.body.appendChild(script);
+    }
+  });
+  return dataBundlePromise;
+};
+
+const hydrateDataFeatures = () => {
+  renderFeatured();
+  renderProjects();
+  renderServicesProofCards();
+  renderAbout();
+  renderArticles();
+  renderCaseStudy();
+  renderArticlePage();
+};
+
+const scheduleDataHydration = () => {
+  if (dataHydrated) return;
+  const run = () => {
+    loadDataBundle()
+      .then(() => {
+        if (dataHydrated) return;
+        dataHydrated = true;
+        hydrateDataFeatures();
+      })
+      .catch(() => {});
+  };
+  if ("requestIdleCallback" in window) {
+    requestIdleCallback(run, { timeout: 2000 });
+  } else {
+    setTimeout(run, 1);
+  }
+};
 
 const bindImageFallback = image => {
   if (!image) return;
@@ -12,6 +74,17 @@ const bindImageFallback = image => {
     },
     { once: true }
   );
+};
+
+const getResponsiveImageAttrs = src => {
+  const dot = src.lastIndexOf(".");
+  if (dot <= 0) return { srcset: "", sizes: "" };
+  const base = src.slice(0, dot);
+  const ext = src.slice(dot);
+  return {
+    srcset: `${base}-640${ext} 640w, ${base}-960${ext} 960w, ${src} 1200w`,
+    sizes: "(max-width: 720px) 92vw, (max-width: 1200px) 45vw, 586px"
+  };
 };
 
 const initNav = () => {
@@ -160,10 +233,12 @@ const renderFeatured = () => {
   if (!container || typeof featuredProjects === "undefined") return;
   container.innerHTML = "";
   featuredProjects.forEach(project => {
+    const { srcset, sizes } = getResponsiveImageAttrs(project.image);
     const card = document.createElement("article");
     card.className = "project-card reveal";
     card.innerHTML = `
-      <img src="${project.image}" alt="${project.title}" loading="lazy" decoding="async" />
+      <img src="${project.image}" alt="${project.title}" loading="lazy" decoding="async"
+        ${srcset ? `srcset="${srcset}" sizes="${sizes}"` : ""} />
       <div class="content">
         <span class="tag">Case study</span>
         <h3>${project.title}</h3>
@@ -195,6 +270,7 @@ const renderProjects = () => {
   const grid = qs("#projects-grid");
   if (!grid || typeof projects === "undefined") return;
   let activeFilter = "all";
+  const preserveStatic = grid.dataset.staticGrid === "true";
 
   const renderGrid = () => {
     grid.innerHTML = "";
@@ -202,11 +278,13 @@ const renderProjects = () => {
       .filter(project => activeFilter === "all" || project.category === activeFilter)
       .forEach(project => {
         const tagLabel = project.category === "uxui" ? "UX/UI" : "WEB";
-        const card = document.createElement("article");
-        card.className = "project-card reveal";
-        card.dataset.projectId = project.id;
-        card.innerHTML = `
-          <img src="${project.image}" alt="${project.title}" loading="lazy" decoding="async" />
+    const card = document.createElement("article");
+    card.className = "project-card reveal";
+    card.dataset.projectId = project.id;
+    const { srcset, sizes } = getResponsiveImageAttrs(project.image);
+    card.innerHTML = `
+          <img src="${project.image}" alt="${project.title}" loading="lazy" decoding="async"
+            ${srcset ? `srcset="${srcset}" sizes="${sizes}"` : ""} />
           <div class="content">
             <span class="tag">${tagLabel}</span>
             <h3>${project.title}</h3>
@@ -249,7 +327,9 @@ const renderProjects = () => {
     });
   });
 
-  renderGrid();
+  if (!preserveStatic) {
+    renderGrid();
+  }
 };
 
 const MONTH_SHORT = ["ЯНВ", "ФЕВ", "МАР", "АПР", "МАЙ", "ИЮН", "ИЮЛ", "АВГ", "СЕН", "ОКТ", "НОЯ", "ДЕК"];
@@ -380,10 +460,12 @@ const renderServicesProofCards = () => {
   host.innerHTML = "";
 
   proofProjects.forEach(project => {
+    const { srcset, sizes } = getResponsiveImageAttrs(project.image);
     const card = document.createElement("article");
     card.className = "project-card reveal";
     card.innerHTML = `
-      <img src="${project.image}" alt="${project.title}" loading="lazy" decoding="async" />
+      <img src="${project.image}" alt="${project.title}" loading="lazy" decoding="async"
+        ${srcset ? `srcset="${srcset}" sizes="${sizes}"` : ""} />
       <div class="content">
         <span class="tag">Case study</span>
         <h3>${project.title}</h3>
@@ -580,10 +662,12 @@ const openProjectModal = project => {
     recommendations.innerHTML = "";
     const list = projects.filter(item => item.id !== project.id).slice(0, 4);
     list.forEach(item => {
+      const { srcset, sizes } = getResponsiveImageAttrs(item.image);
       const card = document.createElement("div");
       card.className = "recommendation-card";
       card.innerHTML = `
-        <img src="${item.image}" alt="${item.title}" loading="lazy" decoding="async" />
+        <img src="${item.image}" alt="${item.title}" loading="lazy" decoding="async"
+          ${srcset ? `srcset="${srcset}" sizes="${sizes}"` : ""} />
         <div class="info">
           <strong>${item.title}</strong>
           <div class="tag-list">
@@ -1389,12 +1473,6 @@ document.addEventListener("DOMContentLoaded", () => {
     el.dataset.scramble = "true";
   });
   initReveal();
-  renderFeatured();
-  renderProjects();
-  renderServicesProofCards();
-  renderAbout();
-  renderArticles();
-  renderCaseStudy();
   initChat();
   initModal();
   initModalTabs();
@@ -1404,9 +1482,9 @@ document.addEventListener("DOMContentLoaded", () => {
   initCalculatorPage();
   initCounters();
   initMetroTimeline();
-  renderArticlePage();
   initArticleReveal();
   initArticleProgress();
+  scheduleDataHydration();
 
   qsa('a[href^="case-"]').forEach(link => {
     link.addEventListener("click", event => {
