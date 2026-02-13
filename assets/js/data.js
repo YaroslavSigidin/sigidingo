@@ -4,18 +4,21 @@ const locals = (...paths) => paths.map(local);
 const projectImageSets = {
   "octoclick": locals(
     "assets/images/платформы/Octoclick/ОБЛОЖКА.jpg",
-    "assets/images/платформы/Octoclick/Slide 16_9 - 26.png",
-    "assets/images/платформы/Octoclick/Slide 16_9 - 22.png",
-    "assets/images/платформы/Octoclick/Slide 16_9 - 24.png",
-    "assets/images/платформы/Octoclick/Slide 16_9 - 27.png",
-    "assets/images/платформы/Octoclick/Slide 16_9 - 15.png",
-    "assets/images/платформы/Octoclick/Slide 16_9 - 18.png",
-    "assets/images/платформы/Octoclick/Slide 16_9 - 25.png",
-    "assets/images/платформы/Octoclick/Slide 16_9 - 21.png",
-    "assets/images/платформы/Octoclick/Slide 16_9 - 17.png",
-    "assets/images/платформы/Octoclick/Slide 16_9 - 20.png",
-    "assets/images/платформы/Octoclick/Slide 16_9 - 19.png",
-    "assets/images/платформы/Octoclick/Slide 16_9 - 23.png"
+    "assets/images/платформы/Octoclick/NEW/Frame 2147223680.jpg",
+    "assets/images/платформы/Octoclick/NEW/Slide 16_9 - 10.jpg",
+    "assets/images/платформы/Octoclick/NEW/Slide 16_9 - 11.jpg",
+    "assets/images/платформы/Octoclick/NEW/Slide 16_9 - 12.jpg",
+    "assets/images/платформы/Octoclick/NEW/Slide 16_9 - 15.jpg",
+    "assets/images/платформы/Octoclick/NEW/Slide 16_9 - 17.jpg",
+    "assets/images/платформы/Octoclick/NEW/Slide 16_9 - 18.jpg",
+    "assets/images/платформы/Octoclick/NEW/Slide 16_9 - 19.jpg",
+    "assets/images/платформы/Octoclick/NEW/Slide 16_9 - 20.jpg",
+    "assets/images/платформы/Octoclick/NEW/Slide 16_9 - 21.jpg",
+    "assets/images/платформы/Octoclick/NEW/Slide 16_9 - 22.jpg",
+    "assets/images/платформы/Octoclick/NEW/Slide 16_9 - 23.jpg",
+    "assets/images/платформы/Octoclick/NEW/Slide 16_9 - 24.jpg",
+    "assets/images/платформы/Octoclick/NEW/Slide 16_9 - 26.jpg",
+    "assets/images/платформы/Octoclick/NEW/Slide 16_9 - 27.jpg"
   ),
   ai: locals(
     "assets/images/платформы/AI/HERO.png",
