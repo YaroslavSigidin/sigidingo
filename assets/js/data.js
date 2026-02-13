@@ -325,6 +325,62 @@ const projects = [
     gallery: projectImageSets.ai.slice(1)
   },
   {
+    id: "pazl-kod-platform",
+    title: "PAZL&KOD Platform",
+    subtitle: "Образовательная платформа для менеджеров, преподавателей и студентов",
+    description:
+      "Образовательная платформа для менеджеров, преподавателей и студентов: систематизировал сложные процессы обучения, сделал прозрачные рейтинги и ускорил работу с большими табличными данными в личном кабинете.",
+    timeline: [
+      { title: "Постановка целей и задач", period: "Февраль 2024" },
+      { title: "User Flow / Work Flow / Wireframes", period: "Март 2024" },
+      { title: "UI‑макеты и микровзаимодействия", period: "Апрель 2024" }
+    ],
+    calendarRange: {
+      startMonth: 4,
+      months: 1,
+      label: "14.05.2024"
+    },
+    technologies: ["Role‑based UI", "Data tables", "Filters & sorting", "Modular system"],
+    tools: ["Figma", "FigJam", "Notion"],
+    metrics: [
+      "Ускорение доступа к данным по группам и студентам",
+      "Повышение прозрачности рейтингов для кураторов",
+      "Снижение времени навигации по большому объёму таблиц"
+    ],
+    caseKey: "pazl-kod-platform",
+    category: "uxui",
+    image: projectImageSets["pazl-kod-platform"][0],
+    gallery: projectImageSets["pazl-kod-platform"].slice(1)
+  },
+  {
+    id: "in-it",
+    title: "IN IT",
+    subtitle: "Админ‑платформа с рейтингами, группами и тестированиями",
+    description:
+      "Административная образовательная платформа: рабочая зона менеджера с модульной навигацией, статистикой, табличными сценариями и управлением тестированиями по ролям.",
+    timeline: [
+      { title: "Карта процессов и сценариев", period: "7 дней" },
+      { title: "Wireframes и структура данных", period: "7 дней" },
+      { title: "UI‑макеты и интеракции", period: "14 дней" }
+    ],
+    calendarRange: {
+      startMonth: 1,
+      months: 1,
+      label: "20.02.2024"
+    },
+    technologies: ["EdTech admin", "Data tables", "Filtering", "Role‑based flows"],
+    tools: ["Figma", "FigJam", "Notion"],
+    metrics: [
+      "Ускорение доступа к данным студентов и групп",
+      "Повышение прозрачности рейтингов и результатов тестов",
+      "Снижение количества ручных действий в операционке"
+    ],
+    caseKey: "in-it",
+    category: "uxui",
+    image: projectImageSets["in-it"][0],
+    gallery: projectImageSets["in-it"].slice(1)
+  },
+  {
     id: "mirox-app",
     title: "MIROX APP",
     subtitle: "Мобильный сервис для заданий",
@@ -408,62 +464,6 @@ const projects = [
     category: "web",
     image: projectImageSets.nok[0],
     gallery: projectImageSets.nok.slice(1)
-  },
-  {
-    id: "pazl-kod-platform",
-    title: "PAZL&KOD Platform",
-    subtitle: "Образовательная платформа для менеджеров, преподавателей и студентов",
-    description:
-      "Образовательная платформа для менеджеров, преподавателей и студентов: систематизировал сложные процессы обучения, сделал прозрачные рейтинги и ускорил работу с большими табличными данными в личном кабинете.",
-    timeline: [
-      { title: "Постановка целей и задач", period: "Февраль 2024" },
-      { title: "User Flow / Work Flow / Wireframes", period: "Март 2024" },
-      { title: "UI‑макеты и микровзаимодействия", period: "Апрель 2024" }
-    ],
-    calendarRange: {
-      startMonth: 4,
-      months: 1,
-      label: "14.05.2024"
-    },
-    technologies: ["Role‑based UI", "Data tables", "Filters & sorting", "Modular system"],
-    tools: ["Figma", "FigJam", "Notion"],
-    metrics: [
-      "Ускорение доступа к данным по группам и студентам",
-      "Повышение прозрачности рейтингов для кураторов",
-      "Снижение времени навигации по большому объёму таблиц"
-    ],
-    caseKey: "pazl-kod-platform",
-    category: "uxui",
-    image: projectImageSets["pazl-kod-platform"][0],
-    gallery: projectImageSets["pazl-kod-platform"].slice(1)
-  },
-  {
-    id: "in-it",
-    title: "IN IT",
-    subtitle: "Админ‑платформа с рейтингами, группами и тестированиями",
-    description:
-      "Административная образовательная платформа: рабочая зона менеджера с модульной навигацией, статистикой, табличными сценариями и управлением тестированиями по ролям.",
-    timeline: [
-      { title: "Карта процессов и сценариев", period: "7 дней" },
-      { title: "Wireframes и структура данных", period: "7 дней" },
-      { title: "UI‑макеты и интеракции", period: "14 дней" }
-    ],
-    calendarRange: {
-      startMonth: 1,
-      months: 1,
-      label: "20.02.2024"
-    },
-    technologies: ["EdTech admin", "Data tables", "Filtering", "Role‑based flows"],
-    tools: ["Figma", "FigJam", "Notion"],
-    metrics: [
-      "Ускорение доступа к данным студентов и групп",
-      "Повышение прозрачности рейтингов и результатов тестов",
-      "Снижение количества ручных действий в операционке"
-    ],
-    caseKey: "in-it",
-    category: "uxui",
-    image: projectImageSets["in-it"][0],
-    gallery: projectImageSets["in-it"].slice(1)
   },
   {
     id: "space-camp",
