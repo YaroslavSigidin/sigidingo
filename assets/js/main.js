@@ -2,7 +2,7 @@ const qs = (sel, scope = document) => scope.querySelector(sel);
 const qsa = (sel, scope = document) => Array.from(scope.querySelectorAll(sel));
 const FALLBACK_COVER = "assets/images/HERO/PROFI.jpg";
 const SERVICE_WORKER_PATH = "/sw.js";
-const DATA_BUNDLE = "assets/js/data.js?v=20260214-2";
+const DATA_BUNDLE = "assets/js/data.js?v=20260214-3";
 let dataHydrated = false;
 let dataBundlePromise = null;
 const RESPONSIVE_IMAGES = new Set([

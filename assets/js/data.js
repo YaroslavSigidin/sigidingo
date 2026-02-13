@@ -4,26 +4,18 @@ const locals = (...paths) => paths.map(local);
 const projectImageSets = {
   "octoclick": locals(
     "assets/images/платформы/Octoclick/ОБЛОЖКА.jpg",
-    "assets/images/платформы/Octoclick/NEW/Frame 2147223680.jpg",
-    "assets/images/платформы/Octoclick/NEW/Slide 16_9 - 10.jpg",
-    "assets/images/платформы/Octoclick/NEW/Slide 16_9 - 11.jpg",
-    "assets/images/платформы/Octoclick/NEW/Slide 16_9 - 12.jpg",
-    "assets/images/платформы/Octoclick/NEW/Slide 16_9 - 15.jpg",
-    "assets/images/платформы/Octoclick/NEW/Slide 16_9 - 17.jpg",
-    "assets/images/платформы/Octoclick/NEW/Slide 16_9 - 18.jpg",
-    "assets/images/платформы/Octoclick/NEW/Slide 16_9 - 19.jpg",
-    "assets/images/платформы/Octoclick/NEW/Slide 16_9 - 20.jpg",
-    "assets/images/платформы/Octoclick/NEW/Slide 16_9 - 21.jpg",
-    "assets/images/платформы/Octoclick/NEW/Slide 16_9 - 22.jpg",
-    "assets/images/платформы/Octoclick/NEW/Slide 16_9 - 23.jpg",
-    "assets/images/платформы/Octoclick/NEW/Slide 16_9 - 24.jpg",
-    "assets/images/платформы/Octoclick/NEW/Slide 16_9 - 26.jpg",
-    "assets/images/платформы/Octoclick/NEW/Slide 16_9 - 27.jpg",
-    "assets/images/платформы/Octoclick/NEW/NEW2/Frame 2147223617.jpg",
-    "assets/images/платформы/Octoclick/NEW/NEW2/Frame 2147223618.jpg",
-    "assets/images/платформы/Octoclick/NEW/NEW2/Frame 2147223628.jpg",
-    "assets/images/платформы/Octoclick/NEW/NEW2/Frame 2147224059.jpg",
-    "assets/images/платформы/Octoclick/NEW/NEW2/Frame 2147224073.jpg"
+    "assets/images/платформы/Octoclick/Slide 16_9 - 26.png",
+    "assets/images/платформы/Octoclick/Slide 16_9 - 22.png",
+    "assets/images/платформы/Octoclick/Slide 16_9 - 24.png",
+    "assets/images/платформы/Octoclick/Slide 16_9 - 27.png",
+    "assets/images/платформы/Octoclick/Slide 16_9 - 15.png",
+    "assets/images/платформы/Octoclick/Slide 16_9 - 18.png",
+    "assets/images/платформы/Octoclick/Slide 16_9 - 25.png",
+    "assets/images/платформы/Octoclick/Slide 16_9 - 21.png",
+    "assets/images/платформы/Octoclick/Slide 16_9 - 17.png",
+    "assets/images/платформы/Octoclick/Slide 16_9 - 20.png",
+    "assets/images/платформы/Octoclick/Slide 16_9 - 19.png",
+    "assets/images/платформы/Octoclick/Slide 16_9 - 23.png"
   ),
   ai: locals(
     "assets/images/платформы/AI/HERO.png",
@@ -253,9 +245,9 @@ const projects = [
   {
     id: "octoclick",
     title: "Octoclick",
-    subtitle: "AdTech платформа + многостраничный сайт",
+    subtitle: "",
     description:
-      "Комплексный проект: редизайн рекламной платформы Octoclick и запуск отдельного многостраничного сайта компании. В продукте сфокусировался на сценариях аналитики и управления кампаниями, а в сайте — на понятной подаче ценности, структуре страниц под разные сегменты аудитории и стабильном переходе пользователей в панель.",
+      "Редизайн рекламной платформы с фокусом на аналитике и управлении кампаниями. Собрал понятную структуру разделов, сильную иерархию данных и удобные фильтры для быстрого доступа к метрикам. Интерфейс рассчитан на работу с большими объёмами отчётности и частыми сценариями оптимизации.",
     timeline: [
       { title: "Q1: Аудит и гипотезы", period: "3 месяца" },
       { title: "Q2: IA и сценарии", period: "3 месяца" },
@@ -267,20 +259,17 @@ const projects = [
       endMonth: 11,
       label: "Январь — Декабрь 2025"
     },
-    technologies: ["Design System", "Data Visualization", "Multi-page website", "Conversion UX"],
+    technologies: ["Design System", "Data Visualization", "Role‑based UI", "Responsive grid"],
     tools: ["Figma", "FigJam", "Notion", "Jira"],
     metrics: [
-      "CTR главной CTA «Перейти в платформу»: +43%",
-      "Конверсия перехода в панель: рост в 2.1 раза",
-      "Глубина просмотра сайта: +37%, отказов: −24%"
+      "Сокращение времени анализа метрик",
+      "Уменьшение количества обращений в поддержку",
+      "Рост повторных запусков кампаний"
     ],
     category: "uxui",
     image: projectImageSets["octoclick"][0],
     gallery: projectImageSets["octoclick"].slice(1),
-    liveLinks: [
-      { label: "платформу", url: "https://panel.octoclick.com" },
-      { label: "сайт", url: "https://octoclick.com/ru" }
-    ],
+    liveLinks: [{ label: "платформу", url: "https://panel.octoclick.com" }],
     caseKey: "octoclick"
   },
   {
@@ -774,33 +763,14 @@ const caseStudies = {
     modalFullHtml: `
       <div class="modal-case-full">
         <article class="modal-case-card">
-          <h4>Подкейс: многостраничный сайт Octoclick</h4>
-          <h5>Отдельный веб‑продукт в рамках проекта</h5>
-          <p>Параллельно с развитием платформы был реализован отдельный многостраничный сайт компании. Целью было выстроить понятный путь пользователя от знакомства с брендом до перехода в панель и заявки на подключение.</p>
-          <p class="section-subtitle">Что выбрали для сайта</p>
-          <ul class="case-list">
-            <li>Разделили контент по сценариям: о продукте, решения, доверительные блоки, CTA‑переходы в платформу.</li>
-            <li>Собрали систему многостраничной навигации с фокусом на ключевые продуктовые действия.</li>
-            <li>Синхронизировали визуальный стиль сайта и интерфейса платформы для цельного восприятия бренда.</li>
-          </ul>
-          <p class="section-subtitle">Результаты и метрики</p>
-          <ul class="case-list">
-            <li>CTR главной CTA «Перейти в платформу»: +43% после перезапуска первого экрана.</li>
-            <li>Конверсия перехода к панели: рост в 2.1 раза благодаря структуре страниц по ролям.</li>
-            <li>Глубина просмотра: +37%, пользователи чаще доходят до коммерческих блоков.</li>
-            <li>Показатель отказов на входных страницах: −24% после обновления навигации.</li>
-          </ul>
-        </article>
-
-        <article class="modal-case-card">
           <h4>Таймлайн и роль</h4>
           <p class="section-subtitle">16.10.2024 — 10.09.2025</p>
-          <p>Ведущий UX/UI дизайнер в Octoclick. Отвечал за развитие рекламной платформы, запуск и развитие смежных веб‑продуктов, включая octoclick.com, а также за упаковку визуала для социальных сетей.</p>
+          <p>Ведущий UX/UI дизайнер в Octoclick. Отвечал за развитие рекламной платформы и упаковку визуала для социальных сетей.</p>
           <ul class="case-list">
             <li>Вёл продуктовые задачи от постановки до передачи в разработку: макеты, состояния, адаптивы, спецификации.</li>
             <li>Проектировал сложные интерфейсы: дашборды, таблицы, многоуровневые фильтры, формы и сценарии аналитики.</li>
             <li>Развивал UI‑kit на базе Ant Design для ускорения команды и повышения консистентности.</li>
-            <li>Реализовал ряд веб‑продуктов компании помимо основной платформы.</li>
+            <li>Реализовал и поддерживал ключевые продуктовые модули платформы.</li>
           </ul>
           <p><strong>Результат:</strong> повысил целостность интерфейса и ускорил командную работу за счёт систематизации компонентов и повторно используемых решений.</p>
         </article>
@@ -893,8 +863,7 @@ const caseStudies = {
             <li>UX‑исследования и формулировка гипотез.</li>
             <li>Информационная архитектура и сценарии.</li>
             <li>UI‑система, паттерны и контроль визуального языка.</li>
-            <li>Разработка и поддержка сайта octoclick.com и смежных веб‑продуктов компании.</li>
-            <li>Упаковка визуальных материалов и интерфейсных сущностей для соцсетей и внешних коммуникаций.</li>
+            <li>Упаковка визуальных материалов и интерфейсных сущностей для внутренних и внешних коммуникаций.</li>
           </ul>
         </article>
 

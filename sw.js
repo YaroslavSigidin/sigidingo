@@ -1,4 +1,4 @@
-const CACHE_VERSION = "2026-02-14-2";
+const CACHE_VERSION = "2026-02-14-3";
 const STATIC_CACHE = `static-${CACHE_VERSION}`;
 const RUNTIME_CACHE = `runtime-${CACHE_VERSION}`;
 
@@ -7,7 +7,7 @@ const PRECACHE_URLS = [
   "/index.html",
   "/portfolio.html",
   "/assets/css/styles.css?v=20260214-1",
-  "/assets/js/main.js?v=20260214-2"
+  "/assets/js/main.js?v=20260214-3"
 ];
 
 self.addEventListener("install", event => {
