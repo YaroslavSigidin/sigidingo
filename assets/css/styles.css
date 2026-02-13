@@ -3766,7 +3766,7 @@ body[data-case="octoclick"] #caseMetrics li::before {
 }
 
 .case-metric-value.is-down {
-  color: #f39f9f;
+  color: #f3f5f7;
 }
 
 .case-metric-value.is-flat {
