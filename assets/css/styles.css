@@ -2613,6 +2613,13 @@ body[data-theme="dark"] .calculator-includes {
   gap: 28px;
 }
 
+@media (min-width: 981px) {
+  .about-cv-hero .lead {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
 
 .code-window .section-subtitle {
   letter-spacing: 0.32em;
