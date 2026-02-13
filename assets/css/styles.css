@@ -955,6 +955,32 @@ body:not([data-theme="dark"]) .mobile-toggle {
   border-color: transparent;
 }
 
+.case-cover-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: 0.16em;
+}
+
+.case-cover-link svg {
+  width: 14px;
+  height: 14px;
+  flex: 0 0 14px;
+  opacity: 0.9;
+}
+
+.case-cover-link-platform {
+  background: var(--text);
+  color: var(--bg);
+  border-color: var(--text);
+}
+
+body[data-theme="dark"] .case-cover-link-platform {
+  background: #f4f4f4;
+  color: #0b0b0b;
+  border-color: #f4f4f4;
+}
+
 body[data-theme="dark"] .button.primary {
   background: #f4f4f4;
   color: #0b0b0b;

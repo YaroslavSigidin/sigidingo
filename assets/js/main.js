@@ -1357,10 +1357,14 @@ const renderCaseStudy = () => {
 
   if (linksEl && data.links) {
     linksEl.innerHTML = data.links
-      .map(
-        link =>
-          `<a class="button" href="${link.url}" target="_blank" rel="noreferrer">${link.label}</a>`
-      )
+      .map(link => {
+        const isPanelLink = /panel\.octoclick\.com/i.test(String(link.url || ""));
+        const icon = isPanelLink
+          ? `<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 4h16v12H4zM8 20h8M12 16v4"/></svg>`
+          : `<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M14 3h7v7h-2V6.4l-9.3 9.3-1.4-1.4L17.6 5H14z"/><path fill="currentColor" d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2v-7h-2z"/></svg>`;
+        const classes = `button case-cover-link${isPanelLink ? " case-cover-link-platform" : ""}`;
+        return `<a class="${classes}" href="${link.url}" target="_blank" rel="noreferrer">${icon}<span>${link.label}</span></a>`;
+      })
       .join("");
   }
 
