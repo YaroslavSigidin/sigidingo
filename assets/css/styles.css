@@ -4287,16 +4287,16 @@ input[type=\"checkbox\"] {
   margin-bottom: 18px;
   border: 1px solid var(--border);
   background: #0b0b0b;
-  padding: 6px;
+  padding: 0;
 }
 
 .modal-cover img {
   width: 100%;
   height: auto;
   display: block;
-  object-fit: contain;
+  object-fit: cover;
   opacity: 0;
-  transform: scale(1.03);
+  transform: scale(1.08);
   transition: opacity 0.55s ease, transform 0.55s ease, filter 0.55s ease;
   filter: none;
 }
@@ -4304,7 +4304,7 @@ input[type=\"checkbox\"] {
 .modal.active .modal-cover img,
 .modal[aria-hidden="false"] .modal-cover img {
   opacity: 1;
-  transform: scale(1);
+  transform: scale(1.05);
 }
 
 body[data-theme="dark"] .modal-close {
@@ -4329,7 +4329,7 @@ body[data-theme="dark"] .modal-close {
   transform: translateY(18px) scale(0.98);
   filter: blur(12px);
   transition: opacity 0.6s ease, transform 0.6s ease, filter 0.6s ease;
-  padding: 8px;
+  padding: 0;
 }
 
 .modal.active .modal-gallery-card,
@@ -4343,8 +4343,9 @@ body[data-theme="dark"] .modal-close {
   width: 100%;
   height: auto;
   display: block;
-  transform: translateZ(0);
-  object-fit: contain;
+  transform: translateZ(0) scale(1.05);
+  transform-origin: center;
+  object-fit: cover;
   filter: none;
 }
 
