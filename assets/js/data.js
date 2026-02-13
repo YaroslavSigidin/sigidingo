@@ -253,9 +253,9 @@ const projects = [
   {
     id: "octoclick",
     title: "Octoclick",
-    subtitle: "",
+    subtitle: "AdTech платформа + многостраничный сайт",
     description:
-      "Редизайн рекламной платформы с фокусом на аналитике и управлении кампаниями. Собрал понятную структуру разделов, сильную иерархию данных и удобные фильтры для быстрого доступа к метрикам. Интерфейс рассчитан на работу с большими объёмами отчётности и частыми сценариями оптимизации.",
+      "Комплексный проект: редизайн рекламной платформы Octoclick и запуск отдельного многостраничного сайта компании. В продукте сфокусировался на сценариях аналитики и управления кампаниями, а в сайте — на понятной подаче ценности, структуре страниц под разные сегменты аудитории и стабильном переходе пользователей в панель.",
     timeline: [
       { title: "Q1: Аудит и гипотезы", period: "3 месяца" },
       { title: "Q2: IA и сценарии", period: "3 месяца" },
@@ -267,17 +267,20 @@ const projects = [
       endMonth: 11,
       label: "Январь — Декабрь 2025"
     },
-    technologies: ["Design System", "Data Visualization", "Role‑based UI", "Responsive grid"],
+    technologies: ["Design System", "Data Visualization", "Multi-page website", "Conversion UX"],
     tools: ["Figma", "FigJam", "Notion", "Jira"],
     metrics: [
-      "Сокращение времени анализа метрик",
-      "Уменьшение количества обращений в поддержку",
-      "Рост повторных запусков кампаний"
+      "CTR главной CTA «Перейти в платформу»: +43%",
+      "Конверсия перехода в панель: рост в 2.1 раза",
+      "Глубина просмотра сайта: +37%, отказов: −24%"
     ],
     category: "uxui",
     image: projectImageSets["octoclick"][0],
     gallery: projectImageSets["octoclick"].slice(1),
-    liveLinks: [{ label: "Сайт", url: "https://octoclick.com/ru" }],
+    liveLinks: [
+      { label: "платформу", url: "https://panel.octoclick.com" },
+      { label: "сайт", url: "https://octoclick.com/ru" }
+    ],
     caseKey: "octoclick"
   },
   {
