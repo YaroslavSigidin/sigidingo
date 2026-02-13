@@ -1640,6 +1640,161 @@ const initCounters = () => {
   });
 };
 
+const initAmbientAudio = () => {
+  const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+  if (!AudioContextClass) return;
+
+  const storageKey = "ambient-audio-enabled";
+  const saved = localStorage.getItem(storageKey);
+  let isEnabled = saved === null ? true : saved !== "false";
+
+  let ctx = null;
+  let master = null;
+  let lowPass = null;
+  let isReady = false;
+  let modTimer = null;
+
+  const button = document.createElement("button");
+  button.type = "button";
+  button.className = "ambient-audio-toggle";
+  button.setAttribute("aria-live", "polite");
+  button.innerHTML = `
+    <span class="ambient-audio-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24">
+        <path fill="currentColor" d="M14 3.2v17.6c0 .8-.9 1.3-1.6.8L7.5 18H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h3.5l4.9-3.6c.7-.5 1.6 0 1.6.8Z"/>
+        <path fill="currentColor" d="M17.8 8.2a1 1 0 0 1 1.4 0 5.4 5.4 0 0 1 0 7.6 1 1 0 1 1-1.4-1.4 3.4 3.4 0 0 0 0-4.8 1 1 0 0 1 0-1.4Z"/>
+      </svg>
+    </span>
+    <span class="ambient-audio-label">Ambient</span>
+  `;
+  document.body.appendChild(button);
+
+  const updateButton = () => {
+    button.classList.toggle("is-on", isEnabled);
+    button.setAttribute("aria-label", isEnabled ? "Выключить фоновую музыку" : "Включить фоновую музыку");
+    const label = button.querySelector(".ambient-audio-label");
+    if (label) label.textContent = isEnabled ? "Ambient on" : "Ambient off";
+  };
+
+  const rampTo = (target, seconds) => {
+    if (!ctx || !master) return;
+    const now = ctx.currentTime;
+    master.gain.cancelScheduledValues(now);
+    master.gain.setValueAtTime(master.gain.value, now);
+    master.gain.linearRampToValueAtTime(target, now + seconds);
+  };
+
+  const ensureGraph = () => {
+    if (isReady) return;
+    ctx = new AudioContextClass();
+    master = ctx.createGain();
+    master.gain.value = 0;
+    master.connect(ctx.destination);
+
+    lowPass = ctx.createBiquadFilter();
+    lowPass.type = "lowpass";
+    lowPass.frequency.value = 1400;
+    lowPass.Q.value = 0.6;
+    lowPass.connect(master);
+
+    const createPadVoice = (freq, type, gainValue, detune = 0) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = type;
+      osc.frequency.value = freq;
+      osc.detune.value = detune;
+      gain.gain.value = gainValue;
+      osc.connect(gain);
+      gain.connect(lowPass);
+      osc.start();
+      return { osc, gain };
+    };
+
+    createPadVoice(146.83, "sine", 0.045);
+    createPadVoice(220.0, "triangle", 0.028, -3);
+    createPadVoice(293.66, "sine", 0.019, 4);
+    createPadVoice(440.0, "triangle", 0.007, -5);
+
+    const lfo = ctx.createOscillator();
+    const lfoGain = ctx.createGain();
+    lfo.type = "sine";
+    lfo.frequency.value = 0.055;
+    lfoGain.gain.value = 220;
+    lfo.connect(lfoGain);
+    lfoGain.connect(lowPass.frequency);
+    lfo.start();
+
+    modTimer = window.setInterval(() => {
+      if (!ctx || !lowPass) return;
+      const now = ctx.currentTime;
+      const base = 1150 + Math.random() * 380;
+      lowPass.frequency.cancelScheduledValues(now);
+      lowPass.frequency.linearRampToValueAtTime(base, now + 4.2);
+    }, 4200);
+
+    isReady = true;
+  };
+
+  const stopAmbient = () => {
+    if (!ctx) return;
+    rampTo(0, 0.6);
+    window.setTimeout(() => {
+      if (ctx && ctx.state === "running") {
+        ctx.suspend().catch(() => {});
+      }
+    }, 650);
+  };
+
+  const startAmbient = async userGesture => {
+    if (!isEnabled) return false;
+    ensureGraph();
+
+    if (ctx.state !== "running") {
+      try {
+        await ctx.resume();
+      } catch (_err) {
+        if (!userGesture) return false;
+      }
+    }
+
+    if (ctx.state === "running") {
+      rampTo(0.038, 2.4);
+      return true;
+    }
+    return false;
+  };
+
+  const tryEnableFromInteraction = async () => {
+    if (!isEnabled) return;
+    await startAmbient(true);
+  };
+
+  const interactionEvents = ["pointerdown", "keydown", "touchstart"];
+  interactionEvents.forEach(evt => {
+    window.addEventListener(evt, tryEnableFromInteraction, { once: true, passive: true });
+  });
+
+  button.addEventListener("click", async () => {
+    isEnabled = !isEnabled;
+    localStorage.setItem(storageKey, String(isEnabled));
+    updateButton();
+    if (isEnabled) {
+      await startAmbient(true);
+      return;
+    }
+    stopAmbient();
+  });
+
+  updateButton();
+  if (isEnabled) {
+    startAmbient(false);
+  }
+
+  window.addEventListener("beforeunload", () => {
+    if (modTimer) window.clearInterval(modTimer);
+  });
+};
+
 document.addEventListener("DOMContentLoaded", () => {
   document.body.classList.add("page-enter");
   requestAnimationFrame(() => {
@@ -1650,6 +1805,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initNav();
   initServiceWorker();
   initThemeToggle();
+  initAmbientAudio();
   initMobilePortfolioDefault();
   qsa(".section-title, .section-subtitle, .hero-title, .case-hero h1").forEach(el => {
     el.classList.add("reveal");

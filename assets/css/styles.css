@@ -4659,8 +4659,72 @@ body.page-loaded .case-hero .container {
     align-items: flex-start;
   }
 
-  .modal-project .modal-content {
+.modal-project .modal-content {
     width: 100vw;
+  }
+}
+
+.ambient-audio-toggle {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  z-index: 260;
+  height: 42px;
+  padding: 0 14px 0 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(7, 9, 13, 0.82);
+  color: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.ambient-audio-toggle:hover {
+  background: rgba(255, 255, 255, 0.96);
+  color: #0b0f15;
+  border-color: rgba(255, 255, 255, 0.96);
+}
+
+.ambient-audio-toggle:active {
+  transform: translateY(1px) scale(0.99);
+}
+
+.ambient-audio-toggle.is-on {
+  border-color: rgba(255, 255, 255, 0.48);
+}
+
+.ambient-audio-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ambient-audio-icon svg {
+  width: 13px;
+  height: 13px;
+}
+
+.ambient-audio-label {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-family: "IBM Plex Mono", monospace;
+}
+
+@media (max-width: 720px) {
+  .ambient-audio-toggle {
+    left: 14px;
+    bottom: 14px;
+    height: 38px;
+    padding: 0 12px 0 9px;
   }
 }
 
