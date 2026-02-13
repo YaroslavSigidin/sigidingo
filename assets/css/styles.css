@@ -3681,9 +3681,9 @@ body[data-case="octoclick"] #caseMetrics li::before {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(120, 255, 233, 0.24);
-  background: rgba(15, 123, 108, 0.12);
-  color: #7cf4e3;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  background: rgba(255, 255, 255, 0.06);
+  color: #f3f5f7;
   flex-shrink: 0;
 }
 
@@ -3722,11 +3722,11 @@ body[data-case="octoclick"] #caseMetrics li::before {
 }
 
 .case-result-note {
-  border-left: 3px solid #0f7b6c;
-  background: rgba(15, 123, 108, 0.12);
+  border-left: 3px solid rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.06);
   border-radius: 8px;
   padding: 10px 12px;
-  color: #e8f9f4;
+  color: #f3f5f7;
 }
 
 .case-metric-grid {
@@ -3762,7 +3762,7 @@ body[data-case="octoclick"] #caseMetrics li::before {
 }
 
 .case-metric-value.is-up {
-  color: #61e8ba;
+  color: #f3f5f7;
 }
 
 .case-metric-value.is-down {
@@ -3791,7 +3791,7 @@ body[data-case="octoclick"] #caseMetrics li::before {
   display: block;
   height: 100%;
   border-radius: 999px;
-  background: linear-gradient(90deg, #0f7b6c, #37d6be);
+  background: linear-gradient(90deg, #dfe4ea, #ffffff);
 }
 
 .modal-metrics {
