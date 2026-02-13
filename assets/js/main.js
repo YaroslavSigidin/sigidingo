@@ -544,6 +544,138 @@ const buildModalStoryChapters = (project, caseData) => {
   ];
 };
 
+const escapeHtml = value =>
+  String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+
+const CASE_SECTION_ICONS = {
+  default:
+    '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 5h16v14H4zM7 8h10v2H7zm0 4h6v2H7z"/></svg>',
+  timeline:
+    '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm1 11h4v2h-6V7h2Z"/></svg>',
+  context:
+    '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3 2 8l10 5 8-4v6h2V8Zm-7 8v5l7 4 7-4v-5l-7 3Z"/></svg>',
+  process:
+    '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 6h8v4H3Zm10 0h8v4h-8ZM3 14h8v4H3Zm14 1h4v2h-4Zm-6 0h4v2h-4Z"/></svg>',
+  metrics:
+    '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 19h16v2H4Zm1-3 4-5 4 3 6-8 2 1-7 10-4-3-3 4Z"/></svg>',
+  team:
+    '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4Zm-7 9v-1a6 6 0 0 1 12 0v1Zm13-6a3 3 0 1 0-3-3 3 3 0 0 0 3 3Zm-1 1c-.4 0-.8.1-1.2.2A7 7 0 0 1 19 22h2v-1a5 5 0 0 0-5-5Z"/></svg>',
+  research:
+    '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M10 2a8 8 0 1 0 5 14.3l5.3 5.3 1.4-1.4-5.3-5.3A8 8 0 0 0 10 2Zm0 2a6 6 0 1 1-6 6 6 6 0 0 1 6-6Z"/></svg>'
+};
+
+const getCaseSectionKey = title => {
+  const value = String(title || "").toLowerCase();
+  if (/таймлайн|роль/.test(value)) return "timeline";
+  if (/описание|контекст|аудитория|рынок|конкурент|постановка|ограничен/.test(value)) return "context";
+  if (/процесс|функционал|визуализац|разработк/.test(value)) return "process";
+  if (/результ|метрик|показател/.test(value)) return "metrics";
+  if (/команда/.test(value)) return "team";
+  if (/исслед/.test(value)) return "research";
+  return "default";
+};
+
+const parseMetricCard = text => {
+  const clean = String(text || "").trim().replace(/\s+/g, " ");
+  const pair = clean.split(":");
+  const title = pair.length > 1 ? pair[0].trim() : clean;
+  const detail = pair.length > 1 ? pair.slice(1).join(":").trim() : "";
+  const trend = clean.match(/([+\-−]\s?\d+(?:[.,]\d+)?\s*%?)/);
+  const raw = trend ? trend[1].replace(/\s+/g, "") : "";
+  const numeric = Number(raw.replace("−", "-").replace("%", "").replace(",", "."));
+  const direction = raw.includes("-") || raw.includes("−") ? "down" : raw ? "up" : "flat";
+  const strength = Number.isFinite(numeric) ? Math.max(18, Math.min(100, Math.round(Math.abs(numeric)))) : 42;
+  return { title, detail, value: raw || "•", direction, strength };
+};
+
+const enhanceCaseDetails = detailsHost => {
+  if (!detailsHost) return;
+
+  qsa(".modal-case-card", detailsHost).forEach(card => {
+    const heading = qs("h4", card);
+    const headingText = heading ? heading.textContent.trim() : "";
+    const sectionKey = getCaseSectionKey(headingText);
+    card.classList.add(`case-card--${sectionKey}`);
+
+    if (heading && !qs(".case-card-head", card)) {
+      const head = document.createElement("div");
+      head.className = "case-card-head";
+      const icon = document.createElement("span");
+      icon.className = `case-card-icon case-card-icon--${sectionKey}`;
+      icon.innerHTML = CASE_SECTION_ICONS[sectionKey] || CASE_SECTION_ICONS.default;
+      heading.parentNode.insertBefore(head, heading);
+      head.append(icon, heading);
+    }
+
+    qsa("p", card).forEach(paragraph => {
+      if (/^Результат:/i.test(paragraph.textContent.trim())) {
+        paragraph.classList.add("case-result-note");
+      }
+    });
+
+    const labels = qsa("p.section-subtitle", card);
+    if (labels.length >= 2) {
+      const facts = [];
+      labels.forEach(label => {
+        const body = label.nextElementSibling;
+        if (body && body.tagName === "P") {
+          facts.push({ label, body });
+        }
+      });
+      if (facts.length >= 2) {
+        const grid = document.createElement("div");
+        grid.className = "case-fact-grid";
+        facts.forEach(item => {
+          const fact = document.createElement("article");
+          fact.className = "case-fact-item";
+          fact.innerHTML = `
+            <h6>${escapeHtml(item.label.textContent.trim())}</h6>
+            <p>${escapeHtml(item.body.textContent.trim())}</p>
+          `;
+          grid.appendChild(fact);
+        });
+        card.insertBefore(grid, facts[0].label);
+        facts.forEach(item => {
+          item.label.remove();
+          item.body.remove();
+        });
+      }
+    }
+
+    const list = qs("ul.case-list", card);
+    if (!list) return;
+    const items = qsa("li", list).map(li => li.textContent.trim()).filter(Boolean);
+    const metrics = items.filter(item => /[%+\-−]|nps|dau|time|ошиб|рост|сниж|увелич|уменьш|тикет|минут|конверс/i.test(item));
+    const isMetricsCard = /результ|метрик|показател/.test(headingText.toLowerCase());
+
+    if (!isMetricsCard || metrics.length < 3) return;
+
+    const metricGrid = document.createElement("div");
+    metricGrid.className = "case-metric-grid";
+    metrics.forEach(item => {
+      const metric = parseMetricCard(item);
+      const tile = document.createElement("article");
+      tile.className = "case-metric-item";
+      tile.innerHTML = `
+        <div class="case-metric-head">
+          <span class="case-metric-title">${escapeHtml(metric.title)}</span>
+          <span class="case-metric-value is-${metric.direction}">${escapeHtml(metric.value)}</span>
+        </div>
+        <p>${escapeHtml(metric.detail || item)}</p>
+        <span class="case-metric-spark"><i style="width:${metric.strength}%"></i></span>
+      `;
+      metricGrid.appendChild(tile);
+    });
+
+    list.replaceWith(metricGrid);
+  });
+};
+
 const openProjectModal = project => {
   if (!project) return;
   const modal = qs("#projectModal");
@@ -658,6 +790,7 @@ const openProjectModal = project => {
         }
       `;
       }
+      enhanceCaseDetails(detailsHost);
     }
   }
   const gallery = qs("#modalGallery");

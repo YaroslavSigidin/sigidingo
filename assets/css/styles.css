@@ -3628,7 +3628,7 @@ body[data-case="octoclick"] #caseMetrics li::before {
 .modal-case-card {
   border: 1px solid var(--border);
   border-radius: 14px;
-  padding: 14px 16px;
+  padding: 16px 18px;
   background: rgba(255, 255, 255, 0.02);
 }
 
@@ -3655,6 +3655,143 @@ body[data-case="octoclick"] #caseMetrics li::before {
 .modal-content p,
 .modal-content ul {
   color: var(--muted);
+}
+
+.modal-case-full .section-subtitle {
+  text-align: left;
+  letter-spacing: 0.18em;
+  margin: 12px 0 8px;
+}
+
+.case-card-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.case-card-head h4 {
+  margin: 0;
+}
+
+.case-card-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(120, 255, 233, 0.24);
+  background: rgba(15, 123, 108, 0.12);
+  color: #7cf4e3;
+  flex-shrink: 0;
+}
+
+.case-card-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.case-fact-grid {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.case-fact-item {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.015);
+  padding: 12px;
+}
+
+.case-fact-item h6 {
+  margin: 0 0 8px;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(230, 230, 230, 0.72);
+  font-family: "IBM Plex Mono", monospace;
+}
+
+.case-fact-item p {
+  margin: 0;
+  color: var(--text);
+  line-height: 1.55;
+}
+
+.case-result-note {
+  border-left: 3px solid #0f7b6c;
+  background: rgba(15, 123, 108, 0.12);
+  border-radius: 8px;
+  padding: 10px 12px;
+  color: #e8f9f4;
+}
+
+.case-metric-grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.case-metric-item {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.018);
+  padding: 12px;
+}
+
+.case-metric-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.case-metric-title {
+  font-size: 13px;
+  color: #f2f2f2;
+  font-weight: 600;
+}
+
+.case-metric-value {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+}
+
+.case-metric-value.is-up {
+  color: #61e8ba;
+}
+
+.case-metric-value.is-down {
+  color: #f39f9f;
+}
+
+.case-metric-value.is-flat {
+  color: #b7c0ca;
+}
+
+.case-metric-item p {
+  margin: 8px 0 10px;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.case-metric-spark {
+  display: block;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.case-metric-spark i {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #0f7b6c, #37d6be);
 }
 
 .modal-metrics {
