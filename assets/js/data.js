@@ -18,7 +18,12 @@ const projectImageSets = {
     "assets/images/платформы/Octoclick/NEW/Slide 16_9 - 23.jpg",
     "assets/images/платформы/Octoclick/NEW/Slide 16_9 - 24.jpg",
     "assets/images/платформы/Octoclick/NEW/Slide 16_9 - 26.jpg",
-    "assets/images/платформы/Octoclick/NEW/Slide 16_9 - 27.jpg"
+    "assets/images/платформы/Octoclick/NEW/Slide 16_9 - 27.jpg",
+    "assets/images/платформы/Octoclick/NEW/NEW2/Frame 2147223617.jpg",
+    "assets/images/платформы/Octoclick/NEW/NEW2/Frame 2147223618.jpg",
+    "assets/images/платформы/Octoclick/NEW/NEW2/Frame 2147223628.jpg",
+    "assets/images/платформы/Octoclick/NEW/NEW2/Frame 2147224059.jpg",
+    "assets/images/платформы/Octoclick/NEW/NEW2/Frame 2147224073.jpg"
   ),
   ai: locals(
     "assets/images/платформы/AI/HERO.png",
