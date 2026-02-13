@@ -1340,6 +1340,10 @@ body[data-theme="dark"] .button.primary {
   margin-top: 6px;
 }
 
+.about-cv-hero .about-actions {
+  justify-content: center;
+}
+
 .profile-card,
 .blog-info-card,
 .cv-card {
