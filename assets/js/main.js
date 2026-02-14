@@ -680,6 +680,7 @@ const openProjectModal = project => {
   if (!project) return;
   const modal = qs("#projectModal");
   if (!modal) return;
+  modal.dataset.case = project.caseKey || project.id || "";
   const scrollbar = window.innerWidth - document.documentElement.clientWidth;
   document.body.style.paddingRight = scrollbar ? `${scrollbar}px` : "";
   modal.classList.add("active");
@@ -865,6 +866,7 @@ const initModal = () => {
   close.addEventListener("click", () => {
     modal.classList.remove("active");
     modal.setAttribute("aria-hidden", "true");
+    modal.removeAttribute("data-case");
     document.body.classList.remove("modal-open");
     document.body.style.paddingRight = "";
   });
@@ -872,6 +874,7 @@ const initModal = () => {
     if (event.target === modal) {
       modal.classList.remove("active");
       modal.setAttribute("aria-hidden", "true");
+      modal.removeAttribute("data-case");
       document.body.classList.remove("modal-open");
       document.body.style.paddingRight = "";
     }
@@ -880,6 +883,7 @@ const initModal = () => {
     if (event.key === "Escape" && modal.classList.contains("active")) {
       modal.classList.remove("active");
       modal.setAttribute("aria-hidden", "true");
+      modal.removeAttribute("data-case");
       document.body.classList.remove("modal-open");
       document.body.style.paddingRight = "";
     }

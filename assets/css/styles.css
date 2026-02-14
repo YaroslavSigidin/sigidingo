@@ -3477,6 +3477,78 @@ body[data-case="octoclick"] #caseMetrics li::before {
     center / contain no-repeat;
 }
 
+body[data-case="visiflow"] {
+  --accent: #f1f4f7;
+  --accent-2: #cfd7e1;
+  --bg-grad-1: rgba(255, 255, 255, 0.1);
+  --bg-grad-2: rgba(207, 215, 225, 0.14);
+}
+
+body[data-theme="dark"][data-case="visiflow"] {
+  --bg-grad-1: rgba(255, 255, 255, 0.12);
+  --bg-grad-2: rgba(207, 215, 225, 0.16);
+}
+
+body[data-case="visiflow"] #caseMetrics {
+  list-style: none;
+  padding-left: 0;
+  display: grid;
+  gap: 12px;
+}
+
+body[data-case="visiflow"] #caseMetrics li {
+  position: relative;
+  margin: 0;
+  padding: 10px 14px 10px 44px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(207, 215, 225, 0.08));
+}
+
+body[data-case="visiflow"] #caseMetrics li::before {
+  content: "";
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  width: 18px;
+  height: 18px;
+  transform: translateY(-50%);
+  background: linear-gradient(135deg, #ffffff, #d7dfe8);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 19h16v2H2V3h2v16Zm2-3 4-5 3 3 5-7 1.6 1.2-6.4 8.8-3-3L7.6 17 6 16Z'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 19h16v2H2V3h2v16Zm2-3 4-5 3 3 5-7 1.6 1.2-6.4 8.8-3-3L7.6 17 6 16Z'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+}
+
+body[data-case="visiflow"] .subcase-highlight,
+#projectModal[data-case="visiflow"] .subcase-highlight {
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  background:
+    radial-gradient(120% 120% at 100% 0%, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0) 58%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.01));
+}
+
+body[data-case="visiflow"] .subcase-metrics li,
+#projectModal[data-case="visiflow"] .subcase-metrics li {
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+#projectModal[data-case="visiflow"] {
+  --accent: #f1f4f7;
+  --accent-2: #cfd7e1;
+}
+
+#projectModal[data-case="visiflow"] .modal-case-card {
+  border-color: rgba(255, 255, 255, 0.18);
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.018));
+}
+
+#projectModal[data-case="visiflow"] .case-card-icon {
+  border-color: rgba(255, 255, 255, 0.34);
+  background: rgba(255, 255, 255, 0.1);
+}
+
 .case-table {
   width: 100%;
   border-collapse: collapse;
