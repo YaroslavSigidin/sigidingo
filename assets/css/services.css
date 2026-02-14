@@ -5,8 +5,8 @@
   --muted: #a2acc3;
   --border: rgba(255, 255, 255, 0.14);
   --accent: #2f8cff;
-  --accent-2: #3dd59f;
-  --success: #30c48d;
+  --accent-2: #d7e0ea;
+  --success: #edf2f8;
   --danger: #ff5f7a;
   --radius: 16px;
   --shadow: 0 22px 48px rgba(0, 0, 0, 0.35);
@@ -22,7 +22,7 @@
   --font-sans: "Sora", "Segoe UI", sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   background: radial-gradient(60rem 30rem at 10% -10%, rgba(47, 140, 255, 0.2), transparent 60%),
-    radial-gradient(50rem 28rem at 90% -5%, rgba(61, 213, 159, 0.16), transparent 60%),
+    radial-gradient(50rem 28rem at 90% -5%, rgba(215, 224, 234, 0.16), transparent 60%),
     var(--bg);
   color: var(--text);
   font-family: var(--font-sans);
@@ -36,10 +36,10 @@
     --muted: #5d6a84;
     --border: rgba(18, 23, 38, 0.12);
     --accent: #1a6cff;
-    --accent-2: #0aa472;
+    --accent-2: #cfd8e3;
     --shadow: 0 14px 38px rgba(20, 31, 56, 0.14);
     background: radial-gradient(70rem 34rem at 10% -10%, rgba(26, 108, 255, 0.14), transparent 60%),
-      radial-gradient(55rem 28rem at 90% -8%, rgba(10, 164, 114, 0.12), transparent 60%),
+      radial-gradient(55rem 28rem at 90% -8%, rgba(207, 216, 227, 0.12), transparent 60%),
       var(--bg);
   }
 }

@@ -5,13 +5,13 @@
   --quiz-muted: #9badcf;
   --quiz-border: rgba(255, 255, 255, 0.14);
   --quiz-accent: #3d8cff;
-  --quiz-success: #2fc08c;
+  --quiz-success: #e9eef5;
   --quiz-danger: #ff637f;
   --quiz-warning: #f3b645;
   --quiz-radius: 16px;
   --quiz-shadow: 0 20px 44px rgba(0, 0, 0, 0.38);
   background: radial-gradient(60rem 30rem at 8% -8%, rgba(61, 140, 255, 0.16), transparent 58%),
-    radial-gradient(52rem 30rem at 92% -10%, rgba(47, 192, 140, 0.12), transparent 60%),
+    radial-gradient(52rem 30rem at 92% -10%, rgba(211, 220, 232, 0.12), transparent 60%),
     var(--quiz-bg);
 }
 

@@ -13,14 +13,14 @@
     </radialGradient>
 
     <radialGradient id="glowB-17" cx="0.92" cy="0.88" r="0.9">
-      <stop offset="0%" stop-color="#22C55E" stop-opacity="0.34"/>
-      <stop offset="100%" stop-color="#22C55E" stop-opacity="0"/>
+      <stop offset="0%" stop-color="#DDE5EE" stop-opacity="0.34"/>
+      <stop offset="100%" stop-color="#DDE5EE" stop-opacity="0"/>
     </radialGradient>
 
     <linearGradient id="accent-17" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0%" stop-color="#3B82F6" stop-opacity="0"/>
       <stop offset="35%" stop-color="#93C5FD" stop-opacity="0.95"/>
-      <stop offset="100%" stop-color="#22C55E" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#DDE5EE" stop-opacity="0"/>
     </linearGradient>
 
     <filter id="blur-17" x="-30%" y="-30%" width="160%" height="160%">
@@ -48,7 +48,7 @@
 
   <g transform="rotate(-2,800,450)" opacity="0.14">
     <rect x="-120" y="120" width="1900" height="76" fill="#3B82F6"/>
-    <rect x="-120" y="690" width="1900" height="76" fill="#22C55E"/>
+    <rect x="-120" y="690" width="1900" height="76" fill="#DDE5EE"/>
   </g>
 
   <rect x="82" y="96" width="1436" height="708" rx="38" fill="rgba(8,12,22,0.55)" stroke="rgba(255,255,255,0.14)"/>
@@ -62,7 +62,7 @@
       <circle cx="1204" cy="492" r="168" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1.4"/>
       <circle cx="1204" cy="492" r="126" fill="none" stroke="#93C5FD" stroke-width="2"/>
       <circle cx="1204" cy="492" r="86" fill="none" stroke="#3B82F6" stroke-width="1.6"/>
-      <circle cx="1204" cy="492" r="32" fill="#22C55E" fill-opacity="0.28"/>
+      <circle cx="1204" cy="492" r="32" fill="#DDE5EE" fill-opacity="0.28"/>
       <circle cx="1272" cy="434" r="24" fill="#3B82F6" fill-opacity="0.5" filter="url(#blur-17)"/>
     </g>
   </g>
@@ -82,7 +82,7 @@
     <rect x="132" y="530" width="420" height="10" rx="5" fill="#3B82F6"/>
 
     <rect x="132" y="562" width="380" height="10" rx="5" fill="rgba(255,255,255,0.12)"/>
-    <rect x="132" y="562" width="232" height="10" rx="5" fill="#22C55E"/>
+    <rect x="132" y="562" width="232" height="10" rx="5" fill="#DDE5EE"/>
   </g>
 
   <g transform="translate(1130,610)" filter="url(#inner-17)">

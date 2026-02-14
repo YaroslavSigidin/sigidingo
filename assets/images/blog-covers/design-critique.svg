@@ -13,14 +13,14 @@
     </radialGradient>
 
     <radialGradient id="glowB-10" cx="0.92" cy="0.88" r="0.9">
-      <stop offset="0%" stop-color="#A3E635" stop-opacity="0.34"/>
-      <stop offset="100%" stop-color="#A3E635" stop-opacity="0"/>
+      <stop offset="0%" stop-color="#E3EAF2" stop-opacity="0.34"/>
+      <stop offset="100%" stop-color="#E3EAF2" stop-opacity="0"/>
     </radialGradient>
 
     <linearGradient id="accent-10" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0%" stop-color="#22D3EE" stop-opacity="0"/>
-      <stop offset="35%" stop-color="#86EFAC" stop-opacity="0.95"/>
-      <stop offset="100%" stop-color="#A3E635" stop-opacity="0"/>
+      <stop offset="35%" stop-color="#FFFFFF" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#E3EAF2" stop-opacity="0"/>
     </linearGradient>
 
     <filter id="blur-10" x="-30%" y="-30%" width="160%" height="160%">
@@ -48,7 +48,7 @@
 
   <g transform="rotate(-10,800,450)" opacity="0.14">
     <rect x="-120" y="120" width="1900" height="76" fill="#22D3EE"/>
-    <rect x="-120" y="690" width="1900" height="76" fill="#A3E635"/>
+    <rect x="-120" y="690" width="1900" height="76" fill="#E3EAF2"/>
   </g>
 
   <rect x="82" y="96" width="1436" height="708" rx="38" fill="rgba(8,12,22,0.55)" stroke="rgba(255,255,255,0.14)"/>
@@ -60,9 +60,9 @@
 
     <g opacity="0.9">
       <circle cx="1248" cy="456" r="168" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1.4"/>
-      <circle cx="1248" cy="456" r="126" fill="none" stroke="#86EFAC" stroke-width="2"/>
+      <circle cx="1248" cy="456" r="126" fill="none" stroke="#FFFFFF" stroke-width="2"/>
       <circle cx="1248" cy="456" r="86" fill="none" stroke="#22D3EE" stroke-width="1.6"/>
-      <circle cx="1248" cy="456" r="32" fill="#A3E635" fill-opacity="0.28"/>
+      <circle cx="1248" cy="456" r="32" fill="#E3EAF2" fill-opacity="0.28"/>
       <circle cx="1316" cy="398" r="24" fill="#22D3EE" fill-opacity="0.5" filter="url(#blur-10)"/>
     </g>
   </g>
@@ -82,13 +82,13 @@
     <rect x="132" y="530" width="390" height="10" rx="5" fill="#22D3EE"/>
 
     <rect x="132" y="562" width="380" height="10" rx="5" fill="rgba(255,255,255,0.12)"/>
-    <rect x="132" y="562" width="188" height="10" rx="5" fill="#A3E635"/>
+    <rect x="132" y="562" width="188" height="10" rx="5" fill="#E3EAF2"/>
   </g>
 
   <g transform="translate(1130,610)" filter="url(#inner-10)">
     <rect x="0" y="0" width="330" height="136" rx="20" fill="rgba(7,11,20,0.5)" stroke="rgba(255,255,255,0.16)"/>
     <text x="26" y="42" font-family="Consolas, monospace" font-size="15" letter-spacing="2.5" fill="rgba(255,255,255,0.65)">READ TIME</text>
-    <text x="26" y="88" font-family="Sora, Arial, sans-serif" font-weight="600" font-size="34" fill="#86EFAC">8 min</text>
+    <text x="26" y="88" font-family="Sora, Arial, sans-serif" font-weight="600" font-size="34" fill="#FFFFFF">8 min</text>
     <line x1="168" y1="26" x2="168" y2="110" stroke="rgba(255,255,255,0.12)"/>
     <text x="190" y="42" font-family="Consolas, monospace" font-size="15" letter-spacing="2.5" fill="rgba(255,255,255,0.65)">TOPIC</text>
     <text x="190" y="88" font-family="Sora, Arial, sans-serif" font-weight="600" font-size="26" fill="rgba(255,255,255,0.94)">Design</text>
