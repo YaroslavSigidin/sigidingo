@@ -16,6 +16,8 @@
 .visual-stage {
   --mx: 0;
   --my: 0;
+  --cx: 50%;
+  --cy: 50%;
   position: relative;
   min-height: clamp(460px, 74vh, 720px);
   border-radius: 4px;
@@ -31,6 +33,22 @@
     linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
   background-size: 86px 86px;
   opacity: 0.4;
+}
+
+.visual-noise {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.2) 0.7px, transparent 0.7px);
+  background-size: 3px 3px;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+.visual-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(130% 90% at 50% 0%, transparent 44%, rgba(0, 0, 0, 0.5) 100%);
+  pointer-events: none;
 }
 
 .visual-glow {
@@ -63,6 +81,26 @@
   left: 36%;
   top: 40%;
   background: radial-gradient(circle at 45% 45%, rgba(255, 95, 14, 0.45), rgba(255, 95, 14, 0) 70%);
+}
+
+.visual-cursor-glow {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  left: calc(var(--cx) - 160px);
+  top: calc(var(--cy) - 160px);
+  background: radial-gradient(circle, rgba(255, 148, 36, 0.24), rgba(255, 148, 36, 0) 70%);
+  filter: blur(12px);
+  pointer-events: none;
+  transition: left 0.08s linear, top 0.08s linear;
+}
+
+.visual-frame {
+  position: absolute;
+  inset: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  pointer-events: none;
 }
 
 .visual-topline,
@@ -167,6 +205,74 @@
   grid-column: span 4;
 }
 
+.services-lab {
+  padding-top: 26px;
+}
+
+.service-lab-grid {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.service-lab-card {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  padding: 18px;
+  background:
+    linear-gradient(160deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01)),
+    #080808;
+  display: grid;
+  gap: 10px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.26);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.service-lab-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 146, 45, 0.45);
+  box-shadow: 0 20px 36px rgba(11, 8, 3, 0.45);
+}
+
+.service-lab-card h3 {
+  font-size: clamp(20px, 2vw, 25px);
+  line-height: 1.2;
+}
+
+.service-lab-card p {
+  color: color-mix(in srgb, var(--muted) 76%, #000);
+}
+
+.service-lab-card span {
+  margin-top: auto;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.03em;
+}
+
+.proof-grid-wrap {
+  padding-top: 24px;
+}
+
+.proof-grid {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.proof-grid article {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  padding: 18px;
+  background: #090909;
+}
+
+.proof-grid article p {
+  color: color-mix(in srgb, var(--muted) 76%, #000);
+}
+
 #contact .about-card {
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -189,6 +295,11 @@
   }
 
   .visual-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .service-lab-grid,
+  .proof-grid {
     grid-template-columns: 1fr;
   }
 

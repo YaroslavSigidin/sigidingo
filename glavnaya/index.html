@@ -36,8 +36,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Sora:wght@400;600;700&display=swap" />
     <link rel="preload" href="assets/css/styles.css?v=20260212-3" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     <noscript><link rel="stylesheet" href="assets/css/styles.css?v=20260212-3" /></noscript>
-    <link rel="preload" href="assets/css/glavnaya.css?v=20260223-4" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link rel="stylesheet" href="assets/css/glavnaya.css?v=20260223-4" /></noscript>
+    <link rel="preload" href="assets/css/glavnaya.css?v=20260223-5" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="assets/css/glavnaya.css?v=20260223-5" /></noscript>
     <link rel="manifest" href="site.webmanifest" />
     <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
     <link rel="shortcut icon" href="assets/images/favicon.svg" />
@@ -77,9 +77,13 @@
         <div class="container">
           <div class="visual-stage" id="visualStage" aria-label="Visual hero">
             <div class="visual-grid"></div>
+            <div class="visual-noise"></div>
+            <div class="visual-vignette"></div>
             <div class="visual-glow visual-glow-a"></div>
             <div class="visual-glow visual-glow-b"></div>
             <div class="visual-glow visual-glow-c"></div>
+            <div class="visual-cursor-glow"></div>
+            <div class="visual-frame"></div>
 
             <div class="visual-topline">
               <span>[ Home ]</span>
@@ -115,6 +119,66 @@
         </div>
       </section>
 
+      <section class="section services-lab">
+        <div class="container">
+          <p class="section-subtitle">Services</p>
+          <h2 class="section-title">Что я делаю для роста продукта</h2>
+          <div class="service-lab-grid" aria-label="Ключевые услуги">
+            <article class="service-lab-card">
+              <h3>UX-аудит воронки</h3>
+              <p>Находим места, где вы теряете пользователей, и даем дорожную карту быстрых улучшений.</p>
+              <span>от 45 000 ₽ · 2-7 дней</span>
+            </article>
+            <article class="service-lab-card">
+              <h3>Landing / Marketing Site</h3>
+              <p>Конструирую структуру и визуал, которые ведут к заявке без лишних экранов и шума.</p>
+              <span>от 120 000 ₽ · 2-4 недели</span>
+            </article>
+            <article class="service-lab-card">
+              <h3>Product UX/UI</h3>
+              <p>Проектирую сложные сценарии, роли и состояния для SaaS и B2B/B2C-продуктов.</p>
+              <span>от 220 000 ₽ · 4-10 недель</span>
+            </article>
+            <article class="service-lab-card">
+              <h3>Design System</h3>
+              <p>Собираю компоненты и правила, чтобы команда выпускала интерфейсы быстрее и стабильнее.</p>
+              <span>от 260 000 ₽ · 3-8 недель</span>
+            </article>
+            <article class="service-lab-card">
+              <h3>Mobile App UX/UI</h3>
+              <p>Делаю мобильные потоки короткими и понятными, с учетом реальных пользовательских контекстов.</p>
+              <span>от 170 000 ₽ · 3-7 недель</span>
+            </article>
+            <article class="service-lab-card">
+              <h3>Handoff + QA</h3>
+              <p>Сопровождаю внедрение в код, чтобы релиз соответствовал макетам и бизнес-целям.</p>
+              <span>от 60 000 ₽ · 1-4 недели</span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section proof-grid-wrap">
+        <div class="container">
+          <p class="section-subtitle">Why It Works</p>
+          <h2 class="section-title">Коммерческий дизайн-подход</h2>
+          <div class="proof-grid">
+            <article>
+              <h3>Конверсионная логика</h3>
+              <p>Каждый блок отвечает на вопрос пользователя и приближает к целевому действию.</p>
+            </article>
+            <article>
+              <h3>Скорость реализации</h3>
+              <p>Макеты и состояния подготовлены так, чтобы команда разработки двигалась без задержек.</p>
+            </article>
+            <article>
+              <h3>Прозрачный процесс</h3>
+              <p>Понятные этапы, сроки и стоимость. Без хаоса и бесконечных итераций.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <section class="section" id="contact">
         <div class="container about-grid contact-stack">
           <div class="about-card contact-card reveal is-visible">
@@ -129,6 +193,6 @@
     </main>
 
     <script src="assets/js/main.js?v=20260212-2" defer></script>
-    <script src="assets/js/glavnaya.js?v=20260223-3" defer></script>
+    <script src="assets/js/glavnaya.js?v=20260223-4" defer></script>
   </body>
 </html>
