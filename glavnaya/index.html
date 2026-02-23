@@ -37,8 +37,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Sora:wght@300;400;500;600;700&display=swap" />
     <link rel="preload" href="assets/css/styles.css?v=20260212-3" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     <noscript><link rel="stylesheet" href="assets/css/styles.css?v=20260212-3" /></noscript>
-    <link rel="preload" href="assets/css/glavnaya.css?v=20260223-2" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link rel="stylesheet" href="assets/css/glavnaya.css?v=20260223-2" /></noscript>
+    <link rel="preload" href="assets/css/glavnaya.css?v=20260223-3" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="assets/css/glavnaya.css?v=20260223-3" /></noscript>
     <link rel="manifest" href="site.webmanifest" />
     <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
     <link rel="shortcut icon" href="assets/images/favicon.svg" />
@@ -76,24 +76,41 @@
     <main>
       <section class="section hero-wow">
         <div class="container">
-          <div class="hero-poster">
-            <div class="hero-poster-top">
-              <span class="hero-poster-brand">sigidingo</span>
-              <span class="hero-poster-meta">UX/UI Services | Worldwide</span>
-              <a class="hero-poster-cta" href="https://t.me/sigidingo" target="_blank" rel="noreferrer">Register now</a>
+          <div class="hero-shell">
+            <div class="hero-topline">
+              <span class="hero-badge">SIGIDINGO / DESIGN PARTNER</span>
+              <span class="hero-meta">Product UX/UI · 2026</span>
+              <a class="hero-top-cta" href="https://t.me/sigidingo" target="_blank" rel="noreferrer">Start project</a>
             </div>
 
-            <div class="hero-poster-field" id="sphereStage" aria-hidden="true">
-              <div class="sphere-glow"></div>
-              <div class="sphere-core">
-                <span class="sphere-ring ring-a"></span>
-                <span class="sphere-ring ring-b"></span>
-                <span class="sphere-ring ring-c"></span>
-                <span class="sphere-shine"></span>
-                <span class="sphere-noise"></span>
-                <div class="sphere-copy">
-                  <h1>SIGIDINGO</h1>
-                  <p>Коммерческий дизайн<br />для роста заявок и продаж</p>
+            <div class="hero-layout">
+              <div class="hero-copy-col">
+                <p class="section-subtitle">Главная</p>
+                <h1 class="section-title">Делаю интерфейсы, которые растят прибыль, а не только лайки</h1>
+                <p class="hero-lead">Соединяю UX-логику, сильную визуальную систему и коммерческий сценарий, чтобы пользователь быстрее доходил до целевого действия.</p>
+                <div class="hero-actions">
+                  <a class="button accent" href="https://t.me/sigidingo" target="_blank" rel="noreferrer">Получить расчет</a>
+                  <a class="button" href="portfolio">Смотреть кейсы</a>
+                </div>
+                <div class="hero-kpi-strip">
+                  <span>Start: 1-3 дня</span>
+                  <span>Format: project / retainer</span>
+                  <span>Reply: до 24 часов</span>
+                </div>
+              </div>
+
+              <div class="hero-orb-col" id="sphereStage" aria-hidden="true">
+                <div class="sphere-glow"></div>
+                <div class="sphere-core">
+                  <span class="sphere-ring ring-a"></span>
+                  <span class="sphere-ring ring-b"></span>
+                  <span class="sphere-ring ring-c"></span>
+                  <span class="sphere-shine"></span>
+                  <span class="sphere-noise"></span>
+                  <div class="sphere-copy">
+                    <h2>UX/UI</h2>
+                    <p>High-conversion design</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -101,61 +118,61 @@
         </div>
       </section>
 
-      <section class="section">
+      <section class="section services-lab">
         <div class="container">
-          <p class="section-subtitle">Услуги</p>
-          <h2 class="section-title">Что я делаю для роста вашего продукта</h2>
-          <div class="glavnaya-service-grid" aria-label="Ключевые услуги">
-            <article class="glavnaya-service-card">
-              <h3>UX-аудит</h3>
-              <p>Нахожу точки потери конверсии и даю приоритетный план улучшений.</p>
-              <span>от 45 000 ₽ • 2-7 дней</span>
+          <p class="section-subtitle">Service Lab</p>
+          <h2 class="section-title">Выберите формат, который усилит ваш продукт уже в этом квартале</h2>
+          <div class="service-lab-grid" aria-label="Ключевые услуги">
+            <article class="service-lab-card" data-tilt-card>
+              <h3>UX-аудит воронки</h3>
+              <p>Находим места, где вы теряете пользователей, и даем дорожную карту быстрых улучшений.</p>
+              <span>от 45 000 ₽ · 2-7 дней</span>
             </article>
-            <article class="glavnaya-service-card">
-              <h3>Лендинг или сайт</h3>
-              <p>Проектирую страницу/сайт с понятной структурой и сильным оффером.</p>
-              <span>от 120 000 ₽ • 2-4 недели</span>
+            <article class="service-lab-card" data-tilt-card>
+              <h3>Landing / Marketing Site</h3>
+              <p>Конструирую структуру и визуал, которые ведут к заявке без лишних экранов и шума.</p>
+              <span>от 120 000 ₽ · 2-4 недели</span>
             </article>
-            <article class="glavnaya-service-card">
-              <h3>Продуктовый UX/UI</h3>
-              <p>Продумываю сложные сценарии, состояния и интерфейсы для digital-продуктов.</p>
-              <span>от 220 000 ₽ • 4-10 недель</span>
+            <article class="service-lab-card" data-tilt-card>
+              <h3>Product UX/UI</h3>
+              <p>Проектирую сложные сценарии, роли и состояния для SaaS и B2B/B2C-продуктов.</p>
+              <span>от 220 000 ₽ · 4-10 недель</span>
             </article>
-            <article class="glavnaya-service-card">
-              <h3>Дизайн-система</h3>
-              <p>Собираю компоненты и правила, чтобы команда работала быстрее и стабильнее.</p>
-              <span>от 260 000 ₽ • 3-8 недель</span>
+            <article class="service-lab-card" data-tilt-card>
+              <h3>Design System</h3>
+              <p>Собираю компоненты и правила, чтобы команда выпускала интерфейсы быстрее и стабильнее.</p>
+              <span>от 260 000 ₽ · 3-8 недель</span>
             </article>
-            <article class="glavnaya-service-card">
-              <h3>Мобильный интерфейс</h3>
-              <p>Создаю UX/UI мобильных приложений под реальные задачи пользователей.</p>
-              <span>от 170 000 ₽ • 3-7 недель</span>
+            <article class="service-lab-card" data-tilt-card>
+              <h3>Mobile App UX/UI</h3>
+              <p>Делаю мобильные потоки короткими и понятными, с учетом реальных пользовательских контекстов.</p>
+              <span>от 170 000 ₽ · 3-7 недель</span>
             </article>
-            <article class="glavnaya-service-card">
-              <h3>Handoff и контроль внедрения</h3>
-              <p>Сопровождаю реализацию дизайна в коде до финального релиза.</p>
-              <span>от 60 000 ₽ • 1-4 недели</span>
+            <article class="service-lab-card" data-tilt-card>
+              <h3>Handoff + QA</h3>
+              <p>Сопровождаю внедрение в код, чтобы релиз соответствовал макетам и бизнес-целям.</p>
+              <span>от 60 000 ₽ · 1-4 недели</span>
             </article>
           </div>
         </div>
       </section>
 
-      <section class="section glavnaya-proof">
+      <section class="section proof-grid-wrap">
         <div class="container">
-          <p class="section-subtitle">Почему со мной удобно</p>
-          <h2 class="section-title">Коммерческий подход, а не просто красивые макеты</h2>
-          <div class="glavnaya-proof-grid">
+          <p class="section-subtitle">Почему это работает</p>
+          <h2 class="section-title">Коммерческий дизайн-мышление в каждом шаге</h2>
+          <div class="proof-grid">
             <article>
-              <h3>Фокус на результате</h3>
-              <p>Каждое решение привязано к метрике: заявка, активация, удержание, скорость выполнения сценария.</p>
+              <h3>Конверсионная логика</h3>
+              <p>Каждый блок отвечает на вопрос пользователя и приближает к действию: заявка, покупка, демо.</p>
             </article>
             <article>
-              <h3>Прозрачный процесс</h3>
-              <p>Этапы, сроки, зоны ответственности и стоимость фиксируем заранее без размытых формулировок.</p>
+              <h3>Скорость реализации</h3>
+              <p>Макеты готовы к handoff: состояния, комментарии и приоритеты сразу под разработку.</p>
             </article>
             <article>
-              <h3>Быстрая коммуникация</h3>
-              <p>Работаю в одном контуре с продуктом и разработкой, чтобы не терять темп запуска.</p>
+              <h3>Прозрачное управление</h3>
+              <p>Понятные этапы, сроки и стоимость. Без расплывчатых обещаний и «вечных правок».</p>
             </article>
           </div>
         </div>
@@ -182,6 +199,6 @@
     </main>
 
     <script src="assets/js/main.js?v=20260212-2" defer></script>
-    <script src="assets/js/glavnaya.js?v=20260223-1" defer></script>
+    <script src="assets/js/glavnaya.js?v=20260223-2" defer></script>
   </body>
 </html>
