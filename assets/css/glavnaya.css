@@ -23,7 +23,10 @@
   border-radius: 4px;
   border: 1px solid rgba(255, 255, 255, 0.14);
   overflow: hidden;
-  background: #050505;
+  background:
+    radial-gradient(120% 80% at 18% 82%, rgba(255, 122, 16, 0.11), transparent 58%),
+    radial-gradient(90% 70% at 78% 54%, rgba(255, 84, 0, 0.08), transparent 62%),
+    #050505;
 }
 
 .visual-grid {
@@ -40,14 +43,16 @@
   inset: 0;
   background-image: radial-gradient(rgba(255, 255, 255, 0.2) 0.7px, transparent 0.7px);
   background-size: 3px 3px;
-  opacity: 0.1;
+  opacity: 0.12;
   pointer-events: none;
 }
 
 .visual-vignette {
   position: absolute;
   inset: 0;
-  background: radial-gradient(130% 90% at 50% 0%, transparent 44%, rgba(0, 0, 0, 0.5) 100%);
+  background:
+    radial-gradient(130% 90% at 50% 0%, transparent 44%, rgba(0, 0, 0, 0.56) 100%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.2));
   pointer-events: none;
 }
 
@@ -61,26 +66,26 @@
 
 .visual-glow-a {
   width: min(88vw, 980px);
-  height: min(50vw, 540px);
-  left: -10%;
-  bottom: -24%;
-  background: radial-gradient(circle at 56% 48%, rgba(255, 125, 20, 0.97), rgba(238, 70, 10, 0.78) 42%, rgba(16, 6, 3, 0.08) 78%);
+  height: min(54vw, 560px);
+  left: -8%;
+  bottom: -30%;
+  background: radial-gradient(circle at 52% 50%, rgba(255, 126, 22, 0.98), rgba(238, 74, 10, 0.8) 40%, rgba(16, 6, 3, 0.08) 80%);
 }
 
 .visual-glow-b {
-  width: min(74vw, 760px);
-  height: min(42vw, 430px);
-  right: -14%;
-  top: 24%;
-  background: radial-gradient(circle at 44% 52%, rgba(255, 122, 12, 0.9), rgba(174, 35, 7, 0.74) 48%, rgba(10, 3, 2, 0.07) 80%);
+  width: min(76vw, 790px);
+  height: min(46vw, 470px);
+  right: -12%;
+  top: 20%;
+  background: radial-gradient(circle at 42% 52%, rgba(255, 130, 14, 0.9), rgba(175, 38, 8, 0.72) 50%, rgba(10, 3, 2, 0.06) 82%);
 }
 
 .visual-glow-c {
   width: min(60vw, 580px);
   height: min(30vw, 300px);
-  left: 36%;
-  top: 40%;
-  background: radial-gradient(circle at 45% 45%, rgba(255, 95, 14, 0.45), rgba(255, 95, 14, 0) 70%);
+  left: 35%;
+  top: 43%;
+  background: radial-gradient(circle at 45% 45%, rgba(255, 103, 16, 0.42), rgba(255, 95, 14, 0) 70%);
 }
 
 .visual-cursor-glow {
@@ -90,8 +95,8 @@
   border-radius: 50%;
   left: calc(var(--cx) - 160px);
   top: calc(var(--cy) - 160px);
-  background: radial-gradient(circle, rgba(255, 148, 36, 0.24), rgba(255, 148, 36, 0) 70%);
-  filter: blur(12px);
+  background: radial-gradient(circle, rgba(255, 156, 50, 0.26), rgba(255, 148, 36, 0) 72%);
+  filter: blur(10px);
   pointer-events: none;
   transition: left 0.08s linear, top 0.08s linear;
 }
@@ -100,6 +105,15 @@
   position: absolute;
   inset: 12px;
   border: 1px solid rgba(255, 255, 255, 0.18);
+  pointer-events: none;
+}
+
+.visual-reflection {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(108deg, transparent 44%, rgba(255, 255, 255, 0.06) 50%, transparent 56%);
+  transform: translateX(-120%);
+  animation: hero-sweep 7.6s ease-in-out infinite;
   pointer-events: none;
 }
 
@@ -139,13 +153,29 @@
 .visual-word {
   font-family: "Sora", sans-serif;
   font-weight: 700;
-  font-size: clamp(54px, 13.4vw, 200px);
-  line-height: 0.9;
+  font-size: clamp(54px, 13vw, 196px);
+  line-height: 0.88;
   letter-spacing: -0.04em;
   color: #f2f2ef;
-  transform: translate3d(calc(var(--mx) * 5px), calc(var(--my) * 4px), 0);
+  text-shadow:
+    0 14px 38px rgba(0, 0, 0, 0.5),
+    0 2px 0 rgba(255, 255, 255, 0.04);
+}
+
+.visual-word-main {
+  position: relative;
+  z-index: 2;
+  transform: translate3d(calc(var(--mx) * 5px), calc(var(--my) * 3px), 0);
   transition: transform 0.16s ease-out;
-  text-shadow: 0 8px 24px rgba(0, 0, 0, 0.34);
+}
+
+.visual-word-ghost {
+  position: absolute;
+  z-index: 1;
+  color: rgba(255, 144, 44, 0.46);
+  filter: blur(10px);
+  transform: translate3d(calc(var(--mx) * 11px), calc(var(--my) * 8px), 0);
+  transition: transform 0.18s ease-out;
 }
 
 .visual-grid-block {
@@ -282,6 +312,24 @@
   justify-content: center;
 }
 
+@keyframes hero-sweep {
+  0% {
+    transform: translateX(-120%);
+    opacity: 0;
+  }
+  22% {
+    opacity: 1;
+  }
+  52% {
+    transform: translateX(120%);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+}
+
 @media (max-width: 900px) {
   .visual-stage {
     min-height: 480px;
@@ -318,8 +366,10 @@
 @media (prefers-reduced-motion: reduce) {
   .visual-glow,
   .visual-word,
+  .visual-reflection,
   .visual-card::before {
     transition: none;
     transform: none;
+    animation: none;
   }
 }
