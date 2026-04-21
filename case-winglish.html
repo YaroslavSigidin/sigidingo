@@ -34,8 +34,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Sora:wght@300;400;500;600;700&display=swap" />
-    <link rel="preload" href="assets/css/styles.css?v=20260411-remove-third-block" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link rel="stylesheet" href="assets/css/styles.css?v=20260411-remove-third-block" /></noscript>
+    <link rel="preload" href="assets/css/styles.css?v=20260414-case-content-visibility" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="assets/css/styles.css?v=20260414-case-content-visibility" /></noscript>
 <link rel="manifest" href="site.webmanifest" />
     <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
     <link rel="shortcut icon" href="assets/images/favicon.svg" />
@@ -73,7 +73,7 @@
     <noscript><div><img decoding="async" loading="eager" height="1" width="1" src="https://mc.yandex.ru/watch/106779298" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <!-- /Yandex.Metrika counter -->
   </head>
-  <body data-case="winglish" data-theme="dark">
+  <body data-case="winglish" data-theme="dark" class="case-study-unified">
         <header>
       <div class="container nav">
         <a class="logo" href="/">SIGIDINGO</a>
@@ -111,47 +111,100 @@
       <span>WINGLISH</span>
     </nav>
 
-    <section class="case-hero">
-      <div class="container reveal">
-        <p class="case-meta" data-i18n="case-meta">Основные проекты</p>
-        <h1 id="caseTitle">WINGLISH</h1>
-        <p id="caseSubtitle"></p>
-        <div class="tag-list" id="caseTags"></div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container case-grid">
-        <div class="reveal">
-          <p class="section-subtitle">Задача</p>
-          <h2 class="section-title">Что нужно было сделать</h2>
-          <p id="caseTask"></p>
+    <main id="case-main">
+      <section class="section case-section-lead">
+        <div class="container case-grid">
+          <div class="reveal case-hero-inner case-hero-embedded">
+            <h1 id="caseTitle">WINGLISH</h1>
+            <p class="case-hero-subtitle" id="caseSubtitle"></p>
+            <div class="tag-list" id="caseTags"></div>
+            <div class="case-links-row" id="caseLinks"></div>
+          </div>
+          <div class="reveal">
+            <p class="section-subtitle">Задача</p>
+            <h2 class="section-title">Цель</h2>
+            <p id="caseTask"></p>
+          </div>
+          <div class="reveal">
+            <p class="section-subtitle">Что сделано</p>
+            <h2 class="section-title">Решение</h2>
+            <ul class="case-list" id="caseWhatDone"></ul>
+            <div class="case-results-embed">
+              <p class="section-subtitle case-results-eyebrow">Метрики</p>
+              <h2 class="section-title case-results-title">Результаты</h2>
+              <div class="case-results-grid" id="caseResultsCards"></div>
+              <div class="case-gantt-embed" id="caseGanttSection">
+                <p class="section-subtitle case-gantt-eyebrow">Сроки</p>
+                <div class="case-gantt-embed-header">
+                  <h2 class="section-title case-gantt-embed-title">Таймлайн</h2>
+                  <div class="case-gantt-general-dates" id="caseGanttGeneralDates"></div>
+                </div>
+                <div class="case-gantt" id="caseGantt"></div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="reveal">
-          <p class="section-subtitle">Что сделано</p>
-          <h2 class="section-title">Решения и процесс</h2>
-          <ul class="case-list" id="caseWhatDone"></ul>
+      </section>
+
+      <section class="section case-section-deep" id="caseDeepSection">
+        <div class="container reveal">
+          <p class="section-subtitle">Детали</p>
+          <h2 class="section-title">Подробнее о проекте</h2>
+          <div id="caseStoryEmbed" class="case-story-embed"></div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="section">
-      <div class="container reveal">
-        <p class="section-subtitle">Метрики</p>
-        <h2 class="section-title">Результаты</h2>
-        <ul class="case-list" id="caseMetrics"></ul>
-      </div>
-    </section>
+      <section class="section case-section-gallery" id="caseGallerySection">
+        <div class="container reveal">
+          <p class="section-subtitle">Галерея</p>
+          <h2 class="section-title">Экраны</h2>
+          <div class="gallery" id="caseGallery"></div>
+        </div>
+      </section>
 
-    <section class="section">
-      <div class="container reveal">
-        <p class="section-subtitle">Галерея</p>
-        <h2 class="section-title">Screens</h2>
-        <div class="gallery" id="caseGallery"></div>
-      </div>
-    </section>
+      <section class="section case-more-cases" aria-labelledby="case-more-cases-title">
+        <div class="container reveal">
+          <p class="section-subtitle">Портфолио</p>
+          <h2 class="section-title" id="case-more-cases-title">Другие кейсы</h2>
+          <div class="projects-grid case-more-cases-grid">
+            <a class="project-card reveal case-more-case-card" href="/case-octoclick" aria-label="Octoclick — открыть кейс">
+              <img src="assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/Octoclick/%D0%9E%D0%91%D0%9B%D0%9E%D0%96%D0%9A%D0%90.jpg" srcset="assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/Octoclick/%D0%9E%D0%91%D0%9B%D0%9E%D0%96%D0%9A%D0%90-640.jpg 640w, assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/Octoclick/%D0%9E%D0%91%D0%9B%D0%9E%D0%96%D0%9A%D0%90-960.jpg 960w, assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/Octoclick/%D0%9E%D0%91%D0%9B%D0%9E%D0%96%D0%9A%D0%90.jpg 1200w" sizes="(max-width: 640px) 92vw, 44vw" alt="" loading="lazy" decoding="async" width="1200" height="630" />
+              <div class="content">
+                <span class="tag">UX/UI</span>
+                <h3>Octoclick</h3>
+                <p>AdTech — аналитика и управление кампаниями</p>
+              </div>
+            </a>
+            <a class="project-card reveal case-more-case-card" href="/case-visiflow" aria-label="VISI FLOW — открыть кейс">
+              <img src="assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/visiflow/HERO.jpg" srcset="assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/visiflow/HERO-640.jpg 640w, assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/visiflow/HERO-960.jpg 960w, assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/visiflow/HERO.jpg 1200w" sizes="(max-width: 640px) 92vw, 44vw" alt="" loading="lazy" decoding="async" width="1200" height="630" />
+              <div class="content">
+                <span class="tag">UX/UI</span>
+                <h3>VISI FLOW</h3>
+                <p>AI‑конвертация строительных проектных документов</p>
+              </div>
+            </a>
+            <a class="project-card reveal case-more-case-card" href="/case-mirox" aria-label="MIROX — открыть кейс">
+              <img src="assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/MIROX%201/%D0%9E%D0%91%D0%9B%D0%9E%D0%96%D0%9A%D0%90.jpg" srcset="assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/MIROX%201/%D0%9E%D0%91%D0%9B%D0%9E%D0%96%D0%9A%D0%90-640.jpg 640w, assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/MIROX%201/%D0%9E%D0%91%D0%9B%D0%9E%D0%96%D0%9A%D0%90-960.jpg 960w, assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/MIROX%201/%D0%9E%D0%91%D0%9B%D0%9E%D0%96%D0%9A%D0%90.jpg 1200w" sizes="(max-width: 640px) 92vw, 44vw" alt="" loading="lazy" decoding="async" width="1200" height="630" />
+              <div class="content">
+                <span class="tag">UX/UI</span>
+                <h3>MIROX</h3>
+                <p>SaaS для брендов и креаторов</p>
+              </div>
+            </a>
+            <a class="project-card reveal case-more-case-card" href="/case-ai" aria-label="AI — открыть кейс">
+              <img src="assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/AI/HERO.png" srcset="assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/AI/HERO-640.png 640w, assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/AI/HERO-960.png 960w, assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/AI/HERO.png 1200w" sizes="(max-width: 640px) 92vw, 44vw" alt="" loading="lazy" decoding="async" width="1200" height="630" />
+              <div class="content">
+                <span class="tag">UX/UI</span>
+                <h3>AI</h3>
+                <p>Консоль AI‑ассистента для запросов</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
 
-    <footer class="footer">
+<footer class="footer">
       <div class="container footer-grid">
         <div>
           <p class="section-subtitle" data-i18n="footer-mail">Mail</p>
@@ -171,6 +224,12 @@
         </div>
       </div>
     </footer>
-<script src="assets/js/main.js?v=20260411-octoclick-page" defer></script>
-  </body>
+
+    <div class="lightbox" id="lightbox">
+      <button class="prev" data-lightbox-prev>‹</button>
+      <img height="675" width="1200" decoding="async" loading="lazy" src="" alt="" />
+      <button class="next" data-lightbox-next>›</button>
+    </div>
+<script src="assets/js/main.js?v=20260414-case-cover-oneblock" defer></script>
+</body>
 </html>
