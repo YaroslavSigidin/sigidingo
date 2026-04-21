@@ -2,7 +2,7 @@ const qs = (sel, scope = document) => scope.querySelector(sel);
 const qsa = (sel, scope = document) => Array.from(scope.querySelectorAll(sel));
 const FALLBACK_COVER = "assets/images/HERO/PROFI.jpg";
 const SERVICE_WORKER_PATH = "/sw.js";
-const DATA_BUNDLE = "assets/js/data.js?v=20260422-ermitage";
+const DATA_BUNDLE = "assets/js/data.js?v=20260422-eager-inline";
 let dataHydrated = false;
 let dataBundlePromise = null;
 const RESPONSIVE_IMAGES = new Set([
@@ -2282,7 +2282,9 @@ const injectCaseStudyFiguresAfterCards = (storyRoot, imageSrcs, caseTitle) => {
       img.src = src;
       img.alt = `${caseTitle} · экран ${screenIndex}`;
       screenIndex += 1;
-      img.loading = "lazy";
+      // eager, иначе lazy + content-visibility:auto приводят к тому,
+      // что фото ниже 3-4 блока никогда не попадают во viewport и не грузятся.
+      img.loading = "eager";
       img.decoding = "async";
       fig.appendChild(img);
       bindImageFallback(img);
