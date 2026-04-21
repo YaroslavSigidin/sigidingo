@@ -6,20 +6,20 @@
   const toastRegion = qs("#toastRegion");
   const openers = new Map();
   const servicesData = [
-    { id: "audit", title: "UX‑аудит интерфейса", goals: ["Конверсия", "Редизайн без риска", "Скорость запуска"], priceFrom: 45000, format: "2–7 дней" },
-    { id: "landing", title: "Конверсионный лендинг / сайт", goals: ["Конверсия", "SEO-готовность", "Скорость запуска"], priceFrom: 120000, format: "2–4 недели" },
-    { id: "marketing-site", title: "Многостраничный маркетинг‑сайт", goals: ["SEO-готовность", "Конверсия", "Скорость запуска"], priceFrom: 180000, format: "3–6 недель" },
-    { id: "product-ui", title: "Дизайн web/app продукта", goals: ["Сложный B2B", "Редизайн без риска", "Скорость запуска"], priceFrom: 220000, format: "4–10 недель" },
-    { id: "ux-flows", title: "UX‑потоки и прототипирование", goals: ["Сложный B2B", "Скорость запуска", "Редизайн без риска"], priceFrom: 90000, format: "1–3 недели" },
-    { id: "design-system", title: "Дизайн‑система / UI‑кит", goals: ["Дизайн-система", "Скорость запуска", "Сложный B2B"], priceFrom: 260000, format: "3–8 недель" },
-    { id: "retainer", title: "Поддержка команды (Retainer)", goals: ["Скорость запуска", "Редизайн без риска", "Сложный B2B"], priceFrom: 160000, format: "ежемесячно" },
-    { id: "consulting", title: "UX‑консалтинг и ревью", goals: ["Редизайн без риска", "Скорость запуска", "Конверсия"], priceFrom: 12000, format: "почасовой" }
+    { id: "audit", title: "UX‑аудит интерфейса", goals: ["Конверсия", "Редизайн без риска", "Скорость запуска"], priceFrom: 0, format: "2–7 дней" },
+    { id: "landing", title: "Конверсионный лендинг / сайт", goals: ["Конверсия", "SEO-готовность", "Скорость запуска"], priceFrom: 48000, format: "2–4 недели" },
+    { id: "marketing-site", title: "Многостраничный маркетинг‑сайт", goals: ["SEO-готовность", "Конверсия", "Скорость запуска"], priceFrom: 72000, format: "3–6 недель" },
+    { id: "product-ui", title: "Дизайн web/app продукта", goals: ["Сложный B2B", "Редизайн без риска", "Скорость запуска"], priceFrom: 88000, format: "4–10 недель" },
+    { id: "ux-flows", title: "UX‑потоки и прототипирование", goals: ["Сложный B2B", "Скорость запуска", "Редизайн без риска"], priceFrom: 36000, format: "1–3 недели" },
+    { id: "design-system", title: "Дизайн‑система / UI‑кит", goals: ["Дизайн-система", "Скорость запуска", "Сложный B2B"], priceFrom: 104000, format: "3–8 недель" },
+    { id: "retainer", title: "Поддержка команды (Retainer)", goals: ["Скорость запуска", "Редизайн без риска", "Сложный B2B"], priceFrom: 64000, format: "ежемесячно" },
+    { id: "consulting", title: "UX‑консалтинг и ревью", goals: ["Редизайн без риска", "Скорость запуска", "Конверсия"], priceFrom: 4800, format: "почасовой" }
   ];
   const packagesData = [
-    { id: "start", name: "Start · Audit & Plan", price: "от 45 000 ₽" },
-    { id: "growth", name: "Growth · Design Sprint", price: "от 120 000 ₽" },
-    { id: "scale", name: "Scale · Product UI", price: "от 220 000 ₽" },
-    { id: "retainer", name: "Retainer · Design Partner", price: "от 160 000 ₽/мес" }
+    { id: "start", name: "Start · Audit & Plan", price: "бесплатно" },
+    { id: "growth", name: "Growth · Design Sprint", price: "от 48 000 ₽" },
+    { id: "scale", name: "Scale · Product UI", price: "от 88 000 ₽" },
+    { id: "retainer", name: "Retainer · Design Partner", price: "от 64 000 ₽/мес" }
   ];
   const casesData = [
     { id: "saas", title: "SaaS‑кабинет: отчётность и сценарии", note: "пример — замените на реальные" },

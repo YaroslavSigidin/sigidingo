@@ -35,8 +35,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Sora:wght@300;400;500;600;700&display=swap" />
-    <link rel="preload" href="assets/css/styles.css?v=20260214-4" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link rel="stylesheet" href="assets/css/styles.css?v=20260214-4" /></noscript>
+    <link rel="stylesheet" href="assets/css/styles.css?v=20260411-grid-gap-5" />
 <link rel="manifest" href="site.webmanifest" />
     <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
     <link rel="shortcut icon" href="assets/images/favicon.svg" />
@@ -75,18 +74,14 @@
     <!-- /Yandex.Metrika counter -->
   </head>
   <body data-theme="dark">
-    <header>
+        <header>
       <div class="container nav">
         <a class="logo" href="/">SIGIDINGO</a>
         <nav class="nav-links" id="navLinks">
-          <a href="glavnaya" class="nav-link">Главная</a>
-          <a href="portfolio" class="nav-link">Portfolio</a>
-          <a href="services" class="nav-link">Price</a>
-          <a href="about" class="nav-link">About / CV</a>
-                              <a href="/#contact" class="nav-link">Contact</a>
-          <a href="blog" class="nav-link">Blog</a>
-          <a href="tests" class="nav-link">Tests</a>
-          <a href="game" class="nav-link">Game</a>
+          <a href="/" class="nav-link">Главная</a>
+          <a href="/portfolio" class="nav-link">Портфолио</a>
+          <a href="/about" class="nav-link">Обо мне / CV</a>
+          <a href="/blog" class="nav-link">Блог</a>
         </nav>
         <div class="nav-tools">
           <a class="nav-telegram" href="https://t.me/sigidingo" target="_blank" rel="noreferrer">
@@ -97,19 +92,19 @@
             </span>
             Telegram
           </a>
-          <button class="theme-switch" data-theme-toggle type="button" aria-label="Toggle theme">
+          <button class="theme-switch" data-theme-toggle type="button" aria-label="Переключить тему">
             <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
               <path fill="currentColor" d="M12.3 2.2c-3.6.3-6.5 3.4-6.5 7.1 0 3.9 3.2 7.1 7.1 7.1 2.4 0 4.5-1.1 5.8-2.9-4.3.7-7.9-2.8-6.4-6.9z"/>
             </svg>
             <span class="track"><span class="thumb"></span></span>
           </button>
         </div>
-        <button class="mobile-toggle" id="mobileToggle" type="button" aria-label="Open menu" aria-controls="navLinks" aria-expanded="false"><span></span><span></span><span></span></button>
+        <button class="mobile-toggle" id="mobileToggle" type="button" aria-label="Открыть меню" aria-controls="navLinks" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
     </header>
 
     <main>
-      <section class="section">
+      <section class="section" id="portfolio">
         <div class="container">
           <p class="section-subtitle" data-i18n="portfolio-sub">Portfolio</p>
           <h1 class="section-title" data-i18n="portfolio-title">All projects</h1>
@@ -118,6 +113,8 @@
             <button class="tab-button" data-filter="uxui" data-i18n="tab-uxui">UX/UI Projects</button>
             <button class="tab-button" data-filter="web" data-i18n="tab-web">Web Sites</button>
           </div>
+        </div>
+        <div class="portfolio-grid-bleed">
           <div class="projects-grid" id="projects-grid" data-static-grid="true">
             <article class="project-card" data-project-id="visiflow" data-category="uxui">
               <picture><source type="image/avif" srcset="assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/visiflow/HERO-640.avif 640w, assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/visiflow/HERO-960.avif 960w, assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/visiflow/HERO.avif 1200w" sizes="(max-width: 720px) 92vw, (max-width: 1200px) 45vw, 586px"><source type="image/webp" srcset="assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/visiflow/HERO-640.webp 640w, assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/visiflow/HERO-960.webp 960w, assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/visiflow/HERO.webp 1200w" sizes="(max-width: 720px) 92vw, (max-width: 1200px) 45vw, 586px"><img src="assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/visiflow/HERO-960.jpg" alt="VISI FLOW" loading="eager" decoding="async" fetchpriority="high" width="1200" height="630" srcset="assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/visiflow/HERO-640.jpg 640w, assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/visiflow/HERO-960.jpg 960w, assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/visiflow/HERO.jpg 1200w" sizes="(max-width: 720px) 92vw, (max-width: 1200px) 45vw, 586px" /></picture>
@@ -264,9 +261,149 @@
               </div>
             </article>
           </div>
+        </div>
+      </section>
+
+      <section class="section" id="price">
+        <div class="container services-hero">
+          <p class="section-subtitle">Price</p>
+          <h2 class="section-title">Мои услуги</h2>
+          <p>
+            Я помогаю бизнесу и продуктам расти через продуманный UX/UI-дизайн: от лендингов и маркетинг-сайтов до
+            сложных цифровых продуктов и дизайн-систем. Беру на себя полный цикл работы - исследование, структуру,
+            интерфейсы, тексты и передачу в разработку.
+          </p>
+        </div>
+      </section>
+
+      <section class="section services-grid-wrap">
+        <div class="container services-catalog-grid" aria-label="Ключевые услуги">
+          <article class="service-mini-card" data-service="ux-audit" tabindex="0" role="button" aria-expanded="false">
+            <div class="service-mini-head"><span class="service-mini-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"></circle><path d="M20 20l-4.2-4.2"></path></svg></span><h2>Аудит удобства сайта</h2><span class="service-hover-icon" aria-hidden="true">+</span></div>
+            <p>Бережно разбираем, где пользователю сложно в ключевых сценариях. На выходе - понятный план улучшений без перегруза теорией.</p>
+            <div class="service-mini-meta"><span>2-7 дней</span><span>бесплатно</span></div>
+          </article>
+
+          <article class="service-mini-card" data-service="landing-site" tabindex="0" role="button" aria-expanded="false">
+            <div class="service-mini-head"><span class="service-mini-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"></rect><path d="M8 20h8M12 16v4"></path></svg></span><h2>Разработка лендинга</h2><span class="service-hover-icon" aria-hidden="true">+</span></div>
+            <p>Продумываю структуру страницы так, чтобы человеку было легко понять предложение и сделать следующий шаг. Дизайн сразу готов к передаче в разработку.</p>
+            <div class="service-mini-meta"><span>2-4 недели</span><span>от 48 000 ₽</span></div>
+          </article>
+
+          <article class="service-mini-card" data-service="product-ui" tabindex="0" role="button" aria-expanded="false">
+            <div class="service-mini-head"><span class="service-mini-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 7h6M4 12h10M4 17h14"></path><circle cx="14" cy="7" r="2"></circle><circle cx="18" cy="12" r="2"></circle><circle cx="20" cy="17" r="2"></circle></svg></span><h2>Разработка многостраничного сайта</h2><span class="service-hover-icon" aria-hidden="true">+</span></div>
+            <p>Аккуратно выстраиваю сложные пользовательские потоки и состояния. Интерфейс становится понятнее, устойчивее и проще в развитии.</p>
+            <div class="service-mini-meta"><span>4-10 недель</span><span>от 88 000 ₽</span></div>
+          </article>
+
+          <article class="service-mini-card" data-service="design-system" tabindex="0" role="button" aria-expanded="false">
+            <div class="service-mini-head"><span class="service-mini-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1"></rect><rect x="13" y="3" width="8" height="8" rx="1"></rect><rect x="3" y="13" width="8" height="8" rx="1"></rect><rect x="13" y="13" width="8" height="8" rx="1"></rect></svg></span><h2>Разработка дизайн-системы</h2><span class="service-hover-icon" aria-hidden="true">+</span></div>
+            <p>Собираю токены и компоненты в единую систему. Команде легче и быстрее делать новые экраны в едином стиле.</p>
+            <div class="service-mini-meta"><span>3-8 недель</span><span>от 104 000 ₽</span></div>
+          </article>
+
+          <article class="service-mini-card" data-service="mobile-ui" tabindex="0" role="button" aria-expanded="false">
+            <div class="service-mini-head"><span class="service-mini-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2"></rect><path d="M11 18.5h2"></path></svg></span><h2>Дизайн мобильного приложения</h2><span class="service-hover-icon" aria-hidden="true">+</span></div>
+            <p>Проектирую мобильные экраны с учетом платформенных паттернов. Пользовательские шаги становятся короче, понятнее и приятнее.</p>
+            <div class="service-mini-meta"><span>3-7 недель</span><span>от 68 000 ₽</span></div>
+          </article>
+
+          <article class="service-mini-card" data-service="ux-copy" tabindex="0" role="button" aria-expanded="false">
+            <div class="service-mini-head"><span class="service-mini-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20h16"></path><path d="M6 15l8.8-8.8 2 2L8 17H6z"></path></svg></span><h2>Тексты для интерфейса</h2><span class="service-hover-icon" aria-hidden="true">+</span></div>
+            <p>Пишу интерфейсные тексты, которые спокойно и ясно ведут к целевому действию. Убираю лишнюю неопределенность и помогаю снизить число ошибок.</p>
+            <div class="service-mini-meta"><span>3-10 дней</span><span>от 14 000 ₽</span></div>
+          </article>
+
+          <article class="service-mini-card" data-service="redesign" tabindex="0" role="button" aria-expanded="false">
+            <div class="service-mini-head"><span class="service-mini-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 7h-5V2"></path><path d="M4 17h5v5"></path><path d="M6.5 9A6.5 6.5 0 0 1 17 6l3 1"></path><path d="M17.5 15A6.5 6.5 0 0 1 7 18l-3-1"></path></svg></span><h2>Редизайн сайта или продукта</h2><span class="service-hover-icon" aria-hidden="true">+</span></div>
+            <p>Обновляем продукт поэтапно и бережно к текущим результатам. Помогаю пройти изменения без просадки ключевых метрик.</p>
+            <div class="service-mini-meta"><span>2-6 недель</span><span>от 56 000 ₽</span></div>
+          </article>
+
+          <article class="service-mini-card" data-service="handoff-qa" tabindex="0" role="button" aria-expanded="false">
+            <div class="service-mini-head"><span class="service-mini-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 8.5A3.5 3.5 0 1 0 12 15.5A3.5 3.5 0 1 0 12 8.5Z"></path><path d="M19.4 15a7.8 7.8 0 0 0 .1-2l2-1.2-2-3.4-2.3.7a8 8 0 0 0-1.7-1L15 5h-6l-.5 2.1a8 8 0 0 0-1.7 1L4.5 7.4l-2 3.4 2 1.2a7.8 7.8 0 0 0 .1 2l-2 1.2 2 3.4 2.3-.7a8 8 0 0 0 1.7 1L9 21h6l.5-2.1a8 8 0 0 0 1.7-1l2.3.7 2-3.4Z"></path></svg></span><h2>Передача макетов в разработку</h2><span class="service-hover-icon" aria-hidden="true">+</span></div>
+            <p>Сопровождаю внедрение дизайна в разработку до релиза. Помогаю команде сохранить качество реализации и вовремя убрать расхождения.</p>
+            <div class="service-mini-meta"><span>1-4 недели</span><span>от 24 000 ₽</span></div>
+          </article>
+        </div>
+      </section>
+
+      <div class="service-modal" id="serviceModal" hidden aria-hidden="true">
+        <div class="service-modal-backdrop" data-close-service-modal></div>
+        <article class="service-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="serviceModalTitle">
+          <header class="service-modal-head">
+            <h3 id="serviceModalTitle">Подробности услуги</h3>
+            <button class="service-modal-close" type="button" aria-label="Закрыть" data-close-service-modal>×</button>
+          </header>
+          <div class="service-modal-body">
+            <p id="serviceModalLead"></p>
+            <section>
+              <h4>Задачи</h4>
+              <ul id="serviceModalTasks"></ul>
+            </section>
+            <section>
+              <h4>Что будет реализовано</h4>
+              <ul id="serviceModalDeliverables"></ul>
+            </section>
+            <section>
+              <h4>Результат для бизнеса</h4>
+              <ul id="serviceModalOutcome"></ul>
+            </section>
+            <div class="service-modal-meta">
+              <span id="serviceModalTimeline"></span>
+              <span id="serviceModalPrice"></span>
+            </div>
+          </div>
+          <footer class="service-modal-foot">
+            <a class="button accent" id="serviceModalOrder" href="https://t.me/sigidingo" target="_blank" rel="noreferrer">Заказать услугу</a>
+          </footer>
+        </article>
+      </div>
+
+      <section class="section services-proof">
+        <div class="container">
+          <p class="section-subtitle">Formats</p>
+          <h2 class="section-title">Форматы работы</h2>
+          <div class="services-catalog-grid formats-catalog-grid" aria-label="Форматы работы">
+            <article class="service-mini-card format-mini-card">
+              <div class="service-mini-head"><span class="service-mini-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12h16"></path><path d="M12 4v16"></path></svg></span><h2>Разовый проект</h2></div>
+              <p>Закрываем конкретную задачу под ключ: лендинг, экран, модуль или аудит. Вы получаете понятный результат в оговоренные сроки без лишней бюрократии.</p>
+              <div class="service-mini-meta"><span>срок: 1-4 недели</span><span>ритм: этапами</span></div>
+            </article>
+
+            <article class="service-mini-card format-mini-card">
+              <div class="service-mini-head"><span class="service-mini-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v18"></path><path d="M7 8l5-5 5 5"></path><path d="M17 16l-5 5-5-5"></path></svg></span><h2>Дизайн-спринт</h2></div>
+              <p>Интенсивный формат для быстрых запусков и гипотез. За короткий цикл фокусируемся на самом важном и выводим решение, которое можно сразу внедрять.</p>
+              <div class="service-mini-meta"><span>срок: 5-10 дней</span><span>фокус: результат</span></div>
+            </article>
+
+            <article class="service-mini-card format-mini-card">
+              <div class="service-mini-head"><span class="service-mini-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14"></path><path d="M5 12h14"></path><circle cx="12" cy="12" r="9"></circle></svg></span><h2>Постоянное сопровождение</h2></div>
+              <p>Подключаюсь как внешний UX/UI-партнер команды: регулярные улучшения, приоритеты, дизайн задач и контроль качества интерфейса на постоянной основе.</p>
+              <div class="service-mini-meta"><span>ритм: еженедельно</span><span>формат: retainer</span></div>
+            </article>
+
+            <article class="service-mini-card format-mini-card">
+              <div class="service-mini-head"><span class="service-mini-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 7h16"></path><path d="M4 12h16"></path><path d="M4 17h10"></path></svg></span><h2>Design Review</h2></div>
+              <p>Проверяю ваши макеты и пользовательские сценарии, нахожу слабые места и даю четкие рекомендации по улучшению. Это быстро поднимает качество без полного редизайна.</p>
+              <div class="service-mini-meta"><span>срок: 2-5 дней</span><span>выход: список правок</span></div>
+            </article>
+
+            <article class="service-mini-card format-mini-card">
+              <div class="service-mini-head"><span class="service-mini-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 5h14v14H5z"></path><path d="M9 12l2 2 4-4"></path></svg></span><h2>Handoff + контроль внедрения</h2></div>
+              <p>Передаю дизайн в разработку и сопровождаю реализацию до релиза. Команда получает ясные макеты, комментарии по логике и быструю обратную связь по вопросам.</p>
+              <div class="service-mini-meta"><span>срок: 1-4 недели</span><span>фокус: без расхождений</span></div>
+            </article>
+
+            <article class="service-mini-card format-mini-card">
+              <div class="service-mini-head"><span class="service-mini-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 3h12v18H6z"></path><path d="M9 8h6"></path><path d="M9 12h6"></path></svg></span><h2>Работа по договору</h2></div>
+              <p>Перед стартом фиксируем объем, сроки, этапы и оплату. Вам удобно управлять процессом, потому что все условия прозрачны и понятны с первого дня работы.</p>
+              <div class="service-mini-meta"><span>оплата: по этапам</span><span>документы: договор/NDA</span></div>
+            </article>
           </div>
         </div>
       </section>
+
     </main>
 
     <footer class="footer">
@@ -326,7 +463,8 @@
         </div>
       </div>
     </div>
-<script src="assets/js/main.js?v=20260214-5" defer></script>
+<script src="assets/js/main.js?v=20260411-octoclick-page" defer></script>
+<script src="assets/js/services-page.js?v=20260211-3" defer></script>
     <div class="lightbox" id="modalLightbox">
       <button class="prev" data-modal-lightbox-prev>‹</button>
       <img height="675" width="1200" decoding="async" loading="lazy" alt="Project image" />

@@ -2,7 +2,7 @@ const qs = (sel, scope = document) => scope.querySelector(sel);
 const qsa = (sel, scope = document) => Array.from(scope.querySelectorAll(sel));
 const FALLBACK_COVER = "assets/images/HERO/PROFI.jpg";
 const SERVICE_WORKER_PATH = "/sw.js";
-const DATA_BUNDLE = "assets/js/data.js?v=20260214-4";
+const DATA_BUNDLE = "assets/js/data.js?v=20260421-blog-covers";
 let dataHydrated = false;
 let dataBundlePromise = null;
 const RESPONSIVE_IMAGES = new Set([
@@ -57,12 +57,15 @@ const loadDataBundle = () => {
 
 const hydrateDataFeatures = () => {
   renderFeatured();
+  renderProjectFolders();
   renderProjects();
   renderServicesProofCards();
   renderAbout();
   renderArticles();
   renderCaseStudy();
+  renderCaseMoreCasesGrid();
   renderArticlePage();
+  initTextScramble(document.body);
 };
 
 const scheduleDataHydration = () => {
@@ -76,11 +79,26 @@ const scheduleDataHydration = () => {
       })
       .catch(() => {});
   };
-  if ("requestIdleCallback" in window) {
-    requestIdleCallback(run, { timeout: 2000 });
-  } else {
-    setTimeout(run, 1);
+  const isCasePage =
+    document?.body?.classList?.contains("case-study-unified") ||
+    Boolean(document?.body?.dataset?.case);
+
+  // На кейсах контент зависит от data.js — грузим сразу, без ожидания idle.
+  if (isCasePage) {
+    run();
+    // Фоллбек: если по какой-то причине бандл не проставил globals,
+    // повторим попытку (иногда webview/расширения ломают первый инжект <script>).
+    setTimeout(() => {
+      if (dataHydrated) return;
+      if (typeof caseStudies === "undefined" && typeof projects === "undefined") {
+        run();
+      }
+    }, 1200);
+    return;
   }
+
+  if ("requestIdleCallback" in window) requestIdleCallback(run, { timeout: 2000 });
+  else setTimeout(run, 1);
 };
 
 const bindImageFallback = image => {
@@ -130,6 +148,38 @@ const renderPicture = ({ src, alt, loading = "lazy", decoding = "async" }) => {
   `;
 };
 
+const normalizePathname = () => {
+  let p = window.location.pathname.replace(/\/index\.html?$/i, "");
+  p = p.replace(/\/+$/, "");
+  return p || "/";
+};
+
+/** Подсветка пункта меню по текущему URL (корневые пути /portfolio, /blog, …). */
+const markNavCurrentPage = () => {
+  const nav = qs("#navLinks");
+  if (!nav) return;
+  const here = normalizePathname();
+
+  qsa("a.nav-link", nav).forEach(a => {
+    const href = a.getAttribute("href");
+    if (!href || href.startsWith("http") || href.startsWith("mailto:")) return;
+    let path;
+    try {
+      path = new URL(href, window.location.origin).pathname.replace(/\/+$/, "") || "/";
+    } catch {
+      return;
+    }
+    a.removeAttribute("aria-current");
+    if (path === "/") {
+      if (here === "/") a.setAttribute("aria-current", "page");
+      return;
+    }
+    if (here === path || (here.startsWith(`${path}/`) && path !== "/")) {
+      a.setAttribute("aria-current", "page");
+    }
+  });
+};
+
 const initNav = () => {
   const toggle = qs("#mobileToggle");
   const links = qs("#navLinks");
@@ -155,7 +205,7 @@ const initNav = () => {
       const closeBtn = document.createElement("button");
       closeBtn.className = "nav-close";
       closeBtn.type = "button";
-      closeBtn.setAttribute("aria-label", "Close menu");
+      closeBtn.setAttribute("aria-label", "Закрыть меню");
       closeBtn.textContent = "×";
       closeBtn.addEventListener("click", closeMenu);
       links.prepend(closeBtn);
@@ -175,6 +225,8 @@ const initNav = () => {
   document.addEventListener("keydown", event => {
     if (event.key === "Escape") closeMenu();
   });
+
+  markNavCurrentPage();
 };
 
 const initServiceWorker = () => {
@@ -225,6 +277,10 @@ const navigateWithTransition = url => {
 const initReveal = () => {
   const items = qsa(".reveal");
   if (!items.length) return;
+  if (typeof IntersectionObserver === "undefined") {
+    items.forEach(item => item.classList.add("is-visible"));
+    return;
+  }
   const observer = new IntersectionObserver(
     entries => {
       entries.forEach(entry => {
@@ -243,32 +299,221 @@ const initReveal = () => {
 };
 
 const scrambleText = (element, duration = 900) => {
-  const original = element.textContent;
-  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩ";
-  let start = null;
+  const prepared = prepareTextScrambleElement(element);
+  if (!prepared || element.dataset.textScramblePlayed === "true") return;
+  element.dataset.textScramblePlayed = "true";
 
-  const step = timestamp => {
-    if (!start) start = timestamp;
-    const progress = Math.min((timestamp - start) / duration, 1);
-    const revealCount = Math.floor(progress * original.length);
-    let output = "";
-    for (let i = 0; i < original.length; i += 1) {
-      const char = original[i];
-      if (i < revealCount || char === " " || char === "\u2014") {
-        output += char;
-      } else {
-        output += chars[Math.floor(Math.random() * chars.length)];
+  const lines = Array.from(element.children).filter(child => child.classList.contains("scramble-line"));
+  lines.forEach((line, index) => {
+    setTimeout(() => {
+      const chars = qsa(".scramble-char", line);
+      chars.forEach(char => {
+        char.style.opacity = "0";
+      });
+
+      const groupSize = 3;
+      for (let i = 0; i < chars.length; i += groupSize) {
+        const group = chars.slice(i, i + groupSize);
+        setTimeout(() => scrambleCharacterGroup(group), i * 30);
       }
-    }
-    element.textContent = output;
-    if (progress < 1) {
-      requestAnimationFrame(step);
-    } else {
-      element.textContent = original;
-    }
-  };
+    }, index * 200);
+  });
+};
 
-  requestAnimationFrame(step);
+const textScrambleNarrowChars = "il1|!·:;";
+const textScrambleMediumChars = "abcdefgjkrsuvxz?=+-";
+const textScrambleWideChars = "WMQOHD@&%#*";
+const textScrambleWidthCache = new Map();
+let textScrambleObserver = null;
+
+const textScrambleTargetSelector = [
+  ".section-title",
+  ".hero-title",
+  ".case-hero h1",
+  ".article-hero-title",
+  ".article-hero-title-text",
+  "#modalTitle"
+].join(",");
+
+const textScrambleExcludedSelector = [
+  "script",
+  "style",
+  "noscript",
+  "template",
+  "svg",
+  "canvas",
+  "video",
+  "audio",
+  "iframe",
+  "input",
+  "textarea",
+  "select",
+  "option",
+  "pre",
+  "code",
+  ".scramble-text",
+  ".scramble-char",
+  "[data-no-scramble]"
+].join(",");
+
+const shouldReduceTextScrambleMotion = () =>
+  window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+const getTextScrambleFontKey = element => {
+  const styles = window.getComputedStyle(element);
+  return `${styles.fontStyle}|${styles.fontVariant}|${styles.fontWeight}|${styles.fontSize}|${styles.fontFamily}`;
+};
+
+const getTextScrambleCharWidthCategory = (char, referenceElement) => {
+  const key = `${getTextScrambleFontKey(referenceElement)}|${char}`;
+  if (textScrambleWidthCache.has(key)) return textScrambleWidthCache.get(key);
+
+  const testSpan = document.createElement("span");
+  testSpan.style.visibility = "hidden";
+  testSpan.style.position = "absolute";
+  testSpan.style.whiteSpace = "nowrap";
+  testSpan.style.font = window.getComputedStyle(referenceElement).font;
+  testSpan.textContent = char;
+  document.body.appendChild(testSpan);
+
+  const width = testSpan.offsetWidth;
+  testSpan.remove();
+
+  let category = "wide";
+  if (width <= 6) category = "narrow";
+  else if (width <= 10) category = "medium";
+
+  textScrambleWidthCache.set(key, category);
+  return category;
+};
+
+const getSimilarWidthScrambleChar = (referenceChar, referenceElement) => {
+  const category = getTextScrambleCharWidthCategory(referenceChar, referenceElement);
+  const pickRandom = set => set[Math.floor(Math.random() * set.length)];
+  if (category === "narrow") return pickRandom(textScrambleNarrowChars);
+  if (category === "wide") return pickRandom(textScrambleWideChars);
+  return pickRandom(textScrambleMediumChars);
+};
+
+const getTextScrambleFinalOpacity = char =>
+  window.getComputedStyle(char).getPropertyValue("--text-scramble-final-opacity").trim() || "1";
+
+const scrambleCharacterGroup = chars => {
+  chars.forEach((char, index) => {
+    const original = char.dataset.originalChar || char.textContent;
+    let frame = 0;
+
+    setTimeout(() => {
+      char.style.opacity = "1";
+      const interval = window.setInterval(() => {
+        char.textContent = getSimilarWidthScrambleChar(original, char);
+        frame += 1;
+
+        if (frame > 3 + Math.random() * 3) {
+          window.clearInterval(interval);
+          char.textContent = original;
+          char.style.opacity = getTextScrambleFinalOpacity(char);
+        }
+      }, 30);
+    }, index * 30);
+  });
+};
+
+const createTextScrambleFragment = text => {
+  const fragment = document.createDocumentFragment();
+  const line = document.createElement("span");
+  line.className = "scramble-line";
+  let hasChars = false;
+
+  Array.from(text).forEach(char => {
+    if (/\s/.test(char)) {
+      line.appendChild(document.createTextNode(char));
+      return;
+    }
+
+    const span = document.createElement("span");
+    span.className = "scramble-char";
+    span.dataset.originalChar = char;
+    span.textContent = char;
+    line.appendChild(span);
+    hasChars = true;
+  });
+
+  if (hasChars) {
+    fragment.appendChild(line);
+  } else {
+    fragment.appendChild(document.createTextNode(text));
+  }
+
+  return fragment;
+};
+
+const prepareTextScrambleElement = element => {
+  if (!element || element.dataset.textScramblePrepared === "true") return element;
+  if (element.closest(textScrambleExcludedSelector)) return null;
+
+  const textNodes = Array.from(element.childNodes).filter(
+    node => node.nodeType === Node.TEXT_NODE && node.textContent.trim()
+  );
+  if (!textNodes.length) return null;
+
+  textNodes.forEach(node => {
+    node.replaceWith(createTextScrambleFragment(node.textContent));
+  });
+
+  element.classList.add("text-scramble");
+  element.dataset.textScramblePrepared = "true";
+  return element;
+};
+
+const getTextScrambleTargets = (root = document.body) => {
+  if (!root) return [];
+  const scope = root.nodeType === Node.ELEMENT_NODE ? root : document.body;
+  const targets = scope.matches?.(textScrambleTargetSelector) ? [scope] : [];
+
+  if (typeof scope.querySelectorAll === "function") {
+    targets.push(...qsa(textScrambleTargetSelector, scope));
+  }
+
+  return Array.from(new Set(targets)).filter(element => element.textContent.trim());
+};
+
+const ensureTextScrambleObserver = () => {
+  if (textScrambleObserver || !("IntersectionObserver" in window)) return textScrambleObserver;
+
+  textScrambleObserver = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        scrambleText(entry.target);
+        textScrambleObserver.unobserve(entry.target);
+      });
+    },
+    { threshold: 0, rootMargin: "0px" }
+  );
+
+  return textScrambleObserver;
+};
+
+const initTextScramble = (root = document.body) => {
+  if (shouldReduceTextScrambleMotion()) return;
+
+  const targets = getTextScrambleTargets(root)
+    .map(prepareTextScrambleElement)
+    .filter(Boolean)
+    .filter(element => element.dataset.textScrambleObserved !== "true");
+
+  if (!targets.length) return;
+
+  const observer = ensureTextScrambleObserver();
+  targets.forEach(element => {
+    element.dataset.textScrambleObserved = "true";
+    if (observer) {
+      observer.observe(element);
+    } else {
+      scrambleText(element);
+    }
+  });
 };
 
 const renderFeatured = () => {
@@ -369,6 +614,204 @@ const renderProjects = () => {
   if (!preserveStatic) {
     renderGrid();
   }
+};
+
+let projectFolderDragZ = 20;
+
+const makeProjectFolderDraggable = folder => {
+  let pointerId = null;
+  let startX = 0;
+  let startY = 0;
+  let baseX = 0;
+  let baseY = 0;
+  let currentX = 0;
+  let currentY = 0;
+  let moved = false;
+
+  const setPosition = (x, y) => {
+    currentX = x;
+    currentY = y;
+    folder.style.setProperty("--folder-drag-x", `${currentX}px`);
+    folder.style.setProperty("--folder-drag-y", `${currentY}px`);
+  };
+
+  folder.addEventListener("pointerdown", event => {
+    if (event.button !== undefined && event.button !== 0) return;
+
+    pointerId = event.pointerId;
+    startX = event.clientX;
+    startY = event.clientY;
+    baseX = currentX;
+    baseY = currentY;
+    moved = false;
+    folder.classList.add("is-drag-ready");
+    folder.style.zIndex = String(projectFolderDragZ++);
+    folder.setPointerCapture?.(pointerId);
+  });
+
+  folder.addEventListener("pointermove", event => {
+    if (event.pointerId !== pointerId) return;
+
+    const dx = event.clientX - startX;
+    const dy = event.clientY - startY;
+    if (!moved && Math.hypot(dx, dy) < 5) return;
+
+    moved = true;
+    folder.classList.add("is-dragging");
+    setPosition(baseX + dx, baseY + dy);
+    event.preventDefault();
+  });
+
+  const finishDrag = event => {
+    if (event.pointerId !== pointerId) return;
+    folder.releasePointerCapture?.(pointerId);
+    pointerId = null;
+    folder.classList.remove("is-drag-ready", "is-dragging");
+
+    if (moved) {
+      const basket = document.querySelector(".project-folder--basket");
+      if (basket && folder !== basket) {
+        const r = basket.getBoundingClientRect();
+        const { clientX: x, clientY: y } = event;
+        if (x >= r.left && x <= r.right && y >= r.top && y <= r.bottom) {
+          setPosition(0, 0);
+          basket.classList.add("is-trash-drop-flash");
+          window.setTimeout(() => basket.classList.remove("is-trash-drop-flash"), 480);
+        }
+      }
+      folder.dataset.dragMoved = "true";
+      window.setTimeout(() => {
+        delete folder.dataset.dragMoved;
+      }, 80);
+    }
+  };
+
+  folder.addEventListener("pointerup", finishDrag);
+  folder.addEventListener("pointercancel", finishDrag);
+};
+
+const initFolderTrashDropTarget = el => {
+  if (!el) return;
+
+  const onDragOver = event => {
+    event.preventDefault();
+    event.dataTransfer.dropEffect = "move";
+    el.classList.add("is-trash-drag-over");
+  };
+
+  el.addEventListener("dragenter", onDragOver);
+  el.addEventListener("dragover", onDragOver);
+
+  el.addEventListener("dragleave", event => {
+    if (!el.contains(event.relatedTarget)) {
+      el.classList.remove("is-trash-drag-over");
+    }
+  });
+
+  el.addEventListener("drop", event => {
+    event.preventDefault();
+    el.classList.remove("is-trash-drag-over");
+    el.classList.add("is-trash-drop-flash");
+    window.setTimeout(() => el.classList.remove("is-trash-drop-flash"), 480);
+  });
+};
+
+const renderProjectFolders = () => {
+  const grid = qs("#projectFoldersGrid");
+  if (!grid || typeof projects === "undefined") return;
+  if (grid.dataset.rendered === "true") return;
+
+  grid.innerHTML = "";
+  const desktopScatter =
+    typeof window !== "undefined" && window.matchMedia("(min-width: 721px)").matches;
+
+  const STAR_FOLDER_KEYS = new Set([
+    "visiflow",
+    "octoclick",
+    "mirox",
+    "pazl-kod-platform",
+    "in-it"
+  ]);
+
+  projects.forEach((project, index) => {
+    const folder = document.createElement("button");
+    folder.type = "button";
+    folder.className = "project-folder reveal";
+    folder.style.transitionDelay = `${Math.min(index * 0.035, 0.45)}s`;
+    folder.setAttribute("aria-label", `Открыть проект ${project.title}`);
+    if (STAR_FOLDER_KEYS.has(String(project.caseKey || project.id || ""))) {
+      folder.classList.add("has-star");
+    }
+    if (desktopScatter) {
+      const sx = ((index * 17 + index * index) % 19) - 9;
+      const sy = ((index * 13 + 5) % 15) - 7;
+      folder.style.setProperty("--folder-scatter-x", `${sx}px`);
+      folder.style.setProperty("--folder-scatter-y", `${sy}px`);
+    }
+    folder.innerHTML = `
+      <span class="project-folder-art" aria-hidden="true">
+        <img
+          class="project-folder-icon"
+          src="FOLDER/macos-folder-blue512x512.png"
+          srcset="FOLDER/macos-folder-blue256x256.png 256w, FOLDER/macos-folder-blue512x512.png 512w, FOLDER/macos-folder-blue512x512@2x.png 1024w"
+          sizes="(max-width: 720px) 18vw, 80px"
+          width="512"
+          height="512"
+          alt=""
+          loading="lazy"
+          decoding="async"
+        />
+      </span>
+      <span class="project-folder-name">${project.title}</span>
+    `;
+    makeProjectFolderDraggable(folder);
+    folder.addEventListener("click", event => {
+      if (folder.dataset.dragMoved === "true") {
+        event.preventDefault();
+        event.stopPropagation();
+        return;
+      }
+      openProjectModal(project);
+    });
+    grid.appendChild(folder);
+  });
+
+  const basketIndex = projects.length;
+  const basket = document.createElement("button");
+  basket.type = "button";
+  basket.className = "project-folder project-folder--basket reveal";
+  basket.style.transitionDelay = `${Math.min(basketIndex * 0.035, 0.45)}s`;
+  basket.setAttribute(
+    "aria-label",
+    "Корзина. Можно перемещать по сетке. Перетащите сюда файлы с компьютера или отпустите здесь перетаскиваемую папку проекта."
+  );
+  if (desktopScatter) {
+    const sx = ((basketIndex * 17 + basketIndex * basketIndex) % 19) - 9;
+    const sy = ((basketIndex * 13 + 5) % 15) - 7;
+    basket.style.setProperty("--folder-scatter-x", `${sx}px`);
+    basket.style.setProperty("--folder-scatter-y", `${sy}px`);
+  }
+  basket.innerHTML = `
+    <span class="project-folder-art" aria-hidden="true">
+      <img
+        class="project-folder-basket-icon"
+        src="FOLDER/basket.png"
+        width="512"
+        height="512"
+        alt=""
+        loading="lazy"
+        decoding="async"
+        draggable="false"
+      />
+    </span>
+    <span class="project-folder-name">Корзина</span>
+  `;
+  grid.appendChild(basket);
+  makeProjectFolderDraggable(basket);
+  initFolderTrashDropTarget(basket);
+
+  grid.dataset.rendered = "true";
+  initReveal();
 };
 
 const MONTH_SHORT = ["ЯНВ", "ФЕВ", "МАР", "АПР", "МАЙ", "ИЮН", "ИЮЛ", "АВГ", "СЕН", "ОКТ", "НОЯ", "ДЕК"];
@@ -678,6 +1121,11 @@ const enhanceCaseDetails = detailsHost => {
 
 const openProjectModal = project => {
   if (!project) return;
+  const casePage = typeof project.casePage === "string" ? project.casePage.trim() : "";
+  if (casePage) {
+    navigateWithTransition(casePage.startsWith("/") ? casePage : `/${casePage}`);
+    return;
+  }
   const modal = qs("#projectModal");
   if (!modal) return;
   modal.dataset.case = project.caseKey || project.id || "";
@@ -856,7 +1304,69 @@ const openProjectModal = project => {
       recommendations.appendChild(card);
     });
   }
+  initTextScramble(modal);
   if (modalContentEl) modalContentEl.scrollTop = 0;
+};
+
+const initServiceLeadModal = () => {
+  const modal = qs("#serviceLeadModal");
+  const closeBtn = qs("#serviceLeadModalClose");
+  const form = qs("#serviceLeadForm");
+  const serviceEl = qs("#serviceLeadModalService");
+  const cardsRoot = qs("#morphStackCards");
+  if (!modal || !closeBtn || !form || !serviceEl || !cardsRoot) return;
+
+  const close = () => {
+    modal.classList.remove("active");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("modal-open");
+    document.body.style.paddingRight = "";
+    form.reset();
+    serviceEl.textContent = "";
+  };
+
+  const open = serviceTitle => {
+    serviceEl.textContent = serviceTitle ? `Услуга: ${serviceTitle}` : "";
+    modal.classList.add("active");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("modal-open");
+  };
+
+  closeBtn.addEventListener("click", close);
+  modal.addEventListener("click", event => {
+    if (event.target === modal) close();
+  });
+  window.addEventListener("keydown", event => {
+    if (event.key === "Escape" && modal.classList.contains("active")) {
+      event.preventDefault();
+      close();
+    }
+  });
+
+  form.addEventListener("submit", event => {
+    event.preventDefault();
+    const name = form.elements.namedItem("name")?.value?.trim() ?? "";
+    const phone = form.elements.namedItem("phone")?.value?.trim() ?? "";
+    const username = form.elements.namedItem("username")?.value?.trim() ?? "";
+    const svc =
+      serviceEl.textContent.replace(/^Услуга:\s*/, "").trim() || "—";
+    const body = [`Услуга: ${svc}`, "", `Имя: ${name}`, `Телефон: ${phone}`, `Telegram / username: ${username}`].join(
+      "\n"
+    );
+    const subject = encodeURIComponent("Заявка с сайта — услуги");
+    window.location.href = `mailto:sigidingo@gmail.com?subject=${subject}&body=${encodeURIComponent(body)}`;
+    close();
+  });
+
+  cardsRoot.addEventListener("click", event => {
+    const btn = event.target.closest(".morph-stack-more");
+    if (!btn) return;
+    event.preventDefault();
+    event.stopPropagation();
+    const card = btn.closest(".morph-stack-card");
+    const title = card?.querySelector(".morph-stack-card-title")?.textContent?.trim() ?? "";
+    open(title);
+  });
 };
 
 const initModal = () => {
@@ -968,6 +1478,47 @@ const initArticleReveal = () => {
   items.forEach(item => observer.observe(item));
 };
 
+/** Скролл обложки кейса: затемнение и исчезновение контента при уходе героя из вьюпорта */
+const initCaseStudyHeroScroll = () => {
+  const hero = qs("body.case-study-unified .case-hero-embedded");
+  if (!hero) return;
+
+  const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  if (motion.matches) {
+    hero.style.setProperty("--octoclick-hero-scroll", "0");
+    return;
+  }
+
+  const update = () => {
+    const rect = hero.getBoundingClientRect();
+    const vh = window.innerHeight || 600;
+    const fadeRange = Math.max(rect.height * 0.48, vh * 0.36);
+    let p = 0;
+    if (rect.bottom <= 0) {
+      p = 1;
+    } else if (rect.top > 0) {
+      p = 0;
+    } else {
+      p = Math.min(1, (-rect.top) / fadeRange);
+    }
+    hero.style.setProperty("--octoclick-hero-scroll", p.toFixed(4));
+  };
+
+  let ticking = false;
+  const onScroll = () => {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(() => {
+      update();
+      ticking = false;
+    });
+  };
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll, { passive: true });
+  update();
+};
+
 const initArticleProgress = () => {
   const bar = qs(".reading-progress-bar");
   const content = qs("#articleContent");
@@ -1007,12 +1558,16 @@ const initMetroTimeline = () => {
       const list = qs(".metro-timeline", wrap);
       const progress = qs(".metro-line-progress", wrap);
       if (!list || !progress) return;
-      const rect = list.getBoundingClientRect();
-      const pageTop = window.scrollY || window.pageYOffset;
-      const start = rect.top + pageTop - viewport * 0.6;
-      const end = rect.bottom + pageTop - viewport * 0.3;
-      const pct = Math.min(1, Math.max(0, (pageTop - start) / (end - start)));
-      progress.style.height = `${pct * list.offsetHeight}px`;
+
+      const inCvModal = Boolean(wrap.closest("#cvModal"));
+      if (!inCvModal) {
+        const rect = list.getBoundingClientRect();
+        const pageTop = window.scrollY || window.pageYOffset;
+        const start = rect.top + pageTop - viewport * 0.6;
+        const end = rect.bottom + pageTop - viewport * 0.3;
+        const pct = Math.min(1, Math.max(0, (pageTop - start) / (end - start)));
+        progress.style.height = `${pct * list.offsetHeight}px`;
+      }
 
       const items = qsa(".timeline-item", list);
       items.forEach(item => {
@@ -1036,7 +1591,81 @@ const initMetroTimeline = () => {
 
   window.addEventListener("scroll", onScroll, { passive: true });
   window.addEventListener("resize", update);
+  const modalScrollEl = qs(".cv-modal-scroll");
+  if (modalScrollEl) {
+    modalScrollEl.addEventListener("scroll", onScroll, { passive: true });
+  }
   update();
+};
+
+const syncCvModalFromAbout = () => {
+  const pairs = [
+    ["#skillsList", "#cvModalSkillsList"],
+    ["#experienceList", "#cvModalExperienceList"],
+    ["#educationList", "#cvModalEducationList"],
+    ["#timelineList", "#cvModalTimelineList"]
+  ];
+  pairs.forEach(([fromSel, toSel]) => {
+    const from = qs(fromSel);
+    const to = qs(toSel);
+    if (!to) return;
+    if (from) {
+      to.innerHTML = from.innerHTML;
+      return;
+    }
+    if (fromSel === "#skillsList" && typeof skills !== "undefined") {
+      to.innerHTML = "";
+      skills.forEach(skill => {
+        const pill = document.createElement("span");
+        pill.className = "skill-pill";
+        pill.textContent = skill;
+        to.appendChild(pill);
+      });
+      return;
+    }
+    if (fromSel === "#experienceList" && typeof experience !== "undefined") {
+      to.innerHTML = "";
+      experience.forEach(item => {
+        const details = Array.isArray(item.details) ? item.details : [];
+        const card = document.createElement("div");
+        card.style.marginBottom = "18px";
+        card.innerHTML = `
+        <strong>${item.role}</strong>
+        <p style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted);">${item.dates}</p>
+        <ul class="case-list">
+          ${details.map(detail => `<li>${detail}</li>`).join("")}
+        </ul>
+      `;
+        to.appendChild(card);
+      });
+      return;
+    }
+    if (fromSel === "#timelineList" && typeof projectTimeline !== "undefined") {
+      to.innerHTML = "";
+      projectTimeline.forEach(entry => {
+        const item = document.createElement("div");
+        item.className = "timeline-item";
+        item.innerHTML = `
+        <span>${entry.date}</span>
+        <p>${entry.title}</p>
+      `;
+        to.appendChild(item);
+      });
+      return;
+    }
+    if (fromSel === "#educationList" && typeof education !== "undefined") {
+      to.innerHTML = "";
+      education.forEach(entry => {
+        const item = document.createElement("div");
+        item.className = "timeline-item";
+        item.innerHTML = `
+        <span>${entry.date}</span>
+        <p>${entry.title}</p>
+      `;
+        to.appendChild(item);
+      });
+    }
+  });
 };
 
 const renderAbout = () => {
@@ -1069,13 +1698,14 @@ const renderAbout = () => {
   if (experienceList && typeof experience !== "undefined") {
     experienceList.innerHTML = "";
     experience.forEach(item => {
+      const details = Array.isArray(item.details) ? item.details : [];
       const card = document.createElement("div");
       card.style.marginBottom = "18px";
       card.innerHTML = `
         <strong>${item.role}</strong>
         <p style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted);">${item.dates}</p>
         <ul class="case-list">
-          ${item.details.map(detail => `<li>${detail}</li>`).join("")}
+          ${details.map(detail => `<li>${detail}</li>`).join("")}
         </ul>
       `;
       experienceList.appendChild(card);
@@ -1109,6 +1739,71 @@ const renderAbout = () => {
       educationList.appendChild(item);
     });
   }
+
+  syncCvModalFromAbout();
+};
+
+const CV_PDF_HREF = "assets/CV%202026%20(1).pdf";
+
+const triggerCvPdfDownload = () => {
+  const a = document.createElement("a");
+  a.href = CV_PDF_HREF;
+  a.download = "CV-Yaroslav-Sigidin.pdf";
+  a.rel = "noopener";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+};
+
+const initCvDock = () => {
+  const docEl = qs("#cvDockDocument");
+  const dragEl = qs("#cvDockDragHandle");
+  const drop = qs("#cvDockDropzone");
+  if (!docEl || !drop || !dragEl) return;
+
+  let skipDocumentClick = false;
+
+  dragEl.addEventListener("dragstart", event => {
+    try {
+      event.dataTransfer.setData("text/plain", "cv");
+      event.dataTransfer.effectAllowed = "copy";
+    } catch (_e) {}
+  });
+
+  dragEl.addEventListener("dragend", () => {
+    drop.classList.remove("is-active");
+  });
+
+  ["dragenter", "dragover"].forEach(type => {
+    drop.addEventListener(type, event => {
+      event.preventDefault();
+      try {
+        event.dataTransfer.dropEffect = "copy";
+      } catch (_e) {}
+      drop.classList.add("is-active");
+    });
+  });
+
+  drop.addEventListener("dragleave", event => {
+    if (drop.contains(event.relatedTarget)) return;
+    drop.classList.remove("is-active");
+  });
+
+  drop.addEventListener("drop", event => {
+    event.preventDefault();
+    drop.classList.remove("is-active");
+    drop.classList.add("is-drop-flash");
+    window.setTimeout(() => drop.classList.remove("is-drop-flash"), 600);
+    skipDocumentClick = true;
+    triggerCvPdfDownload();
+  });
+
+  docEl.addEventListener("click", event => {
+    if (skipDocumentClick) {
+      skipDocumentClick = false;
+      event.preventDefault();
+    }
+  });
 };
 
 const renderArticles = () => {
@@ -1457,6 +2152,182 @@ const initChat = () => {
   });
 };
 
+const initCaseGanttCursorLine = gantt => {
+  if (!gantt) return;
+  const line = qs(".case-gantt-vline", gantt);
+  if (!line) return;
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  const prevAbort = gantt._caseGanttCursorAbort;
+  if (prevAbort && typeof prevAbort.abort === "function") prevAbort.abort();
+  const ac = new AbortController();
+  gantt._caseGanttCursorAbort = ac;
+
+  let ticking = false;
+  const onMove = e => {
+    if (ticking) return;
+    ticking = true;
+    const cx = e.clientX;
+    requestAnimationFrame(() => {
+      const rect = gantt.getBoundingClientRect();
+      const x = Math.max(0, Math.min(rect.width, cx - rect.left));
+      gantt.style.setProperty("--case-gantt-line-x", `${x}px`);
+      ticking = false;
+    });
+  };
+
+  gantt.addEventListener("pointermove", onMove, { passive: true, signal: ac.signal });
+};
+
+const renderCaseStudyMetricCard = line => {
+  const colon = line.search(/[:：]/);
+  if (colon > 0) {
+    const title = line.slice(0, colon).trim();
+    const body = line.slice(colon + 1).trim();
+    return `<article class="case-result-card"><h3 class="case-result-card-kicker">${escapeHtml(title)}</h3><p class="case-result-card-body">${escapeHtml(body)}</p></article>`;
+  }
+  return `<article class="case-result-card"><p class="case-result-card-full">${escapeHtml(line)}</p></article>`;
+};
+
+const timelineToGanttPhases = timeline => {
+  if (!Array.isArray(timeline) || !timeline.length) return null;
+  const n = timeline.length;
+  const span = 100 / n;
+  return timeline.map((t, i) => ({
+    label: t.title || `Этап ${i + 1}`,
+    startPct: i * span,
+    spanPct: span
+  }));
+};
+
+const renderCaseStudyStoryHtml = data => {
+  if (typeof data.modalFullHtml === "string" && data.modalFullHtml.trim()) {
+    return data.modalFullHtml.trim();
+  }
+  if (!Array.isArray(data.storyChapters) || !data.storyChapters.length) return "";
+  const cards = data.storyChapters
+    .map(
+      ch => `
+    <article class="modal-case-card">
+      <p class="section-subtitle">${escapeHtml(ch.label || "")}</p>
+      <h4>${escapeHtml(ch.title || "")}</h4>
+      <p>${escapeHtml(ch.text || "")}</p>
+    </article>`
+    )
+    .join("");
+  return `<div class="modal-case-full">${cards}</div>`;
+};
+
+const splitItemsIntoEvenBuckets = (items, bucketCount) => {
+  if (!items.length || bucketCount < 1) return [];
+  const buckets = Array.from({ length: bucketCount }, () => []);
+  const base = Math.floor(items.length / bucketCount);
+  let rem = items.length % bucketCount;
+  let idx = 0;
+  for (let b = 0; b < bucketCount; b++) {
+    const take = base + (rem > 0 ? 1 : 0);
+    if (rem > 0) rem--;
+    for (let j = 0; j < take; j++) buckets[b].push(items[idx++]);
+  }
+  return buckets;
+};
+
+const getCaseStudyCoverSrc = (data, projectRow) => {
+  const fromRow = projectRow && typeof projectRow.image === "string" ? projectRow.image.trim() : "";
+  if (fromRow) return fromRow;
+  if (Array.isArray(data.images) && data.images[0]) return data.images[0];
+  return "";
+};
+
+/** Путь к файлу в /assets/... для CSS url(): ведущий слэш и safe-encoding без double-encode. */
+const assetUrlForCss = src => {
+  const t = String(src ?? "").trim();
+  if (!t) return "";
+  if (/^https?:\/\//i.test(t)) return t;
+  const path = t.startsWith("/") ? t : `/${t}`;
+  // data.js уже может содержать encodeURI(). encodeURI() здесь сохраняет существующие %xx
+  // и кодирует пробелы/кириллицу без double-encode.
+  return encodeURI(path);
+};
+
+const getCaseStudyInlineImages = (data, coverSrc) => {
+  if (!Array.isArray(data.images) || data.images.length < 2) return [];
+  const cover = coverSrc || data.images[0] || "";
+  let rest = data.images.slice(1);
+  while (rest.length && cover && rest[0] === cover) rest = rest.slice(1);
+  // В историю встраиваем только изображения (не видео).
+  return rest.filter(src => !isVideoSrc(src));
+};
+
+const isVideoSrc = src => {
+  const t = String(src ?? "").trim().toLowerCase();
+  return /\.(mp4|webm|mov)(\?.*)?$/.test(t);
+};
+
+const injectCaseStudyFiguresAfterCards = (storyRoot, imageSrcs, caseTitle) => {
+  if (!storyRoot || !imageSrcs.length) return false;
+  const cards = qsa("article.modal-case-card", storyRoot);
+  if (!cards.length) return false;
+
+  const buckets = splitItemsIntoEvenBuckets(imageSrcs, cards.length);
+  let screenIndex = 1;
+  cards.forEach((card, i) => {
+    const bucket = buckets[i] || [];
+    let insertAfter = card;
+    bucket.forEach(src => {
+      const fig = document.createElement("figure");
+      fig.className = "case-inline-figure case-figure-after-text";
+      const img = document.createElement("img");
+      img.src = src;
+      img.alt = `${caseTitle} · экран ${screenIndex}`;
+      screenIndex += 1;
+      img.loading = "lazy";
+      img.decoding = "async";
+      fig.appendChild(img);
+      bindImageFallback(img);
+      insertAfter.insertAdjacentElement("afterend", fig);
+      insertAfter = fig;
+    });
+  });
+  return true;
+};
+
+/** Блок «Другие кейсы»: все проекты с casePage из data, кроме текущего. */
+const renderCaseMoreCasesGrid = () => {
+  const host = qs("#case-main .case-more-cases-grid");
+  if (!host || typeof projects === "undefined") return;
+
+  const currentKey = document.body.dataset.case;
+  if (!currentKey) return;
+
+  const list = projects.filter(
+    p => p.caseKey && p.casePage && String(p.caseKey) !== String(currentKey)
+  );
+  if (!list.length) return;
+
+  host.innerHTML = list
+    .map(project => {
+      const href = String(project.casePage).startsWith("/")
+        ? project.casePage
+        : `/${project.casePage}`;
+      const tagLabel = project.category === "uxui" ? "UX/UI" : "WEB";
+      const label = `${project.title} — открыть кейс`;
+      return `<a class="project-card reveal case-more-case-card" href="${escapeHtml(href)}" aria-label="${escapeHtml(label)}">
+              ${renderPicture({ src: project.image, alt: project.title })}
+              <div class="content">
+                <span class="tag">${escapeHtml(tagLabel)}</span>
+                <h3>${escapeHtml(project.title)}</h3>
+                <p>${escapeHtml(project.subtitle || "")}</p>
+              </div>
+            </a>`;
+    })
+    .join("");
+
+  qsa("img", host).forEach(bindImageFallback);
+  initReveal();
+};
+
 const renderCaseStudy = () => {
   const caseKey = document.body.dataset.case;
   if (!caseKey || typeof caseStudies === "undefined") return;
@@ -1469,40 +2340,181 @@ const renderCaseStudy = () => {
   const whatDoneEl = qs("#caseWhatDone");
   const metricsEl = qs("#caseMetrics");
   const galleryEl = qs("#caseGallery");
+  const gallerySection = qs("#caseGallerySection");
   const linksEl = qs("#caseLinks");
   const tagsEl = qs("#caseTags");
+  const resultsLeadEl = qs("#caseResultsLead");
+  const resultsCardsEl = qs("#caseResultsCards");
+  const ganttEl = qs("#caseGantt");
+  const ganttSection = qs("#caseGanttSection");
+  const ganttGeneralDatesEl = qs("#caseGanttGeneralDates");
+  const storyEmbed = qs("#caseStoryEmbed");
+  const deepSection = qs("#caseDeepSection");
+
+  const projectRow =
+    typeof projects !== "undefined" ? projects.find(p => p.caseKey === caseKey) : null;
 
   if (titleEl) titleEl.textContent = data.title;
-  if (subtitleEl) subtitleEl.textContent = data.subtitle;
+  if (subtitleEl) {
+    subtitleEl.textContent = data.subtitle || "";
+    subtitleEl.hidden = !data.subtitle;
+  }
   if (taskEl) taskEl.textContent = data.task;
 
   if (whatDoneEl) {
     whatDoneEl.innerHTML = data.whatDone.map(item => `<li>${item}</li>`).join("");
   }
 
-  if (metricsEl) {
+  if (resultsLeadEl && typeof data.resultsLead === "string") {
+    resultsLeadEl.textContent = data.resultsLead;
+  }
+
+  if (resultsCardsEl && Array.isArray(data.metrics)) {
+    resultsCardsEl.innerHTML = data.metrics.map(renderCaseStudyMetricCard).join("");
+  }
+
+  let gm = data.ganttGeneralDates;
+  if ((!gm || (!gm.range && !gm.label)) && projectRow?.calendarRange?.label) {
+    gm = { label: "Период", range: projectRow.calendarRange.label };
+  }
+
+  if (ganttGeneralDatesEl) {
+    if (gm && (gm.range || gm.label)) {
+      ganttGeneralDatesEl.innerHTML = `
+        <p class="case-gantt-general-dates-label">${escapeHtml(gm.label || "Общие даты")}</p>
+        <p class="case-gantt-general-dates-range">${escapeHtml(String(gm.range || ""))}</p>`;
+    } else {
+      ganttGeneralDatesEl.innerHTML = "";
+    }
+  }
+
+  let ganttPhases = Array.isArray(data.ganttPhases) && data.ganttPhases.length ? data.ganttPhases : null;
+  if (!ganttPhases && projectRow?.timeline?.length) {
+    ganttPhases = timelineToGanttPhases(projectRow.timeline);
+  }
+
+  if (ganttSection) {
+    ganttSection.hidden = !ganttPhases || !ganttPhases.length;
+  }
+
+  if (ganttEl && Array.isArray(ganttPhases) && ganttPhases.length) {
+    const quarters = [
+      { q: "Q1", range: "янв — мар" },
+      { q: "Q2", range: "апр — июн" },
+      { q: "Q3", range: "июл — сен" },
+      { q: "Q4", range: "окт — дек" }
+    ];
+    ganttEl.setAttribute("role", "group");
+    ganttEl.setAttribute("aria-label", "Таймлайн проекта по этапам");
+    ganttEl.innerHTML = `
+      <span class="case-gantt-vline" aria-hidden="true"></span>
+      <div class="case-gantt-axis" aria-hidden="true">
+        ${quarters
+          .map(
+            col => `
+        <div class="case-gantt-quarter">
+          <span class="case-gantt-q">${col.q}</span>
+          <span class="case-gantt-qsub">${col.range}</span>
+        </div>`
+          )
+          .join("")}
+      </div>
+      ${ganttPhases
+        .map(
+          p => `
+        <div class="case-gantt-row">
+          <span class="case-gantt-label">${escapeHtml(p.label)}</span>
+          <div class="case-gantt-track"><span class="case-gantt-bar" style="left:${p.startPct}%;width:${p.spanPct}%"></span></div>
+        </div>`
+        )
+        .join("")}`;
+    initCaseGanttCursorLine(ganttEl);
+  }
+
+  const coverSrc = getCaseStudyCoverSrc(data, projectRow);
+  const coverForCss = assetUrlForCss(coverSrc);
+  const leadSec = qs("#case-main .case-section-lead") || qs(".case-section-lead");
+  if (leadSec && coverForCss) {
+    const u = coverForCss.replace(/\\/g, "\\\\").replace(/"/g, '\\"');
+    leadSec.style.setProperty("--case-hero-cover-image", `url("${u}")`);
+  }
+
+  let caseStudyInlinedFigures = false;
+  if (storyEmbed) {
+    const storyHtml = renderCaseStudyStoryHtml(data);
+    storyEmbed.innerHTML = storyHtml;
+    const inlineSrcs = getCaseStudyInlineImages(data, coverSrc);
+    caseStudyInlinedFigures =
+      inlineSrcs.length > 0 && injectCaseStudyFiguresAfterCards(storyEmbed, inlineSrcs, data.title);
+    if (deepSection) deepSection.hidden = !storyHtml;
+  }
+
+  qsa("[data-case-img]").forEach(img => {
+    const idx = Number(img.dataset.caseImg);
+    if (!Number.isFinite(idx) || !data.images || !data.images[idx]) return;
+    img.src = data.images[idx];
+    img.alt = `${data.title} · материалы кейса ${idx + 1}`;
+  });
+
+  if (metricsEl && Array.isArray(data.metrics)) {
     metricsEl.innerHTML = data.metrics.map(item => `<li>${item}</li>`).join("");
   }
 
-  if (galleryEl) {
-    galleryEl.innerHTML = data.images
-      .map(
-        img => `<img src="${img}" alt="${data.title}" loading="lazy" decoding="async" />`
-      )
-      .join("");
+  if (galleryEl && Array.isArray(data.images)) {
+    if (caseStudyInlinedFigures) {
+      // Если изображения уже “вшиты” в историю — галерея не нужна,
+      // но видео (если есть) показываем отдельно.
+      const videosOnly = data.images.filter(isVideoSrc);
+      if (!videosOnly.length) {
+        galleryEl.innerHTML = "";
+        if (gallerySection) gallerySection.hidden = true;
+      } else {
+        galleryEl.innerHTML = videosOnly
+          .map(
+            (src, i) =>
+              isVideoSrc(src)
+                ? `<video class="case-video" src="${src}" controls playsinline preload="metadata" aria-label="${escapeHtml(
+                    `${data.title} · видео ${i + 1}`
+                  )}"></video>`
+                : ""
+          )
+          .join("");
+        if (gallerySection) gallerySection.hidden = false;
+      }
+    } else {
+      const start =
+        typeof data.galleryStartIndex === "number" && data.galleryStartIndex >= 0
+          ? data.galleryStartIndex
+          : 0;
+      const imgs = data.images.slice(start);
+      galleryEl.innerHTML = imgs
+        .map(
+          (src, i) =>
+            isVideoSrc(src)
+              ? `<video class="case-video" src="${src}" controls playsinline preload="metadata" aria-label="${escapeHtml(
+                  `${data.title} · видео ${i + 1}`
+                )}"></video>`
+              : `<img src="${src}" alt="${data.title} · экран ${start + i + 1}" loading="lazy" decoding="async" />`
+        )
+        .join("");
+      if (gallerySection) gallerySection.hidden = !imgs.length;
+    }
   }
 
-  if (linksEl && data.links) {
-    linksEl.innerHTML = data.links
-      .map(link => {
-        const isPanelLink = /panel\.octoclick\.com/i.test(String(link.url || ""));
-        const icon = isPanelLink
-          ? `<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 4h16v12H4zM8 20h8M12 16v4"/></svg>`
-          : `<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M14 3h7v7h-2V6.4l-9.3 9.3-1.4-1.4L17.6 5H14z"/><path fill="currentColor" d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2v-7h-2z"/></svg>`;
-        const classes = `button case-cover-link${isPanelLink ? " case-cover-link-platform" : ""}`;
-        return `<a class="${classes}" href="${link.url}" target="_blank" rel="noreferrer">${icon}<span>${link.label}</span></a>`;
-      })
-      .join("");
+  if (linksEl) {
+    if (data.links && data.links.length) {
+      const extIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M14 3h7v7h-2V6.4l-9.3 9.3-1.4-1.4L17.6 5H14z"/><path fill="currentColor" d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2v-7h-2z"/></svg>`;
+      linksEl.innerHTML = data.links
+        .map(
+          link =>
+            `<a class="button case-cover-link" href="${link.url}" target="_blank" rel="noreferrer">${extIcon}<span>${link.label}</span></a>`
+        )
+        .join("");
+      linksEl.hidden = false;
+    } else {
+      linksEl.innerHTML = "";
+      linksEl.hidden = true;
+    }
   }
 
   if (tagsEl && data.tags) {
@@ -1510,31 +2522,88 @@ const renderCaseStudy = () => {
   }
 };
 
+const getLightboxGalleryImages = () =>
+  qsa("#case-main .case-inline-figure img, #caseStoryEmbed img, .gallery img");
+
 const initLightbox = () => {
   const lightbox = qs("#lightbox");
   if (!lightbox) return;
-  const img = qs("img", lightbox);
+  const imgEl = qs("img", lightbox);
+  if (!imgEl) return;
   const prev = qs("[data-lightbox-prev]", lightbox);
   const next = qs("[data-lightbox-next]", lightbox);
-  const galleryImages = qsa(".gallery img");
-  if (!galleryImages.length) return;
+  if (!prev || !next) return;
+
+  let closeBtn = qs("[data-lightbox-close]", lightbox);
+  if (!closeBtn) {
+    closeBtn = document.createElement("button");
+    closeBtn.type = "button";
+    closeBtn.className = "lightbox-close";
+    closeBtn.setAttribute("data-lightbox-close", "");
+    closeBtn.setAttribute("aria-label", "Закрыть просмотр");
+    closeBtn.textContent = "×";
+    lightbox.insertBefore(closeBtn, lightbox.firstChild);
+  }
 
   let current = 0;
+  let scrollLockY = 0;
+
+  const close = () => {
+    lightbox.classList.remove("active");
+    document.documentElement.style.overflow = "";
+    document.body.style.overflow = "";
+    document.body.style.position = "";
+    document.body.style.top = "";
+    document.body.style.width = "";
+    window.scrollTo(0, scrollLockY);
+  };
 
   const open = index => {
+    const galleryImages = getLightboxGalleryImages();
+    if (!galleryImages.length || galleryImages[index] == null) return;
     current = index;
-    img.src = galleryImages[current].src;
+    const srcEl = galleryImages[current];
+    imgEl.src = srcEl.currentSrc || srcEl.src;
+    imgEl.alt = srcEl.alt || "";
     lightbox.classList.add("active");
+    scrollLockY = window.scrollY;
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollLockY}px`;
+    document.body.style.width = "100%";
   };
-
-  galleryImages.forEach((image, index) => {
-    image.addEventListener("click", () => open(index));
-  });
 
   const change = direction => {
+    const galleryImages = getLightboxGalleryImages();
+    if (!galleryImages.length) return;
     current = (current + direction + galleryImages.length) % galleryImages.length;
-    img.src = galleryImages[current].src;
+    const srcEl = galleryImages[current];
+    imgEl.src = srcEl.currentSrc || srcEl.src;
+    imgEl.alt = srcEl.alt || "";
   };
+
+  /* capture: лайтбокс для inline/галереи/истории; обложки «Другие кейсы» не перехватываем — клик ведёт на кейс */
+  const onGalleryImageClick = e => {
+    const t = e.target;
+    const img =
+      t instanceof HTMLImageElement ? t : t && typeof t.closest === "function" ? t.closest("img") : null;
+    if (!img) return;
+    if (lightbox.contains(img)) return;
+    if (img.closest("#case-main .case-more-cases")) return;
+    const inInline = img.closest("#case-main .case-inline-figure");
+    const inGallery = img.closest(".gallery");
+    const inStory = img.closest("#caseStoryEmbed");
+    if (!inInline && !inGallery && !inStory) return;
+    const galleryImages = getLightboxGalleryImages();
+    const idx = galleryImages.indexOf(img);
+    if (idx < 0) return;
+    e.preventDefault();
+    e.stopPropagation();
+    open(idx);
+  };
+
+  document.addEventListener("click", onGalleryImageClick, true);
 
   prev.addEventListener("click", e => {
     e.stopPropagation();
@@ -1544,7 +2613,21 @@ const initLightbox = () => {
     e.stopPropagation();
     change(1);
   });
-  lightbox.addEventListener("click", () => lightbox.classList.remove("active"));
+  closeBtn.addEventListener("click", e => {
+    e.stopPropagation();
+    close();
+  });
+
+  lightbox.addEventListener("click", e => {
+    if (e.target === lightbox) close();
+  });
+
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape" && lightbox.classList.contains("active")) {
+      e.preventDefault();
+      close();
+    }
+  });
 };
 
 const initCalculator = () => {
@@ -1644,195 +2727,326 @@ const initCounters = () => {
   });
 };
 
-const initAmbientAudio = () => {
-  const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-  if (!AudioContextClass) return;
+const SWIPE_THRESHOLD = 50;
 
-  const storageKey = "ambient-audio-enabled";
-  const saved = localStorage.getItem(storageKey);
-  let isEnabled = saved === null ? true : saved !== "false";
+const initMorphingCardStack = () => {
+  const root = qs("#morphStack");
+  const wrap = qs("#morphStackCards");
+  if (!root || !wrap) return;
 
-  let ctx = null;
-  let master = null;
-  let lowPass = null;
-  let isReady = false;
-  let modTimer = null;
+  const getCards = () => qsa(".morph-stack-card", wrap);
+  const dotsWrap = qs("#morphStackDots");
+  const modeBtns = qsa(".morph-stack-mode", root);
 
-  const button = document.createElement("button");
-  button.type = "button";
-  button.className = "ambient-audio-toggle";
-  button.setAttribute("aria-live", "polite");
-  button.innerHTML = `
-    <span class="ambient-audio-icon" aria-hidden="true">
-      <svg viewBox="0 0 24 24">
-        <path fill="currentColor" d="M14 3.2v17.6c0 .8-.9 1.3-1.6.8L7.5 18H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h3.5l4.9-3.6c.7-.5 1.6 0 1.6.8Z"/>
-        <path fill="currentColor" d="M17.8 8.2a1 1 0 0 1 1.4 0 5.4 5.4 0 0 1 0 7.6 1 1 0 1 1-1.4-1.4 3.4 3.4 0 0 0 0-4.8 1 1 0 0 1 0-1.4Z"/>
-      </svg>
-    </span>
-    <span class="ambient-audio-label">Ambient</span>
-  `;
-  document.body.appendChild(button);
+  let layout = "stack";
+  let activeIndex = 0;
+  let expandedId = null;
+  let dragX = 0;
+  let dragging = false;
+  let dragStartX = 0;
+  let captureCard = null;
+  let suppressClick = false;
 
-  const updateButton = () => {
-    button.classList.toggle("is-on", isEnabled);
-    button.setAttribute("aria-label", isEnabled ? "Выключить фоновую музыку" : "Включить фоновую музыку");
-    const label = button.querySelector(".ambient-audio-label");
-    if (label) label.textContent = isEnabled ? "Ambient on" : "Ambient off";
-  };
+  const count = () => getCards().length;
 
-  const rampTo = (target, seconds) => {
-    if (!ctx || !master) return;
-    const now = ctx.currentTime;
-    master.gain.cancelScheduledValues(now);
-    master.gain.setValueAtTime(master.gain.value, now);
-    master.gain.linearRampToValueAtTime(target, now + seconds);
-  };
-
-  const ensureGraph = () => {
-    if (isReady) return;
-    ctx = new AudioContextClass();
-    master = ctx.createGain();
-    master.gain.value = 0;
-    master.connect(ctx.destination);
-
-    lowPass = ctx.createBiquadFilter();
-    lowPass.type = "lowpass";
-    lowPass.frequency.value = 1400;
-    lowPass.Q.value = 0.6;
-    lowPass.connect(master);
-
-    const createPadVoice = (freq, type, gainValue, detune = 0) => {
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.type = type;
-      osc.frequency.value = freq;
-      osc.detune.value = detune;
-      gain.gain.value = gainValue;
-      osc.connect(gain);
-      gain.connect(lowPass);
-      osc.start();
-      return { osc, gain };
-    };
-
-    createPadVoice(146.83, "sine", 0.045);
-    createPadVoice(220.0, "triangle", 0.028, -3);
-    createPadVoice(293.66, "sine", 0.019, 4);
-    createPadVoice(440.0, "triangle", 0.007, -5);
-
-    const lfo = ctx.createOscillator();
-    const lfoGain = ctx.createGain();
-    lfo.type = "sine";
-    lfo.frequency.value = 0.055;
-    lfoGain.gain.value = 220;
-    lfo.connect(lfoGain);
-    lfoGain.connect(lowPass.frequency);
-    lfo.start();
-
-    modTimer = window.setInterval(() => {
-      if (!ctx || !lowPass) return;
-      const now = ctx.currentTime;
-      const base = 1150 + Math.random() * 380;
-      lowPass.frequency.cancelScheduledValues(now);
-      lowPass.frequency.linearRampToValueAtTime(base, now + 4.2);
-    }, 4200);
-
-    isReady = true;
-  };
-
-  const stopAmbient = () => {
-    if (!ctx) return;
-    rampTo(0, 0.6);
-    window.setTimeout(() => {
-      if (ctx && ctx.state === "running") {
-        ctx.suspend().catch(() => {});
-      }
-    }, 650);
-  };
-
-  const startAmbient = async userGesture => {
-    if (!isEnabled) return false;
-    ensureGraph();
-
-    if (ctx.state !== "running") {
-      try {
-        await ctx.resume();
-      } catch (_err) {
-        if (!userGesture) return false;
-      }
-    }
-
-    if (ctx.state === "running") {
-      rampTo(0.038, 2.4);
-      return true;
-    }
-    return false;
-  };
-
-  const tryEnableFromInteraction = async () => {
-    if (!isEnabled) return;
-    await startAmbient(true);
-  };
-
-  const interactionEvents = ["pointerdown", "keydown", "touchstart"];
-  interactionEvents.forEach(evt => {
-    window.addEventListener(evt, tryEnableFromInteraction, { once: true, passive: true });
-  });
-
-  button.addEventListener("click", async () => {
-    isEnabled = !isEnabled;
-    localStorage.setItem(storageKey, String(isEnabled));
-    updateButton();
-    if (isEnabled) {
-      await startAmbient(true);
+  const syncDots = () => {
+    if (!dotsWrap) return;
+    const n = count();
+    if (layout !== "stack" || n <= 1) {
+      dotsWrap.hidden = true;
       return;
     }
-    stopAmbient();
+    dotsWrap.hidden = false;
+    const existing = qsa(".morph-stack-dot", dotsWrap);
+    if (existing.length !== n) {
+      dotsWrap.innerHTML = "";
+      for (let i = 0; i < n; i += 1) {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "morph-stack-dot";
+        b.setAttribute("aria-label", `Карточка ${i + 1}`);
+        b.addEventListener("click", () => {
+          activeIndex = i;
+          expandedId = null;
+          apply();
+        });
+        dotsWrap.appendChild(b);
+      }
+    }
+    qsa(".morph-stack-dot", dotsWrap).forEach((d, i) => d.classList.toggle("is-active", i === activeIndex));
+  };
+
+  const apply = () => {
+    root.dataset.layout = layout;
+    modeBtns.forEach(btn => {
+      const m = btn.dataset.layout;
+      const on = m === layout;
+      btn.classList.toggle("is-active", on);
+      btn.setAttribute("aria-pressed", on ? "true" : "false");
+    });
+
+    const list = getCards();
+    const n = list.length;
+    if (!n) return;
+
+    if (layout !== "stack") {
+      dragX = 0;
+      list.forEach(c => {
+        c.classList.remove("is-top", "is-dragging");
+        c.style.transform = "";
+        c.style.zIndex = "";
+        c.style.pointerEvents = "";
+      });
+      syncDots();
+      return;
+    }
+
+    list.forEach((card, i) => {
+      const depth = (i - activeIndex + n * 10) % n;
+      const tx = depth * 8;
+      const ty = depth * 8;
+      const rot = (depth - 1) * 2;
+      const z = n - depth;
+      const isTop = depth === 0;
+      const id = card.dataset.cardId;
+      const expanded = expandedId === id && isTop;
+      const extraX = isTop ? dragX : 0;
+      const scale = expanded ? 1.04 : 1;
+
+      card.classList.toggle("is-top", isTop);
+      card.classList.toggle("is-expanded", Boolean(expanded));
+      card.style.zIndex = String(z + (expanded ? 20 : 0));
+      card.style.pointerEvents = isTop ? "auto" : "none";
+      card.style.transform = `translate(calc(-50% + ${tx + extraX}px), ${ty}px) rotate(${rot}deg) scale(${scale})`;
+    });
+
+    syncDots();
+  };
+
+  wrap.addEventListener("pointerdown", event => {
+    if (layout !== "stack") return;
+    if (event.target.closest(".morph-stack-more")) return;
+    const card = event.target.closest(".morph-stack-card");
+    if (!card || !card.classList.contains("is-top")) return;
+    dragging = true;
+    dragStartX = event.clientX;
+    dragX = 0;
+    captureCard = card;
+    card.classList.add("is-dragging");
+    try {
+      card.setPointerCapture(event.pointerId);
+    } catch (_e) {}
   });
 
-  updateButton();
-  if (isEnabled) {
-    startAmbient(false);
+  wrap.addEventListener("pointermove", event => {
+    if (!dragging || layout !== "stack") return;
+    dragX = event.clientX - dragStartX;
+    apply();
+  });
+
+  const endDrag = event => {
+    if (!dragging) return;
+    dragging = false;
+    if (captureCard) {
+      captureCard.classList.remove("is-dragging");
+      try {
+        if (event && captureCard.hasPointerCapture?.(event.pointerId)) {
+          captureCard.releasePointerCapture(event.pointerId);
+        }
+      } catch (_e) {}
+    }
+    captureCard = null;
+
+    const n = count();
+    if (layout === "stack" && n > 0) {
+      if (dragX < -SWIPE_THRESHOLD) {
+        activeIndex = (activeIndex + 1) % n;
+        suppressClick = true;
+      } else if (dragX > SWIPE_THRESHOLD) {
+        activeIndex = (activeIndex - 1 + n) % n;
+        suppressClick = true;
+      } else if (Math.abs(dragX) > 12) {
+        suppressClick = true;
+      }
+    }
+    dragX = 0;
+    apply();
+  };
+
+  wrap.addEventListener("pointerup", endDrag);
+  wrap.addEventListener("pointercancel", endDrag);
+
+  wrap.addEventListener(
+    "click",
+    event => {
+      if (event.target.closest(".morph-stack-more")) return;
+      if (suppressClick) {
+        suppressClick = false;
+        return;
+      }
+      const card = event.target.closest(".morph-stack-card");
+      if (!card) return;
+      if (layout === "stack" && !card.classList.contains("is-top")) return;
+      const id = card.dataset.cardId;
+      expandedId = expandedId === id ? null : id;
+      apply();
+    },
+    true
+  );
+
+  modeBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      layout = btn.dataset.layout || "stack";
+      expandedId = null;
+      dragX = 0;
+      apply();
+    });
+  });
+
+  apply();
+};
+
+const HERO_NAME_RU = "Ярослав\u00A0Сигидин";
+const HERO_NAME_EN = "Yaroslav\u00A0Sigidin";
+const HERO_NAME_LEN = Math.max(HERO_NAME_RU.length, HERO_NAME_EN.length);
+const padHeroDisplay = s => s.padEnd(HERO_NAME_LEN, "\u00A0");
+
+const HERO_NAME_SCRAMBLE_CHARSET =
+  "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЫЭЮЯабвгдежзийклмнопрстуфхцчшщыэюя";
+
+const prefersHeroPointerHover = () =>
+  typeof window.matchMedia === "function" &&
+  window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+const initHeroNameScramble = () => {
+  const h1 = qs("#portfolio-hero-title");
+  const wrap = qs("#portfolioHeroNameChars");
+  if (!h1 || !wrap) return;
+
+  const ruPadded = padHeroDisplay(HERO_NAME_RU);
+  const enPadded = padHeroDisplay(HERO_NAME_EN);
+
+  if (!prefersHeroPointerHover()) {
+    wrap.textContent = HERO_NAME_RU;
+    return;
   }
 
-  window.addEventListener("beforeunload", () => {
-    if (modTimer) window.clearInterval(modTimer);
-  });
+  if (shouldReduceTextScrambleMotion()) {
+    wrap.textContent = HERO_NAME_RU;
+    const showEn = () => {
+      wrap.textContent = HERO_NAME_EN;
+      wrap.setAttribute("lang", "en");
+    };
+    const showRu = () => {
+      wrap.textContent = HERO_NAME_RU;
+      wrap.removeAttribute("lang");
+    };
+    h1.addEventListener("mouseenter", showEn);
+    h1.addEventListener("mouseleave", showRu);
+    return;
+  }
+
+  wrap.textContent = "";
+  const spans = [];
+  for (let i = 0; i < HERO_NAME_LEN; i++) {
+    const span = document.createElement("span");
+    span.className = "portfolio-hero-ch";
+    span.textContent = ruPadded[i];
+    wrap.appendChild(span);
+    spans.push(span);
+  }
+
+  let activeRun = 0;
+
+  const randomHeroGlyph = () =>
+    HERO_NAME_SCRAMBLE_CHARSET[Math.floor(Math.random() * HERO_NAME_SCRAMBLE_CHARSET.length)];
+
+  const morphTo = targetStr => {
+    activeRun += 1;
+    const run = activeRun;
+    let maxEnd = 0;
+    const toEn = targetStr === enPadded;
+
+    spans.forEach((span, i) => {
+      const finalCh = targetStr[i];
+      const steps = 5 + Math.floor(Math.random() * 5);
+      const startDelay = i * 22;
+      const tick = 28;
+
+      for (let step = 0; step < steps; step++) {
+        window.setTimeout(() => {
+          if (run !== activeRun) return;
+          span.textContent = randomHeroGlyph();
+        }, startDelay + step * tick);
+      }
+
+      const endTime = startDelay + steps * tick + 18;
+      maxEnd = Math.max(maxEnd, endTime);
+
+      window.setTimeout(() => {
+        if (run !== activeRun) return;
+        span.textContent = finalCh;
+      }, endTime);
+    });
+
+    window.setTimeout(() => {
+      if (run !== activeRun) return;
+      if (toEn) wrap.setAttribute("lang", "en");
+      else wrap.removeAttribute("lang");
+    }, maxEnd + 8);
+  };
+
+  h1.addEventListener("mouseenter", () => morphTo(enPadded));
+  h1.addEventListener("mouseleave", () => morphTo(ruPadded));
 };
 
 document.addEventListener("DOMContentLoaded", () => {
+  const safe = (label, fn) => {
+    try {
+      fn();
+    } catch (err) {
+      console.error(`[init ${label}]`, err);
+    }
+  };
+
   document.body.classList.add("page-enter");
   requestAnimationFrame(() => {
     document.body.classList.add("page-loaded");
     document.body.classList.remove("page-enter");
   });
 
-  initNav();
-  initServiceWorker();
-  initThemeToggle();
-  initAmbientAudio();
-  initMobilePortfolioDefault();
-  qsa(".section-title, .section-subtitle, .hero-title, .case-hero h1").forEach(el => {
-    el.classList.add("reveal");
-    el.dataset.scramble = "true";
-  });
-  initReveal();
-  initChat();
-  initModal();
-  initModalTabs();
-  initModalLightbox();
-  initLightbox();
-  initCalculator();
-  initCalculatorPage();
-  initCounters();
-  initMetroTimeline();
-  initArticleReveal();
-  initArticleProgress();
-  scheduleDataHydration();
+  safe("nav", initNav);
+  safe("serviceWorker", initServiceWorker);
+  safe("theme", initThemeToggle);
+  safe("mobilePortfolioDefault", initMobilePortfolioDefault);
+  safe("textScramble", () => initTextScramble(document.body));
+  safe("heroNameScramble", initHeroNameScramble);
+  safe("reveal", initReveal);
+  safe("morphingCardStack", initMorphingCardStack);
+  safe("cvDock", initCvDock);
+  safe("chat", initChat);
+  safe("serviceLeadModal", initServiceLeadModal);
+  safe("modal", initModal);
+  safe("modalTabs", initModalTabs);
+  safe("modalLightbox", initModalLightbox);
+  safe("lightbox", initLightbox);
+  safe("calculator", initCalculator);
+  safe("calculatorPage", initCalculatorPage);
+  safe("counters", initCounters);
+  safe("metroTimeline", initMetroTimeline);
+  safe("articleReveal", initArticleReveal);
+  safe("articleProgress", initArticleProgress);
+  safe("caseStudyHeroScroll", initCaseStudyHeroScroll);
+  safe("dataHydration", scheduleDataHydration);
 
-  qsa('a[href^="case-"]').forEach(link => {
-    link.addEventListener("click", event => {
-      event.preventDefault();
-      navigateWithTransition(link.getAttribute("href"));
+  try {
+    qsa('a[href^="case-"]').forEach(link => {
+      link.addEventListener("click", event => {
+        event.preventDefault();
+        navigateWithTransition(link.getAttribute("href"));
+      });
     });
-  });
+  } catch (err) {
+    console.error("[init case links]", err);
+  }
 });

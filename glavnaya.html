@@ -34,8 +34,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Sora:wght@400;600;700&display=swap" />
-    <link rel="preload" href="assets/css/styles.css?v=20260212-3" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link rel="stylesheet" href="assets/css/styles.css?v=20260212-3" /></noscript>
+    <link rel="preload" href="assets/css/styles.css?v=20260411-remove-third-block" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="assets/css/styles.css?v=20260411-remove-third-block" /></noscript>
     <link rel="preload" href="assets/css/glavnaya.css?v=20260223-7" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     <noscript><link rel="stylesheet" href="assets/css/glavnaya.css?v=20260223-7" /></noscript>
     <link rel="manifest" href="site.webmanifest" />
@@ -43,32 +43,32 @@
     <link rel="shortcut icon" href="assets/images/favicon.svg" />
   </head>
   <body class="glavnaya-page glavnaya-visual" data-theme="dark">
-    <header>
+        <header>
       <div class="container nav">
         <a class="logo" href="/">SIGIDINGO</a>
-        <nav class="nav-links" id="navLinks" aria-label="Основная навигация">
-          <a href="glavnaya" class="nav-link">Главная</a>
-          <a href="portfolio" class="nav-link">Portfolio</a>
-          <a href="services" class="nav-link">Price</a>
-          <a href="about" class="nav-link">About / CV</a>
-          <a href="/glavnaya#contact" class="nav-link">Contact</a>
-          <a href="blog" class="nav-link">Blog</a>
-          <a href="tests" class="nav-link">Tests</a>
-          <a href="game" class="nav-link">Game</a>
+        <nav class="nav-links" id="navLinks">
+          <a href="/" class="nav-link">Главная</a>
+          <a href="/portfolio" class="nav-link">Портфолио</a>
+          <a href="/about" class="nav-link">Обо мне / CV</a>
+          <a href="/blog" class="nav-link">Блог</a>
         </nav>
         <div class="nav-tools">
           <a class="nav-telegram" href="https://t.me/sigidingo" target="_blank" rel="noreferrer">
             <span class="icon-circle">
-              <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.8 4.6 2.9 11.9c-1.3.5-1.3 1.3-.2 1.7l4.7 1.5 1.8 5.4c.2.6.1.9.9.9.6 0 .9-.3 1.3-.7l2.3-2.2 4.8 3.5c.9.5 1.5.2 1.7-.8l3.1-14.7c.3-1.2-.5-1.7-1.5-1.3zM9.3 14.9l9-5.7c.4-.3.8-.1.5.2l-7.3 6.6-.3 3.2-1.9-4.3z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="currentColor" d="M21.8 4.6 2.9 11.9c-1.3.5-1.3 1.3-.2 1.7l4.7 1.5 1.8 5.4c.2.6.1.9.9.9.6 0 .9-.3 1.3-.7l2.3-2.2 4.8 3.5c.9.5 1.5.2 1.7-.8l3.1-14.7c.3-1.2-.5-1.7-1.5-1.3zM9.3 14.9l9-5.7c.4-.3.8-.1.5.2l-7.3 6.6-.3 3.2-1.9-4.3z"/>
+              </svg>
             </span>
             Telegram
           </a>
-          <button class="theme-switch" data-theme-toggle type="button" aria-label="Toggle theme">
-            <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.1 2.2c-3.4.4-6.1 3.3-6.1 6.9 0 3.9 3.2 7.1 7.1 7.1 2.3 0 4.4-1.1 5.7-2.9-4 .8-7.5-2.6-6.7-6.7z"/></svg>
+          <button class="theme-switch" data-theme-toggle type="button" aria-label="Переключить тему">
+            <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor" d="M12.3 2.2c-3.6.3-6.5 3.4-6.5 7.1 0 3.9 3.2 7.1 7.1 7.1 2.4 0 4.5-1.1 5.8-2.9-4.3.7-7.9-2.8-6.4-6.9z"/>
+            </svg>
             <span class="track"><span class="thumb"></span></span>
           </button>
         </div>
-        <button class="mobile-toggle" id="mobileToggle" type="button" aria-label="Open menu" aria-controls="navLinks" aria-expanded="false"><span></span><span></span><span></span></button>
+        <button class="mobile-toggle" id="mobileToggle" type="button" aria-label="Открыть меню" aria-controls="navLinks" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
     </header>
 
@@ -116,32 +116,32 @@
             <article class="service-lab-card">
               <h3>UX-аудит воронки</h3>
               <p>Находим места, где вы теряете пользователей, и даем дорожную карту быстрых улучшений.</p>
-              <span>от 45 000 ₽ · 2-7 дней</span>
+              <span>бесплатно · 2-7 дней</span>
             </article>
             <article class="service-lab-card">
               <h3>Landing / Marketing Site</h3>
               <p>Конструирую структуру и визуал, которые ведут к заявке без лишних экранов и шума.</p>
-              <span>от 120 000 ₽ · 2-4 недели</span>
+              <span>от 48 000 ₽ · 2-4 недели</span>
             </article>
             <article class="service-lab-card">
               <h3>Product UX/UI</h3>
               <p>Проектирую сложные сценарии, роли и состояния для SaaS и B2B/B2C-продуктов.</p>
-              <span>от 220 000 ₽ · 4-10 недель</span>
+              <span>от 88 000 ₽ · 4-10 недель</span>
             </article>
             <article class="service-lab-card">
               <h3>Design System</h3>
               <p>Собираю компоненты и правила, чтобы команда выпускала интерфейсы быстрее и стабильнее.</p>
-              <span>от 260 000 ₽ · 3-8 недель</span>
+              <span>от 104 000 ₽ · 3-8 недель</span>
             </article>
             <article class="service-lab-card">
               <h3>Mobile App UX/UI</h3>
               <p>Делаю мобильные потоки короткими и понятными, с учетом реальных пользовательских контекстов.</p>
-              <span>от 170 000 ₽ · 3-7 недель</span>
+              <span>от 68 000 ₽ · 3-7 недель</span>
             </article>
             <article class="service-lab-card">
               <h3>Handoff + QA</h3>
               <p>Сопровождаю внедрение в код, чтобы релиз соответствовал макетам и бизнес-целям.</p>
-              <span>от 60 000 ₽ · 1-4 недели</span>
+              <span>от 24 000 ₽ · 1-4 недели</span>
             </article>
           </div>
         </div>
@@ -181,7 +181,7 @@
       </section>
     </main>
 
-    <script src="assets/js/main.js?v=20260212-2" defer></script>
+    <script src="assets/js/main.js?v=20260411-octoclick-page" defer></script>
     <script src="assets/js/glavnaya.js?v=20260223-5" defer></script>
   </body>
 </html>

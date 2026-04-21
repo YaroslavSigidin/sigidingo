@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Auth Screen Builder</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 12px;
+        font-family: Inter, Arial, sans-serif;
+        background: #f6f8fc;
+        color: #1f2937;
+      }
+      h1 {
+        margin: 0 0 8px;
+        font-size: 16px;
+      }
+      p {
+        margin: 0 0 8px;
+        font-size: 12px;
+        color: #4b5563;
+      }
+      textarea {
+        width: 100%;
+        height: 260px;
+        box-sizing: border-box;
+        border: 1px solid #d1d5db;
+        border-radius: 8px;
+        padding: 10px;
+        font-size: 12px;
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        resize: vertical;
+      }
+      button {
+        margin-top: 10px;
+        width: 100%;
+        height: 36px;
+        border: 0;
+        border-radius: 8px;
+        background: #1976d2;
+        color: #fff;
+        font-weight: 600;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Auth Screen Builder</h1>
+    <p>Вставьте JSON контента и нажмите кнопку.</p>
+    <textarea id="jsonInput"></textarea>
+    <button id="buildBtn">Создать макет</button>
+
+    <script>
+      const defaultJson = {
+        project: "Auth Base",
+        screens: {
+          login: {
+            title: "Вход",
+            subtitle: "Введите телефон и пароль",
+            fields: [
+              { type: "tel", label: "Телефон", placeholder: "+7 900 000 00 00", required: true },
+              { type: "password", label: "Пароль", placeholder: "Введите пароль", required: true }
+            ],
+            submit: "Войти",
+            secondaryAction: "Нет аккаунта? Зарегистрироваться"
+          },
+          register: {
+            title: "Регистрация",
+            subtitle: "Заполните поля для создания аккаунта",
+            fields: [
+              { type: "text", label: "Фамилия", placeholder: "Фамилия", required: true },
+              { type: "text", label: "Имя", placeholder: "Имя", required: true },
+              { type: "text", label: "Отчество", placeholder: "Отчество", required: false },
+              { type: "tel", label: "Телефон", placeholder: "+7 900 000 00 00", required: true },
+              { type: "password", label: "Пароль", placeholder: "Пароль", required: true },
+              { type: "password", label: "Повторите пароль", placeholder: "Повторите пароль", required: true }
+            ],
+            agreements: [
+              {
+                label: "Согласие на обработку персональных данных",
+                description: "You agree to our Terms of Service and Privacy Policy."
+              },
+              {
+                label: "Согласие с пользовательским соглашением",
+                description: "You agree to our Terms of Service and Privacy Policy."
+              }
+            ],
+            submit: "Отправить код",
+            secondaryAction: "Уже есть аккаунт? Войти"
+          }
+        }
+      };
+
+      const input = document.getElementById("jsonInput");
+      input.value = JSON.stringify(defaultJson, null, 2);
+
+      document.getElementById("buildBtn").addEventListener("click", () => {
+        parent.postMessage(
+          {
+            pluginMessage: {
+              type: "build-auth-frames",
+              payload: input.value
+            }
+          },
+          "*"
+        );
+      });
+    </script>
+  </body>
+</html>

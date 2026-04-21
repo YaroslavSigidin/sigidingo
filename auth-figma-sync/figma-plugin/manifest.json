@@ -1,0 +1,7 @@
+{
+  "name": "Learning System Builder",
+  "id": "auth-screen-builder-local",
+  "api": "1.0.0",
+  "main": "code.js",
+  "editorType": ["figma"]
+}
