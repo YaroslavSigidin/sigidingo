@@ -236,6 +236,22 @@ const projectImageSets = {
   ),
   "zaozernaya": locals(
     "case-logo-zaozernaya/HERO.png"
+  ),
+  "ermitage": locals(
+    "case-ermitage/HERO.jpg",
+    "case-ermitage/Frame 1.jpg",
+    "case-ermitage/Frame 2.jpg",
+    "case-ermitage/Frame 3.jpg",
+    "case-ermitage/Frame 4.jpg",
+    "case-ermitage/Frame 5.jpg",
+    "case-ermitage/Frame 6.jpg",
+    "case-ermitage/Frame 9.jpg",
+    "case-ermitage/Frame 10.jpg",
+    "case-ermitage/Frame 12.jpg",
+    "case-ermitage/Frame 14.jpg",
+    "case-ermitage/Frame 16.jpg",
+    "case-ermitage/Frame 18.jpg",
+    "case-ermitage/Frame 19.jpg"
   )
 };
 
@@ -824,6 +840,36 @@ const projects = [
     gallery: projectImageSets["weintek-panel"].slice(1),
     caseKey: "weintek-panel",
     casePage: "/case-weintek-panel"
+  },
+  {
+    id: "ermitage",
+    title: "ERMITAGE",
+    subtitle: "Сайт и визуальный стиль",
+    category: "web",
+    description:
+      "Ermitage — сайт с акцентом на аккуратную типографику и ритм блоков: от первого экрана до сетки материалов. Тёплый, спокойный стиль, аккуратные отступы и продуманная иерархия для восприятия.",
+    timeline: [
+      { title: "Референсы и концепция", period: "5 дней" },
+      { title: "UX‑каркас и структура", period: "7 дней" },
+      { title: "UI и визуальный стиль", period: "10 дней" },
+      { title: "Финализация", period: "5 дней" }
+    ],
+    calendarRange: {
+      startMonth: 2,
+      months: 1,
+      label: "Март 2026"
+    },
+    technologies: ["Branding", "Web design", "Typography", "Art direction"],
+    tools: ["Figma"],
+    metrics: [
+      "Чистая визуальная иерархия и ритм блоков.",
+      "Цельный стиль во всех разделах.",
+      "Материалы для презентации и продвижения."
+    ],
+    image: projectImageSets["ermitage"][0],
+    gallery: projectImageSets["ermitage"].slice(1),
+    caseKey: "ermitage",
+    casePage: "/case-ermitage"
   },
   {
     id: "volt-pay",
@@ -1680,6 +1726,55 @@ const caseStudies = {
     ganttGeneralDates: {
       label: "Период",
       range: "Апрель 2026"
+    }
+  },
+  "ermitage": {
+    title: "ERMITAGE",
+    subtitle: "Сайт · визуальный стиль",
+    tags: ["Web", "Branding", "Art direction"],
+    task:
+      "Собрать сайт с чистой типографикой и продуманным ритмом блоков: удобная навигация, понятная иерархия материалов и спокойный визуальный стиль.",
+    whatDone: [
+      "Собрал концепцию и структуру сайта.",
+      "Проработал типографическую иерархию и ритм блоков.",
+      "Спроектировал ключевые страницы и состояния.",
+      "Подготовил макеты и экраны для презентации."
+    ],
+    metrics: [
+      "Чистая визуальная иерархия.",
+      "Единый стиль во всех разделах.",
+      "Набор макетов готов к передаче в разработку."
+    ],
+    storyChapters: [
+      {
+        label: "Контекст",
+        title: "Сайт, который удобно читать",
+        text:
+          "Основная задача — аккуратно разместить большое количество материала без перегрузки. Интерфейс должен помогать быстро сориентироваться и комфортно читать длинные тексты."
+      },
+      {
+        label: "Решения",
+        title: "Как выстроил ритм и иерархию",
+        text:
+          "Я зафиксировал модульную сетку, типографические правила и базовые состояния. В результате страницы воспринимаются цельно и предсказуемо, независимо от длины контента."
+      },
+      {
+        label: "Итог",
+        title: "Готовый визуальный язык",
+        text:
+          "В финале получился аккуратный стиль с понятной логикой, который дальше можно развивать — добавлять разделы и материалы, не ломая общий ритм."
+      }
+    ],
+    links: [],
+    images: projectImageSets.ermitage,
+    galleryStartIndex: 1,
+    ganttPhases: [
+      { label: "Концепция и UX", startPct: 0, spanPct: 45 },
+      { label: "UI и детализация", startPct: 45, spanPct: 55 }
+    ],
+    ganttGeneralDates: {
+      label: "Период",
+      range: "Март 2026"
     }
   },
   "mirox-app": {
