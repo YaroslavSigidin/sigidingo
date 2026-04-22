@@ -1,8 +1,8 @@
 const qs = (sel, scope = document) => scope.querySelector(sel);
 const qsa = (sel, scope = document) => Array.from(scope.querySelectorAll(sel));
-const FALLBACK_COVER = "assets/images/HERO/PROFI.jpg";
+const FALLBACK_COVER = "assets/images/HERO/HERO__.jpg";
 const SERVICE_WORKER_PATH = "/sw.js";
-const DATA_BUNDLE = "assets/js/data.js?v=20260422-eager-inline";
+const DATA_BUNDLE = "assets/js/data.js?v=20260422-case-media-1";
 let dataHydrated = false;
 let dataBundlePromise = null;
 const RESPONSIVE_IMAGES = new Set([
@@ -29,6 +29,18 @@ const isDataAvailable = () =>
   typeof featuredProjects !== "undefined" ||
   typeof caseStudies !== "undefined" ||
   typeof articles !== "undefined";
+
+const decodeAssetUrl = src => {
+  const t = String(src ?? "").trim();
+  if (!t) return "";
+  try {
+    return decodeURI(t);
+  } catch {
+    return t;
+  }
+};
+
+const assetUrlForDom = src => decodeAssetUrl(src);
 
 const loadDataBundle = () => {
   if (isDataAvailable()) return Promise.resolve();
@@ -106,7 +118,7 @@ const bindImageFallback = image => {
   image.addEventListener(
     "error",
     () => {
-      image.src = FALLBACK_COVER;
+      image.src = assetUrlForDom(FALLBACK_COVER);
     },
     { once: true }
   );
@@ -1137,7 +1149,7 @@ const openProjectModal = project => {
   const modalContentEl = qs("#projectModal .modal-content");
   const cover = qs("#modalCover");
   if (cover) {
-    cover.src = project.image || "";
+    cover.src = assetUrlForDom(project.image || "");
     cover.alt = project.title || "Project cover";
     bindImageFallback(cover);
   }
@@ -1260,7 +1272,7 @@ const openProjectModal = project => {
       card.className = "modal-gallery-card modal-void";
       card.style.transitionDelay = `${index * 0.08}s`;
       const image = document.createElement("img");
-      image.src = img;
+      image.src = assetUrlForDom(img);
       image.alt = project.title || "Project image";
       image.loading = "lazy";
       bindImageFallback(image);
@@ -2245,9 +2257,10 @@ const assetUrlForCss = src => {
   const t = String(src ?? "").trim();
   if (!t) return "";
   if (/^https?:\/\//i.test(t)) return t;
-  const path = t.startsWith("/") ? t : `/${t}`;
-  // data.js уже может содержать encodeURI(). encodeURI() здесь сохраняет существующие %xx
-  // и кодирует пробелы/кириллицу без double-encode.
+  const decoded = decodeAssetUrl(t);
+  const path = decoded.startsWith("/") ? decoded : `/${decoded}`;
+  // CSS url() должен получить ровно один раз закодированный путь.
+  // data.js уже хранит часть путей в encodeURI(), поэтому сначала декодируем.
   return encodeURI(path);
 };
 
@@ -2279,7 +2292,7 @@ const injectCaseStudyFiguresAfterCards = (storyRoot, imageSrcs, caseTitle) => {
       const fig = document.createElement("figure");
       fig.className = "case-inline-figure case-figure-after-text";
       const img = document.createElement("img");
-      img.src = src;
+      img.src = assetUrlForDom(src);
       img.alt = `${caseTitle} · экран ${screenIndex}`;
       screenIndex += 1;
       // eager, иначе lazy + content-visibility:auto приводят к тому,
@@ -2454,7 +2467,7 @@ const renderCaseStudy = () => {
   qsa("[data-case-img]").forEach(img => {
     const idx = Number(img.dataset.caseImg);
     if (!Number.isFinite(idx) || !data.images || !data.images[idx]) return;
-    img.src = data.images[idx];
+    img.src = assetUrlForDom(data.images[idx]);
     img.alt = `${data.title} · материалы кейса ${idx + 1}`;
   });
 

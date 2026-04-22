@@ -1,4 +1,4 @@
-const CACHE_VERSION = "2026-02-14-3";
+const CACHE_VERSION = "2026-04-22-case-media-1";
 const STATIC_CACHE = `static-${CACHE_VERSION}`;
 const RUNTIME_CACHE = `runtime-${CACHE_VERSION}`;
 
@@ -37,12 +37,12 @@ self.addEventListener("activate", event => {
 const cacheFirst = async request => {
   const cache = await caches.open(RUNTIME_CACHE);
   const cached = await cache.match(request);
-  if (cached) return cached;
-  const response = await fetch(request);
+  const response = await fetch(request).catch(() => cached);
   if (response && response.status === 200) {
     cache.put(request, response.clone());
+    return response;
   }
-  return response;
+  return cached || response;
 };
 
 const staleWhileRevalidate = async request => {
