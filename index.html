@@ -200,6 +200,7 @@
             ></svg>
             <div class="skill-map-nodes" id="skillMapNodes"></div>
           </div>
+          <div class="skill-map-mobile-tags" id="skillMapMobileTags" aria-label="Список навыков"></div>
         </div>
       </section>
 
@@ -216,6 +217,28 @@
           <canvas class="home-pac-canvas" aria-hidden="true"></canvas>
           <div class="home-pac-reduced-msg" aria-hidden="true">
             <span class="visually-hidden">Анимация в блоке отключена настройкой «меньше движения».</span>
+          </div>
+          <div class="home-pac-mobile-list" aria-label="Ключевые достижения">
+            <article class="home-pac-mobile-card">
+              <span class="home-pac-mobile-index">01</span>
+              <p class="home-pac-mobile-copy">Реализовал более 40 коммерческих проектов: от лендингов до дизайна образовательных платформ.</p>
+            </article>
+            <article class="home-pac-mobile-card">
+              <span class="home-pac-mobile-index">02</span>
+              <p class="home-pac-mobile-copy">Более 6 лет занимаюсь совершенствованием UX/UI дизайна и формированием современного IT-сообщества.</p>
+            </article>
+            <article class="home-pac-mobile-card">
+              <span class="home-pac-mobile-index">03</span>
+              <p class="home-pac-mobile-copy">Реализовал полноценный курс обучения по UX/UI дизайну на 4 года, через который прошло более 2000 студентов.</p>
+            </article>
+            <article class="home-pac-mobile-card">
+              <span class="home-pac-mobile-index">04</span>
+              <p class="home-pac-mobile-copy">Работал с топовыми российскими компаниями: Сбербанк, Ростелеком, МТС, Аскон.</p>
+            </article>
+            <article class="home-pac-mobile-card">
+              <span class="home-pac-mobile-index">05</span>
+              <p class="home-pac-mobile-copy">Сформировал с нуля 4 полноценные дизайн-системы для цифровых продуктов.</p>
+            </article>
           </div>
         </div>
       </section>
@@ -432,7 +455,7 @@
           </div>
         </div>
         <div class="container consult-dvd-content">
-          <h2 class="section-title" id="consult-dvd-title">Бесплатная консультация</h2>
+          <h2 class="section-title" id="consult-dvd-title" data-no-scramble>Бесплатная консультация</h2>
           <form class="consult-dvd-form" id="consultDvdForm" novalidate>
             <label class="visually-hidden" for="consult-dvd-name">Имя</label>
             <input

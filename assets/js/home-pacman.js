@@ -11,6 +11,14 @@
   const scoreEl = document.getElementById("homePacScore");
   if (!stage || !canvas || !scoreEl) return;
 
+  const isMobile =
+    typeof window.matchMedia === "function" &&
+    window.matchMedia("(max-width: 720px)").matches;
+  if (isMobile) {
+    section.classList.add("home-pac--mobile");
+    return;
+  }
+
   const prefersReduced =
     typeof window.matchMedia === "function" &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;

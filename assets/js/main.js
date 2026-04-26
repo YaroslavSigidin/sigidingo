@@ -2753,7 +2753,10 @@ const initMorphingCardStack = () => {
   const dotsWrap = qs("#morphStackDots");
   const modeBtns = qsa(".morph-stack-mode", root);
 
-  let layout = "stack";
+  let layout =
+    typeof window.matchMedia === "function" && window.matchMedia("(max-width: 720px)").matches
+      ? "list"
+      : "stack";
   let activeIndex = 0;
   let expandedId = null;
   let dragX = 0;
@@ -2940,6 +2943,13 @@ const initHeroNameScramble = () => {
 
   const ruPadded = padHeroDisplay(HERO_NAME_RU);
   const enPadded = padHeroDisplay(HERO_NAME_EN);
+
+  if (typeof window.matchMedia === "function" && window.matchMedia("(max-width: 720px)").matches) {
+    h1.classList.remove("portfolio-hero-title--stacked");
+    wrap.textContent = HERO_NAME_RU;
+    wrap.removeAttribute("lang");
+    return;
+  }
 
   if (!prefersHeroPointerHover()) {
     wrap.textContent = HERO_NAME_RU;

@@ -1573,6 +1573,46 @@ body:not([data-theme="dark"]) .home-pac-section .section-title::after {
   z-index: 3;
 }
 
+.home-pac-mobile-list {
+  display: none;
+}
+
+.home-pac-mobile-card {
+  display: grid;
+  gap: 14px;
+  padding: 18px 18px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.02)),
+    rgba(9, 9, 10, 0.96);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.28);
+}
+
+.home-pac-mobile-index {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  min-width: 44px;
+  min-height: 28px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(244, 244, 247, 0.76);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.home-pac-mobile-copy {
+  margin: 0;
+  color: rgba(244, 244, 247, 0.92);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
 .home-pac-section.home-pac--reduced .home-pac-canvas {
   visibility: hidden;
 }
@@ -1583,6 +1623,17 @@ body:not([data-theme="dark"]) .home-pac-section .section-title::after {
 
 .home-pac-section.home-pac--reduced .home-pac-reduced-msg {
   display: flex;
+}
+
+.home-pac-section.home-pac--reduced .home-pac-mobile-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  width: min(1100px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 28px 0 36px;
+  position: relative;
+  z-index: 4;
 }
 
 /* --- Project archive: папки (без корзины) --- */
@@ -1827,6 +1878,10 @@ body:not([data-theme="dark"]) .home-pac-section .section-title::after {
   background: transparent;
   box-shadow: none;
   overflow: visible;
+}
+
+.skill-map-mobile-tags {
+  display: none;
 }
 
 .skill-map-svg {
@@ -6846,6 +6901,7 @@ body[data-theme="dark"] .theme-switch svg {
   flex: 1 1 160px;
   min-width: 0;
   max-width: 280px;
+  min-height: 48px;
   padding: 12px 14px;
   border-radius: 12px;
   border: 1px solid color-mix(in srgb, var(--border) 85%, transparent);
@@ -6892,14 +6948,28 @@ body[data-theme="dark"] .theme-switch svg {
   .consult-dvd-form {
     flex-direction: column;
     align-items: stretch;
+    gap: 12px;
   }
 
   .consult-dvd-input {
+    height: 52px;
+    min-height: 52px;
+    max-height: 52px;
     max-width: none;
+    padding: 0 16px;
+    border-radius: 16px;
+    font-size: 16px;
+    line-height: 1.2;
+    -webkit-appearance: none;
+    appearance: none;
   }
 
   .consult-dvd-submit {
     width: 100%;
+    min-height: 54px;
+    padding: 0 18px;
+    border-radius: 16px;
+    font-size: 16px;
   }
 }
 
@@ -6925,17 +6995,36 @@ body.page-home {
 
   body.page-home .portfolio-hero-content {
     width: 100%;
-    padding: clamp(60px, 14vw, 92px) 0 clamp(28px, 8vw, 64px);
+    padding: clamp(42px, 11vw, 72px) 0 clamp(26px, 8vw, 52px);
+    align-content: start;
+    gap: 0;
   }
 
   body.page-home .portfolio-hero-copy {
-    font-size: clamp(15px, 4.1vw, 17px);
-    line-height: 1.55;
-    margin-top: 20px;
+    max-width: 31ch;
+    font-size: clamp(15px, 4vw, 17px);
+    line-height: 1.6;
+    margin-top: 14px;
+  }
+
+  body.page-home .portfolio-hero-title--stacked {
+    white-space: normal;
+  }
+
+  body.page-home .portfolio-hero-title--stacked .portfolio-hero-name-chars {
+    position: static;
+    display: grid;
+    justify-items: center;
+    gap: 2px;
+  }
+
+  body.page-home .portfolio-hero-mobile-line {
+    display: block;
+    white-space: normal;
   }
 
   body.page-home .portfolio-hero-actions {
-    margin-top: 26px;
+    margin-top: 20px;
     width: 100%;
     max-width: 320px;
     margin-left: auto;
@@ -6965,24 +7054,100 @@ body.page-home {
     padding: 72px 0 80px;
   }
 
+  body.page-home .project-folders-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px 8px;
+  }
+
+  body.page-home .project-folder-art {
+    width: clamp(56px, 15.5vw, 68px);
+  }
+
+  body.page-home .project-folder-name {
+    width: 100%;
+    font-size: 11px;
+    line-height: 1.3;
+  }
+
+  body.page-home .project-folder--basket .project-folder-art {
+    width: clamp(66px, 18vw, 80px);
+  }
+
   body.page-home .skill-map-section {
     padding-top: clamp(56px, 10vw, 88px);
-    padding-bottom: clamp(72px, 12vw, 100px);
+    padding-bottom: clamp(56px, 10vw, 84px);
     overflow: hidden;
   }
 
   body.page-home .skill-map-disk {
-    left: 0;
-    width: 100%;
+    left: auto;
+    width: calc(100% + 12px);
     transform: none;
-    height: min(72vw, 400px);
-    min-height: 260px;
-    max-height: 420px;
+    margin-inline: -6px;
+    height: clamp(240px, 62vw, 320px);
+    min-height: 240px;
+    max-height: 320px;
+  }
+
+  body.page-home .skill-map-tooltip {
+    opacity: 0;
+    visibility: hidden;
+    max-width: min(170px, 60vw);
+    white-space: normal;
+    text-align: center;
+  }
+
+  body.page-home .skill-map-node:hover .skill-map-tooltip,
+  body.page-home .skill-map-node:focus-visible .skill-map-tooltip,
+  body.page-home .skill-map-node.is-dragging .skill-map-tooltip {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  body.page-home .skill-map-mobile-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin: 18px auto 0;
+    max-width: 100%;
+  }
+
+  body.page-home .skill-map-mobile-tag {
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
+    padding: 7px 10px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.04);
+    color: rgba(244, 244, 244, 0.8);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10px;
+    line-height: 1.2;
+    text-align: center;
   }
 
   body.page-home .home-pac-stage {
-    min-height: calc(36vh + 96px);
-    height: calc(36vh + 96px);
+    min-height: auto;
+    height: auto;
+    padding: 18px 16px 24px;
+    overflow: visible;
+  }
+
+  body.page-home .home-pac-score-wrap,
+  body.page-home .home-pac-canvas,
+  body.page-home .home-pac-reduced-msg {
+    display: none;
+  }
+
+  body.page-home .home-pac-mobile-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    width: 100%;
+    max-width: 560px;
+    margin: 0 auto;
   }
 
   body.page-home .morph-stack-section {
@@ -6990,13 +7155,65 @@ body.page-home {
   }
 
   body.page-home .morph-stack-toolbar {
-    flex-wrap: wrap;
+    width: 100%;
+    max-width: 280px;
+    flex-wrap: nowrap;
+    justify-content: space-between;
     row-gap: 8px;
   }
 
+  body.page-home .morph-stack-mode {
+    flex: 1 1 0;
+    min-height: 44px;
+  }
+
+  body.page-home .morph-stack-viewport {
+    min-height: 0;
+  }
+
+  body.page-home .morph-stack[data-layout="list"] .morph-stack-cards,
+  body.page-home .morph-stack[data-layout="grid"] .morph-stack-cards {
+    max-width: none;
+  }
+
+  body.page-home .morph-stack[data-layout="list"] .morph-stack-card,
+  body.page-home .morph-stack[data-layout="grid"] .morph-stack-card {
+    min-height: auto;
+  }
+
+  body.page-home .morph-stack-card-inner {
+    padding: 18px 18px 16px;
+  }
+
+  body.page-home .morph-stack-card-title {
+    font-size: 1.3rem;
+  }
+
+  body.page-home .morph-stack-card-desc {
+    font-size: 0.98rem;
+    line-height: 1.55;
+  }
+
+  body.page-home .morph-stack[data-layout="list"] .morph-stack-card-desc {
+    -webkit-line-clamp: 5;
+  }
+
+  body.page-home .morph-stack[data-layout="stack"] .morph-stack-card {
+    width: min(100%, 100%);
+    height: 340px;
+  }
+
+  body.page-home .morph-stack-more {
+    padding-top: 14px;
+  }
+
   body.page-home .consult-dvd-section {
-    padding: clamp(44px, 10vw, 72px) 0 clamp(48px, 12vw, 88px);
-    padding-bottom: max(clamp(48px, 12vw, 88px), env(safe-area-inset-bottom, 0px));
+    padding: clamp(28px, 7vw, 40px) 0 clamp(32px, 8vw, 48px);
+    padding-bottom: max(clamp(32px, 8vw, 48px), env(safe-area-inset-bottom, 0px));
+  }
+
+  body.page-home .consult-dvd-stage {
+    display: none;
   }
 
   body.page-home .cv-dock-section {
@@ -7007,9 +7224,41 @@ body.page-home {
     padding: clamp(30px, 5vw, 38px) clamp(14px, 4vw, 22px) clamp(12px, 2.2vw, 18px);
   }
 
+  body.page-home .cv-dock-stage {
+    gap: 14px;
+  }
+
+  body.page-home .cv-dock-document {
+    gap: 8px;
+  }
+
+  body.page-home .cv-dock-dropzone {
+    width: min(100%, 320px);
+    aspect-ratio: 1.7 / 1;
+  }
+
+  body.page-home .consult-dvd-content {
+    padding-inline: 8px;
+  }
+
+  body.page-home .consult-dvd-content .section-title {
+    margin-bottom: 14px;
+    font-size: clamp(22px, 6vw, 30px);
+    line-height: 1.06;
+  }
+
+  body.page-home .consult-dvd-form {
+    max-width: 360px;
+  }
+
   body.page-home .footer.footer-pong {
     padding: 72px 0 max(72px, env(safe-area-inset-bottom, 0px));
     min-height: 240px;
+  }
+
+  body.page-home .footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px 16px;
   }
 }
 
@@ -7020,9 +7269,65 @@ body.page-home {
     padding-right: 10px;
   }
 
+  body.page-home .portfolio-hero {
+    min-height: auto;
+  }
+
+  body.page-home .portfolio-hero-title {
+    max-width: 100%;
+    padding-inline: 0;
+    font-size: clamp(16px, 7.1vw, 28px);
+    line-height: 1;
+    white-space: nowrap;
+  }
+
   body.page-home .portfolio-hero-kicker {
     font-size: 10px;
     padding: 6px 14px 7px;
+  }
+
+  body.page-home .portfolio-hero-floor,
+  body.page-home .portfolio-hero-mario-canvas {
+    height: 72px;
+  }
+
+  body.page-home .skill-map-mobile-tags {
+    gap: 6px;
+  }
+
+  body.page-home .skill-map-mobile-tag {
+    padding: 6px 9px;
+    font-size: 9px;
+  }
+
+  body.page-home .home-pac-stage {
+    min-height: auto;
+    height: auto;
+  }
+
+  body.page-home .home-pac-mobile-card {
+    padding: 16px 16px 15px;
+    border-radius: 18px;
+  }
+
+  body.page-home .home-pac-mobile-copy {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  body.page-home .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 360px) {
+  body.page-home .project-folders-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px 10px;
+  }
+
+  body.page-home .project-folder-name {
+    font-size: 12px;
   }
 }
 

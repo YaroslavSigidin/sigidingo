@@ -2,6 +2,7 @@
   const disk = document.getElementById("skillMapDisk");
   const nodesEl = document.getElementById("skillMapNodes");
   const svg = document.getElementById("skillMapSvg");
+  const mobileTags = document.getElementById("skillMapMobileTags");
   if (!disk || !nodesEl || !svg) return;
 
   // 2026: актуальные навыки для UX/UI + vibe-coding (AI‑assisted)
@@ -117,6 +118,10 @@
 
   const BASE_POS = generateBasePositions(SKILL_LABELS.length);
   const SKILLS = SKILL_LABELS.map((label, i) => ({ label, x: BASE_POS[i].x, y: BASE_POS[i].y }));
+
+  if (mobileTags) {
+    mobileTags.innerHTML = SKILL_LABELS.map(label => `<span class="skill-map-mobile-tag">${label}</span>`).join("");
+  }
 
   // Connect all skills with one very thin line (single path).
   // Order is computed from CURRENT positions so the chain stays coherent after dragging.
