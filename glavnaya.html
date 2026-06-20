@@ -4,6 +4,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <base href="/" />
+    <script>
+      (function () {
+        var b = document.querySelector("base");
+        if (!b) return;
+        if (location.protocol === "file:") {
+          try {
+            b.href = new URL("./", location.href).href;
+          } catch (e) {
+            b.setAttribute("href", "./");
+          }
+          return;
+        }
+        if (/\.github\.io$/i.test(location.hostname)) {
+          var seg = location.pathname.split("/").filter(Boolean)[0];
+          if (!seg) return;
+          var prefix = "/" + seg;
+          b.href = prefix + "/";
+          document.querySelectorAll('a[href^="/"]').forEach(function (a) {
+            var h = a.getAttribute("href");
+            if (!h || h.charAt(0) !== "/" || h.indexOf(prefix + "/") === 0 || h === prefix) return;
+            a.setAttribute("href", prefix + h);
+          });
+        }
+      })();
+    </script>
     <meta name="theme-color" content="#070707" />
     <meta name="format-detection" content="telephone=no" />
     <meta name="author" content="Yaroslav Sigidin" />

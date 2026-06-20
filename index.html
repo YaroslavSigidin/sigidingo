@@ -6,16 +6,27 @@
     
     <base href="/" />
     <script>
-      /* file://: <base href="/"> ломает относительные пути; для папок с кириллицей надёжнее URL каталога файла */
       (function () {
+        var b = document.querySelector("base");
+        if (!b) return;
         if (location.protocol === "file:") {
-          var b = document.querySelector("base");
-          if (!b) return;
           try {
             b.href = new URL("./", location.href).href;
           } catch (e) {
             b.setAttribute("href", "./");
           }
+          return;
+        }
+        if (/\.github\.io$/i.test(location.hostname)) {
+          var seg = location.pathname.split("/").filter(Boolean)[0];
+          if (!seg) return;
+          var prefix = "/" + seg;
+          b.href = prefix + "/";
+          document.querySelectorAll('a[href^="/"]').forEach(function (a) {
+            var h = a.getAttribute("href");
+            if (!h || h.charAt(0) !== "/" || h.indexOf(prefix + "/") === 0 || h === prefix) return;
+            a.setAttribute("href", prefix + h);
+          });
         }
       })();
     </script>
@@ -529,22 +540,32 @@
     >
       <div class="modal-service-lead-panel">
         <button type="button" class="modal-close" id="serviceLeadModalClose" aria-label="Закрыть">×</button>
-        <h2 id="serviceLeadModalTitle">Заявка</h2>
-        <p class="service-lead-context" id="serviceLeadModalService"></p>
+        <div class="service-lead-head">
+          <p class="service-lead-eyebrow">Быстрый старт</p>
+          <h2 id="serviceLeadModalTitle">Обсудить проект</h2>
+          <p class="service-lead-context">
+            Коротко опишите задачу. Я свяжусь с вами, уточню детали и предложу следующий шаг без лишней переписки.
+          </p>
+          <p class="service-lead-service is-empty" id="serviceLeadModalService">Услуга не выбрана</p>
+        </div>
         <form class="service-lead-form" id="serviceLeadForm">
-          <label class="service-lead-field">
-            <span class="service-lead-label">Ваше имя</span>
-            <input name="name" type="text" autocomplete="name" required />
-          </label>
-          <label class="service-lead-field">
-            <span class="service-lead-label">Ваш номер</span>
-            <input name="phone" type="tel" autocomplete="tel" inputmode="tel" required />
-          </label>
-          <label class="service-lead-field">
-            <span class="service-lead-label">@username</span>
-            <input name="username" type="text" autocomplete="nickname" placeholder="@nickname" />
-          </label>
+          <div class="service-lead-grid">
+            <label class="service-lead-field">
+              <span class="service-lead-label">Ваше имя</span>
+              <input name="name" type="text" autocomplete="name" placeholder="Как к вам обращаться" required />
+            </label>
+            <label class="service-lead-field">
+              <span class="service-lead-label">Telegram / username</span>
+              <input name="username" type="text" autocomplete="nickname" placeholder="@nickname" />
+            </label>
+            <label class="service-lead-field service-lead-field-wide">
+              <span class="service-lead-label">Контакт для связи</span>
+              <input name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+7 (___) ___-__-__" required />
+            </label>
+          </div>
+          <p class="service-lead-note">Можно оставить только телефон или Telegram. Этого достаточно, чтобы быстро созвониться или списаться.</p>
           <button type="submit" class="service-lead-submit">Отправить</button>
+          <p class="service-lead-footnote">Обычно отвечаю в течение 24 часов и сразу предлагаю понятный следующий шаг.</p>
         </form>
       </div>
     </div>

@@ -5,6 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <base href="/" />
+    <script>
+      (function () {
+        var b = document.querySelector("base");
+        if (!b) return;
+        if (location.protocol === "file:") {
+          try {
+            b.href = new URL("./", location.href).href;
+          } catch (e) {
+            b.setAttribute("href", "./");
+          }
+          return;
+        }
+        if (/\.github\.io$/i.test(location.hostname)) {
+          var seg = location.pathname.split("/").filter(Boolean)[0];
+          if (!seg) return;
+          var prefix = "/" + seg;
+          b.href = prefix + "/";
+          document.querySelectorAll('a[href^="/"]').forEach(function (a) {
+            var h = a.getAttribute("href");
+            if (!h || h.charAt(0) !== "/" || h.indexOf(prefix + "/") === 0 || h === prefix) return;
+            a.setAttribute("href", prefix + h);
+          });
+        }
+      })();
+    </script>
 <meta name="theme-color" content="#070707" />
     <meta name="format-detection" content="telephone=no" />
     <meta name="author" content="Yaroslav Sigidin" />
@@ -30,7 +55,7 @@
 <meta name="twitter:title" content="VIHLOP EXPERT — Case Study" />
     <meta name="twitter:description" content="Кейс VIHLOP EXPERT — автосервис: преимущества, офферы, запись." />
     <meta name="twitter:image" content="https://sigidingo.online/assets/images/HERO/VIHLOP%20EXPERT.jpg" />
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"WINGLISH — Case Study","description":"Кейс WINGLISH — задачи, решения, результаты и экраны.","url":"https://sigidingo.online/case-vihlop-expert","inLanguage":"ru-RU"}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"VIHLOP EXPERT — Case Study","description":"Кейс VIHLOP EXPERT — автосервис: преимущества, офферы, запись.","url":"https://sigidingo.online/case-vihlop-expert","inLanguage":"ru-RU"}</script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Sora:wght@300;400;500;600;700&display=swap" />
@@ -106,7 +131,7 @@
     <nav class="container breadcrumbs" aria-label="Breadcrumb">
       <a href="/">Главная</a>
       <span class="breadcrumbs-sep">/</span>
-      <a href="portfolio">Портфолио</a>
+      <a href="/portfolio">Портфолио</a>
       <span class="breadcrumbs-sep">/</span>
       <span>VIHLOP EXPERT</span>
     </nav>

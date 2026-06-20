@@ -5,6 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <base href="/" />
+    <script>
+      (function () {
+        var b = document.querySelector("base");
+        if (!b) return;
+        if (location.protocol === "file:") {
+          try {
+            b.href = new URL("./", location.href).href;
+          } catch (e) {
+            b.setAttribute("href", "./");
+          }
+          return;
+        }
+        if (/\.github\.io$/i.test(location.hostname)) {
+          var seg = location.pathname.split("/").filter(Boolean)[0];
+          if (!seg) return;
+          var prefix = "/" + seg;
+          b.href = prefix + "/";
+          document.querySelectorAll('a[href^="/"]').forEach(function (a) {
+            var h = a.getAttribute("href");
+            if (!h || h.charAt(0) !== "/" || h.indexOf(prefix + "/") === 0 || h === prefix) return;
+            a.setAttribute("href", prefix + h);
+          });
+        }
+      })();
+    </script>
 <meta name="theme-color" content="#070707" />
     <meta name="format-detection" content="telephone=no" />
     <meta name="author" content="Yaroslav Sigidin" />
@@ -116,148 +141,229 @@
         </div>
         <div class="portfolio-grid-bleed">
           <div class="projects-grid" id="projects-grid" data-static-grid="true">
-            <article class="project-card" data-project-id="visiflow" data-category="uxui">
-              <picture><source type="image/avif" srcset="assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/visiflow/HERO-640.avif 640w, assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/visiflow/HERO-960.avif 960w, assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/visiflow/HERO.avif 1200w" sizes="(max-width: 720px) 92vw, (max-width: 1200px) 45vw, 586px"><source type="image/webp" srcset="assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/visiflow/HERO-640.webp 640w, assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/visiflow/HERO-960.webp 960w, assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/visiflow/HERO.webp 1200w" sizes="(max-width: 720px) 92vw, (max-width: 1200px) 45vw, 586px"><img src="assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/visiflow/HERO-960.jpg" alt="VISI FLOW" loading="eager" decoding="async" fetchpriority="high" width="1200" height="630" srcset="assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/visiflow/HERO-640.jpg 640w, assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/visiflow/HERO-960.jpg 960w, assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/visiflow/HERO.jpg 1200w" sizes="(max-width: 720px) 92vw, (max-width: 1200px) 45vw, 586px" /></picture>
+            <article class="project-card reveal" data-project-id="visiflow" data-category="uxui">
+              <img src="assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/visiflow/HERO.jpg" alt="VISI FLOW" loading="lazy" decoding="async" width="1200" height="630" />
               <div class="content">
                 <span class="tag">UX/UI</span>
                 <h3>VISI FLOW</h3>
-                <p>AI‑конвертация строительных проектных документов</p>
-                <a class="proof-link" href="case-visiflow.html">Смотреть кейс</a>
+                <p>AI‑платформа обработки строительной документации</p>
+                <a class="proof-link" href="/case-visiflow">Смотреть кейс</a>
               </div>
             </article>
             <article class="project-card reveal" data-project-id="octoclick" data-category="uxui">
-              <picture><source type="image/avif" srcset="assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/Octoclick/%D0%9E%D0%91%D0%9B%D0%9E%D0%96%D0%9A%D0%90-640.avif 640w, assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/Octoclick/%D0%9E%D0%91%D0%9B%D0%9E%D0%96%D0%9A%D0%90-960.avif 960w, assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/Octoclick/%D0%9E%D0%91%D0%9B%D0%9E%D0%96%D0%9A%D0%90.avif 1200w" sizes="(max-width: 720px) 92vw, (max-width: 1200px) 45vw, 586px"><source type="image/webp" srcset="assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/Octoclick/%D0%9E%D0%91%D0%9B%D0%9E%D0%96%D0%9A%D0%90-640.webp 640w, assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/Octoclick/%D0%9E%D0%91%D0%9B%D0%9E%D0%96%D0%9A%D0%90-960.webp 960w, assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/Octoclick/%D0%9E%D0%91%D0%9B%D0%9E%D0%96%D0%9A%D0%90.webp 1200w" sizes="(max-width: 720px) 92vw, (max-width: 1200px) 45vw, 586px"><img src="assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/Octoclick/%D0%9E%D0%91%D0%9B%D0%9E%D0%96%D0%9A%D0%90-960.jpg" alt="Octoclick" loading="lazy" decoding="async" width="1200" height="630" srcset="assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/Octoclick/%D0%9E%D0%91%D0%9B%D0%9E%D0%96%D0%9A%D0%90-640.jpg 640w, assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/Octoclick/%D0%9E%D0%91%D0%9B%D0%9E%D0%96%D0%9A%D0%90-960.jpg 960w, assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/Octoclick/%D0%9E%D0%91%D0%9B%D0%9E%D0%96%D0%9A%D0%90.jpg 1200w" sizes="(max-width: 720px) 92vw, (max-width: 1200px) 45vw, 586px" /></picture>
+              <img src="assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/Octoclick/%D0%9E%D0%91%D0%9B%D0%9E%D0%96%D0%9A%D0%90.jpg" alt="Octoclick" loading="lazy" decoding="async" width="1200" height="630" />
               <div class="content">
                 <span class="tag">UX/UI</span>
                 <h3>Octoclick</h3>
-                <p>Аналитика и управление рекламой</p>
-                <a class="proof-link" href="case-octoclick.html">Смотреть кейс</a>
+                <p>AdTech‑платформа аналитики и управления кампаниями</p>
+                <a class="proof-link" href="/case-octoclick">Смотреть кейс</a>
               </div>
             </article>
             <article class="project-card reveal" data-project-id="mirox" data-category="uxui">
-              <picture><source type="image/avif" srcset="assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/MIROX%201/%D0%9E%D0%91%D0%9B%D0%9E%D0%96%D0%9A%D0%90-640.avif 640w, assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/MIROX%201/%D0%9E%D0%91%D0%9B%D0%9E%D0%96%D0%9A%D0%90-960.avif 960w, assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/MIROX%201/%D0%9E%D0%91%D0%9B%D0%9E%D0%96%D0%9A%D0%90.avif 1200w" sizes="(max-width: 720px) 92vw, (max-width: 1200px) 45vw, 586px"><source type="image/webp" srcset="assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/MIROX%201/%D0%9E%D0%91%D0%9B%D0%9E%D0%96%D0%9A%D0%90-640.webp 640w, assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/MIROX%201/%D0%9E%D0%91%D0%9B%D0%9E%D0%96%D0%9A%D0%90-960.webp 960w, assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/MIROX%201/%D0%9E%D0%91%D0%9B%D0%9E%D0%96%D0%9A%D0%90.webp 1200w" sizes="(max-width: 720px) 92vw, (max-width: 1200px) 45vw, 586px"><img src="assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/MIROX%201/%D0%9E%D0%91%D0%9B%D0%9E%D0%96%D0%9A%D0%90-960.jpg" alt="MIROX" loading="lazy" decoding="async" width="1200" height="630" srcset="assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/MIROX%201/%D0%9E%D0%91%D0%9B%D0%9E%D0%96%D0%9A%D0%90-640.jpg 640w, assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/MIROX%201/%D0%9E%D0%91%D0%9B%D0%9E%D0%96%D0%9A%D0%90-960.jpg 960w, assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/MIROX%201/%D0%9E%D0%91%D0%9B%D0%9E%D0%96%D0%9A%D0%90.jpg 1200w" sizes="(max-width: 720px) 92vw, (max-width: 1200px) 45vw, 586px" /></picture>
+              <img src="assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/MIROX%201/%D0%9E%D0%91%D0%9B%D0%9E%D0%96%D0%9A%D0%90.jpg" alt="MIROX" loading="lazy" decoding="async" width="1200" height="630" />
               <div class="content">
                 <span class="tag">UX/UI</span>
                 <h3>MIROX</h3>
-                <p>SaaS для брендов и креаторов</p>
-                <a class="proof-link" href="case-mirox.html">Смотреть кейс</a>
+                <p>SaaS‑платформа для брендов и креаторов</p>
+                <a class="proof-link" href="/case-mirox">Смотреть кейс</a>
               </div>
             </article>
             <article class="project-card reveal" data-project-id="ai" data-category="uxui">
-              <picture><source type="image/avif" srcset="assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/AI/HERO-640.avif 640w, assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/AI/HERO-960.avif 960w, assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/AI/HERO.avif 1200w" sizes="(max-width: 720px) 92vw, (max-width: 1200px) 45vw, 586px"><source type="image/webp" srcset="assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/AI/HERO-640.webp 640w, assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/AI/HERO-960.webp 960w, assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/AI/HERO.webp 1200w" sizes="(max-width: 720px) 92vw, (max-width: 1200px) 45vw, 586px"><img src="assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/AI/HERO-960.png" alt="AI" loading="lazy" decoding="async" width="1200" height="630" srcset="assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/AI/HERO-640.png 640w, assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/AI/HERO-960.png 960w, assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/AI/HERO.png 1200w" sizes="(max-width: 720px) 92vw, (max-width: 1200px) 45vw, 586px" /></picture>
+              <img src="assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/AI/HERO.png" alt="AI" loading="lazy" decoding="async" width="1200" height="630" />
               <div class="content">
                 <span class="tag">UX/UI</span>
                 <h3>AI</h3>
                 <p>Консоль AI‑ассистента для запросов</p>
-                <a class="proof-link" href="case-ai.html">Смотреть кейс</a>
+                <a class="proof-link" href="/case-ai">Смотреть кейс</a>
+              </div>
+            </article>
+            <article class="project-card reveal" data-project-id="pazl-kod-platform" data-category="uxui">
+              <img src="assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/PAZL%20KOD%20Platform/Hero.png" alt="PAZL&amp;KOD Platform" loading="lazy" decoding="async" width="1200" height="630" />
+              <div class="content">
+                <span class="tag">UX/UI</span>
+                <h3>PAZL&amp;KOD Platform</h3>
+                <p>Образовательная платформа для менеджеров, преподавателей и студентов</p>
+                <a class="proof-link" href="/case-pazl-kod-platform">Смотреть кейс</a>
+              </div>
+            </article>
+            <article class="project-card reveal" data-project-id="in-it" data-category="uxui">
+              <img src="assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/IN%20IT/HERO.png" alt="IN IT" loading="lazy" decoding="async" width="1200" height="630" />
+              <div class="content">
+                <span class="tag">UX/UI</span>
+                <h3>IN IT</h3>
+                <p>Админ‑платформа с рейтингами, группами и тестированиями</p>
+                <a class="proof-link" href="/case-in-it">Смотреть кейс</a>
               </div>
             </article>
             <article class="project-card reveal" data-project-id="mirox-app" data-category="uxui">
-              <picture><source type="image/avif" srcset="assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/MIROX%20APP/HERO_-640.avif 640w, assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/MIROX%20APP/HERO_-960.avif 960w, assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/MIROX%20APP/HERO_.avif 1200w" sizes="(max-width: 720px) 92vw, (max-width: 1200px) 45vw, 586px"><source type="image/webp" srcset="assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/MIROX%20APP/HERO_-640.webp 640w, assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/MIROX%20APP/HERO_-960.webp 960w, assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/MIROX%20APP/HERO_.webp 1200w" sizes="(max-width: 720px) 92vw, (max-width: 1200px) 45vw, 586px"><img src="assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/MIROX%20APP/HERO_-960.jpg" alt="MIROX APP" loading="lazy" decoding="async" width="1200" height="630" srcset="assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/MIROX%20APP/HERO_-640.jpg 640w, assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/MIROX%20APP/HERO_-960.jpg 960w, assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/MIROX%20APP/HERO_.jpg 1200w" sizes="(max-width: 720px) 92vw, (max-width: 1200px) 45vw, 586px" /></picture>
+              <img src="assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/MIROX%20APP/HERO_.jpg" alt="MIROX APP" loading="lazy" decoding="async" width="1200" height="630" />
               <div class="content">
                 <span class="tag">UX/UI</span>
                 <h3>MIROX APP</h3>
                 <p>Мобильный сервис для заданий</p>
-                <a class="proof-link" href="case-mirox-app.html">Смотреть кейс</a>
+                <a class="proof-link" href="/case-mirox-app">Смотреть кейс</a>
               </div>
             </article>
             <article class="project-card reveal" data-project-id="winglish" data-category="uxui">
-              <picture><source type="image/avif" srcset="assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/WINGLISH/HERO-640.avif 640w, assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/WINGLISH/HERO-960.avif 960w, assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/WINGLISH/HERO.avif 1200w" sizes="(max-width: 720px) 92vw, (max-width: 1200px) 45vw, 586px"><source type="image/webp" srcset="assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/WINGLISH/HERO-640.webp 640w, assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/WINGLISH/HERO-960.webp 960w, assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/WINGLISH/HERO.webp 1200w" sizes="(max-width: 720px) 92vw, (max-width: 1200px) 45vw, 586px"><img src="assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/WINGLISH/HERO-960.jpg" alt="WINGLISH" loading="lazy" decoding="async" width="1200" height="630" srcset="assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/WINGLISH/HERO-640.jpg 640w, assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/WINGLISH/HERO-960.jpg 960w, assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/WINGLISH/HERO.jpg 1200w" sizes="(max-width: 720px) 92vw, (max-width: 1200px) 45vw, 586px" /></picture>
+              <img src="assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/WINGLISH/HERO.jpg" alt="WINGLISH" loading="lazy" decoding="async" width="1200" height="630" />
               <div class="content">
                 <span class="tag">UX/UI</span>
                 <h3>WINGLISH</h3>
                 <p>Образовательная платформа изучения английского</p>
-                <a class="proof-link" href="case-winglish.html">Смотреть кейс</a>
+                <a class="proof-link" href="/case-winglish">Смотреть кейс</a>
               </div>
             </article>
-            <article class="project-card reveal" data-project-id="nok" data-category="web">
-              <picture><source type="image/avif" srcset="assets/images/HERO/NOK-20260212-640.avif 640w, assets/images/HERO/NOK-20260212-960.avif 960w, assets/images/HERO/NOK-20260212.avif 1200w" sizes="(max-width: 720px) 92vw, (max-width: 1200px) 45vw, 586px"><source type="image/webp" srcset="assets/images/HERO/NOK-20260212-640.webp 640w, assets/images/HERO/NOK-20260212-960.webp 960w, assets/images/HERO/NOK-20260212.webp 1200w" sizes="(max-width: 720px) 92vw, (max-width: 1200px) 45vw, 586px"><img src="assets/images/HERO/NOK-20260212-960.jpg" alt="NOK" loading="lazy" decoding="async" width="1200" height="630" srcset="assets/images/HERO/NOK-20260212-640.jpg 640w, assets/images/HERO/NOK-20260212-960.jpg 960w, assets/images/HERO/NOK-20260212.jpg 1200w" sizes="(max-width: 720px) 92vw, (max-width: 1200px) 45vw, 586px" /></picture>
+            <article class="project-card reveal" data-project-id="nok" data-category="uxui">
+              <img src="assets/images/HERO/NOK-20260212.jpg" alt="NOK" loading="lazy" decoding="async" width="1200" height="630" />
               <div class="content">
                 <span class="tag">UX/UI</span>
                 <h3>NOK</h3>
                 <p>UX/UI и сайт образовательной онлайн‑платформы NOK</p>
-                <a class="proof-link" href="case-nok.html">Смотреть кейс</a>
+                <a class="proof-link" href="/case-nok">Смотреть кейс</a>
               </div>
             </article>
             <article class="project-card reveal" data-project-id="space-camp" data-category="web">
-              <picture><source type="image/avif" srcset="assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/SPACE%20CAMP/HERO-640.avif 640w, assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/SPACE%20CAMP/HERO-960.avif 960w, assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/SPACE%20CAMP/HERO.avif 1200w" sizes="(max-width: 720px) 92vw, (max-width: 1200px) 45vw, 586px"><source type="image/webp" srcset="assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/SPACE%20CAMP/HERO-640.webp 640w, assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/SPACE%20CAMP/HERO-960.webp 960w, assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/SPACE%20CAMP/HERO.webp 1200w" sizes="(max-width: 720px) 92vw, (max-width: 1200px) 45vw, 586px"><img src="assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/SPACE%20CAMP/HERO-960.jpg" alt="SPACE CAMP" loading="lazy" decoding="async" width="1200" height="630" srcset="assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/SPACE%20CAMP/HERO-640.jpg 640w, assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/SPACE%20CAMP/HERO-960.jpg 960w, assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/SPACE%20CAMP/HERO.jpg 1200w" sizes="(max-width: 720px) 92vw, (max-width: 1200px) 45vw, 586px" /></picture>
+              <img src="assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/SPACE%20CAMP/HERO.jpg" alt="SPACE CAMP" loading="lazy" decoding="async" width="1200" height="630" />
               <div class="content">
                 <span class="tag">WEB</span>
                 <h3>SPACE CAMP</h3>
                 <p>Сайт детского научного лагеря</p>
-                
+                <a class="proof-link" href="/case-space-camp">Смотреть кейс</a>
               </div>
             </article>
             <article class="project-card reveal" data-project-id="iss" data-category="web">
-              <picture><source type="image/avif" srcset="assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/ISS/HERO-640.avif 640w, assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/ISS/HERO-960.avif 960w, assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/ISS/HERO.avif 1200w" sizes="(max-width: 720px) 92vw, (max-width: 1200px) 45vw, 586px"><source type="image/webp" srcset="assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/ISS/HERO-640.webp 640w, assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/ISS/HERO-960.webp 960w, assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/ISS/HERO.webp 1200w" sizes="(max-width: 720px) 92vw, (max-width: 1200px) 45vw, 586px"><img src="assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/ISS/HERO-960.jpg" alt="ISS" loading="lazy" decoding="async" width="1200" height="630" srcset="assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/ISS/HERO-640.jpg 640w, assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/ISS/HERO-960.jpg 960w, assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/ISS/HERO.jpg 1200w" sizes="(max-width: 720px) 92vw, (max-width: 1200px) 45vw, 586px" /></picture>
+              <img src="assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/ISS/HERO.jpg" alt="ISS" loading="lazy" decoding="async" width="1200" height="630" />
               <div class="content">
                 <span class="tag">WEB</span>
                 <h3>ISS</h3>
                 <p>Корпоративный сайт продукта ISS</p>
-                
+                <a class="proof-link" href="/case-iss">Смотреть кейс</a>
               </div>
             </article>
             <article class="project-card reveal" data-project-id="profi" data-category="web">
-              <picture><source type="image/avif" srcset="assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/PROFI/HERO__-640.avif 640w, assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/PROFI/HERO__-960.avif 960w, assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/PROFI/HERO__.avif 1200w" sizes="(max-width: 720px) 92vw, (max-width: 1200px) 45vw, 586px"><source type="image/webp" srcset="assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/PROFI/HERO__-640.webp 640w, assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/PROFI/HERO__-960.webp 960w, assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/PROFI/HERO__.webp 1200w" sizes="(max-width: 720px) 92vw, (max-width: 1200px) 45vw, 586px"><img src="assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/PROFI/HERO__-960.jpg" alt="PROFI" loading="lazy" decoding="async" width="1200" height="630" srcset="assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/PROFI/HERO__-640.jpg 640w, assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/PROFI/HERO__-960.jpg 960w, assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/PROFI/HERO__.jpg 1200w" sizes="(max-width: 720px) 92vw, (max-width: 1200px) 45vw, 586px" /></picture>
+              <img src="assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/PROFI/HERO__.jpg" alt="PROFI" loading="lazy" decoding="async" width="1200" height="630" />
               <div class="content">
                 <span class="tag">WEB</span>
                 <h3>PROFI</h3>
                 <p>Онлайн‑обучение новым IT‑профессиям</p>
-                
+                <a class="proof-link" href="/case-profi">Смотреть кейс</a>
               </div>
             </article>
             <article class="project-card reveal" data-project-id="solomadom" data-category="web">
-              <picture><source type="image/avif" srcset="assets/images/HERO/SOLOMADOM-640.avif 640w, assets/images/HERO/SOLOMADOM-960.avif 960w, assets/images/HERO/SOLOMADOM.avif 1200w" sizes="(max-width: 720px) 92vw, (max-width: 1200px) 45vw, 586px"><source type="image/webp" srcset="assets/images/HERO/SOLOMADOM-640.webp 640w, assets/images/HERO/SOLOMADOM-960.webp 960w, assets/images/HERO/SOLOMADOM.webp 1200w" sizes="(max-width: 720px) 92vw, (max-width: 1200px) 45vw, 586px"><img src="assets/images/HERO/SOLOMADOM-960.jpg" alt="SOLOMADOM" loading="lazy" decoding="async" width="1200" height="630" srcset="assets/images/HERO/SOLOMADOM-640.jpg 640w, assets/images/HERO/SOLOMADOM-960.jpg 960w, assets/images/HERO/SOLOMADOM.jpg 1200w" sizes="(max-width: 720px) 92vw, (max-width: 1200px) 45vw, 586px" /></picture>
+              <img src="assets/images/HERO/SOLOMADOM.jpg" alt="SOLOMADOM" loading="lazy" decoding="async" width="1200" height="630" />
               <div class="content">
                 <span class="tag">WEB</span>
                 <h3>SOLOMADOM</h3>
                 <p>Сайт строительной компании домов</p>
-                
+                <a class="proof-link" href="/case-solomadom">Смотреть кейс</a>
               </div>
             </article>
             <article class="project-card reveal" data-project-id="amazon" data-category="web">
-              <picture><source type="image/avif" srcset="assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/AMAZON/HERO-640.avif 640w, assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/AMAZON/HERO-960.avif 960w, assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/AMAZON/HERO.avif 1200w" sizes="(max-width: 720px) 92vw, (max-width: 1200px) 45vw, 586px"><source type="image/webp" srcset="assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/AMAZON/HERO-640.webp 640w, assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/AMAZON/HERO-960.webp 960w, assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/AMAZON/HERO.webp 1200w" sizes="(max-width: 720px) 92vw, (max-width: 1200px) 45vw, 586px"><img src="assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/AMAZON/HERO-960.png" alt="AMAZON" loading="lazy" decoding="async" width="1200" height="630" srcset="assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/AMAZON/HERO-640.png 640w, assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/AMAZON/HERO-960.png 960w, assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/AMAZON/HERO.png 1200w" sizes="(max-width: 720px) 92vw, (max-width: 1200px) 45vw, 586px" /></picture>
+              <img src="assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/AMAZON/HERO.png" alt="AMAZON" loading="lazy" decoding="async" width="1200" height="630" />
               <div class="content">
                 <span class="tag">WEB</span>
                 <h3>AMAZON</h3>
                 <p>E‑commerce платформа для магазинов</p>
-                
+                <a class="proof-link" href="/case-amazon">Смотреть кейс</a>
               </div>
             </article>
             <article class="project-card reveal" data-project-id="castle-music" data-category="web">
-              <picture><source type="image/avif" srcset="assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/CASTLE%20MUSIC/HERO_____-640.avif 640w, assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/CASTLE%20MUSIC/HERO_____-960.avif 960w, assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/CASTLE%20MUSIC/HERO_____.avif 1200w" sizes="(max-width: 720px) 92vw, (max-width: 1200px) 45vw, 586px"><source type="image/webp" srcset="assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/CASTLE%20MUSIC/HERO_____-640.webp 640w, assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/CASTLE%20MUSIC/HERO_____-960.webp 960w, assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/CASTLE%20MUSIC/HERO_____.webp 1200w" sizes="(max-width: 720px) 92vw, (max-width: 1200px) 45vw, 586px"><img src="assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/CASTLE%20MUSIC/HERO_____-960.jpg" alt="CASTLE MUSIC" loading="lazy" decoding="async" width="1200" height="630" srcset="assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/CASTLE%20MUSIC/HERO_____-640.jpg 640w, assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/CASTLE%20MUSIC/HERO_____-960.jpg 960w, assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/CASTLE%20MUSIC/HERO_____.jpg 1200w" sizes="(max-width: 720px) 92vw, (max-width: 1200px) 45vw, 586px" /></picture>
+              <img src="assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/CASTLE%20MUSIC/HERO_____.jpg" alt="CASTLE MUSIC" loading="lazy" decoding="async" width="1200" height="630" />
               <div class="content">
                 <span class="tag">WEB</span>
                 <h3>CASTLE MUSIC</h3>
                 <p>Сайт музыкального проекта Castle</p>
-                
+                <a class="proof-link" href="/case-castle-music">Смотреть кейс</a>
               </div>
             </article>
             <article class="project-card reveal" data-project-id="kvatro" data-category="web">
-              <picture><source type="image/avif" srcset="assets/images/HERO/KVATRO-640.avif 640w, assets/images/HERO/KVATRO-960.avif 960w, assets/images/HERO/KVATRO.avif 1200w" sizes="(max-width: 720px) 92vw, (max-width: 1200px) 45vw, 586px"><source type="image/webp" srcset="assets/images/HERO/KVATRO-640.webp 640w, assets/images/HERO/KVATRO-960.webp 960w, assets/images/HERO/KVATRO.webp 1200w" sizes="(max-width: 720px) 92vw, (max-width: 1200px) 45vw, 586px"><img src="assets/images/HERO/KVATRO-960.jpg" alt="KVATRO" loading="lazy" decoding="async" width="1200" height="630" srcset="assets/images/HERO/KVATRO-640.jpg 640w, assets/images/HERO/KVATRO-960.jpg 960w, assets/images/HERO/KVATRO.jpg 1200w" sizes="(max-width: 720px) 92vw, (max-width: 1200px) 45vw, 586px" /></picture>
+              <img src="assets/images/HERO/KVATRO.jpg" alt="KVATRO" loading="lazy" decoding="async" width="1200" height="630" />
               <div class="content">
                 <span class="tag">WEB</span>
                 <h3>KVATRO</h3>
                 <p>Промо‑сайт цифрового сервиса KVATRO</p>
-                
+                <a class="proof-link" href="/case-kvatro">Смотреть кейс</a>
               </div>
             </article>
             <article class="project-card reveal" data-project-id="leki-travel" data-category="web">
-              <picture><source type="image/avif" srcset="assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/LEKI%20TRAVEL/HERO____-640.avif 640w, assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/LEKI%20TRAVEL/HERO____-960.avif 960w, assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/LEKI%20TRAVEL/HERO____.avif 1200w" sizes="(max-width: 720px) 92vw, (max-width: 1200px) 45vw, 586px"><source type="image/webp" srcset="assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/LEKI%20TRAVEL/HERO____-640.webp 640w, assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/LEKI%20TRAVEL/HERO____-960.webp 960w, assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/LEKI%20TRAVEL/HERO____.webp 1200w" sizes="(max-width: 720px) 92vw, (max-width: 1200px) 45vw, 586px"><img src="assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/LEKI%20TRAVEL/HERO____-960.jpg" alt="LEKI TRAVEL" loading="lazy" decoding="async" width="1200" height="630" srcset="assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/LEKI%20TRAVEL/HERO____-640.jpg 640w, assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/LEKI%20TRAVEL/HERO____-960.jpg 960w, assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/LEKI%20TRAVEL/HERO____.jpg 1200w" sizes="(max-width: 720px) 92vw, (max-width: 1200px) 45vw, 586px" /></picture>
+              <img src="assets/images/%D1%81%D0%B0%D0%B9%D1%82%D1%8B/LEKI%20TRAVEL/HERO____.jpg" alt="LEKI TRAVEL" loading="lazy" decoding="async" width="1200" height="630" />
               <div class="content">
                 <span class="tag">WEB</span>
                 <h3>LEKI TRAVEL</h3>
                 <p>Сайт туристического сервиса LEKI</p>
-                
+                <a class="proof-link" href="/case-leki-travel">Смотреть кейс</a>
               </div>
             </article>
             <article class="project-card reveal" data-project-id="vihlop-expert" data-category="web">
-              <picture><source type="image/avif" srcset="assets/images/HERO/VIHLOP%20EXPERT-640.avif 640w, assets/images/HERO/VIHLOP%20EXPERT-960.avif 960w, assets/images/HERO/VIHLOP%20EXPERT.avif 1200w" sizes="(max-width: 720px) 92vw, (max-width: 1200px) 45vw, 586px"><source type="image/webp" srcset="assets/images/HERO/VIHLOP%20EXPERT-640.webp 640w, assets/images/HERO/VIHLOP%20EXPERT-960.webp 960w, assets/images/HERO/VIHLOP%20EXPERT.webp 1200w" sizes="(max-width: 720px) 92vw, (max-width: 1200px) 45vw, 586px"><img src="assets/images/HERO/VIHLOP%20EXPERT-960.jpg" alt="VIHLOP EXPERT" loading="lazy" decoding="async" width="1200" height="630" srcset="assets/images/HERO/VIHLOP%20EXPERT-640.jpg 640w, assets/images/HERO/VIHLOP%20EXPERT-960.jpg 960w, assets/images/HERO/VIHLOP%20EXPERT.jpg 1200w" sizes="(max-width: 720px) 92vw, (max-width: 1200px) 45vw, 586px" /></picture>
+              <img src="assets/images/HERO/VIHLOP%20EXPERT.jpg" alt="VIHLOP EXPERT" loading="lazy" decoding="async" width="1200" height="630" />
               <div class="content">
                 <span class="tag">WEB</span>
                 <h3>VIHLOP EXPERT</h3>
                 <p>Автосервис и онлайн‑запись к сервису</p>
-                
+                <a class="proof-link" href="/case-vihlop-expert">Смотреть кейс</a>
+              </div>
+            </article>
+            <article class="project-card reveal" data-project-id="weintek-panel" data-category="uxui">
+              <img src="assets/images/HERO/%D0%9E%D0%91%D0%9B%D0%9E%D0%96%D0%9A%D0%90-4.jpg" alt="WEINTEK PANEL" loading="lazy" decoding="async" width="1200" height="630" />
+              <div class="content">
+                <span class="tag">UX/UI</span>
+                <h3>WEINTEK PANEL</h3>
+                <p>HMI / панель оператора</p>
+                <a class="proof-link" href="/case-weintek-panel">Смотреть кейс</a>
+              </div>
+            </article>
+            <article class="project-card reveal" data-project-id="ermitage" data-category="web">
+              <img src="case-ermitage/HERO.jpg" alt="ERMITAGE" loading="lazy" decoding="async" width="1200" height="630" />
+              <div class="content">
+                <span class="tag">WEB</span>
+                <h3>ERMITAGE</h3>
+                <p>Сайт и визуальный стиль</p>
+                <a class="proof-link" href="/case-ermitage">Смотреть кейс</a>
+              </div>
+            </article>
+            <article class="project-card reveal" data-project-id="volt-pay" data-category="uxui">
+              <img src="assets/images/%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D1%8B/VOLT%20PAY/HERO.svg" alt="VOLT PAY" loading="lazy" decoding="async" width="1200" height="630" />
+              <div class="content">
+                <span class="tag">UX/UI</span>
+                <h3>VOLT PAY</h3>
+                <p>Fintech: платежи, кошелёк и мобильное приложение</p>
+                <a class="proof-link" href="/case-volt-pay">Смотреть кейс</a>
+              </div>
+            </article>
+            <article class="project-card reveal" data-project-id="potok" data-category="web">
+              <img src="case-potok/HERO.jpg" alt="POTOK" loading="lazy" decoding="async" width="1200" height="630" />
+              <div class="content">
+                <span class="tag">WEB</span>
+                <h3>POTOK</h3>
+                <p>Образовательный проект</p>
+                <a class="proof-link" href="/case-potok">Смотреть кейс</a>
+              </div>
+            </article>
+            <article class="project-card reveal" data-project-id="logo-it-school" data-category="web">
+              <img src="case-logo-IT%20school/HERO.jpg" alt="IT SCHOOL" loading="lazy" decoding="async" width="1200" height="630" />
+              <div class="content">
+                <span class="tag">WEB</span>
+                <h3>IT SCHOOL</h3>
+                <p>Логотип и мини-айдентика</p>
+                <a class="proof-link" href="/case-logo-it-school">Смотреть кейс</a>
+              </div>
+            </article>
+            <article class="project-card reveal" data-project-id="logo-pazl-kod" data-category="web">
+              <img src="case-logo-PAZL%20KOD/1000017610.jpg" alt="PAZL KOD" loading="lazy" decoding="async" width="1200" height="630" />
+              <div class="content">
+                <span class="tag">WEB</span>
+                <h3>PAZL KOD</h3>
+                <p>Логотип и бренд-гайд</p>
+                <a class="proof-link" href="/case-logo-pazl-kod">Смотреть кейс</a>
+              </div>
+            </article>
+            <article class="project-card reveal" data-project-id="zaozernaya" data-category="web">
+              <img src="case-logo-zaozernaya/HERO.png" alt="ЗАОЗЕРНАЯ" loading="lazy" decoding="async" width="1200" height="630" />
+              <div class="content">
+                <span class="tag">WEB</span>
+                <h3>ЗАОЗЕРНАЯ</h3>
+                <p>Логотип для видеопроизводства</p>
+                <a class="proof-link" href="/case-zaozernaya">Смотреть кейс</a>
               </div>
             </article>
           </div>
