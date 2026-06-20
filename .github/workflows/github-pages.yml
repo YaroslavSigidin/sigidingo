@@ -1,0 +1,39 @@
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Prepare site for /sigidingo subpath
+        run: |
+          find . -name '*.html' -print0 | while IFS= read -r -d '' f; do
+            sed -i 's|<base href="/" />|<base href="/sigidingo/" />|g' "$f"
+            perl -pi -e 's/(href|src)="\/(?!\/)/$1="\/sigidingo\//g' "$f"
+          done
+          rm -rf .git .github local auth-figma-sync tools
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - id: deployment
+        uses: actions/deploy-pages@v4
