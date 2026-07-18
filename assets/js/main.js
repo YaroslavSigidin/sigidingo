@@ -1,8 +1,8 @@
 const qs = (sel, scope = document) => scope.querySelector(sel);
 const qsa = (sel, scope = document) => Array.from(scope.querySelectorAll(sel));
 const FALLBACK_COVER = "assets/images/HERO/HERO__.jpg";
-const SERVICE_WORKER_PATH = "/sw.js";
-const DATA_BUNDLE = "assets/js/data.js?v=20260422-case-media-1";
+const SERVICE_WORKER_PATH = "sw.js";
+const DATA_BUNDLE = "assets/js/data.js?v=20260620-pages-cases";
 let dataHydrated = false;
 let dataBundlePromise = null;
 const RESPONSIVE_IMAGES = new Set([
@@ -166,6 +166,12 @@ const normalizePathname = () => {
   return p || "/";
 };
 
+const isMobileViewport = () =>
+  typeof window.matchMedia === "function" && window.matchMedia("(max-width: 860px)").matches;
+
+const isCoarsePointer = () =>
+  typeof window.matchMedia === "function" && window.matchMedia("(pointer: coarse)").matches;
+
 /** Подсветка пункта меню по текущему URL (корневые пути /portfolio, /blog, …). */
 const markNavCurrentPage = () => {
   const nav = qs("#navLinks");
@@ -238,13 +244,46 @@ const initNav = () => {
     if (event.key === "Escape") closeMenu();
   });
 
+  const ensureMobileNavTools = () => {
+    if (!isMobileViewport() || qs(".nav-mobile-tools", links)) return;
+    const headerTools = qs(".nav-tools");
+    if (!headerTools) return;
+
+    const wrap = document.createElement("div");
+    wrap.className = "nav-mobile-tools";
+
+    const telegram = headerTools.querySelector(".nav-telegram");
+    if (telegram) {
+      const tg = telegram.cloneNode(true);
+      tg.classList.add("nav-mobile-telegram");
+      tg.addEventListener("click", closeMenu);
+      wrap.appendChild(tg);
+    }
+
+    const themeBtn = headerTools.querySelector("[data-theme-toggle]");
+    if (themeBtn) {
+      const theme = themeBtn.cloneNode(true);
+      theme.addEventListener("click", event => {
+        event.preventDefault();
+        themeBtn.click();
+      });
+      wrap.appendChild(theme);
+    }
+
+    links.appendChild(wrap);
+  };
+
+  ensureMobileNavTools();
+  window.addEventListener("resize", ensureMobileNavTools, { passive: true });
+
   markNavCurrentPage();
 };
 
 const initServiceWorker = () => {
   if (!("serviceWorker" in navigator)) return;
   window.addEventListener("load", () => {
-    navigator.serviceWorker.register(SERVICE_WORKER_PATH).catch(() => {});
+    const swPath = typeof resolveSiteUrl === "function" ? resolveSiteUrl("/sw.js") : "sw.js";
+    navigator.serviceWorker.register(swPath).catch(() => {});
   });
 };
 
@@ -279,11 +318,62 @@ const initThemeToggle = () => {
   });
 };
 
+/** На GitHub Pages сайт лежит в /sigidingo — абсолютные пути с корня домена ломают кейсы. */
+const getSiteBasePath = () => {
+  if (typeof window === "undefined" || !window.location) return "";
+  if (!/\.github\.io$/i.test(window.location.hostname)) return "";
+  const seg = window.location.pathname.split("/").filter(Boolean)[0];
+  return seg ? `/${seg}` : "";
+};
+
+const resolveSiteUrl = href => {
+  const value = String(href ?? "").trim();
+  const base = getSiteBasePath();
+  if (!value) return base || "/";
+  if (/^(https?:|mailto:|tel:|#)/i.test(value)) return value;
+  if (value.startsWith("/")) {
+    if (base && (value === base || value.startsWith(`${base}/`))) return value;
+    return `${base}${value}`;
+  }
+  return `${base}/${value.replace(/^\.?\//, "")}`;
+};
+
+const getProjectCaseHref = project => {
+  if (!project) return "";
+  const casePage = typeof project.casePage === "string" ? project.casePage.trim() : "";
+  if (casePage) return resolveSiteUrl(casePage);
+  const caseKey = project.caseKey || project.id;
+  return caseKey ? resolveSiteUrl(`/case-${caseKey}`) : "";
+};
+
 const navigateWithTransition = url => {
+  const reduceMotion =
+    typeof window.matchMedia === "function" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduceMotion) {
+    window.location.href = resolveSiteUrl(url);
+    return;
+  }
   document.body.classList.add("page-exit");
   setTimeout(() => {
-    window.location.href = url;
-  }, 250);
+    window.location.href = resolveSiteUrl(url);
+  }, isMobileViewport() ? 180 : 250);
+};
+
+const bindCaseLinkNavigation = () => {
+  if (document.documentElement.dataset.caseNavDelegationBound === "true") return;
+  document.addEventListener("click", handleCaseLinkClick);
+  document.documentElement.dataset.caseNavDelegationBound = "true";
+};
+
+const handleCaseLinkClick = event => {
+  const link = event.target.closest("a[href]");
+  if (!link || link.target === "_blank" || link.hasAttribute("download")) return;
+  const href = String(link.getAttribute("href") || "").trim();
+  if (!/^(\/)?(?:[\w.-]+\/)?case-/i.test(href) && !href.includes("/case-")) return;
+  if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
+  event.preventDefault();
+  navigateWithTransition(href);
 };
 
 const initReveal = () => {
@@ -564,11 +654,63 @@ const getPrimaryProjectLink = project => {
   return links.length ? links[0] : null;
 };
 
+const handleProjectCardClick = event => {
+  if (event.target.closest("a")) return;
+  const card = event.target.closest(".project-card");
+  if (!card) return;
+  const { projectId } = card.dataset;
+  if (!projectId) return;
+  if (typeof projects === "undefined") {
+    const caseLink = card.querySelector(".proof-link");
+    if (caseLink?.getAttribute("href")) {
+      navigateWithTransition(caseLink.getAttribute("href"));
+    }
+    return;
+  }
+  const project = projects.find(item => item.id === projectId);
+  openProjectModal(project);
+};
+
+const initPortfolioStaticFilter = () => {
+  const grid = qs("#projects-grid");
+  if (!grid || grid.dataset.staticGrid !== "true" || grid.dataset.filterBound === "true") return;
+
+  let activeFilter = "all";
+  const applyStaticFilter = () => {
+    qsa(".project-card", grid).forEach(card => {
+      const category = card.dataset.category || "";
+      card.hidden = activeFilter !== "all" && category !== activeFilter;
+    });
+  };
+
+  if (!grid.dataset.modalDelegationBound) {
+    grid.addEventListener("click", handleProjectCardClick);
+    grid.dataset.modalDelegationBound = "true";
+  }
+
+  qsa(".tab-button").forEach(tab => {
+    tab.addEventListener("click", () => {
+      qsa(".tab-button").forEach(item => item.classList.remove("active"));
+      tab.classList.add("active");
+      activeFilter = tab.dataset.filter || "all";
+      applyStaticFilter();
+    });
+  });
+
+  applyStaticFilter();
+  grid.dataset.filterBound = "true";
+};
+
 const renderProjects = () => {
   const grid = qs("#projects-grid");
-  if (!grid || typeof projects === "undefined") return;
-  let activeFilter = "all";
+  if (!grid) return;
   const preserveStatic = grid.dataset.staticGrid === "true";
+  if (preserveStatic) {
+    initPortfolioStaticFilter();
+    return;
+  }
+  if (typeof projects === "undefined") return;
+  let activeFilter = "all";
 
   const renderGrid = () => {
     grid.innerHTML = "";
@@ -576,10 +718,12 @@ const renderProjects = () => {
       .filter(project => activeFilter === "all" || project.category === activeFilter)
       .forEach(project => {
         const tagLabel = project.category === "uxui" ? "UX/UI" : "WEB";
-    const card = document.createElement("article");
-    card.className = "project-card reveal";
-    card.dataset.projectId = project.id;
-    card.innerHTML = `
+        const caseHref = getProjectCaseHref(project);
+        const card = document.createElement("article");
+        card.className = "project-card reveal";
+        card.dataset.projectId = project.id;
+        card.dataset.category = project.category || "web";
+        card.innerHTML = `
           ${renderPicture({ src: project.image, alt: project.title })}
           <div class="content">
             <span class="tag">${tagLabel}</span>
@@ -592,45 +736,40 @@ const renderProjects = () => {
                     .join("")}</div>`
                 : ""
             }
+            ${caseHref ? `<a class="proof-link" href="${caseHref}">Смотреть кейс</a>` : ""}
           </div>
         `;
         bindImageFallback(qs("img", card));
-        card.addEventListener("click", () => openProjectModal(project));
         grid.appendChild(card);
       });
     initReveal();
   };
 
   if (!grid.dataset.modalDelegationBound) {
-    grid.addEventListener("click", event => {
-      const card = event.target.closest(".project-card");
-      if (!card) return;
-      const { projectId } = card.dataset;
-      if (!projectId || typeof projects === "undefined") return;
-      const project = projects.find(item => item.id === projectId);
-      openProjectModal(project);
-    });
+    grid.addEventListener("click", handleProjectCardClick);
     grid.dataset.modalDelegationBound = "true";
   }
 
-  const tabs = qsa(".tab-button");
-  tabs.forEach(tab => {
+  qsa(".tab-button").forEach(tab => {
     tab.addEventListener("click", () => {
-      tabs.forEach(item => item.classList.remove("active"));
+      qsa(".tab-button").forEach(item => item.classList.remove("active"));
       tab.classList.add("active");
-      activeFilter = tab.dataset.filter;
+      activeFilter = tab.dataset.filter || "all";
       renderGrid();
     });
   });
 
-  if (!preserveStatic) {
-    renderGrid();
-  }
+  renderGrid();
 };
 
 let projectFolderDragZ = 20;
 
 const makeProjectFolderDraggable = folder => {
+  if (isCoarsePointer()) {
+    folder.classList.add("project-folder--touch");
+    return;
+  }
+
   let pointerId = null;
   let startX = 0;
   let startY = 0;
@@ -954,6 +1093,7 @@ const renderServicesProofCards = () => {
   host.innerHTML = "";
 
   proofProjects.forEach(project => {
+    const caseHref = getProjectCaseHref(project);
     const card = document.createElement("article");
     card.className = "project-card reveal";
     card.innerHTML = `
@@ -962,13 +1102,13 @@ const renderServicesProofCards = () => {
         <span class="tag">Case study</span>
         <h3>${project.title}</h3>
         <p>${project.description || project.subtitle || ""}</p>
-        <a class="proof-link" href="case-">Смотреть кейс</a>
+        ${caseHref ? `<a class="proof-link" href="${caseHref}">Смотреть кейс</a>` : ""}
       </div>
     `;
     bindImageFallback(qs("img", card));
     card.addEventListener("click", event => {
-      if (event.target.closest(".proof-link")) return;
-      navigateWithTransition(`case-`);
+      if (event.target.closest("a") || !caseHref) return;
+      navigateWithTransition(caseHref);
     });
     host.appendChild(card);
   });
@@ -1133,9 +1273,9 @@ const enhanceCaseDetails = detailsHost => {
 
 const openProjectModal = project => {
   if (!project) return;
-  const casePage = typeof project.casePage === "string" ? project.casePage.trim() : "";
-  if (casePage) {
-    navigateWithTransition(casePage.startsWith("/") ? casePage : `/${casePage}`);
+  const caseHref = getProjectCaseHref(project);
+  if (caseHref) {
+    navigateWithTransition(caseHref);
     return;
   }
   const modal = qs("#projectModal");
@@ -1225,9 +1365,9 @@ const openProjectModal = project => {
         <h4>Задача</h4>
         <p>${data.task}</p>
         <h4>Что сделано</h4>
-        <ul class="case-list">${data.whatDone.map(item => `<li>${item}</li>`).join("")}</ul>
+        <ul class="case-list">${(Array.isArray(data.whatDone) ? data.whatDone : []).map(item => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
         <h4>Метрики</h4>
-        <ul class="case-list">${data.metrics.map(item => `<li>${item}</li>`).join("")}</ul>
+        <ul class="case-list">${(Array.isArray(data.metrics) ? data.metrics : []).map(item => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
         ${
           modalStoryChapters.length
             ? `
@@ -1334,11 +1474,14 @@ const initServiceLeadModal = () => {
     document.body.classList.remove("modal-open");
     document.body.style.paddingRight = "";
     form.reset();
-    serviceEl.textContent = "";
+    serviceEl.textContent = "Услуга не выбрана";
+    serviceEl.classList.add("is-empty");
   };
 
   const open = serviceTitle => {
-    serviceEl.textContent = serviceTitle ? `Услуга: ${serviceTitle}` : "";
+    const title = serviceTitle?.trim() ?? "";
+    serviceEl.textContent = title || "Услуга не выбрана";
+    serviceEl.classList.toggle("is-empty", !title);
     modal.classList.add("active");
     modal.setAttribute("aria-hidden", "false");
     document.body.classList.add("modal-open");
@@ -1360,8 +1503,7 @@ const initServiceLeadModal = () => {
     const name = form.elements.namedItem("name")?.value?.trim() ?? "";
     const phone = form.elements.namedItem("phone")?.value?.trim() ?? "";
     const username = form.elements.namedItem("username")?.value?.trim() ?? "";
-    const svc =
-      serviceEl.textContent.replace(/^Услуга:\s*/, "").trim() || "—";
+    const svc = serviceEl.textContent.trim() || "—";
     const body = [`Услуга: ${svc}`, "", `Имя: ${name}`, `Телефон: ${phone}`, `Telegram / username: ${username}`].join(
       "\n"
     );
@@ -1810,6 +1952,24 @@ const initCvDock = () => {
     triggerCvPdfDownload();
   });
 
+  if (isCoarsePointer()) {
+    drop.setAttribute("role", "button");
+    drop.setAttribute("tabindex", "0");
+    drop.setAttribute("aria-label", "Скачать резюме PDF");
+    const openCv = event => {
+      event.preventDefault();
+      triggerCvPdfDownload();
+    };
+    drop.addEventListener("click", openCv);
+    drop.addEventListener("keydown", event => {
+      if (event.key === "Enter" || event.key === " ") openCv(event);
+    });
+    docEl.addEventListener("click", event => {
+      event.preventDefault();
+      triggerCvPdfDownload();
+    });
+  }
+
   docEl.addEventListener("click", event => {
     if (skipDocumentClick) {
       skipDocumentClick = false;
@@ -1825,7 +1985,7 @@ const renderArticles = () => {
   const featured = articles.find(item => item.featured) || articles[0];
 
   const buildFeatured = item => {
-    const articleHref = `/blog/${encodeURIComponent(item.id)}/`;
+    const articleHref = `/blog/${encodeURIComponent(item.id)}`;
     return `
     <article class="article-featured reveal">
       <div class="article-cover">
@@ -1848,7 +2008,7 @@ const renderArticles = () => {
   };
 
   const buildCard = item => {
-    const articleHref = `/blog/${encodeURIComponent(item.id)}/`;
+    const articleHref = `/blog/${encodeURIComponent(item.id)}`;
     return `
     <a class="article-link" href="${articleHref}">
       <article class="article-card reveal">
@@ -2025,7 +2185,7 @@ const renderArticlePage = () => {
     related.innerHTML = picks
       .map(
         item => `
-        <a class="article-link" href="/blog/${encodeURIComponent(item.id)}/">
+        <a class="article-link" href="/blog/${encodeURIComponent(item.id)}">
           <article class="article-card">
             <div class="article-cover">
               <img src="${item.cover}" alt="${item.title}" loading="lazy" decoding="async" />
@@ -2258,7 +2418,7 @@ const assetUrlForCss = src => {
   if (!t) return "";
   if (/^https?:\/\//i.test(t)) return t;
   const decoded = decodeAssetUrl(t);
-  const path = decoded.startsWith("/") ? decoded : `/${decoded}`;
+  const path = resolveSiteUrl(decoded.startsWith("/") ? decoded : `/${decoded}`);
   // CSS url() должен получить ровно один раз закодированный путь.
   // data.js уже хранит часть путей в encodeURI(), поэтому сначала декодируем.
   return encodeURI(path);
@@ -2323,9 +2483,7 @@ const renderCaseMoreCasesGrid = () => {
 
   host.innerHTML = list
     .map(project => {
-      const href = String(project.casePage).startsWith("/")
-        ? project.casePage
-        : `/${project.casePage}`;
+      const href = resolveSiteUrl(project.casePage);
       const tagLabel = project.category === "uxui" ? "UX/UI" : "WEB";
       const label = `${project.title} — открыть кейс`;
       return `<a class="project-card reveal case-more-case-card" href="${escapeHtml(href)}" aria-label="${escapeHtml(label)}">
@@ -2377,7 +2535,8 @@ const renderCaseStudy = () => {
   if (taskEl) taskEl.textContent = data.task;
 
   if (whatDoneEl) {
-    whatDoneEl.innerHTML = data.whatDone.map(item => `<li>${item}</li>`).join("");
+    const whatDone = Array.isArray(data.whatDone) ? data.whatDone : [];
+    whatDoneEl.innerHTML = whatDone.map(item => `<li>${escapeHtml(item)}</li>`).join("");
   }
 
   if (resultsLeadEl && typeof data.resultsLead === "string") {
@@ -2472,7 +2631,7 @@ const renderCaseStudy = () => {
   });
 
   if (metricsEl && Array.isArray(data.metrics)) {
-    metricsEl.innerHTML = data.metrics.map(item => `<li>${item}</li>`).join("");
+    metricsEl.innerHTML = data.metrics.map(item => `<li>${escapeHtml(item)}</li>`).join("");
   }
 
   if (galleryEl && Array.isArray(data.images)) {
@@ -3041,6 +3200,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   safe("nav", initNav);
+  safe("portfolioStaticFilter", initPortfolioStaticFilter);
   safe("serviceWorker", initServiceWorker);
   safe("theme", initThemeToggle);
   safe("mobilePortfolioDefault", initMobilePortfolioDefault);
@@ -3064,14 +3224,5 @@ document.addEventListener("DOMContentLoaded", () => {
   safe("caseStudyHeroScroll", initCaseStudyHeroScroll);
   safe("dataHydration", scheduleDataHydration);
 
-  try {
-    qsa('a[href^="case-"]').forEach(link => {
-      link.addEventListener("click", event => {
-        event.preventDefault();
-        navigateWithTransition(link.getAttribute("href"));
-      });
-    });
-  } catch (err) {
-    console.error("[init case links]", err);
-  }
+  safe("caseLinks", () => bindCaseLinkNavigation());
 });
